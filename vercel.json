@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/.next",
+  "framework": "nextjs",
+  "builds": [
+    {
+      "src": "backend/enhanced-server-supabase.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/enhanced-server-supabase.js"
+    }
+  ],
+  "functions": {
+    "backend/enhanced-server-supabase.js": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Authorization, x-session-id"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/images/(.*)",
+      "destination": "/images/$1"
+    }
+  ],
+  "regions": ["fra1"]
+}
