@@ -231,11 +231,7 @@ export function CustomersPage() {
               <CardContent className="space-y-4">
                 {customers && customers.length > 0 ? (
                   customers
-                    .sort(
-                      (a, b) =>
-                        Number.parseFloat(b.totalSpent.replace("$", "").replace(",", "")) -
-                        Number.parseFloat(a.totalSpent.replace("$", "").replace(",", "")),
-                    )
+                    .sort((a, b) => b.total_spent - a.total_spent)
                     .slice(0, 3)
                     .map((customer, index) => (
                       <div key={customer.id} className="flex items-center justify-between">
