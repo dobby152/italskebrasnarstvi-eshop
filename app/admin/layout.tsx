@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 import { 
   Home, 
   Package, 
@@ -82,13 +83,13 @@ export default function AdminLayout({
           <div className="border-t border-gray-800 my-4"></div>
           
           {/* Back to Store */}
-          <a
+          <Link
             href="/"
             className="flex items-center gap-3 px-3 py-2.5 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-colors duration-200 group"
           >
             <ArrowLeft className="h-5 w-5 text-gray-400 group-hover:text-white transition-colors" />
             <span className="font-medium">Zpět do eshopu</span>
-          </a>
+          </Link>
         </div>
       </nav>
 
