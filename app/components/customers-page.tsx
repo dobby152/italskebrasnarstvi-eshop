@@ -169,7 +169,7 @@ export function CustomersPage() {
                         <td className="px-6 py-4">
                           <div className="text-sm text-muted-foreground flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
-                            {new Date(customer.last_order_date).toLocaleDateString('cs-CZ')}
+                            {customer.last_order_date ? new Date(customer.last_order_date).toLocaleDateString('cs-CZ') : 'N/A'}
                           </div>
                         </td>
                         <td className="px-6 py-4">{getStatusBadge(customer.status, customer.status === 'new' ? 'Nový' : customer.status === 'regular' ? 'Pravidelný' : 'VIP')}</td>
