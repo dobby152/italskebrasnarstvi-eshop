@@ -359,25 +359,13 @@ export default function ProductsSection() {
                           </span>
                         )}
                       </div>
-                      {product.stockStatus && (
-                        <div className="mt-2 text-gray-600">
-                          {product.stockStatus === "in_stock" && (
-                            <span>Je skladem ({product.stockCount} kusů)</span>
-                          )}
-                          {product.stockStatus === "in_partner_stock" && (
-                            <span>Skladem na partnerské prodejně</span>
-                          )}
-                          {product.stockStatus === "out_of_stock" && (
-                            <span>Není skladem</span>
-                          )}
-                          {product.stockStatus === "with_supplier" && (
-                            <span>Skladem u dodavatele</span>
-                          )}
-                          {product.stockStatus === "on_order" && (
-                            <span>Na objednávku</span>
-                          )}
-                        </div>
-                      )}
+                      <div className="mt-2 text-gray-600">
+                        {(product.stock ?? 0) > 0 ? (
+                          <span>Je skladem ({product.stock ?? 0} kusů)</span>
+                        ) : (
+                          <span>Není skladem</span>
+                        )}
+                      </div>
                       <Button className="bg-black hover:bg-gray-800 text-white px-4 py-2">
                         <ShoppingCart className="h-4 w-4 mr-1" />
                         Koupit
