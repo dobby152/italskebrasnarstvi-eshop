@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { GET_BY_SKU } from '../route'
 
 export async function GET(
   request: NextRequest,
@@ -7,8 +6,19 @@ export async function GET(
 ) {
   try {
     const { baseSku } = await params
-    const result = await GET_BY_SKU(baseSku)
-    return NextResponse.json(result)
+    
+    // Proxy to the main variants endpoint with baseSku parameter
+    const url = new URL('/api/variants', request.url)
+    url.searchParams.set('baseSku', baseSku)
+    
+    const response = await fetch(url.toString())
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch variants: ${response.statusText}`)
+    }
+    
+    const data = await response.json()
+    return NextResponse.json(data)
   } catch (error) {
     console.error('Error in variants/[baseSku] route:', error)
     return NextResponse.json(
