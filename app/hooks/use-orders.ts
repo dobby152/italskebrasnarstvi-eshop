@@ -31,7 +31,7 @@ export function useOrders() {
         setLoading(true)
         setError(null)
         
-        const response = await fetch('http://localhost:3001/api/orders')
+        const response = await fetch('/api/orders')
         if (!response.ok) {
           throw new Error('Failed to fetch orders')
         }
