@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+// @ts-ignore - react-image-gallery doesn't have types
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import { ProductVariant } from "../lib/types/variants"
