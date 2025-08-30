@@ -58,7 +58,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
         availability: selectedColorVariant.availability,
         attributes: {
           color: selectedColorVariant.colorName,
-          colorHex: selectedColorVariant.colorHex,
+          hexColor: selectedColorVariant.hexColor,
           colorCode: selectedColorVariant.colorCode
         },
         images: selectedColorVariant.images ? selectedColorVariant.images.map((img: string) => ({ image_url: img })) : [],
@@ -81,7 +81,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
         availability: product.availability,
         attributes: {
           color: (product as any).colorName || 'Výchozí barva',
-          colorHex: (product as any).colorHex || '#CCCCCC',
+          hexColor: (product as any).hexColor || '#CCCCCC',
           colorCode: (product as any).colorCode || 'DEFAULT'
         },
         images: product.images ? product.images.map((img: string) => ({ image_url: img })) : [],

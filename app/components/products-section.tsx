@@ -78,11 +78,11 @@ export default function ProductsSection() {
   // Extract available colors from products
   const getAvailableColors = (product: any): VariantAttributeOption[] => {
     // Check if product has color variants data
-    if (product.colorCode && product.colorName && product.colorHex) {
+    if (product.colorCode && product.colorName && product.hexColor) {
       return [{
         value: product.colorCode,
         displayValue: product.colorName,
-        hexColor: product.colorHex,
+        hexColor: product.hexColor,
         available: product.availability === 'Skladem',
         price: product.price
       }]

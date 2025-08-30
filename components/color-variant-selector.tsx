@@ -12,7 +12,7 @@ interface ColorVariant {
   price: number
   colorCode: string
   colorName: string
-  colorHex: string
+  hexColor: string
   images: string[]
   availability: string
   stock?: number
@@ -51,7 +51,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
             price: variant.price,
             colorCode: variant.attributes?.color?.value || variant.colorCode,
             colorName: variant.attributes?.color?.displayValue || variant.colorName,
-            colorHex: variant.attributes?.color?.hexColor || variant.colorHex,
+            hexColor: variant.attributes?.color?.hexColor || variant.hexColor,
             images: variant.images ? variant.images.map((img: any) => img.image_url) : [],
             availability: variant.availability,
             stock: variant.inventory_quantity
@@ -85,14 +85,14 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
 
   // Show single color if no variants or not hasVariants
   if (!baseSku || !(product as any).hasVariants || (!loading && variants.length <= 1)) {
-    if ((product as any).colorHex) {
+    if ((product as any).hexColor) {
       return (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-sm text-gray-600 mr-2">Barva:</span>
           <div className="flex items-center gap-2">
             <div
               className="w-6 h-6 rounded-full border-2 border-gray-300 shadow-sm"
-              style={{ backgroundColor: (product as any).colorHex }}
+              style={{ backgroundColor: (product as any).hexColor }}
               title={(product as any).colorName}
             />
             <span className="text-sm text-gray-700">{(product as any).colorName}</span>
@@ -119,7 +119,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
                   className={`w-8 h-8 rounded-full border-3 shadow-md ${
                     isSelected ? 'border-black' : 'border-gray-400'
                   }`}
-                  style={{ backgroundColor: variant.colorHex }}
+                  style={{ backgroundColor: variant.hexColor }}
                   title={variant.colorName}
                 />
               ) : (
@@ -133,7 +133,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
                   className={`w-8 h-8 rounded-full border-3 shadow-md hover:scale-110 transition-all cursor-pointer ${
                     isSelected ? 'border-black' : 'border-gray-400 hover:border-gray-600'
                   }`}
-                  style={{ backgroundColor: variant.colorHex }}
+                  style={{ backgroundColor: variant.hexColor }}
                   title={`${variant.colorName} - ${variant.price.toLocaleString()} Kč`}
                 />
               )}

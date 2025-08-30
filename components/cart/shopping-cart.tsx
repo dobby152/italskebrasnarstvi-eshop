@@ -223,7 +223,7 @@ export default function ShoppingCart() {
                                 <div className="flex items-center gap-1">
                                   <div 
                                     className="w-4 h-4 rounded-full border border-gray-300"
-                                    style={{ backgroundColor: item.variant.attributes?.colorHex || '#CCCCCC' }}
+                                    style={{ backgroundColor: item.variant.attributes?.hexColor || '#CCCCCC' }}
                                   />
                                   <Badge variant="secondary">
                                     {item.variant.attributes.color}
