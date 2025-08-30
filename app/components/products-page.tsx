@@ -97,7 +97,7 @@ const ProductCard = ({ product }: { product: any }) => {
                   <Eye className="mr-2 h-4 w-4" />
                   Zobrazit
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleEditProduct(product)}>
+                <DropdownMenuItem>
                   <Edit className="mr-2 h-4 w-4" />
                   Upravit
                 </DropdownMenuItem>
