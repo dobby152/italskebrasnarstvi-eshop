@@ -1,4 +1,4 @@
-import { AppsPage } from "../components/apps-page"
+import { AppsPage } from "../../components/apps-page"
 
 export default function Apps() {
   return <AppsPage />

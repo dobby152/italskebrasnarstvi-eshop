@@ -1,4 +1,4 @@
-import { CustomersPage } from "../components/customers-page"
+import { CustomersPage } from "../../components/customers-page"
 
 export default function Customers() {
   return <CustomersPage />

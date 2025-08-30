@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from 'react'
-import { useProducts, useCollections, useBrands } from '../hooks/useProducts'
-import ProductGrid from '../components/product-grid'
-import ProductFilters from '../components/product-filters'
-import { Button } from "../components/ui/button"
+import { useProducts, useCollections, useBrands } from '../../hooks/useProducts'
+import ProductGrid from '../../components/product-grid'
+import ProductFilters from '../../components/product-filters'
+import { Button } from "../../components/ui/button"
 import { SlidersHorizontal, X } from "lucide-react"
 import Link from "next/link"
 
