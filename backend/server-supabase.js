@@ -1,62 +1,256 @@
-/**
- * Server.js - Hlavní soubor serveru pro e-shop Italské brašnářství
- * Verze pro Supabase
- */
-
-// Načtení proměnných prostředí z .env souboru
-require('dotenv').config();
-
-// Import potřebných modulů
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const multer = require('multer');
 const fs = require('fs');
-const { supabase } = require('./config/supabase-config');
+const { createClient } = require('@supabase/supabase-js');
+const IntelligentImageParser = require('../intelligent_image_parser');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
-// Vytvoření instance Express aplikace
 const app = express();
-
-// Nastavení portu
 const PORT = process.env.PORT || 3001;
 
-// Middleware pro parsování JSON a URL-encoded dat
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Povolení CORS pro všechny požadavky
-app.use(cors());
-
-// Nastavení statické složky pro obrázky
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/images', express.static(path.join(__dirname, '../../images')));
-
-// Konfigurace multer pro nahrávání souborů
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadDir = path.join(__dirname, 'uploads');
-    // Vytvoření složky, pokud neexistuje
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
+// Initialize intelligent image parser
+let intelligentImageParser;
+function initializeImageParser() {
+  try {
+    // Use the same logic as image serving - frontend first, then backend
+    const frontendImagesPath = path.join(__dirname, '..', 'frontend', 'public', 'images');
+    const backendImagesPath = path.join(__dirname, '..', 'images');
+    
+    let imagesDir = frontendImagesPath;
+    if (!fs.existsSync(frontendImagesPath) && fs.existsSync(backendImagesPath)) {
+      imagesDir = backendImagesPath;
     }
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    // Generování unikátního názvu souboru
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+    
+    if (!fs.existsSync(imagesDir)) {
+      console.log('❌ Images directory not found, using placeholders');
+      console.log(`   Tried: ${frontendImagesPath}`);
+      console.log(`   Tried: ${backendImagesPath}`);
+      return;
+    }
+    
+    intelligentImageParser = new IntelligentImageParser(imagesDir);
+    console.log('✅ Intelligent image parser initialized');
+    console.log(`📁 Images directory: ${imagesDir}`);
+    console.log(`📁 Found ${fs.readdirSync(imagesDir).length} files in images directory`);
+  } catch (error) {
+    console.error('❌ Error initializing image parser:', error);
+  }
+}
+
+function getProductImages(product) {
+  // Use images from database if available
+  if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+    // Filter out empty strings and ensure proper format
+    const validImages = product.images.filter(img => img && img.trim() !== '');
+    if (validImages.length > 0) {
+      // Remove duplicates using Set
+      const uniqueImages = [...new Set(validImages)];
+      
+      // Further filter for quality - prefer unique base names
+      const seenBaseNames = new Set();
+      const qualityFiltered = [];
+      
+      // Sort images by preference - prefer those with shorter names (likely main images)
+      const sortedImages = uniqueImages.sort((a, b) => {
+        const aName = a.split('/').pop() || '';
+        const bName = b.split('/').pop() || '';
+        return aName.length - bName.length;
+      });
+      
+      for (const img of sortedImages) {
+        // Extract base name without timestamp and extensions
+        let baseName = img;
+        
+        // Remove path prefix for comparison
+        if (baseName.includes('/')) {
+          baseName = baseName.split('/').pop();
+        }
+        
+        // Very aggressive pattern removal for products like "Ma-a-torebka-Jade-czarna_0_1755554491371.jpg"
+        // First remove the main product name pattern
+        const basePattern = baseName.split('_')[0]; // Get everything before first underscore
+        
+        // Skip if we've already seen this base pattern
+        if (seenBaseNames.has(basePattern)) {
+          continue;
+        }
+        
+        seenBaseNames.add(basePattern);
+        qualityFiltered.push(img);
+        
+        // Limit to maximum 4 images per product for better performance
+        if (qualityFiltered.length >= 4) {
+          break;
+        }
+      }
+      
+      return qualityFiltered.map(img => {
+        // If image already starts with /images/, use as is
+        if (img.startsWith('/images/')) {
+          return img;
+        }
+        // If image starts with images/, add leading slash
+        if (img.startsWith('images/')) {
+          return `/${img}`;
+        }
+        // Otherwise, add /images/ prefix
+        return `/images/${img}`;
+      });
+    }
+  }
+  
+  // Use single image_url if available
+  if (product.image_url && product.image_url.trim() !== '') {
+    let imageUrl = product.image_url;
+    // Ensure proper format
+    if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('http')) {
+      if (imageUrl.startsWith('images/')) {
+        imageUrl = `/${imageUrl}`;
+      } else {
+        imageUrl = `/images/${imageUrl}`;
+      }
+    }
+    return [imageUrl];
+  }
+  
+  // Fallback to placeholder
+  return ['/placeholder.svg'];
+}
+
+// Initialize intelligent image parser
+initializeImageParser();
+
+// Supabase config
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Serve static images from frontend public directory
+const frontendImagesPath = path.join(__dirname, '..', 'frontend', 'public', 'images');
+const backendImagesPath = path.join(__dirname, '..', 'images');
+
+// Try frontend first, then backend location
+let finalImagesPath = frontendImagesPath;
+if (!fs.existsSync(frontendImagesPath) && fs.existsSync(backendImagesPath)) {
+  finalImagesPath = backendImagesPath;
+}
+
+console.log(`📁 Serving images from: ${finalImagesPath}`);
+console.log(`📁 Images directory exists: ${fs.existsSync(finalImagesPath)}`);
+
+app.use('/images', express.static(finalImagesPath));
+
+// Routes
+// app.use('/api/upload', require('./routes/upload')); // Temporarily disabled
+
+// API Routes
+// Update product by ID
+app.put('/api/products/:id', async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const updateData = req.body;
+
+    // Validate required fields
+    if (!updateData.name || !updateData.sku) {
+      return res.status(400).json({ 
+        error: 'Missing required fields',
+        details: 'Name and SKU are required'
+      });
+    }
+
+    // Validate price
+    if (updateData.price && (isNaN(updateData.price) || updateData.price <= 0)) {
+      return res.status(400).json({ 
+        error: 'Invalid price',
+        details: 'Price must be a positive number'
+      });
+    }
+
+    // Check if another product with the same SKU exists (excluding current product)
+    const { data: existingSku, error: skuError } = await supabase
+      .from('products')
+      .select('id, sku')
+      .eq('sku', updateData.sku)
+      .neq('id', productId);
+
+    if (skuError) {
+      throw skuError;
+    }
+
+    if (existingSku && existingSku.length > 0) {
+      return res.status(409).json({
+        error: 'SKU already exists',
+        details: 'Another product already uses this SKU'
+      });
+    }
+
+    // Prepare update object with only allowed fields
+    const allowedFields = [
+      'name', 'sku', 'description', 'price', 'brand', 'collection', 
+      'availability', 'local_images', 'online_images', 'stock'
+    ];
+
+    const sanitizedUpdate = {};
+    allowedFields.forEach(field => {
+      if (updateData[field] !== undefined) {
+        sanitizedUpdate[field] = updateData[field];
+      }
+    });
+
+    // Add updated timestamp
+    sanitizedUpdate.updated_at = new Date().toISOString();
+
+    // Update the product
+    const { data: updatedProduct, error: updateError } = await supabase
+      .from('products')
+      .update(sanitizedUpdate)
+      .eq('id', productId)
+      .select(`
+        *,
+        product_images (
+          id,
+          image_path,
+          alt_text,
+          display_order
+        )
+      `)
+      .single();
+
+    if (updateError) {
+      if (updateError.code === 'PGRST116') {
+        return res.status(404).json({ 
+          error: 'Product not found',
+          details: 'No product found with the specified ID'
+        });
+      }
+      throw updateError;
+    }
+
+    // Add dynamic image URL and other computed fields
+    if (updatedProduct) {
+      const processedProduct = addImageUrl(updatedProduct);
+      res.json(processedProduct);
+    } else {
+      res.status(404).json({ 
+        error: 'Product not found',
+        details: 'No product found with the specified ID'
+      });
+    }
+  } catch (error) {
+    console.error('Error updating product:', error);
+    res.status(500).json({ 
+      error: 'Internal server error',
+      details: 'Failed to update product'
+    });
   }
 });
 
-const upload = multer({ storage: storage });
-
-// Základní endpoint pro kontrolu, zda server běží
-app.get('/', (req, res) => {
-  res.json({ message: 'API pro Italské brašnářství běží! (Supabase verze)' });
-});
-
-// Endpoint pro získání všech produktů s podporou paginácie, vyhľadávania a filtrovania
+// Get products with filtering and pagination
 app.get('/api/products', async (req, res) => {
   try {
     const {
@@ -65,910 +259,1154 @@ app.get('/api/products', async (req, res) => {
       search = '',
       collection = '',
       brand = '',
-      sortBy = 'created_at',
+      sku = '', // Add SKU search parameter
+      minPrice = '', // Add price filtering
+      maxPrice = '', // Add price filtering
+      sortBy = 'updated_at',
       sortOrder = 'desc'
     } = req.query;
 
-    const pageNum = parseInt(page);
-    const limitNum = parseInt(limit);
-    const offset = (pageNum - 1) * limitNum;
-
-    console.log('🔍 Products API called with params:', { page: pageNum, limit: limitNum, search, collection, brand, sortBy, sortOrder });
-
-    // Základný query
     let query = supabase
       .from('products')
       .select('*', { count: 'exact' });
 
-    // Vyhľadávanie v názve a popise
-    if (search && search.trim()) {
-      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%`);
+    // Apply filters
+    if (search) {
+      // Search by name, description, or SKU
+      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%,sku.ilike.%${search}%`);
+    }
+    if (sku) {
+      // Exact SKU match
+      query = query.eq('sku', sku);
+    }
+    if (collection && collection !== 'all') {
+      // Match normalized_collection exactly or use ilike for partial match
+      query = query.eq('normalized_collection', collection);
+    }
+    if (brand && brand !== 'all') {
+      query = query.eq('normalized_brand', brand);
+    }
+    // Apply price filters
+    if (minPrice && !isNaN(minPrice)) {
+      query = query.gte('price', parseFloat(minPrice));
+    }
+    if (maxPrice && !isNaN(maxPrice)) {
+      query = query.lte('price', parseFloat(maxPrice));
     }
 
-    // Filtrovanie podľa kategórie
-    if (collection && collection.trim() && collection !== 'all') {
-      query = query.eq('category_id', collection);
-    }
+    // Apply sorting
+    query = query.order(sortBy, { ascending: sortOrder === 'asc' });
 
-    // Filtrovanie podľa značky
-    if (brand && brand.trim() && brand !== 'all') {
-      query = query.eq('brand_id', brand);
-    }
-
-    // Sortovanie
-    const validSortColumns = ['name', 'price', 'created_at', 'updated_at'];
-    const sortColumn = validSortColumns.includes(sortBy) ? sortBy : 'created_at';
-    const order = sortOrder === 'asc' ? 'asc' : 'desc';
-    query = query.order(sortColumn, { ascending: order === 'asc' });
-
-    // Paginácia - pouze pokud limit není příliš vysoký (pro zobrazení všech produktů)
-    if (limitNum < 1000) {
-      query = query.range(offset, offset + limitNum - 1);
-    }
+    // Apply pagination
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+    query = query.range(from, to);
 
     const { data, error, count } = await query;
 
-    if (error) throw error;
-
-    // Načítanie tagů pre všetky produkty
-    const productIds = data.map(p => p.id);
-    const { data: productTagsData, error: tagsError } = await supabase
-      .from('product_tags')
-      .select(`
-        product_id,
-        tags (
-          id,
-          name,
-          color
-        )
-      `)
-      .in('product_id', productIds);
-
-    if (tagsError) {
-      console.error('Chyba při načítání tagů:', tagsError);
+    if (error) {
+      throw error;
     }
 
-    // Vytvorenie mapy tagů pre produkty
-    const productTagsMap = {};
-    if (productTagsData) {
-      productTagsData.forEach(item => {
-        if (!productTagsMap[item.product_id]) {
-          productTagsMap[item.product_id] = [];
-        }
-        productTagsMap[item.product_id].push(item.tags);
-      });
-    }
-
-    // Transformácia dát pre kompatibilitu s frontend
-    const transformedProducts = data.map(product => {
-      // Spracovanie obrázkov - použiť images array ak existuje, inak image_url
-      let imageUrls = [];
-      console.log('🖼️ Processing product images:', { id: product.id, images: product.images, image_url: product.image_url });
-      // Fix URL paths by removing redundant 'images/' prefix
+    // Helper function to get color information from SKU
+    function getColorInfo(sku) {
+      if (!sku || !sku.includes('-')) return null;
       
-      if (product.images && Array.isArray(product.images) && product.images.length > 0) {
-        // Remove redundant 'images/' prefix from each URL
-        imageUrls = product.images.map(img => img.replace(/^images\//, '')).filter(img => img && img.trim());
-        console.log('✅ Using images array:', imageUrls);
-      } else if (product.image_url) {
-        // Remove redundant 'images/' prefix from single URL
-        imageUrls = [product.image_url.replace(/^images\//, '')];
-        console.log('✅ Using image_url:', imageUrls);
-      }
+      const parts = sku.split('-');
+      const colorCode = parts[parts.length - 1];
       
-      const transformedProduct = {
-        ...product,
-        // Kompatibilita so starým rozhraním
-        name: product.name, // name_cz neexistuje v Supabase
-        collection: null, // collection_cz neexistuje v Supabase
-        description: product.description, // description_cz neexistuje v Supabase
-        stock: 10, // Dočasne nastavené na 10
-        image: imageUrls[0] || null,
-        images: imageUrls,
-        mainImage: imageUrls[0] || null,
-        tags: productTagsMap[product.id] || []
+      const colorNames = {
+        'BLU': 'Modrá', 'N': 'Černá', 'R': 'Červená', 'RO2': 'Růžová',
+        'M': 'Hnědá', 'BE': 'Béžová', 'GR': 'Šedá', 'V': 'Fialová',
+        'BI': 'Bílá', 'GBE': 'Zeleno-béžová', 'TO': 'Okrová',
+        'AZBE2': 'Světle modrá', 'VEVE2': 'Tmavě zelená', 'VIVI2': 'Tmavě fialová',
+        'AP': 'Oranžová', 'TM': 'Tyrkysová', 'VETM': 'Zeleno-tyrkysová',
+        'OT3': 'Oranžová tmavá', 'W92R': 'Bordová'
       };
       
-      console.log('🔄 Transformed product:', { id: transformedProduct.id, image: transformedProduct.image, images: transformedProduct.images, tags: transformedProduct.tags });
-      return transformedProduct;
-    });
+      const colorHex = {
+        'BLU': '#0066CC', 'N': '#000000', 'R': '#CC0000', 'RO2': '#FF69B4',
+        'M': '#8B4513', 'BE': '#F5F5DC', 'GR': '#808080', 'V': '#8A2BE2',
+        'BI': '#FFFFFF', 'GBE': '#9ACD32', 'TO': '#DAA520',
+        'AZBE2': '#87CEEB', 'VEVE2': '#006400', 'VIVI2': '#4B0082',
+        'AP': '#FFA500', 'TM': '#40E0D0', 'VETM': '#20B2AA',
+        'OT3': '#FF8C00', 'W92R': '#800020'
+      };
+      
+      return {
+        colorCode,
+        colorName: colorNames[colorCode] || colorCode,
+        colorHex: colorHex[colorCode] || '#CCCCCC',
+        baseSku: parts.slice(0, -1).join('-')
+      };
+    }
 
-    const totalPages = Math.ceil(count / limitNum);
-
-    console.log('✅ Products API response:', { 
-      productsCount: transformedProducts.length, 
-      total: count, 
-      totalPages,
-      page: pageNum 
+    // Map products with proper image handling and color info
+    const mappedProducts = (data || []).map(product => {
+      const productImages = getProductImages(product);
+      const colorInfo = getColorInfo(product.sku);
+      
+      return {
+        ...product,
+        image_url: productImages[0],
+        images: productImages,
+        // Add compatibility fields for frontend
+        name_cz: product.name,
+        description_cz: product.description,
+        collection: product.normalized_collection,
+        brand: product.normalized_brand,
+        features: [],
+        colors: colorInfo ? [colorInfo.colorHex] : [],
+        colorNames: colorInfo ? [colorInfo.colorName] : [],
+        tags: [],
+        // Color variant info
+        colorCode: colorInfo?.colorCode,
+        colorName: colorInfo?.colorName,
+        colorHex: colorInfo?.colorHex,
+        baseSku: colorInfo?.baseSku,
+        hasVariants: !!colorInfo // true if this product has color variants
+      };
     });
 
     res.json({
-      products: transformedProducts,
+      products: mappedProducts,
       pagination: {
-        page: pageNum,
-        limit: limitNum,
-        total: count,
-        totalPages
+        total: count || 0,
+        totalPages: Math.ceil((count || 0) / limit),
+        page: parseInt(page),
+        limit: parseInt(limit)
       }
     });
   } catch (error) {
-    console.error('❌ Chyba při získávání produktů:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání produktů' });
+    console.error('Error fetching products:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Endpoint pro získání produktu podle ID
+// Get single product
 app.get('/api/products/:id', async (req, res) => {
   try {
-    const { id } = req.params;
     const { data, error } = await supabase
       .from('products')
       .select('*')
-      .eq('id', id)
+      .eq('id', req.params.id)
       .single();
 
     if (error) {
-      if (error.code === 'PGRST116') {
-        return res.status(404).json({ error: 'Produkt nebyl nalezen' });
-      }
       throw error;
     }
 
-    // Transformácia dát pre kompatibilitu s frontend (same logic as SKU endpoint)
-    let imageUrls = [];
-    console.log('🖼️ Processing product images for ID:', id, { images: data.images, image_url: data.image_url });
-    
-    if (data.images && Array.isArray(data.images) && data.images.length > 0) {
-      // Remove redundant 'images/' prefix from each URL
-      const cleanImages = data.images.map(img => img.replace(/^images\//, '')).filter(img => img && img.trim());
-      
-      // Try to find all images in the product folder
-      if (cleanImages.length > 0) {
-        const firstImagePath = cleanImages[0];
-        const folderPath = firstImagePath.split('/')[0];
-        const fullFolderPath = path.join(__dirname, '../../images', folderPath);
-        
-        try {
-          if (fs.existsSync(fullFolderPath)) {
-            const folderImages = fs.readdirSync(fullFolderPath)
-              .filter(file => file.toLowerCase().endsWith('.jpg') || file.toLowerCase().endsWith('.png'))
-              .slice(0, 10) // Limit to 10 images for detail page
-              .map(file => `${folderPath}/${file}`);
-            
-            if (folderImages.length > 0) {
-              imageUrls = folderImages;
-              console.log('✅ Using folder images for ID:', id, imageUrls.length, 'images from', folderPath);
-            } else {
-              imageUrls = cleanImages;
-              console.log('✅ Using database images (no folder found):', imageUrls);
-            }
-          } else {
-            imageUrls = cleanImages;
-            console.log('✅ Using database images (folder not exists):', imageUrls);
-          }
-        } catch (error) {
-          console.log('❌ Error reading folder:', error.message);
-          imageUrls = cleanImages;
-        }
-      } else {
-        imageUrls = cleanImages;
-      }
-    } else if (data.image_url) {
-      imageUrls = [data.image_url.replace(/^images\//, '')];
-    }
-    
-    const transformedProduct = {
+    // Map product with proper image handling
+    const productImages = getProductImages(data);
+    const mappedProduct = {
       ...data,
-      stock: 10, // Dočasne nastavené na 10
-      image: imageUrls[0] || null,
-      images: imageUrls,
-      mainImage: imageUrls[0] || null
+      image_url: productImages[0],
+      images: productImages,
+      // Add compatibility fields for frontend
+      name_cz: data.name,
+      description_cz: data.description,
+      collection: data.normalized_collection,
+      brand: data.normalized_brand,
+      features: [],
+      colors: [],
+      tags: []
     };
 
-    res.json(transformedProduct);
+    res.json(mappedProduct);
   } catch (error) {
-    console.error(`Chyba při získávání produktu ID ${req.params.id}:`, error.message);
-    res.status(500).json({ error: 'Chyba při získávání produktu' });
+    console.error('Error fetching product:', error);
+    res.status(404).json({ error: 'Product not found' });
   }
 });
 
-// Endpoint pro získání produktu podle SKU
-app.get('/api/products/sku/:sku', async (req, res) => {
+// Get variants by base SKU (fixed version)
+app.get('/api/variants', async (req, res) => {
   try {
-    const { sku } = req.params;
-    console.log('🔍 Fetching product by SKU:', sku);
+    const { baseSku } = req.query;
     
+    if (!baseSku) {
+      return res.status(400).json({ error: 'baseSku parameter is required' });
+    }
+
+    // Extract base SKU by removing the variant part (everything after the last dash)
+    // For example: OM5285OM5-R -> OM5285OM5
+    const baseSkuPattern = baseSku.split('-')[0];
+    
+    // Get all products that match the base SKU pattern
+    // Use exact match for base SKU to ensure we only get variants of the same product
     const { data, error } = await supabase
       .from('products')
       .select('*')
-      .eq('sku', sku)
-      .single();
+      .ilike('sku', `${baseSkuPattern}-%`);
 
     if (error) {
-      if (error.code === 'PGRST116') {
-        console.log('❌ Product not found for SKU:', sku);
-        return res.status(404).json({ error: 'Produkt nebyl nalezen' });
-      }
-      throw error;
+      console.error('Error fetching variants:', error);
+      return res.status(500).json({ error: 'Failed to fetch variants' });
     }
 
-    console.log('✅ Product found for SKU:', sku, 'Product ID:', data.id);
-    
-    // Transformácia dát pre kompatibilitu s frontend
-    let imageUrls = [];
-    if (data.images && Array.isArray(data.images) && data.images.length > 0) {
-      // Remove redundant 'images/' prefix from each URL
-      const cleanImages = data.images.map(img => img.replace(/^images\//, '')).filter(img => img && img.trim());
-      
-      // Try to find all images in the product folder
-      if (cleanImages.length > 0) {
-        const firstImagePath = cleanImages[0];
-        const folderPath = firstImagePath.split('/')[0];
-        const fullFolderPath = path.join(__dirname, '../../images', folderPath);
-        
-        try {
-          if (fs.existsSync(fullFolderPath)) {
-            const folderImages = fs.readdirSync(fullFolderPath)
-              .filter(file => file.toLowerCase().endsWith('.jpg') || file.toLowerCase().endsWith('.png'))
-              .slice(0, 10) // Limit to 10 images for detail page
-              .map(file => `${folderPath}/${file}`);
-            
-            if (folderImages.length > 0) {
-              imageUrls = folderImages;
-              console.log('✅ Using folder images for SKU:', sku, imageUrls.length, 'images from', folderPath);
-            } else {
-              imageUrls = cleanImages;
-              console.log('✅ Using database images (no folder found):', imageUrls);
-            }
-          } else {
-            imageUrls = cleanImages;
-            console.log('✅ Using database images (folder not exists):', imageUrls);
-          }
-        } catch (error) {
-          console.log('❌ Error reading folder:', error.message);
-          imageUrls = cleanImages;
-        }
-      } else {
-        imageUrls = cleanImages;
-      }
-    } else if (data.image_url) {
-      imageUrls = [data.image_url.replace(/^images\//, '')];
-    }
-    
-    const transformedProduct = {
-      ...data,
-      stock: 10, // Dočasne nastavené na 10
-      image: imageUrls[0] || null,
-      images: imageUrls,
-      mainImage: imageUrls[0] || null
-    };
+    // Map variants with proper image handling
+    const mappedVariants = (data || []).map(variant => {
+      const productImages = getProductImages(variant);
+      return {
+        ...variant,
+        image_url: productImages[0],
+        images: productImages,
+        // Add compatibility fields for frontend
+        name_cz: variant.name,
+        description_cz: variant.description,
+        collection: variant.normalized_collection,
+        brand: variant.normalized_brand,
+        features: [],
+        colors: [],
+        tags: []
+      };
+    });
 
-    res.json(transformedProduct);
+    res.json(mappedVariants || []);
   } catch (error) {
-    console.error(`Chyba při získávání produktu SKU ${req.params.sku}:`, error.message);
-    res.status(500).json({ error: 'Chyba při získávání produktu' });
+    console.error('Error fetching variants:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Endpoint pro vytvoření nového produktu
-app.post('/api/products', upload.single('image'), async (req, res) => {
-  try {
-    const { name, description, price, category_id } = req.body;
-    
-    // Validace vstupních dat
-    if (!name || !price) {
-      return res.status(400).json({ error: 'Název a cena jsou povinné údaje' });
-    }
-
-    // Příprava dat pro vložení
-    const productData = {
-      name,
-      description,
-      price: parseFloat(price),
-      category_id: category_id ? parseInt(category_id) : null,
-      image_url: req.file ? `/uploads/${req.file.filename}` : null
-    };
-
-    // Vložení produktu do databáze
-    const { data, error } = await supabase
-      .from('products')
-      .insert([productData])
-      .select();
-
-    if (error) throw error;
-
-    res.status(201).json(data[0]);
-  } catch (error) {
-    console.error('Chyba při vytváření produktu:', error.message);
-    res.status(500).json({ error: 'Chyba při vytváření produktu' });
-  }
-});
-
-// Endpoint pro aktualizaci produktu
-app.put('/api/products/:id', upload.single('image'), async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, description, price, category_id } = req.body;
-    
-    // Validace vstupních dat
-    if (!name || !price) {
-      return res.status(400).json({ error: 'Název a cena jsou povinné údaje' });
-    }
-
-    // Příprava dat pro aktualizaci
-    const productData = {
-      name,
-      description,
-      price: parseFloat(price),
-      category_id: category_id ? parseInt(category_id) : null,
-      updated_at: new Date()
-    };
-
-    // Pokud byl nahrán nový obrázek, aktualizujeme cestu
-    if (req.file) {
-      productData.image_url = `/uploads/${req.file.filename}`;
-    }
-
-    // Aktualizace produktu v databázi
-    const { data, error } = await supabase
-      .from('products')
-      .update(productData)
-      .eq('id', id)
-      .select();
-
-    if (error) throw error;
-
-    if (data.length === 0) {
-      return res.status(404).json({ error: 'Produkt nebyl nalezen' });
-    }
-
-    res.json(data[0]);
-  } catch (error) {
-    console.error(`Chyba při aktualizaci produktu ID ${req.params.id}:`, error.message);
-    res.status(500).json({ error: 'Chyba při aktualizaci produktu' });
-  }
-});
-
-// Endpoint pro smazání produktu
-app.delete('/api/products/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    // Nejprve získáme produkt, abychom mohli smazat jeho obrázek
-    const { data: product, error: selectError } = await supabase
-      .from('products')
-      .select('image')
-      .eq('id', id)
-      .single();
-
-    if (selectError) {
-      if (selectError.code === 'PGRST116') {
-        return res.status(404).json({ error: 'Produkt nebyl nalezen' });
-      }
-      throw selectError;
-    }
-
-    // Smazání produktu z databáze
-    const { error: deleteError } = await supabase
-      .from('products')
-      .delete()
-      .eq('id', id);
-
-    if (deleteError) throw deleteError;
-
-    // Smazání obrázku, pokud existuje
-    if (product.image && product.image.startsWith('/uploads/')) {
-      const imagePath = path.join(__dirname, product.image);
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
-      }
-    }
-
-    res.json({ message: 'Produkt byl úspěšně smazán' });
-  } catch (error) {
-    console.error(`Chyba při mazání produktu ID ${req.params.id}:`, error.message);
-    res.status(500).json({ error: 'Chyba při mazání produktu' });
-  }
-});
-
-// Endpoint pro získání všech kategorií
-app.get('/api/categories', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('*');
-
-    if (error) throw error;
-
-    res.json(data);
-  } catch (error) {
-    console.error('Chyba při získávání kategorií:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání kategorií' });
-  }
-});
-
-// Endpoint pro získání všech kolekcí (kategorií)
+// Get collections with Czech names (based on actual product collections)
 app.get('/api/collections', async (req, res) => {
   try {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('id, name')
-      .order('name');
+    // Get unique normalized_collection values from products
+    const { data: productCollections, error: collectionsError } = await supabase
+      .from('products')
+      .select('normalized_collection')
+      .not('normalized_collection', 'is', null);
 
-    if (error) throw error;
+    if (collectionsError) {
+      throw collectionsError;
+    }
 
-    // Přidáme možnost "Všechny" na začátek
+    // Get unique collections
+    const uniqueCollections = [...new Set(productCollections.map(p => p.normalized_collection))]
+      .filter(c => c && c.trim() !== '')
+      .sort();
+
+    // Create Czech translations for collection codes
+    const czechCollectionNames = {
+      'B2': 'Blue Square 2',
+      'BR2': 'Brief 2', 
+      'C2OW': 'Coleos 2 Openway',
+      'MOS': 'Mose',
+      'PQL': 'Piquadro Classic',
+      'S125': 'Synchrony 125',
+      'S134': 'Synchrony 134', 
+      'S135': 'Synchrony 135',
+      'S136': 'Synchrony 136',
+      'S137': 'Synchrony 137',
+      'S138': 'Synchrony 138',
+      'W129': 'Wostok 129',
+      'W134': 'Wostok 134',
+      'W92': 'Wostok 92',
+      'W92T': 'Wostok 92 Textile'
+    };
+
+    // Add "All" option at the beginning
     const collections = [
-      { id: 'all', name: 'Všechny kategorie' },
-      ...data.map(category => ({ id: category.id.toString(), name: category.name }))
+      {
+        id: 'all',
+        name: 'Všechny kolekce',
+        originalName: '',
+        dbId: null
+      },
+      ...uniqueCollections.map(collection => ({
+        id: collection,
+        name: czechCollectionNames[collection] || collection,
+        originalName: collection,
+        dbId: null
+      }))
     ];
 
     res.json(collections);
   } catch (error) {
-    console.error('Chyba při získávání kolekcí:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání kolekcí' });
+    console.error('Error fetching collections:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Endpoint pro získání všech značek
+// Get brands
 app.get('/api/brands', async (req, res) => {
   try {
     const { data, error } = await supabase
-      .from('brands')
-      .select('*')
-      .order('name');
-
-    if (error) throw error;
-
-    res.json(data);
-  } catch (error) {
-    console.error('Chyba při získávání značek:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání značek' });
-  }
-});
-
-// Endpoint pro získání všech kolekcí
-app.get('/api/collections', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('collections')
-      .select('*')
-      .order('name');
-
-    if (error) throw error;
-
-    res.json(data);
-  } catch (error) {
-    console.error('Chyba při získávání kolekcí:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání kolekcí' });
-  }
-});
-
-// Endpoint pro získání všech tagů
-app.get('/api/tags', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('tags')
-      .select('*')
-      .order('name');
-
-    if (error) throw error;
-
-    res.json(data);
-  } catch (error) {
-    console.error('Chyba při získávání tagů:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání tagů' });
-  }
-});
-
-// Endpoint pro získání tagů produktu
-app.get('/api/products/:productId/tags', async (req, res) => {
-  try {
-    const { productId } = req.params;
-    const { data, error } = await supabase
-      .from('product_tags')
-      .select(`
-        tags (
-          id,
-          name,
-          color
-        )
-      `)
-      .eq('product_id', productId);
-
-    if (error) throw error;
-
-    const tags = data.map(item => item.tags);
-    res.json(tags);
-  } catch (error) {
-    console.error(`Chyba při získávání tagů produktu ${req.params.productId}:`, error.message);
-    res.status(500).json({ error: 'Chyba při získávání tagů produktu' });
-  }
-});
-
-// Endpoint pro získání produktů podle kategorie
-app.get('/api/products/category/:categoryId', async (req, res) => {
-  try {
-    const { categoryId } = req.params;
-    const { data, error } = await supabase
       .from('products')
-      .select('*')
-      .eq('category_id', categoryId);
+      .select('normalized_brand')
+      .not('normalized_brand', 'is', null);
 
-    if (error) throw error;
-    
-    // Upravíme cesty k obrázkům pro frontend
-    const transformedData = data.map(product => {
-      // Zpracování pole obrázků
-      if (product.images && Array.isArray(product.images)) {
-        product.images = product.images.map(img => {
-          // Odstranění prefixu 'images/' z URL obrázku
-          return img.replace(/^images\//, '');
-        });
-      }
-      
-      // Zpracování hlavního obrázku
-      if (product.image_url && typeof product.image_url === 'string') {
-        product.image_url = product.image_url.replace(/^images\//, '');
-      }
-      
-      return product;
-    });
-
-    res.json(transformedData);
-  } catch (error) {
-    console.error(`Chyba při získávání produktů kategorie ${req.params.categoryId}:`, error.message);
-    res.status(500).json({ error: 'Chyba při získávání produktů podle kategorie' });
-  }
-});
-
-// Endpoint pro získání produktů podle značky
-app.get('/api/products/brand/:brandId', async (req, res) => {
-  try {
-    const { brandId } = req.params;
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('brand_id', brandId);
-
-    if (error) throw error;
-    
-    // Upravíme cesty k obrázkům pro frontend
-    const transformedData = data.map(product => {
-      // Zpracování pole obrázků
-      if (product.images && Array.isArray(product.images)) {
-        product.images = product.images.map(img => {
-          // Odstranění prefixu 'images/' z URL obrázku
-          return img.replace(/^images\//, '');
-        });
-      }
-      
-      // Zpracování hlavního obrázku
-      if (product.image_url && typeof product.image_url === 'string') {
-        product.image_url = product.image_url.replace(/^images\//, '');
-      }
-      
-      return product;
-    });
-
-    res.json(transformedData);
-  } catch (error) {
-    console.error(`Chyba při získávání produktů značky ${req.params.brandId}:`, error.message);
-    res.status(500).json({ error: 'Chyba při získávání produktů podle značky' });
-  }
-});
-
-// Endpoint pro vytvoření objednávky
-app.post('/api/orders', async (req, res) => {
-  try {
-    const { customer_name, customer_email, customer_address, items, total_amount } = req.body;
-    
-    // Validace vstupních dat
-    if (!customer_name || !customer_email || !items || !total_amount) {
-      return res.status(400).json({ error: 'Chybí povinné údaje pro vytvoření objednávky' });
+    if (error) {
+      throw error;
     }
 
-    // Vytvoření objednávky
-    const { data: order, error: orderError } = await supabase
-      .from('orders')
-      .insert([
-        {
-          customer_name,
-          customer_email,
-          customer_address,
-          total_amount: parseFloat(total_amount),
-          status: 'pending'
+    const brands = [...new Set(data.map(p => p.normalized_brand))]
+      .filter(b => b)
+      .map((name, index) => ({ id: index + 1, name }));
+
+    res.json(brands);
+  } catch (error) {
+    console.error('Error fetching brands:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get discounts 
+app.get('/api/discounts', async (req, res) => {
+  try {
+    // Check if discounts table exists and has data
+    const { data: discountsData, error: discountsError } = await supabase
+      .from('discounts')
+      .select(`
+        id,
+        title,
+        description,
+        code,
+        type,
+        value,
+        usage_limit,
+        usage_count,
+        starts_at,
+        ends_at,
+        is_active
+      `)
+      .order('created_at', { ascending: false });
+
+    let discounts = [];
+    let stats = {
+      total: 0,
+      active: 0,
+      scheduled: 0,
+      totalUsage: 0
+    };
+
+    if (discountsError) {
+      console.log('Discounts table not found, returning empty data:', discountsError.message);
+      // Return empty data if table doesn't exist
+    } else if (discountsData) {
+      // Format discounts for display
+      discounts = discountsData.map(discount => {
+        const now = new Date();
+        const startsAt = new Date(discount.starts_at);
+        const endsAt = new Date(discount.ends_at);
+        
+        let status = 'expired';
+        let statusLabel = 'Vypršelá';
+        
+        if (discount.is_active && startsAt <= now && endsAt >= now) {
+          status = 'active';
+          statusLabel = 'Aktivní';
+        } else if (discount.is_active && startsAt > now) {
+          status = 'scheduled';
+          statusLabel = 'Naplánovaná';
         }
-      ])
-      .select();
 
-    if (orderError) throw orderError;
+        return {
+          id: discount.id,
+          title: discount.title,
+          description: discount.description,
+          code: discount.code,
+          type: discount.type,
+          value: discount.type === 'percentage' ? `${discount.value}%` :
+                 discount.type === 'fixed_amount' ? `${discount.value} Kč` :
+                 'Doprava zdarma',
+          usage: discount.usage_count || 0,
+          limit: discount.usage_limit,
+          status,
+          statusLabel,
+          startDate: startsAt.toLocaleDateString('cs-CZ'),
+          endDate: endsAt.toLocaleDateString('cs-CZ')
+        };
+      });
 
-    // Vytvoření položek objednávky
-    const orderItems = items.map(item => ({
-      order_id: order[0].id,
-      product_id: item.id,
-      quantity: item.quantity,
-      price: parseFloat(item.price)
-    }));
+      // Calculate stats
+      stats = {
+        total: discounts.length,
+        active: discounts.filter(d => d.status === 'active').length,
+        scheduled: discounts.filter(d => d.status === 'scheduled').length,
+        totalUsage: discounts.reduce((sum, d) => sum + d.usage, 0)
+      };
+    }
 
-    const { error: itemsError } = await supabase
-      .from('order_items')
-      .insert(orderItems);
-
-    if (itemsError) throw itemsError;
-
-    res.status(201).json({
-      message: 'Objednávka byla úspěšně vytvořena',
-      order_id: order[0].id
-    });
+    res.json({ discounts, stats });
   } catch (error) {
-    console.error('Chyba při vytváření objednávky:', error.message);
-    res.status(500).json({ error: 'Chyba při vytváření objednávky' });
+    console.error('Error fetching discounts:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Endpoint pro získání všech objednávek
-app.get('/api/orders', async (req, res) => {
+// Get customers derived from orders
+app.get('/api/customers', async (req, res) => {
   try {
-    const { data, error } = await supabase
-      .from('orders')
-      .select('*');
-
-    if (error) throw error;
-
-    res.json(data);
-  } catch (error) {
-    console.error('Chyba při získávání objednávek:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání objednávek' });
-  }
-});
-
-// Endpoint pro získání detailu objednávky včetně položek
-app.get('/api/orders/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    
-    // Získání objednávky
-    const { data: order, error: orderError } = await supabase
+    const { data: ordersData, error: ordersError } = await supabase
       .from('orders')
       .select('*')
-      .eq('id', id)
+      .order('created_at', { ascending: false })
+      .limit(500);
+
+    if (ordersError) {
+      console.log('Orders table might not exist, returning empty customer data');
+      return res.json({ 
+        customers: [], 
+        stats: { totalCustomers: 0, newThisMonth: 0, regularCustomers: 0, vipCustomers: 0 } 
+      });
+    }
+
+    // Group orders by customer email
+    const customerMap = new Map();
+    
+    ordersData.forEach(order => {
+      const email = order.customer_email;
+      if (!customerMap.has(email)) {
+        customerMap.set(email, {
+          id: email,
+          name: order.customer_name || 'N/A',
+          email: email,
+          location: order.shipping_address || order.city || 'N/A',
+          orders: 0,
+          totalSpent: 0,
+          lastOrder: order.created_at,
+          joinDate: order.created_at,
+          status: 'regular'
+        });
+      }
+      
+      const customer = customerMap.get(email);
+      customer.orders += 1;
+      customer.totalSpent += order.total_amount || 0;
+      
+      // Update join date to earliest order
+      if (new Date(order.created_at) < new Date(customer.joinDate)) {
+        customer.joinDate = order.created_at;
+      }
+      
+      // Update last order to most recent
+      if (new Date(order.created_at) > new Date(customer.lastOrder)) {
+        customer.lastOrder = order.created_at;
+      }
+    });
+
+    // Convert to array and determine customer status
+    const customers = Array.from(customerMap.values()).map(customer => {
+      // Determine status based on orders and spending
+      let status = 'new';
+      let statusLabel = 'Nový';
+      
+      if (customer.orders >= 5 || customer.totalSpent >= 20000) {
+        status = 'vip';
+        statusLabel = 'VIP';
+      } else if (customer.orders >= 2) {
+        status = 'regular';
+        statusLabel = 'Pravidelný';
+      }
+      
+      return {
+        ...customer,
+        totalSpent: `${customer.totalSpent.toLocaleString('cs-CZ')} Kč`,
+        lastOrder: new Date(customer.lastOrder).toLocaleDateString('cs-CZ'),
+        joinDate: new Date(customer.joinDate).toLocaleDateString('cs-CZ'),
+        status,
+        statusLabel
+      };
+    });
+
+    // Calculate stats
+    const totalCustomers = customers.length;
+    const newThisMonth = customers.filter(c => {
+      const joinDate = new Date(customerMap.get(c.id).joinDate);
+      const thisMonth = new Date();
+      thisMonth.setDate(1);
+      return joinDate >= thisMonth;
+    }).length;
+    const regularCustomers = customers.filter(c => c.status === 'regular').length;
+    const vipCustomers = customers.filter(c => c.status === 'vip').length;
+
+    const stats = {
+      totalCustomers,
+      newThisMonth,
+      regularCustomers,
+      vipCustomers
+    };
+
+    res.json({ customers, stats });
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get single order with full details
+app.get('/api/orders/:id', async (req, res) => {
+  try {
+    const orderId = req.params.id;
+
+    // Get order details
+    const { data: orderData, error: orderError } = await supabase
+      .from('orders')
+      .select(`
+        *,
+        order_items (
+          id,
+          product_name,
+          product_sku,
+          quantity,
+          unit_price,
+          total_price,
+          fulfillable_quantity,
+          fulfilled_quantity,
+          refunded_quantity,
+          product_id
+        )
+      `)
+      .eq('id', orderId)
       .single();
 
     if (orderError) {
       if (orderError.code === 'PGRST116') {
-        return res.status(404).json({ error: 'Objednávka nebyla nalezena' });
+        return res.status(404).json({ error: 'Order not found' });
       }
       throw orderError;
     }
 
-    // Získání položek objednávky
-    const { data: items, error: itemsError } = await supabase
-      .from('order_items')
+    // Get order events (timeline)
+    const { data: eventsData, error: eventsError } = await supabase
+      .from('order_events')
+      .select('*')
+      .eq('order_id', orderId)
+      .order('created_at', { ascending: false });
+
+    // Get fulfillments
+    const { data: fulfillmentsData, error: fulfillmentsError } = await supabase
+      .from('fulfillments')
       .select(`
-        id,
-        quantity,
-        price,
-        products (id, name, image)
+        *,
+        fulfillment_line_items (
+          *,
+          order_items (*)
+        )
       `)
-      .eq('order_id', id);
+      .eq('order_id', orderId);
 
-    if (itemsError) throw itemsError;
+    // Get refunds
+    const { data: refundsData, error: refundsError } = await supabase
+      .from('refunds')
+      .select(`
+        *,
+        refund_line_items (
+          *,
+          order_items (*)
+        )
+      `)
+      .eq('order_id', orderId);
 
-    // Spojení dat
-    const result = {
-      ...order,
-      items: items
+    // Get order notes
+    const { data: notesData, error: notesError } = await supabase
+      .from('order_notes')
+      .select('*')
+      .eq('order_id', orderId)
+      .order('created_at', { ascending: false });
+
+    // Combine all data
+    const orderDetail = {
+      ...orderData,
+      items: orderData.order_items || [],
+      events: eventsData || [],
+      fulfillments: fulfillmentsData || [],
+      refunds: refundsData || [],
+      notes: notesData || []
     };
 
-    res.json(result);
+    // Remove the nested order_items to avoid duplication
+    delete orderDetail.order_items;
+
+    res.json(orderDetail);
   } catch (error) {
-    console.error(`Chyba při získávání objednávky ID ${req.params.id}:`, error.message);
-    res.status(500).json({ error: 'Chyba při získávání detailu objednávky' });
+    console.error('Error fetching order details:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Endpoint pro aktualizaci stavu objednávky
-app.put('/api/orders/:id/status', async (req, res) => {
+// Create refund for an order
+app.post('/api/orders/:id/refunds', async (req, res) => {
   try {
-    const { id } = req.params;
-    const { status } = req.body;
-    
-    if (!status) {
-      return res.status(400).json({ error: 'Chybí stav objednávky' });
+    const orderId = req.params.id;
+    const { amount, reason, note, gateway, notify_customer, line_items } = req.body;
+
+    // Validate required fields
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ error: 'Valid refund amount is required' });
     }
 
-    const { data, error } = await supabase
-      .from('orders')
-      .update({ status, updated_at: new Date() })
-      .eq('id', id)
-      .select();
-
-    if (error) throw error;
-
-    if (data.length === 0) {
-      return res.status(404).json({ error: 'Objednávka nebyla nalezena' });
+    if (!line_items || !Array.isArray(line_items) || line_items.length === 0) {
+      return res.status(400).json({ error: 'Line items are required' });
     }
 
-    res.json(data[0]);
-  } catch (error) {
-    console.error(`Chyba při aktualizaci stavu objednávky ID ${req.params.id}:`, error.message);
-    res.status(500).json({ error: 'Chyba při aktualizaci stavu objednávky' });
-  }
-});
-
-// Endpoint pro získání statistik
-app.get('/api/stats', async (req, res) => {
-  try {
-    // Počet produktů
-    const { count: productCount, error: productError } = await supabase
-      .from('products')
-      .select('id', { count: 'exact', head: true });
-
-    if (productError) throw productError;
-
-    // Počet kategorií
-    const { count: categoryCount, error: categoryError } = await supabase
-      .from('categories')
-      .select('id', { count: 'exact', head: true });
-
-    if (categoryError) throw categoryError;
-
-    // Počet objednávek
-    const { count: orderCount, error: orderError } = await supabase
-      .from('orders')
-      .select('id', { count: 'exact', head: true });
-
-    if (orderError) throw orderError;
-
-    // Celková hodnota objednávek
-    const { data: totalSales, error: salesError } = await supabase
-      .from('orders')
-      .select('total_amount');
-
-    if (salesError) throw salesError;
-
-    const totalAmount = totalSales.reduce((sum, order) => sum + parseFloat(order.total_amount), 0);
-
-    res.json({
-      totalProducts: { count: productCount },
-      totalCategories: { count: categoryCount },
-      totalOrders: { count: orderCount },
-      totalSales: totalAmount,
-      // Legacy format for compatibility
-      products: productCount,
-      categories: categoryCount,
-      orders: orderCount,
-      total_sales: totalAmount
-    });
-  } catch (error) {
-    console.error('Chyba při získávání statistik:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání statistik' });
-  }
-});
-
-// Inventory management endpoints
-app.get('/api/inventory', async (req, res) => {
-  try {
-    const { data: products, error } = await supabase
-      .from('products')
-      .select('id, name, sku, price, stock, low_stock_threshold')
-      .order('stock', { ascending: true });
-
-    if (error) throw error;
-
-    // Calculate inventory metrics
-    const lowStockProducts = products.filter(p => p.stock <= (p.low_stock_threshold || 5));
-    const outOfStockProducts = products.filter(p => p.stock === 0);
-    const totalValue = products.reduce((sum, p) => sum + (p.price * p.stock), 0);
-
-    res.json({
-      products,
-      metrics: {
-        totalProducts: products.length,
-        lowStock: lowStockProducts.length,
-        outOfStock: outOfStockProducts.length,
-        totalValue: totalValue
-      }
-    });
-  } catch (error) {
-    console.error('Chyba při získávání skladových zásob:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání skladových zásob' });
-  }
-});
-
-app.put('/api/inventory/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { stock, low_stock_threshold } = req.body;
-
-    const { data, error } = await supabase
-      .from('products')
-      .update({ 
-        stock: parseInt(stock),
-        low_stock_threshold: parseInt(low_stock_threshold || 5)
+    // Create refund
+    const { data: refund, error: refundError } = await supabase
+      .from('refunds')
+      .insert({
+        order_id: orderId,
+        amount,
+        reason,
+        note,
+        gateway,
+        status: 'pending',
+        processed_at: new Date().toISOString()
       })
-      .eq('id', id)
       .select()
       .single();
 
-    if (error) throw error;
+    if (refundError) {
+      throw refundError;
+    }
 
-    res.json(data);
+    // Insert refund line items
+    const refundLineItems = line_items.map(item => ({
+      refund_id: refund.id,
+      order_item_id: item.order_item_id,
+      quantity: item.quantity,
+      subtotal: item.subtotal,
+      total_tax: 0 // TODO: Calculate tax if needed
+    }));
+
+    const { error: lineItemsError } = await supabase
+      .from('refund_line_items')
+      .insert(refundLineItems);
+
+    if (lineItemsError) {
+      // Cleanup refund if line items failed
+      await supabase.from('refunds').delete().eq('id', refund.id);
+      throw lineItemsError;
+    }
+
+    // Update order items refunded quantities
+    for (const item of line_items) {
+      const { error: updateError } = await supabase
+        .from('order_items')
+        .update({ 
+          refunded_quantity: supabase.raw('refunded_quantity + ?', [item.quantity])
+        })
+        .eq('id', item.order_item_id);
+
+      if (updateError) {
+        console.error('Error updating refunded quantity:', updateError);
+      }
+    }
+
+    // Update order financial status if fully refunded
+    const { data: orderTotal } = await supabase
+      .from('orders')
+      .select('total_amount')
+      .eq('id', orderId)
+      .single();
+
+    if (orderTotal && amount >= orderTotal.total_amount) {
+      await supabase
+        .from('orders')
+        .update({ financial_status: 'refunded' })
+        .eq('id', orderId);
+    } else {
+      await supabase
+        .from('orders')
+        .update({ financial_status: 'partially_refunded' })
+        .eq('id', orderId);
+    }
+
+    // Create order event
+    await supabase
+      .from('order_events')
+      .insert({
+        order_id: orderId,
+        event_type: 'refund',
+        event_status: 'success',
+        description: `Vráceno ${amount.toLocaleString('cs-CZ')} Kč${reason ? ` (${reason})` : ''}`,
+        created_by: 'admin',
+        details: {
+          refund_id: refund.id,
+          amount,
+          reason,
+          gateway,
+          items_count: line_items.length
+        }
+      });
+
+    // TODO: Send email notification to customer if notify_customer is true
+    // TODO: Process actual refund through payment gateway
+
+    res.json({ 
+      success: true, 
+      refund: {
+        ...refund,
+        line_items: refundLineItems
+      }
+    });
   } catch (error) {
-    console.error('Chyba při aktualizaci skladových zásob:', error.message);
-    res.status(500).json({ error: 'Chyba při aktualizaci skladových zásob' });
+    console.error('Error creating refund:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Enhanced dashboard stats endpoint
+// Create fulfillment for an order
+app.post('/api/orders/:id/fulfillments', async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    const { service, tracking_company, tracking_number, notify_customer, line_items } = req.body;
+
+    // Validate required fields
+    if (!line_items || !Array.isArray(line_items) || line_items.length === 0) {
+      return res.status(400).json({ error: 'Line items are required' });
+    }
+
+    // Start transaction
+    const { data: fulfillment, error: fulfillmentError } = await supabase
+      .from('fulfillments')
+      .insert({
+        order_id: orderId,
+        service,
+        tracking_company,
+        tracking_number,
+        notify_customer,
+        status: 'pending',
+        created_at: new Date().toISOString()
+      })
+      .select()
+      .single();
+
+    if (fulfillmentError) {
+      throw fulfillmentError;
+    }
+
+    // Insert fulfillment line items
+    const fulfillmentLineItems = line_items.map(item => ({
+      fulfillment_id: fulfillment.id,
+      order_item_id: item.order_item_id,
+      quantity: item.quantity
+    }));
+
+    const { error: lineItemsError } = await supabase
+      .from('fulfillment_line_items')
+      .insert(fulfillmentLineItems);
+
+    if (lineItemsError) {
+      // Cleanup fulfillment if line items failed
+      await supabase.from('fulfillments').delete().eq('id', fulfillment.id);
+      throw lineItemsError;
+    }
+
+    // Update order items fulfilled quantities
+    for (const item of line_items) {
+      const { error: updateError } = await supabase
+        .from('order_items')
+        .update({ 
+          fulfilled_quantity: supabase.raw('fulfilled_quantity + ?', [item.quantity])
+        })
+        .eq('id', item.order_item_id);
+
+      if (updateError) {
+        console.error('Error updating fulfilled quantity:', updateError);
+      }
+    }
+
+    // Create order event
+    await supabase
+      .from('order_events')
+      .insert({
+        order_id: orderId,
+        event_type: 'fulfillment',
+        event_status: 'success',
+        description: tracking_number 
+          ? `Expedice vytvořena se sledovacím číslem: ${tracking_number}`
+          : 'Expedice vytvořena',
+        created_by: 'admin',
+        details: {
+          fulfillment_id: fulfillment.id,
+          service,
+          tracking_company,
+          tracking_number,
+          items_count: line_items.length
+        }
+      });
+
+    // TODO: Send email notification to customer if notify_customer is true
+
+    res.json({ 
+      success: true, 
+      fulfillment: {
+        ...fulfillment,
+        line_items: fulfillmentLineItems
+      }
+    });
+  } catch (error) {
+    console.error('Error creating fulfillment:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get orders with stats
+app.get('/api/orders', async (req, res) => {
+  try {
+    const { data: ordersData, error: ordersError } = await supabase
+      .from('orders')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(100);
+
+    if (ordersError) {
+      console.log('Orders table might not exist or have different schema, returning empty data');
+      return res.json({ 
+        orders: [], 
+        stats: { totalOrders: 0, fulfilledOrders: 0, pendingOrders: 0, partiallyFulfilledOrders: 0 } 
+      });
+    }
+
+    // Calculate stats
+    const totalOrders = ordersData.length;
+    const fulfilledOrders = ordersData.filter(order => order.status === 'delivered').length;
+    const pendingOrders = ordersData.filter(order => order.status === 'pending').length;
+    const partiallyFulfilledOrders = ordersData.filter(order => order.status === 'processing' || order.status === 'shipped').length;
+
+    // Format orders for display
+    const orders = ordersData.map(order => ({
+      id: order.order_number || order.id,
+      customer: order.customer_name || order.customer_email,
+      date: order.created_at,
+      status: order.status === 'delivered' ? 'fulfilled' : 
+             order.status === 'pending' ? 'pending' :
+             'partially_fulfilled',
+      payment: order.payment_status === 'paid' ? 'paid' : 'pending', 
+      total: order.total_amount || 0
+    }));
+
+    const stats = {
+      totalOrders,
+      fulfilledOrders,
+      pendingOrders,
+      partiallyFulfilledOrders
+    };
+
+    res.json({ orders, stats });
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get product statistics
+app.get('/api/stats', async (req, res) => {
+  try {
+    const { data: productsData, error: productsError } = await supabase
+      .from('products')
+      .select('id, availability, created_at');
+
+    if (productsError) {
+      throw productsError;
+    }
+
+    // Calculate product statistics
+    const total = productsData.length;
+    const active = productsData.filter(p => p.availability === 'Skladem').length;
+    const outOfStock = productsData.filter(p => p.availability === 'Vyprodáno').length;
+    const lowStock = productsData.filter(p => p.availability === 'Poslední kusy').length;
+
+    const stats = {
+      total,
+      active,
+      outOfStock,
+      lowStock
+    };
+
+    res.json(stats);
+  } catch (error) {
+    console.error('Error fetching product stats:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get dashboard statistics
 app.get('/api/dashboard-stats', async (req, res) => {
   try {
-    // Get products count
-    const { count: productCount, error: productError } = await supabase
+    // Get product stats
+    const { data: productsData, error: productsError } = await supabase
       .from('products')
-      .select('id', { count: 'exact', head: true });
+      .select('id, price, created_at');
 
-    if (productError) throw productError;
+    if (productsError) {
+      throw productsError;
+    }
 
-    // Get orders data for calculations
-    const { data: orders, error: ordersError } = await supabase
+    // Try to get order stats (may not exist)
+    const { data: ordersData, error: ordersError } = await supabase
       .from('orders')
-      .select('total_amount, created_at, status');
+      .select('id, total_amount, created_at, customer_email')
+      .limit(1000);
 
-    if (ordersError) throw ordersError;
-
-    // Calculate revenue and growth
-    const now = new Date();
-    const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-    const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-    const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-
-    const todayOrders = orders.filter(order => {
-      const orderDate = new Date(order.created_at);
-      return orderDate >= yesterday;
-    });
-
-    const thisMonthOrders = orders.filter(order => {
-      const orderDate = new Date(order.created_at);
-      return orderDate >= thisMonth;
-    });
-
-    const lastMonthOrders = orders.filter(order => {
-      const orderDate = new Date(order.created_at);
-      return orderDate >= lastMonth && orderDate < thisMonth;
-    });
-
-    const totalRevenue = orders.reduce((sum, order) => sum + parseFloat(order.total_amount || 0), 0);
-    const thisMonthRevenue = thisMonthOrders.reduce((sum, order) => sum + parseFloat(order.total_amount || 0), 0);
-    const lastMonthRevenue = lastMonthOrders.reduce((sum, order) => sum + parseFloat(order.total_amount || 0), 0);
+    // Calculate basic stats
+    const totalProducts = productsData.length;
+    const totalOrders = ordersData ? ordersData.length : 0;
     
-    const revenueGrowth = lastMonthRevenue > 0 ? 
-      ((thisMonthRevenue - lastMonthRevenue) / lastMonthRevenue * 100) : 0;
+    // Calculate revenue from orders if available, otherwise estimate from product value
+    const totalRevenue = ordersData && ordersData.length > 0 
+      ? ordersData.reduce((sum, order) => sum + (order.total_amount || 0), 0)
+      : productsData.reduce((sum, product) => sum + (product.price || 0), 0);
+    
+    // Calculate unique customers from orders
+    const uniqueCustomers = ordersData 
+      ? new Set(ordersData.map(order => order.customer_email)).size
+      : 0;
+    
+    // Calculate growth metrics (compare today vs yesterday)
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    const todayStart = new Date(today);
+    todayStart.setHours(0, 0, 0, 0);
+    
+    const yesterdayStart = new Date(yesterday);
+    yesterdayStart.setHours(0, 0, 0, 0);
+    
+    // Orders growth
+    const todayOrders = ordersData ? ordersData.filter(order => 
+      new Date(order.created_at) >= todayStart
+    ).length : 0;
+    
+    const yesterdayOrders = ordersData ? ordersData.filter(order => {
+      const orderDate = new Date(order.created_at);
+      return orderDate >= yesterdayStart && orderDate < todayStart;
+    }).length : 0;
+    
+    // Revenue growth
+    const todayRevenue = ordersData ? ordersData
+      .filter(order => new Date(order.created_at) >= todayStart)
+      .reduce((sum, order) => sum + (order.total_amount || 0), 0) : 0;
+    
+    const yesterdayRevenue = ordersData ? ordersData
+      .filter(order => {
+        const orderDate = new Date(order.created_at);
+        return orderDate >= yesterdayStart && orderDate < todayStart;
+      })
+      .reduce((sum, order) => sum + (order.total_amount || 0), 0) : 0;
+    
+    // Products growth  
+    const todayProducts = productsData.filter(p => 
+      new Date(p.created_at) >= todayStart
+    ).length;
+    
+    // Calculate growth percentages
+    const revenueGrowth = yesterdayRevenue > 0 ? ((todayRevenue - yesterdayRevenue) / yesterdayRevenue) * 100 : 0;
+    const ordersGrowth = todayOrders;
+    const customersGrowth = 0; // Would need customer creation dates
+    const productsGrowth = todayProducts;
 
-    // Mock customer data (since we don't have customers table)
-    const totalCustomers = Math.floor(orders.length * 0.8); // Estimate based on orders
-    const customersGrowth = 12.5; // Mock growth
+    const stats = {
+      totalRevenue: Math.round(totalRevenue),
+      totalOrders,
+      totalCustomers: uniqueCustomers,
+      totalProducts: {
+        count: totalProducts
+      },
+      revenueGrowth: Math.round(revenueGrowth * 10) / 10,
+      ordersGrowth,
+      customersGrowth,
+      productsGrowth
+    };
 
-    res.json({
-      totalRevenue: totalRevenue,
-      totalOrders: orders.length,
-      totalCustomers: totalCustomers,
-      totalProducts: { count: productCount },
-      revenueGrowth: revenueGrowth,
-      ordersGrowth: todayOrders.length,
-      customersGrowth: customersGrowth,
-      productsGrowth: 0 // No new products tracking yet
-    });
+    res.json(stats);
   } catch (error) {
-    console.error('Chyba při získávání dashboard statistik:', error.message);
-    res.status(500).json({ error: 'Chyba při získávání dashboard statistik' });
+    console.error('Error fetching dashboard stats:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Spuštění serveru
+// Add product endpoint
+app.post('/api/products', async (req, res) => {
+  try {
+    const productData = req.body;
+    
+    // Validate required fields
+    if (!productData.sku) {
+      return res.status(400).json({ error: 'SKU is required' });
+    }
+    
+    if (!productData.name) {
+      return res.status(400).json({ error: 'Product name is required' });
+    }
+
+    // Check if product with this SKU already exists
+    const { data: existingProduct, error: checkError } = await supabase
+      .from('products')
+      .select('id')
+      .eq('sku', productData.sku)
+      .single();
+
+    if (existingProduct) {
+      return res.status(409).json({ error: 'Product with this SKU already exists' });
+    }
+
+    // Prepare product data for insertion
+    const insertData = {
+      sku: productData.sku,
+      name: productData.name,
+      description: productData.description || '',
+      price: productData.price || 0,
+      normalized_brand: (productData.brand || '').toLowerCase(),
+      availability: productData.stock > 0 ? 'Skladem' : 'Vyprodáno',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
+
+    // Insert product
+    const { data: newProduct, error: insertError } = await supabase
+      .from('products')
+      .insert(insertData)
+      .select()
+      .single();
+
+    if (insertError) {
+      throw insertError;
+    }
+
+    // Handle images if provided
+    if (productData.images && Array.isArray(productData.images) && productData.images.length > 0) {
+      const imageInserts = productData.images.map((image, index) => ({
+        product_id: newProduct.id,
+        image_path: image,
+        alt_text: `${productData.name} - ${index + 1}`,
+        display_order: index + 1
+      }));
+
+      const { error: imageError } = await supabase
+        .from('product_images')
+        .insert(imageInserts);
+
+      if (imageError) {
+        console.error('Error inserting product images:', imageError);
+        // Don't fail the entire request if images fail
+      }
+    }
+
+    res.status(201).json(newProduct);
+  } catch (error) {
+    console.error('Error creating product:', error);
+    res.status(500).json({ error: 'Failed to create product' });
+  }
+});
+
+// Get product color variants by base SKU
+app.get('/api/product-variants/:baseSku', async (req, res) => {
+  try {
+    const { baseSku } = req.params;
+    
+    // Get all products that have this base SKU (everything before last hyphen)
+    const { data: products, error } = await supabase
+      .from('products')
+      .select('*')
+      .like('sku', `${baseSku}-%`)
+      .order('sku');
+
+    if (error) {
+      throw error;
+    }
+
+    // Color code mappings
+    const colorNames = {
+      'BLU': 'Modrá',
+      'N': 'Černá', 
+      'R': 'Červená',
+      'RO2': 'Růžová',
+      'M': 'Hnědá',
+      'BE': 'Béžová',
+      'GR': 'Šedá',
+      'V': 'Fialová',
+      'BI': 'Bílá',
+      'GBE': 'Zeleno-béžová',
+      'TO': 'Okrová',
+      'AZBE2': 'Světle modrá',
+      'VEVE2': 'Tmavě zelená',
+      'VIVI2': 'Tmavě fialová',
+      'AP': 'Oranžová',
+      'TM': 'Tyrkysová',
+      'VETM': 'Zeleno-tyrkysová',
+      'OT3': 'Oranžová tmavá',
+      'W92R': 'Bordová'
+    };
+
+    // Color hex codes for display
+    const colorHex = {
+      'BLU': '#0066CC',
+      'N': '#000000',
+      'R': '#CC0000', 
+      'RO2': '#FF69B4',
+      'M': '#8B4513',
+      'BE': '#F5F5DC',
+      'GR': '#808080',
+      'V': '#8A2BE2',
+      'BI': '#FFFFFF',
+      'GBE': '#9ACD32',
+      'TO': '#DAA520',
+      'AZBE2': '#87CEEB',
+      'VEVE2': '#006400',
+      'VIVI2': '#4B0082',
+      'AP': '#FFA500',
+      'TM': '#40E0D0',
+      'VETM': '#20B2AA',
+      'OT3': '#FF8C00',
+      'W92R': '#800020'
+    };
+
+    // Group and process variants
+    const variants = products.map(product => {
+      const parts = product.sku.split('-');
+      const colorCode = parts[parts.length - 1];
+      
+      return {
+        id: product.id,
+        sku: product.sku,
+        name: product.name,
+        price: product.price,
+        colorCode: colorCode,
+        colorName: colorNames[colorCode] || colorCode,
+        colorHex: colorHex[colorCode] || '#CCCCCC',
+        images: product.images || [],
+        availability: product.availability,
+        stock: product.stock,
+        image_url: product.image ? `/images/${product.image}` : null,
+        normalized_collection: product.normalized_collection,
+        normalized_brand: product.normalized_brand,
+        description: product.description
+      };
+    });
+
+    // Get base product info from the first variant
+    const baseProduct = variants.length > 0 ? {
+      id: variants[0].id,
+      name: variants[0].name,
+      description: variants[0].description,
+      normalized_collection: variants[0].normalized_collection,
+      normalized_brand: variants[0].normalized_brand,
+      baseSku: baseSku
+    } : null;
+
+    res.json({
+      success: true,
+      baseProduct,
+      variants,
+      totalVariants: variants.length
+    });
+
+  } catch (error) {
+    console.error('Error fetching product variants:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Basic route
+app.get('/', (req, res) => {
+  res.json({ message: 'Backend server is running' });
+});
+
 app.listen(PORT, () => {
-  console.log(`Server běží na portu ${PORT}`);
-  console.log(`Používá se Supabase databáze`);
+  console.log(`Backend server running on port ${PORT}`);
+  initializeImageParser();
 });

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { useProducts, useCollections, useBrands } from '../../../hooks/useProducts'
+import { useCollections, useBrands } from '../../../hooks/useProducts'
 import ProductGrid from '../../../components/product-grid'
 import ProductFilters from '../../../components/product-filters'
 import { Button } from "../../../components/ui/button"
@@ -9,32 +9,14 @@ import { SlidersHorizontal, X } from "lucide-react"
 import Link from "next/link"
 
 export default function BusinessPage() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCollection, setSelectedCollection] = useState<any>(null)
-  const [selectedBrand, setSelectedBrand] = useState<any>(null)
   const [showFilters, setShowFilters] = useState(false)
 
   // Business category search terms
   const businessTerms = ['aktovka', 'business', 'notebook', 'laptop', 'teczka', 'skorzana', 'briefcase', 'messenger', 'work', 'office']
   const businessSearchQuery = businessTerms.join(' OR ')
 
-  const { products, total, loading, error } = useProducts({
-    page: currentPage,
-    limit: 20,
-    search: searchQuery || businessSearchQuery,
-    collection: selectedCollection?.originalName,
-    brand: selectedBrand?.name,
-    autoFetch: true
-  })
-
   const { collections } = useCollections()
   const { brands } = useBrands()
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -141,20 +123,15 @@ export default function BusinessPage() {
                   Business produkty
                 </h2>
                 <p className="text-gray-600 mt-1">
-                  {loading ? 'Načítám...' : `Nalezeno ${total} produktů`}
+                  Produkty pro business a práci
                 </p>
               </div>
             </div>
 
             {/* Product Grid */}
             <ProductGrid
-              products={products}
-              loading={loading}
-              error={error}
-              total={total}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-              totalPages={Math.ceil(total / 20)}
+              searchQuery={businessSearchQuery}
+              limit={20}
             />
           </div>
         </div>
