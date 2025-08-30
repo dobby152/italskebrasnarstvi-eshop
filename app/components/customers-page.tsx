@@ -243,10 +243,10 @@ export function CustomersPage() {
                           </div>
                           <div>
                             <div className="font-medium text-card-foreground">{customer.name}</div>
-                            <div className="text-sm text-muted-foreground">{customer.orders} objednávek</div>
+                            <div className="text-sm text-muted-foreground">{customer.orders_count} objednávek</div>
                           </div>
                         </div>
-                        <div className="font-medium text-card-foreground">{customer.totalSpent}</div>
+                        <div className="font-medium text-card-foreground">{customer.total_spent.toLocaleString()} Kč</div>
                       </div>
                     ))
                 ) : (
@@ -276,7 +276,7 @@ export function CustomersPage() {
                           </div>
                           <div>
                             <div className="font-medium text-card-foreground">{customer.name}</div>
-                            <div className="text-sm text-muted-foreground">Připojil se {customer.joinDate}</div>
+                            <div className="text-sm text-muted-foreground">Připojil se {new Date(customer.created_at).toLocaleDateString('cs-CZ')}</div>
                           </div>
                         </div>
                         <Badge className="bg-blue-100 text-blue-800 border-0">Nový</Badge>
