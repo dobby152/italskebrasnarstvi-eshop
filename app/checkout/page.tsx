@@ -1,17 +1,17 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "../components/ui/button"
+import { Card } from "../components/ui/card"
+import { Input } from "../components/ui/input"
+import { Label } from "../components/ui/label"
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group"
+import { Checkbox } from "../components/ui/checkbox"
 import { CreditCard, Truck, User, Phone, Mail, Building, Check, Lock, ArrowLeft, Shield } from "lucide-react"
 import { useState } from "react"
-import Header from "@/components/header"
+import Header from "../components/header"
 import Link from "next/link"
-import { useCart } from "@/context/cart-context"
-import { Badge } from "@/components/ui/badge"
+import { useCart } from "../context/cart-context"
+import { Badge } from "../components/ui/badge"
 
 export default function CheckoutPage() {
   const { items: cartItems, totalPrice } = useCart()
