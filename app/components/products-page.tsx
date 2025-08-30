@@ -712,10 +712,10 @@ export function ProductsPage() {
                            <div className="flex items-center justify-between">
                              <div className="font-medium text-lg">{formatPrice(product.price)}</div>
                              <div className={`text-sm font-medium ${
-                               product.stock <= 0 ? 'text-red-600' : 
-                               product.stock < 10 ? 'text-yellow-600' : 'text-green-600'
+                               (product.stock ?? 0) <= 0 ? 'text-red-600' : 
+                               (product.stock ?? 0) < 10 ? 'text-yellow-600' : 'text-green-600'
                              }`}>
-                               {product.stock} ks
+                               {product.stock ?? 0} ks
                              </div>
                            </div>
                          </div>
