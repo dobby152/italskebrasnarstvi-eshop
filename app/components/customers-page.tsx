@@ -198,25 +198,25 @@ export function CustomersPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-card-foreground">{stats?.totalCustomers || 0}</div>
+                <div className="text-2xl font-bold text-card-foreground">{stats?.total || 0}</div>
                 <div className="text-sm text-muted-foreground">Celkem zákazníků</div>
               </CardContent>
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-blue-600">{stats?.newThisMonth || 0}</div>
+                <div className="text-2xl font-bold text-blue-600">{stats?.new_this_month || 0}</div>
                 <div className="text-sm text-muted-foreground">Nových tento měsíc</div>
               </CardContent>
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-green-600">{stats?.regularCustomers || 0}</div>
+                <div className="text-2xl font-bold text-green-600">{customers?.filter(c => c.status === 'regular').length || 0}</div>
                 <div className="text-sm text-muted-foreground">Pravidelní zákazníci</div>
               </CardContent>
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-purple-600">{stats?.vipCustomers || 0}</div>
+                <div className="text-2xl font-bold text-purple-600">{customers?.filter(c => c.status === 'vip').length || 0}</div>
                 <div className="text-sm text-muted-foreground">VIP zákazníci</div>
               </CardContent>
             </Card>
