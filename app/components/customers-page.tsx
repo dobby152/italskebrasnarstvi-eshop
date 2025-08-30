@@ -104,7 +104,7 @@ export function CustomersPage() {
           {/* Customers Table */}
           <Card className="bg-card border-border">
               <CardHeader>
-              <CardTitle className="text-lg font-semibold">Zákazníci ({stats?.totalCustomers || 0})</CardTitle>
+              <CardTitle className="text-lg font-semibold">Zákazníci ({(stats as any)?.customers?.length || 0})</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
