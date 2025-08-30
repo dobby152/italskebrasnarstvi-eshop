@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🎨 Přímý test analýzy barev variant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-case {
+            border: 2px solid #ddd;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .test-case.mismatch {
+            border-color: #e74c3c;
+            background: #ffeaea;
+        }
+        .test-case.match {
+            border-color: #27ae60;
+            background: #eafaf1;
+        }
+        .image-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin: 15px 0;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .analysis {
+            flex: 1;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .color-bar {
+            height: 30px;
+            display: flex;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .color-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+            font-size: 12px;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .match-result { background: #d4edda; color: #155724; }
+        .mismatch-result { background: #f8d7da; color: #721c24; }
+        .loading { color: #666; font-style: italic; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        .summary {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .progress {
+            background: #e9ecef;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            background: #007bff;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Analýza barev obrázků variant - LIVE TEST</h1>
+        <p>Tento test ověřuje, zda obrázky variant odpovídají jejich skutečné barvě.</p>
+        
+        <div class="summary">
+            <h3>📊 Průběh testování</h3>
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <p id="progressText">Připraven k testování...</p>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="runAllTests()">🚀 Spustit všechny testy</button>
+            <button onclick="runSingleTest(0)">🔍 Test 1: Šedá varianta</button>
+            <button onclick="runSingleTest(1)">🔍 Test 2: Zelená varianta</button>
+            <button onclick="runSingleTest(2)">🔍 Test 3: Správná zelená</button>
+        </div>
+
+        <!-- Test Case 1: CA3214UB00-NGR with blue image -->
+        <div id="test1" class="test-case">
+            <h3>🔍 Test 1: CA3214UB00-NGR (Šedá varianta)</h3>
+            <p><strong>Problém:</strong> Šedá varianta má modrý obrázek</p>
+            <p><strong>SKU:</strong> CA3214UB00-NGR</p>
+            <p><strong>Očekávaná barva:</strong> Šedá (NGR)</p>
+            <div class="image-container">
+                <img id="img1" 
+                     src="/images/computer-backpack-with-ipada-10-5-ipad-9-7-compar-ca3214ub00/1_CA3214UB00-BLU_1.jpg" 
+                     alt="Test Image 1" 
+                     crossorigin="anonymous">
+                <div id="analysis1" class="analysis loading">
+                    Čeká na spuštění analýzy...
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Case 2: CA3214UB00-GRN with blue image -->
+        <div id="test2" class="test-case">
+            <h3>🔍 Test 2: CA3214UB00-GRN (Zelená varianta)</h3>
+            <p><strong>Problém:</strong> Zelená varianta má modrý obrázek</p>
+            <p><strong>SKU:</strong> CA3214UB00-GRN</p>
+            <p><strong>Očekávaná barva:</strong> Zelená (GRN)</p>
+            <div class="image-container">
+                <img id="img2" 
+                     src="/images/computer-backpack-with-ipada-10-5-ipad-9-7-compar-ca3214ub00/1_CA3214UB00-BLU_1.jpg" 
+                     alt="Test Image 2" 
+                     crossorigin="anonymous">
+                <div id="analysis2" class="analysis loading">
+                    Čeká na spuštění analýzy...
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Case 3: CA3214UB00BML-GRN with correct green image -->
+        <div id="test3" class="test-case">
+            <h3>🔍 Test 3: CA3214UB00BML-GRN (Správná zelená varianta)</h3>
+            <p><strong>Kontrola:</strong> Tato varianta by měla mít správný zelený obrázek</p>
+            <p><strong>SKU:</strong> CA3214UB00BML-GRN</p>
+            <p><strong>Očekávaná barva:</strong> Zelená (GRN)</p>
+            <div class="image-container">
+                <img id="img3" 
+                     src="/images/computer-and-ipada-backpack-with-led-light-conneq-ca3214ub00bml/1_CA3214UB00BML-GRN_1.jpg" 
+                     alt="Test Image 3" 
+                     crossorigin="anonymous">
+                <div id="analysis3" class="analysis loading">
+                    Čeká na spuštění analýzy...
+                </div>
+            </div>
+        </div>
+
+        <div id="finalResults" class="summary" style="display: none;">
+            <h3>🏁 Finální výsledky</h3>
+            <div id="finalSummary"></div>
+        </div>
+    </div>
+
+    <script>
+        const testCases = [
+            { id: 1, sku: 'CA3214UB00-NGR', expectedColor: 'NGR', expectedName: 'Šedá' },
+            { id: 2, sku: 'CA3214UB00-GRN', expectedColor: 'GRN', expectedName: 'Zelená' },
+            { id: 3, sku: 'CA3214UB00BML-GRN', expectedColor: 'GRN', expectedName: 'Zelená' }
+        ];
+
+        let testResults = [];
+
+        async function runAllTests() {
+            console.log('🚀 Starting comprehensive color analysis...');
+            updateProgress(0, 'Spouštím všechny testy...');
+            testResults = [];
+
+            for (let i = 0; i < testCases.length; i++) {
+                const progress = ((i / testCases.length) * 100);
+                updateProgress(progress, `Testuji ${testCases[i].sku}...`);
+                
+                await runSingleTest(i);
+                await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause between tests
+            }
+
+            updateProgress(100, 'Všechny testy dokončeny!');
+            showFinalResults();
+        }
+
+        async function runSingleTest(testIndex) {
+            const testCase = testCases[testIndex];
+            const img = document.getElementById(`img${testCase.id}`);
+            const analysisDiv = document.getElementById(`analysis${testCase.id}`);
+            const testDiv = document.getElementById(`test${testCase.id}`);
+
+            analysisDiv.innerHTML = '<p class="loading">🔄 Analyzuji barvy obrázku...</p>';
+            testDiv.className = 'test-case';
+
+            try {
+                // Wait for image to load
+                if (!img.complete) {
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = reject;
+                        setTimeout(reject, 5000); // 5 second timeout
+                    });
+                }
+
+                const analysis = await analyzeImageColors(img, testCase.expectedColor);
+                
+                displayAnalysis(analysis, analysisDiv, testCase);
+                
+                // Update test case styling
+                testDiv.className = analysis.matchFound ? 'test-case match' : 'test-case mismatch';
+                
+                // Store result
+                testResults[testIndex] = {
+                    ...testCase,
+                    ...analysis,
+                    success: true
+                };
+
+                console.log(`✅ Test ${testCase.id} completed:`, analysis);
+
+            } catch (error) {
+                console.error(`❌ Test ${testCase.id} failed:`, error);
+                analysisDiv.innerHTML = `<p style="color: red;">❌ Chyba při analýze: ${error.message}</p>`;
+                testResults[testIndex] = {
+                    ...testCase,
+                    success: false,
+                    error: error.message
+                };
+            }
+        }
+
+        async function analyzeImageColors(img, expectedColor) {
+            return new Promise((resolve, reject) => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    canvas.width = img.naturalWidth || img.width;
+                    canvas.height = img.naturalHeight || img.height;
+                    
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const pixels = imageData.data;
+                    
+                    const colorCounts = {};
+                    const totalPixels = pixels.length / 4;
+                    let analyzedPixels = 0;
+                    
+                    // Sample every 10th pixel for performance
+                    for (let i = 0; i < pixels.length; i += 40) {
+                        const r = pixels[i];
+                        const g = pixels[i + 1];
+                        const b = pixels[i + 2];
+                        const alpha = pixels[i + 3];
+                        
+                        if (alpha > 128) { // Skip transparent pixels
+                            const colorName = classifyColor(r, g, b);
+                            colorCounts[colorName] = (colorCounts[colorName] || 0) + 1;
+                            analyzedPixels++;
+                        }
+                    }
+                    
+                    // Get dominant colors
+                    const sortedColors = Object.entries(colorCounts)
+                        .sort(([,a], [,b]) => b - a)
+                        .slice(0, 6);
+                    
+                    const dominantColor = sortedColors[0] ? sortedColors[0][0] : 'UNKNOWN';
+                    const matchFound = checkColorMatch(expectedColor, sortedColors);
+                    
+                    resolve({
+                        dominantColors: sortedColors,
+                        dominantColor: dominantColor,
+                        matchFound: matchFound,
+                        expectedColor: expectedColor,
+                        analyzedPixels: analyzedPixels,
+                        totalPixels: totalPixels,
+                        imageSize: { width: canvas.width, height: canvas.height }
+                    });
+                    
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        }
+
+        function classifyColor(r, g, b) {
+            const brightness = (r + g + b) / 3;
+            const maxChannel = Math.max(r, g, b);
+            const minChannel = Math.min(r, g, b);
+            const saturation = maxChannel > 0 ? (maxChannel - minChannel) / maxChannel : 0;
+            
+            // Very dark colors (black)
+            if (brightness < 60) return 'N';
+            
+            // Very bright colors (white)
+            if (brightness > 220 && saturation < 0.1) return 'WHITE';
+            
+            // High saturation colors
+            if (saturation > 0.4) {
+                if (r > g + 15 && r > b + 15) return 'R';
+                if (g > r + 15 && g > b + 15) return 'GRN';
+                if (b > r + 15 && b > g + 15) {
+                    if (brightness > 150) return 'BLU2'; // Light blue
+                    return 'BLU'; // Regular blue
+                }
+            }
+            
+            // Medium saturation
+            if (saturation > 0.2) {
+                if (b > r + 10 && b > g + 5) return 'BLU';
+                if (g > r + 10 && g > b + 5) return 'GRN';
+                if (r > g + 10 && r > b + 10) return 'R';
+            }
+            
+            // Low saturation (grays, browns)
+            if (r > 150 && g > 100 && b < 100 && r > b + 30) return 'TM'; // Brown/Tobacco
+            if (r > 160 && g > 140 && b > 120 && saturation < 0.3) return 'MO'; // Mocha
+            if (brightness > 120 && saturation < 0.2) return 'NGR'; // Gray
+            
+            return 'UNKNOWN';
+        }
+
+        function checkColorMatch(expected, dominantColors) {
+            const expectedUpper = expected.toUpperCase();
+            const topColors = dominantColors.slice(0, 3).map(([color]) => color);
+            
+            // Direct match
+            if (topColors.includes(expectedUpper)) return true;
+            
+            // Color variant matching
+            const colorVariants = {
+                'NGR': ['GRAY', 'GREY', 'N'],
+                'GRN': ['GREEN'],
+                'BLU': ['BLU2', 'BLUE'],
+                'N': ['BLACK', 'NGR']
+            };
+            
+            if (colorVariants[expectedUpper]) {
+                return colorVariants[expectedUpper].some(variant => topColors.includes(variant));
+            }
+            
+            return false;
+        }
+
+        function displayAnalysis(analysis, container, testCase) {
+            let html = '<h4>🎨 Výsledek analýzy</h4>';
+            
+            html += `<p><strong>Očekávaná barva:</strong> ${testCase.expectedName} (${analysis.expectedColor})</p>`;
+            html += `<p><strong>Dominantní barva:</strong> ${analysis.dominantColor}</p>`;
+            html += `<p><strong>Analyzováno pixelů:</strong> ${analysis.analyzedPixels.toLocaleString()}</p>`;
+            
+            // Color distribution bar
+            html += '<div class="color-bar">';
+            const total = analysis.dominantColors.reduce((sum, [, count]) => sum + count, 0);
+            analysis.dominantColors.forEach(([color, count]) => {
+                const percentage = (count / total) * 100;
+                const colorHex = getColorHex(color);
+                if (percentage > 2) { // Only show colors with >2% representation
+                    html += `<div class="color-segment" style="background-color: ${colorHex}; width: ${percentage}%;">`;
+                    html += `${color} ${percentage.toFixed(1)}%`;
+                    html += '</div>';
+                }
+            });
+            html += '</div>';
+            
+            // Match result
+            html += `<div class="result ${analysis.matchFound ? 'match-result' : 'mismatch-result'}">`;
+            if (analysis.matchFound) {
+                html += '✅ SHODA: Obrázek odpovídá očekávané barvě!';
+            } else {
+                html += '❌ NESHODA: Obrázek neodpovídá očekávané barvě!';
+                html += `<br><small>Očekávali jsme ${testCase.expectedName}, ale našli jsme ${analysis.dominantColor}</small>`;
+            }
+            html += '</div>';
+            
+            container.innerHTML = html;
+        }
+
+        function getColorHex(colorName) {
+            const colors = {
+                'N': '#1a1a1a',
+                'NGR': '#808080',
+                'BLU': '#2196F3',
+                'BLU2': '#64B5F6',
+                'GRN': '#4CAF50',
+                'R': '#F44336',
+                'TM': '#8D6E63',
+                'MO': '#BCAAA4',
+                'WHITE': '#FFFFFF',
+                'UNKNOWN': '#9E9E9E'
+            };
+            return colors[colorName] || '#9E9E9E';
+        }
+
+        function updateProgress(percentage, text) {
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = text;
+        }
+
+        function showFinalResults() {
+            const successCount = testResults.filter(r => r.success).length;
+            const mismatchCount = testResults.filter(r => r.success && !r.matchFound).length;
+            const matchCount = testResults.filter(r => r.success && r.matchFound).length;
+
+            let html = `<h4>📊 Souhrn testů</h4>`;
+            html += `<p><strong>Celkem testů:</strong> ${testResults.length}</p>`;
+            html += `<p><strong>Úspěšných analýz:</strong> ${successCount}</p>`;
+            html += `<p><strong>Správné shody:</strong> ${matchCount}</p>`;
+            html += `<p><strong>Nalezené neshody:</strong> ${mismatchCount}</p>`;
+
+            if (mismatchCount > 0) {
+                html += `<div class="mismatch-result" style="margin-top: 15px;">`;
+                html += `⚠️ <strong>Potvrzeno ${mismatchCount} problémových variant!</strong><br>`;
+                html += `Tyto varianty mají nesprávné obrázky a potřebují opravu.`;
+                html += `</div>`;
+            }
+
+            if (matchCount > 0) {
+                html += `<div class="match-result" style="margin-top: 15px;">`;
+                html += `✅ <strong>${matchCount} variant má správné obrázky.</strong>`;
+                html += `</div>`;
+            }
+
+            html += `<h4>🔧 Doporučené akce:</h4>`;
+            html += `<ol>`;
+            html += `<li>Oprav varianty s neshodami pomocí správných obrázků</li>`;
+            html += `<li>Proveř další produktové řady stejným způsobem</li>`;
+            html += `<li>Implementuj automatickou kontrolu při přidávání nových variant</li>`;
+            html += `</ol>`;
+
+            document.getElementById('finalSummary').innerHTML = html;
+            document.getElementById('finalResults').style.display = 'block';
+        }
+
+        // Auto-run single test on load for demo
+        window.addEventListener('load', () => {
+            console.log('🎨 Color Analysis Tool loaded and ready!');
+            setTimeout(() => runSingleTest(0), 1000); // Auto-run first test after 1 second
+        });
+    </script>
+</body>
+</html>

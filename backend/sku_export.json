@@ -1,0 +1,3577 @@
+[
+  {
+    "id": 716,
+    "name": "Elegatní kožená visačka na adresu s logem PQD",
+    "sku": "AC4976-AR2"
+  },
+  {
+    "id": 717,
+    "name": "Kožená adresní visačka s karabinou - Elegantní doplněk pro cestovatele",
+    "sku": "AC4977-VES"
+  },
+  {
+    "id": 718,
+    "name": "Ekologický identifikační štítek z bio materiálu",
+    "sku": "AC6708S137-AR"
+  },
+  {
+    "id": 719,
+    "name": "Elegantní kožený adresní štítek s hliníkovým karabinovým spojem",
+    "sku": "AC6192-G"
+  },
+  {
+    "id": 720,
+    "name": "Kožený štítek s LED osvětlením pro adresy",
+    "sku": "AC5620RS-GR"
+  },
+  {
+    "id": 721,
+    "name": "Luxusní kožená plánovací agenda s přihrádkou na pero",
+    "sku": "AG1148B2-MO"
+  },
+  {
+    "id": 722,
+    "name": "Kvalitní kožený plánovač velkého formátu s držákem na pero",
+    "sku": "AG1075B2-MO"
+  },
+  {
+    "id": 723,
+    "name": "Elegantní kožený organizér s držákem na pero",
+    "sku": "AG1076B2-MO"
+  },
+  {
+    "id": 724,
+    "name": "Elegantní kožená týdenní agenda s držákem na pero",
+    "sku": "AG1139B2-MO"
+  },
+  {
+    "id": 725,
+    "name": "Elegantní kožená cestovní agenda s držákem na pero",
+    "sku": "AG1142B2-MO"
+  },
+  {
+    "id": 726,
+    "name": "Elegantní peněženka s třemi zipy a praktickým uchem",
+    "sku": "AC2141P16-CHEVBLU"
+  },
+  {
+    "id": 727,
+    "name": "Praktická kosmetická taštička s odnímatelným poutkem",
+    "sku": "AC2141B2-MO"
+  },
+  {
+    "id": 728,
+    "name": "Moderní pouzdro na kabely z recyklované látky a kůže",
+    "sku": "AC5481BR2-BLU"
+  },
+  {
+    "id": 729,
+    "name": "Kožené pouzdro na klíče s dvěma kroužky Piquadro",
+    "sku": "PC4216B2-MO"
+  },
+  {
+    "id": 730,
+    "name": "Elegantní pouzdro na klíče s dvojitými kroužky",
+    "sku": "PC4216P16-CHEVN"
+  },
+  {
+    "id": 731,
+    "name": "Elegantní klíčenka s pouzdrem na kreditní karty",
+    "sku": "PP6504B2R-N"
+  },
+  {
+    "id": 732,
+    "name": "Pánské elegantní pouzdro na klíče s dvojitým kroužkem",
+    "sku": "PC4216S136-N"
+  },
+  {
+    "id": 733,
+    "name": "Elegantní kožený pouzdro na psací potřeby Piquadro",
+    "sku": "AC6475W92-AZBE2"
+  },
+  {
+    "id": 734,
+    "name": "Elegantní kožený pouzdro na psací potřeby Piquadro",
+    "sku": "AC974B2-R"
+  },
+  {
+    "id": 735,
+    "name": "Elegantní kožený penál Piquadro pro moderní ženy",
+    "sku": "AC6474W92-ROBI"
+  },
+  {
+    "id": 736,
+    "name": "Přenosná 3v1 bezdrátová nabíjecí stanice Piquadro",
+    "sku": "AC6576B2-BLU2"
+  },
+  {
+    "id": 737,
+    "name": "Skládací bezdrátová nabíjecí stanice Piquadro",
+    "sku": "AC6334BM-GR"
+  },
+  {
+    "id": 738,
+    "name": "Elegantní kosmetická taška Piquadro PQ-Light pro dokonalý vzhled",
+    "sku": "BY6703PQL-R2"
+  },
+  {
+    "id": 739,
+    "name": "Luxusní voděodolné kosmetické pouzdro pro náročné",
+    "sku": "BY6380C2OW-VE"
+  },
+  {
+    "id": 740,
+    "name": "Pánská kosmetická taška z kůže Piquadro Harper",
+    "sku": "BY5742AP-N"
+  },
+  {
+    "id": 741,
+    "name": "Pánská kosmetická taška z kůže Piquadro Harper",
+    "sku": "BY3851B2-BLU2"
+  },
+  {
+    "id": 742,
+    "name": "Pánská kosmetická taška z kůže Piquadro Harper",
+    "sku": "BY3851B3-CU"
+  },
+  {
+    "id": 743,
+    "name": "Pánská kosmetická taška Piquadro S137 – elegance na cestách",
+    "sku": "BY6652S137-AR"
+  },
+  {
+    "id": 744,
+    "name": "Pánská kosmetická taška z kůže Piquadro Harper",
+    "sku": "BY3851MOS-N"
+  },
+  {
+    "id": 745,
+    "name": "Pánská kosmetická taška z kůže Piquadro Harper",
+    "sku": "BY3880UB00-GRN"
+  },
+  {
+    "id": 746,
+    "name": "Pánská kosmetická taška z kůže Piquadro Harper",
+    "sku": "BY6021S134-M"
+  },
+  {
+    "id": 747,
+    "name": "Elegantní pánský kosmetický kufřík z kůže s dvojitými přihrádkami",
+    "sku": "BY5011B2-BLU2"
+  },
+  {
+    "id": 748,
+    "name": "Elegantní pánský kosmetický kufřík z kůže s dvojitými přihrádkami",
+    "sku": "BY5011MOS-N"
+  },
+  {
+    "id": 749,
+    "name": "Ekologické pánské kosmetické pouzdro z recyklovaného materiálu",
+    "sku": "BY6021S136-N"
+  },
+  {
+    "id": 750,
+    "name": "Pánské kosmetické pouzdro z recyklovaného materiálu",
+    "sku": "BY6149BR2-BLU"
+  },
+  {
+    "id": 751,
+    "name": "Elegantní kosmetická taška z recyklovaného materiálu s háčkem",
+    "sku": "BY3058BR2-BLU"
+  },
+  {
+    "id": 752,
+    "name": "Elegantní crossover taška Piquadro s moderním designem",
+    "sku": "CA6692S125-VE"
+  },
+  {
+    "id": 753,
+    "name": "Stylová kulatá taška přes rameno ze tkaniny",
+    "sku": "CA6595W121-GVE"
+  },
+  {
+    "id": 754,
+    "name": "Malá kulatá crossbody taška z kvalitního materiálu",
+    "sku": "CA6594W121-N"
+  },
+  {
+    "id": 755,
+    "name": "Stylová messenger taška z kůže pro iPad® - Piquadro Cronus",
+    "sku": "CA4828S134-BLU"
+  },
+  {
+    "id": 756,
+    "name": "Moderní kožená taška přes rameno pro mobilní telefon",
+    "sku": "AC6546S135R-N"
+  },
+  {
+    "id": 757,
+    "name": "Elegantní lékařská taška Piquadro - styl a funkčnost",
+    "sku": "CA2007B2-MO"
+  },
+  {
+    "id": 758,
+    "name": "Elegantní dámská taška na pracovní notebook 15,6",
+    "sku": "CA4021W92-BI"
+  },
+  {
+    "id": 759,
+    "name": "Elegantní dámská pracovní taška na notebook 15,6 s iPad® kapsou",
+    "sku": "CA4021W92T-R"
+  },
+  {
+    "id": 760,
+    "name": "Stylová pracovní taška pro ženy s pouzdrem na laptop 15,6",
+    "sku": "CA6211W92-N"
+  },
+  {
+    "id": 761,
+    "name": "Pánská pracovní taška Piquadro s úložným prostorem pro notebook a tablet",
+    "sku": "CA3339BR2-BLU"
+  },
+  {
+    "id": 762,
+    "name": "Elegantní pánská pracovní taška na notebook 15,6",
+    "sku": "CA6637W129-BLU"
+  },
+  {
+    "id": 763,
+    "name": "Elegantní kožená taška pro ženy s prostorem na 14 notebook",
+    "sku": "BD6461W134-AR"
+  },
+  {
+    "id": 764,
+    "name": "Stylová dámská kožená taška pro notebook 14 s moderním designem",
+    "sku": "BD3336W92-BI"
+  },
+  {
+    "id": 765,
+    "name": "Elegantní kožená nákupní taška pro 15,6 notebook",
+    "sku": "BD6538W134-VE"
+  },
+  {
+    "id": 766,
+    "name": "Elegantní dámská taška pro notebook 14 s odděleným prostorem",
+    "sku": "BD4574W92T-R"
+  },
+  {
+    "id": 767,
+    "name": "Elegantní dámská taška pro notebook 14 s odděleným prostorem",
+    "sku": "BD4574W92-GBE"
+  },
+  {
+    "id": 768,
+    "name": "Elegantní dámská taška na notebook 15 s místem pro iPad®",
+    "sku": "CA4577W92-N"
+  },
+  {
+    "id": 769,
+    "name": "Elegantní skládací dámská taška pro notebook 15,6",
+    "sku": "BD6723W92T-R"
+  },
+  {
+    "id": 770,
+    "name": "Elegantní pánská messenger taška na notebook 15,6",
+    "sku": "CA1592W129-BLU"
+  },
+  {
+    "id": 771,
+    "name": "Stylová taška na oblečení z recyklovaného materiálu",
+    "sku": "PA6147BR2-BLU"
+  },
+  {
+    "id": 772,
+    "name": "Luxusní kožená taška na oblečení pro elegantní cestování",
+    "sku": "PA1617B2-MO"
+  },
+  {
+    "id": 773,
+    "name": "Luxusní kožená taška na oblečení pro elegantní cestování",
+    "sku": "PA4344MOS-N"
+  },
+  {
+    "id": 774,
+    "name": "Skládací taška na šaty z recyklovaného materiálu",
+    "sku": "PA4344BR2-N"
+  },
+  {
+    "id": 775,
+    "name": "Stylová taška na notebook 14 z recyklovaného materiálu",
+    "sku": "CA6623S136-BLU"
+  },
+  {
+    "id": 776,
+    "name": "Luxusní kožená brašna na notebook 14 s možností personalizace",
+    "sku": "CA3335B2-BLU2"
+  },
+  {
+    "id": 777,
+    "name": "Luxusní kožená taška na notebook 15 s moderním designem",
+    "sku": "CA2849B3-TM"
+  },
+  {
+    "id": 778,
+    "name": "Elegantní kožená taška na notebook 15 s prostorem pro iPad Pro",
+    "sku": "CA2849MOS-N"
+  },
+  {
+    "id": 779,
+    "name": "Stylová a praktická taška na notebook 15 s možností personalizace",
+    "sku": "CA2849B2-BLU2"
+  },
+  {
+    "id": 780,
+    "name": "Elegantní rozšiřitelná taška na notebook 15 z kvalitní kůže",
+    "sku": "CA4027B3-N"
+  },
+  {
+    "id": 781,
+    "name": "Elegantní brašna na laptop 15,6 s přihrádkou na iPad® Pro",
+    "sku": "CA4021S135-N"
+  },
+  {
+    "id": 782,
+    "name": "Elegantní kožená taška na notebook 15,6 s dvojitým oddělením",
+    "sku": "CA3339B3-CU"
+  },
+  {
+    "id": 783,
+    "name": "Elegantní kožená taška na notebook 15,6 s dvojitým oddělením",
+    "sku": "CA3339MOS-N"
+  },
+  {
+    "id": 784,
+    "name": "Stylová taška na notebook 15,6 s prostorem pro iPad® Pro 12,9",
+    "sku": "CA5981S135-N"
+  },
+  {
+    "id": 785,
+    "name": "Rozšiřitelná taška na notebook 15,6 s kapsou na iPad Pro",
+    "sku": "CA2765B2-BLU2"
+  },
+  {
+    "id": 786,
+    "name": "Rozšiřitelná taška na notebook 15,6 s elegantním designem",
+    "sku": "CA2765MO-N"
+  },
+  {
+    "id": 787,
+    "name": "Moderní taška na notebook 15,6 z recyklovaného materiálu",
+    "sku": "CA6624S136-BLU"
+  },
+  {
+    "id": 788,
+    "name": "Elegantní brašna na notebook 15,6 s možností personalizace",
+    "sku": "CA3339UB00-BLU"
+  },
+  {
+    "id": 789,
+    "name": "Stylová taška na notebook 15,6 s možností personalizace",
+    "sku": "CA6026S134-N"
+  },
+  {
+    "id": 790,
+    "name": "Stylová kožená taška na laptop 15,6 s rozšířením",
+    "sku": "CA4021B2-R"
+  },
+  {
+    "id": 791,
+    "name": "Elegantní tenká taška na notebook a iPad® Air/Air2",
+    "sku": "CA2849MO-N"
+  },
+  {
+    "id": 792,
+    "name": "Elegantní kožená taška na notebook 15 s rozšířením",
+    "sku": "CA4021B3-BLU4"
+  },
+  {
+    "id": 793,
+    "name": "Elegantní kožená taška na notebook 15 s rozšířením",
+    "sku": "CA4021MOS-BLU"
+  },
+  {
+    "id": 794,
+    "name": "Elegantní pánská brašna na laptop 17,3 s rozšiřitelným prostorem",
+    "sku": "CA4598B3-N"
+  },
+  {
+    "id": 795,
+    "name": "Elegantní kožená crossbody kabelka pro moderní ženy",
+    "sku": "BD6663W134-VE"
+  },
+  {
+    "id": 796,
+    "name": "Klasická kožená crossbody taška Moon Bag",
+    "sku": "CA6733S135-N"
+  },
+  {
+    "id": 797,
+    "name": "Luxusní kožená crossbody taška pro ženy - model Camera Case",
+    "sku": "BD6656W92-AZBE2"
+  },
+  {
+    "id": 798,
+    "name": "Elegantní dámská taška přes rameno - fotoaparátový styl",
+    "sku": "BD4870W92-N"
+  },
+  {
+    "id": 799,
+    "name": "Elegantní kožená crossbody taška Mini Camera Case",
+    "sku": "BD6655W92-AZBE2"
+  },
+  {
+    "id": 800,
+    "name": "Elegantní dámská crossbody taška pro iPad® z kvalitní kůže",
+    "sku": "BD6658W92-GBE"
+  },
+  {
+    "id": 801,
+    "name": "Stylová kabelka přes rameno pro iPad® s ochranou",
+    "sku": "BD6658W92T-R"
+  },
+  {
+    "id": 802,
+    "name": "Stylová dámská taška přes rameno pro iPad® mini",
+    "sku": "BD6657W92T-VE"
+  },
+  {
+    "id": 803,
+    "name": "Elegantní kožená taška přes rameno pro iPad® mini",
+    "sku": "BD6657W92-ROBI"
+  },
+  {
+    "id": 804,
+    "name": "Moderní messenger taška pro notebook 13,3 – styl a funkčnost",
+    "sku": "CA6627S136-BLU"
+  },
+  {
+    "id": 805,
+    "name": "Elegantní organizér s přihrádkou pro iPad® mini",
+    "sku": "CA3084P16-CHEVBLU"
+  },
+  {
+    "id": 806,
+    "name": "Luxusní taška na iPad Piquadro s praktickým organizérem",
+    "sku": "CA1358P16-CHEVBLU"
+  },
+  {
+    "id": 807,
+    "name": "Stylový tabletový obal pro iPad® Air/Air2 s praktickými kapsami",
+    "sku": "CA1816MO-N"
+  },
+  {
+    "id": 808,
+    "name": "Elegantní pouzdro na iPad® Air/Pro 9,7 – kombinace stylu a funkčnosti",
+    "sku": "CA1816BR-BLU"
+  },
+  {
+    "id": 809,
+    "name": "Elegantní pánský kožený měšec Piquadro",
+    "sku": "CA3084B3-CU"
+  },
+  {
+    "id": 810,
+    "name": "Elegantní pánský kožený měšec Piquadro",
+    "sku": "CA3084UB00-GRN"
+  },
+  {
+    "id": 811,
+    "name": "Elegantní pánská taška na iPad® mini s ochranou",
+    "sku": "CA6303W129-N"
+  },
+  {
+    "id": 812,
+    "name": "Pánská kožená taška přes rameno Modus",
+    "sku": "CA3084MOS-N"
+  },
+  {
+    "id": 813,
+    "name": "Elegantní pánská taška na iPad® mini s ochranou",
+    "sku": "CA3084W129-BLU"
+  },
+  {
+    "id": 814,
+    "name": "Elegantní pánský kožený měšec Piquadro",
+    "sku": "CA3084B2-BLU2"
+  },
+  {
+    "id": 815,
+    "name": "Elegantní kožená taška přes rameno pro iPad® mini",
+    "sku": "CA3084S134-N"
+  },
+  {
+    "id": 816,
+    "name": "Elegantní pánský kožený crossbody bag Piquadro",
+    "sku": "CA3084AP-TM"
+  },
+  {
+    "id": 817,
+    "name": "Elegantní pánský crossbody batoh pro iPad® z kvalitní kůže",
+    "sku": "CA1816S134-BLU"
+  },
+  {
+    "id": 818,
+    "name": "Stylový kožený crossbody batoh pro iPad Mini",
+    "sku": "CA3084S135-BLU"
+  },
+  {
+    "id": 819,
+    "name": "Elegantní pánská taška přes rameno pro iPad® mini",
+    "sku": "CA6615S135-VE"
+  },
+  {
+    "id": 820,
+    "name": "Kožená příruční taška na iPad® s popruhem - Urban Style",
+    "sku": "CA1816UB00-GRN"
+  },
+  {
+    "id": 821,
+    "name": "Kožená příruční taška na iPad® s popruhem - Urban Style",
+    "sku": "CA1816B3-TM"
+  },
+  {
+    "id": 822,
+    "name": "Kožená příruční taška na iPad® s popruhem - Urban Style",
+    "sku": "CA1816AP-TM"
+  },
+  {
+    "id": 823,
+    "name": "Elegantní kožené pouzdro pro muže",
+    "sku": "CA6899B2-BLU2"
+  },
+  {
+    "id": 824,
+    "name": "Elegantní kožený mužský tabletový obal s možností personalizace",
+    "sku": "CA6900B2-MO"
+  },
+  {
+    "id": 825,
+    "name": "Moderní pánská taška z recyklovaného materiálu pro iPad® mini",
+    "sku": "CA6646BR2-BLU"
+  },
+  {
+    "id": 826,
+    "name": "Elegantní pánský kufřík pro iPad® z recyklované kůže",
+    "sku": "CA1816BR2-VE2"
+  },
+  {
+    "id": 827,
+    "name": "Luxusní kožený obal pro iPad® s elegantním designem",
+    "sku": "CA1816B2-BLU2"
+  },
+  {
+    "id": 828,
+    "name": "Pánská brašna na tablet Piquadro - Ideální společník na cesty",
+    "sku": "CA1816S136-VE"
+  },
+  {
+    "id": 829,
+    "name": "Elegantní pánská taška na iPad® z kvalitní kůže",
+    "sku": "CA1816MOS-BLU"
+  },
+  {
+    "id": 830,
+    "name": "Stylový pánský batoh na tablet s RFID ochranou",
+    "sku": "CA1816W129-N"
+  },
+  {
+    "id": 831,
+    "name": "Luxusní kožená taška na iPad® pro moderní muže",
+    "sku": "CA1816S135-BLU"
+  },
+  {
+    "id": 832,
+    "name": "Pánská kožená taška na iPad® mini - Elegance a praktičnost v jednom",
+    "sku": "CA6303MOS-BLU"
+  },
+  {
+    "id": 833,
+    "name": "Pánský messenger taška na iPad® mini z recyklovaného materiálu",
+    "sku": "CA3084S136-N"
+  },
+  {
+    "id": 834,
+    "name": "Elegantní taška na iPad® mini z recyklované látky",
+    "sku": "CA3084BR2-BLU"
+  },
+  {
+    "id": 835,
+    "name": "Elegantní taška na iPad® mini z recyklované látky",
+    "sku": "CA3084BR2S-GRN"
+  },
+  {
+    "id": 836,
+    "name": "Moderní voděodolný pánský crossbody batoh",
+    "sku": "CA6909C2OW-G"
+  },
+  {
+    "id": 837,
+    "name": "Elegantní kožený cestovní batoh Piquadro MODUS",
+    "sku": "BV5407MOS-N"
+  },
+  {
+    "id": 838,
+    "name": "Luxusní kožený cestovní batoh s popruhem na trolley",
+    "sku": "BV5740AP-TM"
+  },
+  {
+    "id": 839,
+    "name": "Cestovní taška z recyklovaného materiálu Piquadro",
+    "sku": "BV6731BR2-N"
+  },
+  {
+    "id": 840,
+    "name": "Ekologický cestovní batoh Piquadro z recyklovaného materiálu",
+    "sku": "BV4447BR2-BLU"
+  },
+  {
+    "id": 841,
+    "name": "Personalizovatelný kožený cestovní kufr Piquadro",
+    "sku": "BV4447UB00-GRN"
+  },
+  {
+    "id": 842,
+    "name": "Malý cestovní batoh z recyklované tkaniny – stylový a ekologický",
+    "sku": "BV6730BR2-N"
+  },
+  {
+    "id": 843,
+    "name": "Malý cestovní batoh Piquadro - voděodolný a stylový",
+    "sku": "BV6730C2OW-VE"
+  },
+  {
+    "id": 844,
+    "name": "Elegantní cestovní taška na notebook 14 s možností personalizace",
+    "sku": "BV6596B2-G"
+  },
+  {
+    "id": 845,
+    "name": "Multifunkční cestovní taška na notebook 15 - Stylová a praktická",
+    "sku": "BV4342B2-MO"
+  },
+  {
+    "id": 846,
+    "name": "Multifunkční kožený batoh Piquadro MODUS pro moderní cestovatele",
+    "sku": "BV5993MOS-BLU"
+  },
+  {
+    "id": 847,
+    "name": "Sportovní cestovní taška na kolečkách Piquadro",
+    "sku": "BV6376C2OW-N"
+  },
+  {
+    "id": 848,
+    "name": "Stylový skládací batoh z recyklovaného materiálu",
+    "sku": "BV6722W92T-VE"
+  },
+  {
+    "id": 849,
+    "name": "Velká skládací taška z recyklovaného materiálu",
+    "sku": "BV6009FLD-VE"
+  },
+  {
+    "id": 850,
+    "name": "Sbalitelná taška z recyklovaného materiálu - ideální na cesty",
+    "sku": "BV6008FLD-VE"
+  },
+  {
+    "id": 851,
+    "name": "Ekologický batoh a taška 2v1 z recyklovaného materiálu",
+    "sku": "BV5993S125-N"
+  },
+  {
+    "id": 852,
+    "name": "Dárkový poukaz Piquadro 100 € – perfektní dárek pro každého",
+    "sku": "BR0100BR-00"
+  },
+  {
+    "id": 853,
+    "name": "Dárkový poukaz Piquadro v hodnotě 1000 Kč – Luxusní volba pro každého",
+    "sku": "BR1000BR-00"
+  },
+  {
+    "id": 854,
+    "name": "Dárkový poukaz Piquadro v hodnotě 200 € - Ideální dárek pro každého",
+    "sku": "BR0200BR-00"
+  },
+  {
+    "id": 855,
+    "name": "Dárkový poukaz Piquadro v hodnotě 30 Euro",
+    "sku": "BR0030BR-00"
+  },
+  {
+    "id": 856,
+    "name": "Dárkový poukaz Piquadro v hodnotě 50 € - dokonalý dárek",
+    "sku": "BR0050BR-00"
+  },
+  {
+    "id": 857,
+    "name": "Darovací poukaz Piquadro v hodnotě 500 € – stylový dárek pro každého",
+    "sku": "BR0500BR-00"
+  },
+  {
+    "id": 858,
+    "name": "Praktická organizérka do zavazadla - Velikost M",
+    "sku": "AC5653CY-GR"
+  },
+  {
+    "id": 859,
+    "name": "Praktická organizérka Piquadro do zavazadla - velikost S",
+    "sku": "AC5652CY-GR"
+  },
+  {
+    "id": 860,
+    "name": "Elegantní kapsa na kreditní karty Piquadro",
+    "sku": "PP2762P16-CHEVBLU"
+  },
+  {
+    "id": 861,
+    "name": "Stylová peněženka s kapsami na doklady a kreditní karty",
+    "sku": "PU1243B3-CU"
+  },
+  {
+    "id": 862,
+    "name": "Elegantní peněženka na doklady a kreditní karty od Piquadro",
+    "sku": "PU1243P16-CHEVBLU"
+  },
+  {
+    "id": 863,
+    "name": "Elegantní pracovní taška na laptop 15,6 s prostorem pro iPad® Pro 12,9",
+    "sku": "CA6025S134-M"
+  },
+  {
+    "id": 864,
+    "name": "Elegantní kožená pracovní taška pro laptop 15,6",
+    "sku": "CA5741AP-TM"
+  },
+  {
+    "id": 865,
+    "name": "Moderní pracovní taška na notebook 15,6 s elegantním designem",
+    "sku": "CA1068MO-N"
+  },
+  {
+    "id": 866,
+    "name": "Moderní pracovní taška na notebook 15,6 - personalizovatelná",
+    "sku": "CA1068B2-MO"
+  },
+  {
+    "id": 867,
+    "name": "Funkční pracovní taška na notebook 15,6 s možností personalizace",
+    "sku": "CA6590B2-BLU2"
+  },
+  {
+    "id": 868,
+    "name": "Elegantní pracovní taška s přihrádkou pro notebook a iPad Pro",
+    "sku": "CA6024S134-BLU"
+  },
+  {
+    "id": 869,
+    "name": "Elegantní taška na notebook a iPad® s dvojitými uchy",
+    "sku": "CA3347P16-CHEVBLU"
+  },
+  {
+    "id": 870,
+    "name": "Expandovatelná taška na notebook 14 s prostorem pro iPad®",
+    "sku": "CA6698S135-N"
+  },
+  {
+    "id": 871,
+    "name": "Elegantní rozšiřitelný batoh na notebook 15 s klopou",
+    "sku": "CA3111P16-CHEVN"
+  },
+  {
+    "id": 872,
+    "name": "Stylový počítačový batoh Piquadro Cartella s dvouručním nosením",
+    "sku": "CA3339MO-N"
+  },
+  {
+    "id": 873,
+    "name": "Stylový a Expandovatelný Kufr pro Notebook s Klopou",
+    "sku": "CA3111MO-N"
+  },
+  {
+    "id": 874,
+    "name": "Piquadro Trolley - Elegantní taška na notebook 15,6 s kolečky",
+    "sku": "CA4446BR2BM-N"
+  },
+  {
+    "id": 875,
+    "name": "Moderní pracovní deska s dvoukomorovými příčnými kapsami",
+    "sku": "CA1152MO-N"
+  },
+  {
+    "id": 876,
+    "name": "Elegantní tenký obal na laptop a iPad® pro moderní profesionály",
+    "sku": "CA6105B2V-N"
+  },
+  {
+    "id": 877,
+    "name": "Ručně obšitá kožená otevřená helma s hledím",
+    "sku": "CS2050H1-M-S"
+  },
+  {
+    "id": 878,
+    "name": "Magnetické nabíjecí kabely Type C a Lightning - eleganci v každém detailu",
+    "sku": "AC6715BM-GR"
+  },
+  {
+    "id": 879,
+    "name": "Stylový kožený opasek Piquadro pro moderní ženy",
+    "sku": "CU6179W92-N"
+  },
+  {
+    "id": 880,
+    "name": "Elegantní pánský opasek s tradiční sponou",
+    "sku": "CU5258B2-N"
+  },
+  {
+    "id": 881,
+    "name": "Elegantní pánský opasek s tradiční sponou",
+    "sku": "CU6282AP-TM"
+  },
+  {
+    "id": 882,
+    "name": "Elegantní pánský opasek s tradiční sponou",
+    "sku": "CU6281MOS-BLU"
+  },
+  {
+    "id": 883,
+    "name": "Elegantní pánský opasek s tradiční sponou",
+    "sku": "CU5270C81-M"
+  },
+  {
+    "id": 884,
+    "name": "Elegantní pánský opasek s tradiční sponou",
+    "sku": "CU6671C2OW-BLU"
+  },
+  {
+    "id": 885,
+    "name": "Stylový kožený pásek s elegantní kovovou sponou",
+    "sku": "CU6525C105-N"
+  },
+  {
+    "id": 886,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU3049C11-NB"
+  },
+  {
+    "id": 887,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU4877B3-NBLU2"
+  },
+  {
+    "id": 888,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU5927MOS-M"
+  },
+  {
+    "id": 889,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU6672C108-M"
+  },
+  {
+    "id": 890,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU6526C106-CU"
+  },
+  {
+    "id": 891,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU6669MOS-BLU"
+  },
+  {
+    "id": 892,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU6665S135-BLU"
+  },
+  {
+    "id": 893,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU6670B3-BLU"
+  },
+  {
+    "id": 894,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU6522B3-TM"
+  },
+  {
+    "id": 895,
+    "name": "Elegantní kožený pásek s klasickou přezkou pro muže",
+    "sku": "CU6664S134-BLU"
+  },
+  {
+    "id": 896,
+    "name": "Pánský kožený opasek bez děr - nastavitelný a stylový",
+    "sku": "CU6712C110-BLU"
+  },
+  {
+    "id": 897,
+    "name": "Elastický tkaný opasek Piquadro pro muže – elegance a praktičnost",
+    "sku": "CU6673C109-BE-90"
+  },
+  {
+    "id": 898,
+    "name": "Oboustranný pánský opasek s elegantní sponou",
+    "sku": "CU4209MO-NBLU"
+  },
+  {
+    "id": 899,
+    "name": "Reverzibilní kožený pásek pro muže – styl a funkčnost v jednom",
+    "sku": "CU5928MOS-NBLU"
+  },
+  {
+    "id": 900,
+    "name": "Reverzibilní kožený pásek pro muže – styl a funkčnost v jednom",
+    "sku": "CU2619B2-NBLU2"
+  },
+  {
+    "id": 901,
+    "name": "Oboustranný pánský pásek z kvalitní nubukové kůže",
+    "sku": "CU6527C107-M"
+  },
+  {
+    "id": 902,
+    "name": "Dárková sada pro muže s opaskem Piquadro CU5258B2",
+    "sku": "CUBOX15B2R-BLU2"
+  },
+  {
+    "id": 903,
+    "name": "Kompaktní peněženka pro bankovky a kreditní karty",
+    "sku": "PP4891UB00R-GRN"
+  },
+  {
+    "id": 904,
+    "name": "Kompaktní peněženka s posuvným systémem pro moderní muže",
+    "sku": "PP5585UB00R-N"
+  },
+  {
+    "id": 905,
+    "name": "Voděodolný kryt na batoh Piquadro - Chraňte svůj styl",
+    "sku": "AC5565NN-G-M"
+  },
+  {
+    "id": 906,
+    "name": "Elegantní kožené pouzdro MagSafe pro iPhone® 17",
+    "sku": "AC6957B2-MO"
+  },
+  {
+    "id": 907,
+    "name": "Piquadro Kožený kryt MagSafe pro iPhone® 17 Air – Elegance a ochrana",
+    "sku": "AC6958B2-R"
+  },
+  {
+    "id": 908,
+    "name": "Elegantní kožený kryt pro iPhone® 15 Plus - Perfektní ochrana s stylem",
+    "sku": "AC6439B2-N"
+  },
+  {
+    "id": 909,
+    "name": "Elegantní kožený kryt pro iPhone® 15 Pro – dokonalá ochrana v modré",
+    "sku": "AC6438B2-R"
+  },
+  {
+    "id": 910,
+    "name": "Luxusní kožené pouzdro pro iPhone® 15 - Černé",
+    "sku": "AC6437B2-R"
+  },
+  {
+    "id": 911,
+    "name": "Kožená pouzdro s inteligentním systémem CONNEQU",
+    "sku": "CONNEQUGIFT-N5"
+  },
+  {
+    "id": 912,
+    "name": "Elegantní kožené pouzdro pro AirPods Pro® - styl a ochrana v jednom",
+    "sku": "AC5308B2-BLU2"
+  },
+  {
+    "id": 913,
+    "name": "Elegantní kožený obal na iPad® Air 11 pro moderní profesionály",
+    "sku": "AC6726B2-N"
+  },
+  {
+    "id": 914,
+    "name": "Elegantní kožené pouzdro pro iPad® Air 13 s rozkládacím stojánkem",
+    "sku": "AC6728B2-N"
+  },
+  {
+    "id": 915,
+    "name": "Stylový kožený obal pro iPad® Pro 11 – ideální společník",
+    "sku": "AC6727B2-N"
+  },
+  {
+    "id": 916,
+    "name": "Elegatní kožený obal pro iPad® Pro 13’’ – ochrana ve stylu",
+    "sku": "AC6729B2-MO"
+  },
+  {
+    "id": 917,
+    "name": "Luxusní kožený obal na notebook s bezdrátovým nabíjením 15W",
+    "sku": "AC6716B2-BLU2"
+  },
+  {
+    "id": 918,
+    "name": "Elegantní kožená visačka s monogramem Piquadro",
+    "sku": "AC6602TAG-AV"
+  },
+  {
+    "id": 919,
+    "name": "Elegantní kožený držák na bankovky Piquadro Fermasoldi",
+    "sku": "PP4857B2-BLU2"
+  },
+  {
+    "id": 920,
+    "name": "Voděodolný kabát s kapucí – styl a ochrana v jednom",
+    "sku": "GI6607J59-VE2-S"
+  },
+  {
+    "id": 921,
+    "name": "Stylový dárkový box Piquadro - Elegance a praktickost v jednom",
+    "sku": "CONFEZIONEREGALO3-00"
+  },
+  {
+    "id": 922,
+    "name": "Kreativní samolepková sada pro vaše cestovní zavazadlo",
+    "sku": "AC5394SKR-ALPHABET"
+  },
+  {
+    "id": 923,
+    "name": "Přípravek na čištění kůže a textilu - Piquadro",
+    "sku": "AC4237-00"
+  },
+  {
+    "id": 924,
+    "name": "Kvalitní pánská ledvinka Piquadro Marsupio – elegance a funkčnost",
+    "sku": "CA2174P16-CHEVN"
+  },
+  {
+    "id": 925,
+    "name": "Kvalitní pánská ledvinka Piquadro Marsupio – elegance a funkčnost",
+    "sku": "CA2174BR-BLU"
+  },
+  {
+    "id": 926,
+    "name": "Stylový kožený marsupio s nastavitelnými popruhy",
+    "sku": "CA6897B2-BLU2"
+  },
+  {
+    "id": 927,
+    "name": "Elegantní kožené pouzdro Piquadro pro ženy",
+    "sku": "CA6213W92-AZBE2"
+  },
+  {
+    "id": 928,
+    "name": "Elegantní dámský crossover taška z recyklovaného materiálu",
+    "sku": "CA6572W92T-VE"
+  },
+  {
+    "id": 929,
+    "name": "Elegantní kožené mini ledvinky s uchy pro ženy",
+    "sku": "CA6572W92-N"
+  },
+  {
+    "id": 930,
+    "name": "Stylová ledvinka z recyklované textilie a kůže",
+    "sku": "CA6910S140-VE"
+  },
+  {
+    "id": 931,
+    "name": "Ekologický sportovní ledvinka z recyklovaného materiálu",
+    "sku": "CA6002S125-VE"
+  },
+  {
+    "id": 932,
+    "name": "Stylová kožená ledvinka pro muže s kapsou na CONNEQU",
+    "sku": "CA2174MOS-N"
+  },
+  {
+    "id": 933,
+    "name": "Stylový kožený pásek Piquadro pro moderní muže",
+    "sku": "CA2174UB00-N"
+  },
+  {
+    "id": 934,
+    "name": "Stylová kožená ledvinka pro muže s kapsou na CONNEQU",
+    "sku": "CA2174B2-BLU2"
+  },
+  {
+    "id": 935,
+    "name": "Stylový kožený pásek Piquadro pro moderní muže",
+    "sku": "CA2174B3-BLU4"
+  },
+  {
+    "id": 936,
+    "name": "Crossover taška z recyklovaného materiálu pro moderní muže",
+    "sku": "CA6633S137-BLU"
+  },
+  {
+    "id": 937,
+    "name": "Stylové pánské crossover pouzdro z kvalitní kůže",
+    "sku": "CA2174S134-N"
+  },
+  {
+    "id": 938,
+    "name": "Elegantní pánský crossover batoh Piquadro",
+    "sku": "CA6617S135-BLU"
+  },
+  {
+    "id": 939,
+    "name": "Crossover ledvinka Piquadro z recyklovaného materiálu",
+    "sku": "CA2174S136-BLU"
+  },
+  {
+    "id": 940,
+    "name": "Pánské pouzdro z recyklované tkaniny a kůže - elegantní a ekologické",
+    "sku": "CA6903S140-CU"
+  },
+  {
+    "id": 941,
+    "name": "Pánské pouzdro z recyklované tkaniny a kůže - elegantní a ekologické",
+    "sku": "CA2174BR2-N"
+  },
+  {
+    "id": 942,
+    "name": "Pánský expandabilní marsupio z recyklovaného textilu a kůže",
+    "sku": "CA6885S140-BLU"
+  },
+  {
+    "id": 943,
+    "name": "Elegantní kožený monogram Blue Square pro moderní muže",
+    "sku": "AC7019TAGB2-BLU2"
+  },
+  {
+    "id": 944,
+    "name": "Elegantní monogramová deska v odstínu zbraní",
+    "sku": "AC6602CFL-N"
+  },
+  {
+    "id": 945,
+    "name": "Elegantní monogramová destička v matné černé",
+    "sku": "AC6602NO-AV"
+  },
+  {
+    "id": 946,
+    "name": "Elegantní pánský batoh Monospalla – styl a praktičnost v jednom",
+    "sku": "CA4536BR-BLU"
+  },
+  {
+    "id": 947,
+    "name": "Elegantní pánský batoh Monospalla – styl a praktičnost v jednom",
+    "sku": "CA4536UB00-GRN"
+  },
+  {
+    "id": 948,
+    "name": "Moderní monospalla s LED osvětlením pro stylové muže",
+    "sku": "CA4536UB00L-NGR"
+  },
+  {
+    "id": 949,
+    "name": "Elegantní taška přes rameno pro iPad® mini",
+    "sku": "CA4177P16-CHEVBLU"
+  },
+  {
+    "id": 950,
+    "name": "Elegantní taška přes rameno pro iPad® mini",
+    "sku": "CA5577B2V-BLU"
+  },
+  {
+    "id": 951,
+    "name": "Stylový batoh na iPad mini z recyklovaného materiálu",
+    "sku": "CA6694S125-N"
+  },
+  {
+    "id": 952,
+    "name": "Elegantní kožený batoh přes rameno pro muže",
+    "sku": "CA6589B2-G"
+  },
+  {
+    "id": 953,
+    "name": "Elegantní kožený přívěsek na klíče Piquadro",
+    "sku": "PC5968MOS-BLU"
+  },
+  {
+    "id": 954,
+    "name": "Klíčový mosqueton s rukojetí CONNEQU - stylový a praktický",
+    "sku": "AC3954MOS-BLU"
+  },
+  {
+    "id": 955,
+    "name": "Klíčový mosqueton s rukojetí CONNEQU - stylový a praktický",
+    "sku": "AC3954B3-CU"
+  },
+  {
+    "id": 956,
+    "name": "Klíčový mosqueton s rukojetí CONNEQU - stylový a praktický",
+    "sku": "AC3954B2-N"
+  },
+  {
+    "id": 957,
+    "name": "Elegantní kožený háček na klíče Piquadro Square",
+    "sku": "PC3757B2-BLU2"
+  },
+  {
+    "id": 958,
+    "name": "Cestovní kosmetická taštička Piquadro",
+    "sku": "BY3851MO-N"
+  },
+  {
+    "id": 959,
+    "name": "Stylový deštník s pouzdrem od Piquadro",
+    "sku": "OM6292OM6-R"
+  },
+  {
+    "id": 960,
+    "name": "Vítrodolný deštník Piquadro – elegantní ochrana proti dešti",
+    "sku": "OM5289OM6-BLU"
+  },
+  {
+    "id": 961,
+    "name": "Velký protiokapový deštník Piquadro – elegantní ochrana před deštěm",
+    "sku": "OM5643OM6-N"
+  },
+  {
+    "id": 962,
+    "name": "Ekologický větruodolný deštník z recyklované tkaniny",
+    "sku": "OM5284OM5-VE"
+  },
+  {
+    "id": 963,
+    "name": "Automatický deštník Piquadro - Odolný a stylový pro každou příležitost",
+    "sku": "OM5285OM5-R"
+  },
+  {
+    "id": 964,
+    "name": "Automatický deštník Piquadro - Odolný a stylový pro každou příležitost",
+    "sku": "OM5288OM6-N"
+  },
+  {
+    "id": 965,
+    "name": "Rozšiřitelný organizér do kufru Piquadro velikost L",
+    "sku": "AC6374TA-N"
+  },
+  {
+    "id": 966,
+    "name": "Moderní expandabilní organizér do kufru M – Elegance a funkčnost",
+    "sku": "AC6373TA-N"
+  },
+  {
+    "id": 967,
+    "name": "Expandovatelný skladovací organizér do kufru – velikost S",
+    "sku": "AC6372TA-N"
+  },
+  {
+    "id": 968,
+    "name": "Exkluzivní kožený monogramový štítek Piquadro POP Tag",
+    "sku": "JYZ507-BI"
+  },
+  {
+    "id": 969,
+    "name": "Personalizovaný kožený doplněk AKRON pro každého",
+    "sku": "AOTAG-AR"
+  },
+  {
+    "id": 970,
+    "name": "Elegantní pánská zápěstní taška Piquadro",
+    "sku": "AC2648B2-BLU2"
+  },
+  {
+    "id": 971,
+    "name": "Elegantní pánská zápěstní taška Piquadro",
+    "sku": "AC2648MO-N"
+  },
+  {
+    "id": 972,
+    "name": "Elegantní kožená pouzdra pro iPad® - dokonalý společník",
+    "sku": "AC6368W92-AZBE2"
+  },
+  {
+    "id": 973,
+    "name": "Elegantní kožená pouzdro na iPad® pro dokonalou ochranu",
+    "sku": "AC6369W92-AZBE2"
+  },
+  {
+    "id": 974,
+    "name": "Elegantní kožená pouzdro pro iPad® mini",
+    "sku": "AC6367W92-AZBE2"
+  },
+  {
+    "id": 975,
+    "name": "Elegantní kožená taška na kabely pro cestování",
+    "sku": "AC6574MOS-N"
+  },
+  {
+    "id": 976,
+    "name": "Voděodolná pouzdro na iPad® – stylová a praktická ochrana",
+    "sku": "AC6369C2OW-VE2"
+  },
+  {
+    "id": 977,
+    "name": "Voděodolná pouzdro pro iPad® 11 v moderním designu",
+    "sku": "AC6368C2OW-BI"
+  },
+  {
+    "id": 978,
+    "name": "Voděodolná pouzdro na iPad® mini - styl a ochrana v jednom",
+    "sku": "AC6492C2OW-BLU"
+  },
+  {
+    "id": 979,
+    "name": "Elegantní kožená psaníčko s přihrádkou na karty",
+    "sku": "AC3944B2-BLU2"
+  },
+  {
+    "id": 980,
+    "name": "Elegantní kožená kapsička s místem pro kreditní karty",
+    "sku": "AC2648MOSR-N"
+  },
+  {
+    "id": 981,
+    "name": "Elegantní kožená kapsička s místem pro kreditní karty",
+    "sku": "AC2648B2R-MO"
+  },
+  {
+    "id": 982,
+    "name": "Elegantní pánská pochette s přihrádkami na doklady",
+    "sku": "AC6732MOSR-BLU"
+  },
+  {
+    "id": 983,
+    "name": "Moderní pánská dvojitá pochette s přehledným uspořádáním",
+    "sku": "AC5940B2R-MO"
+  },
+  {
+    "id": 984,
+    "name": "Elegantní pánská kožená pochette se dvěma přihrádkami",
+    "sku": "AC4221B2-MO"
+  },
+  {
+    "id": 985,
+    "name": "Moderní pánská pochette se dvěma přihrádkami z recyklovaného materiálu",
+    "sku": "AC4221S136R-VE"
+  },
+  {
+    "id": 986,
+    "name": "Moderní pánská pochette se dvěma přihrádkami z recyklovaného materiálu",
+    "sku": "AC5940BR2R-N"
+  },
+  {
+    "id": 987,
+    "name": "Elegantní pánská kožená taška s třemi přihrádkami",
+    "sku": "AC2141MOS-BLU"
+  },
+  {
+    "id": 988,
+    "name": "Elegantní pánská kožená taška se třemi hlavními přihrádkami",
+    "sku": "AC6901B2R-BLU2"
+  },
+  {
+    "id": 989,
+    "name": "Elegantní pánská kožená taška s třemi přihrádkami",
+    "sku": "AC2141B3-CU"
+  },
+  {
+    "id": 990,
+    "name": "Elegantní pánská kožená taška s třemi přihrádkami",
+    "sku": "AC2141B2R-BLU2"
+  },
+  {
+    "id": 991,
+    "name": "Elegantní pánská taška s digitálním uzamčením a odnímatelným popruhem",
+    "sku": "AC6902B2R-CU4"
+  },
+  {
+    "id": 992,
+    "name": "Stylová kožená pouzdro na iPad s RFID ochranou",
+    "sku": "AC6156MOSR-BLU"
+  },
+  {
+    "id": 993,
+    "name": "Elegantní kožená pouzdro pro iPad® pro muže",
+    "sku": "AC6706S135-BLU"
+  },
+  {
+    "id": 994,
+    "name": "Elegantní kožená taška na iPad® mini pro moderní muže",
+    "sku": "AC6705S135-BLU"
+  },
+  {
+    "id": 995,
+    "name": "Elegantní kožená taška na iPad® mini pro moderní muže",
+    "sku": "AC5099B3-N"
+  },
+  {
+    "id": 996,
+    "name": "Elegantní kožená taška na iPad® mini pro moderní muže",
+    "sku": "AC5592MOS-BLU"
+  },
+  {
+    "id": 997,
+    "name": "Elegantní kožená taška na iPad® mini pro moderní muže",
+    "sku": "AC5099B2-BLU2"
+  },
+  {
+    "id": 998,
+    "name": "Elegantní kožená taška na iPad® mini pro moderní muže",
+    "sku": "AC5592B2-BLU2"
+  },
+  {
+    "id": 999,
+    "name": "Elegantní holder na vizitky Piquadro s moderním designem",
+    "sku": "PP1263B2-BLU2"
+  },
+  {
+    "id": 1000,
+    "name": "Elegantní kožená peněženka na kreditní karty Piquadro",
+    "sku": "PP1518B2-BLU2"
+  },
+  {
+    "id": 1001,
+    "name": "Elegantní kožená peněženka na kreditní karty Piquadro",
+    "sku": "PP1518P16-CHEVBLU"
+  },
+  {
+    "id": 1002,
+    "name": "Elegantní pouzdro na kreditní karty s posuvným systémem",
+    "sku": "PP4825B2R-MO"
+  },
+  {
+    "id": 1003,
+    "name": "Dvoukartový elegantní kožený držák na kreditní karty Piquadro",
+    "sku": "PP5472B2R-BLU2"
+  },
+  {
+    "id": 1004,
+    "name": "Elegantní kožené pouzdro na dokumenty pro cestování",
+    "sku": "PP3246MOSR-N"
+  },
+  {
+    "id": 1005,
+    "name": "Stylový cestovní organizér dokumentů s rukojetí",
+    "sku": "PP5257B2R-MO"
+  },
+  {
+    "id": 1006,
+    "name": "Stylový peněžník s kapsou na kreditní karty",
+    "sku": "PU1243B2VR-BLU"
+  },
+  {
+    "id": 1007,
+    "name": "Elegantní kožený obal na pas Piquadro",
+    "sku": "PP1660MOSR-N"
+  },
+  {
+    "id": 1008,
+    "name": "Elegantní kožený pasový obal s prostor pro karty",
+    "sku": "PP6340W92R-AZBE2"
+  },
+  {
+    "id": 1009,
+    "name": "Elegantní kožený obal na pas Piquadro",
+    "sku": "PP1660B2-CU4"
+  },
+  {
+    "id": 1010,
+    "name": "Elegantní kožený obal na pas Piquadro",
+    "sku": "PP5255B2-BLU2"
+  },
+  {
+    "id": 1011,
+    "name": "Elegantní kožený obal na pas Piquadro",
+    "sku": "PP5255B3-CU"
+  },
+  {
+    "id": 1012,
+    "name": "Elegantní passport holder s odnímatelným držákem na dokumenty",
+    "sku": "PP5246B2R-N"
+  },
+  {
+    "id": 1013,
+    "name": "Elegatní skládací organizér na oblečení s háčkem na košile",
+    "sku": "PA4344BR-N"
+  },
+  {
+    "id": 1014,
+    "name": "Elegantní kožený zápisník A4 s ochranou pro profesionály",
+    "sku": "PB6476B2-N"
+  },
+  {
+    "id": 1015,
+    "name": "Elegantní blok s přihrádkou pro iPad® Pro 12,9",
+    "sku": "PB5448S136-BLU"
+  },
+  {
+    "id": 1016,
+    "name": "Elegantní portablocco s přihrádkou pro iPad® Pro 12,9",
+    "sku": "PB5483BR2-BLU"
+  },
+  {
+    "id": 1017,
+    "name": "Elegantní kožený obal na iPad® Pro 12,9 - styl a ochrana v jednom",
+    "sku": "PB5448S134-M"
+  },
+  {
+    "id": 1018,
+    "name": "Elegantní kožený obal na iPad® Pro 12,9 - styl a ochrana v jednom",
+    "sku": "PB6476W92-N"
+  },
+  {
+    "id": 1019,
+    "name": "Elegantní kožené pouzdro pro iPad® Pro 12,9 – Styl a ochrana v jednom",
+    "sku": "PB6264B2-BLU2"
+  },
+  {
+    "id": 1020,
+    "name": "Elegantní A4 zipový portfoliový blok - užitečný společník na cestách",
+    "sku": "PB2830P16-CHEVBLU"
+  },
+  {
+    "id": 1021,
+    "name": "Elegatní kreditní karta s posuvným systémem od Piquadro",
+    "sku": "PP6514B2BLR-R"
+  },
+  {
+    "id": 1022,
+    "name": "Elegantní kovový kreditní kartáč Piquadro",
+    "sku": "PP5649S137R-AR"
+  },
+  {
+    "id": 1023,
+    "name": "Elegante pánská kožená peněženka na kreditní karty",
+    "sku": "PP1518B2R-BLU2"
+  },
+  {
+    "id": 1024,
+    "name": "Elegantní pánská kožená peněženka na kreditní karty",
+    "sku": "PP1518MOSR-N"
+  },
+  {
+    "id": 1025,
+    "name": "Elegantní tenká peněženka na karty pro muže z prémiové kůže",
+    "sku": "PP6553MOSR-N"
+  },
+  {
+    "id": 1026,
+    "name": "Elegantní tenká kožená peněženka na kreditní karty pro muže",
+    "sku": "PP6553B2R-N"
+  },
+  {
+    "id": 1027,
+    "name": "Elegantní tenká peněženka na karty pro muže z prémiové kůže",
+    "sku": "PP2762S135R-BLU"
+  },
+  {
+    "id": 1028,
+    "name": "Elegantní automatické pouzdro na karty z kůže a kovu",
+    "sku": "PP5649W92R-GBE"
+  },
+  {
+    "id": 1029,
+    "name": "Elegantní kožené pouzdro na karty s přívěskem",
+    "sku": "PP5910W92R-AZBE2"
+  },
+  {
+    "id": 1030,
+    "name": "Elegantní kovové pouzdro na kreditní karty",
+    "sku": "PP5649B2BLR-MO"
+  },
+  {
+    "id": 1031,
+    "name": "Elegantní kovové pouzdro na kreditní karty",
+    "sku": "PP5649UB00R-NGR"
+  },
+  {
+    "id": 1032,
+    "name": "Elegantní kožený kreditní obal Piquadro pro muže",
+    "sku": "PP1518B3R-CU"
+  },
+  {
+    "id": 1033,
+    "name": "Elegantní automatická peněženka z kůže a kovu",
+    "sku": "PP4825B3R-BLU4"
+  },
+  {
+    "id": 1034,
+    "name": "Elegantní automatická peněženka z kůže a kovu",
+    "sku": "PP5649MOSR-BLU"
+  },
+  {
+    "id": 1035,
+    "name": "Elegantní automatická peněženka z kůže a kovu",
+    "sku": "PP4825MOSR-BLU"
+  },
+  {
+    "id": 1036,
+    "name": "Elegantní automatická peněženka z kůže a kovu",
+    "sku": "PP4825B2BLR-BLU2"
+  },
+  {
+    "id": 1037,
+    "name": "Elegantní automatická peněženka z kůže a kovu",
+    "sku": "PP5649S138R-AV"
+  },
+  {
+    "id": 1038,
+    "name": "Elegantní automatická peněženka z kůže a kovu",
+    "sku": "PP5649B3R-N"
+  },
+  {
+    "id": 1039,
+    "name": "Elegantní tenká peněženka na karty z kvalitní kůže",
+    "sku": "PP2762B3R-BLU4"
+  },
+  {
+    "id": 1040,
+    "name": "Elegantní tenká peněženka na karty z kvalitní kůže",
+    "sku": "PP2762MOSR-BLU"
+  },
+  {
+    "id": 1041,
+    "name": "Elegantní tenká peněženka na karty z kvalitní kůže",
+    "sku": "PP2762B2R-MO"
+  },
+  {
+    "id": 1042,
+    "name": "Elegantní štíhlý kožený držák karet s mincovníkem",
+    "sku": "PP6561B2R-N"
+  },
+  {
+    "id": 1043,
+    "name": "Elegantní kožený klíčový přívěsek Piquadro",
+    "sku": "PC4855B2-R"
+  },
+  {
+    "id": 1044,
+    "name": "Elegantní kožený klíč na auto Piquadro",
+    "sku": "PC3751MOS-N"
+  },
+  {
+    "id": 1045,
+    "name": "Elegantní kožený klíč na auto Piquadro",
+    "sku": "PC3751B2-R"
+  },
+  {
+    "id": 1046,
+    "name": "Kožený klíčový řetěz s šesti háčky - Elegantní a praktický",
+    "sku": "PC1397B3-N"
+  },
+  {
+    "id": 1047,
+    "name": "Kožený klíčový řetěz s šesti háčky - Elegantní a praktický",
+    "sku": "PC1396B2-BLU2"
+  },
+  {
+    "id": 1048,
+    "name": "Elegantní kožený klíčenkový organizér Piquadro",
+    "sku": "PC1397B2-BLU2"
+  },
+  {
+    "id": 1049,
+    "name": "Elegantní kožený klíčenka s USB-C a Lightning kabelem",
+    "sku": "AC6571B2-MO"
+  },
+  {
+    "id": 1050,
+    "name": "Elegantní kožený klíč s integrovaným USB-C kabelem",
+    "sku": "AC6570B2-MO"
+  },
+  {
+    "id": 1051,
+    "name": "Elegantní kožený přívěsek s USB flash diskem 256 GB",
+    "sku": "AC6567B2-N"
+  },
+  {
+    "id": 1052,
+    "name": "Elegantní dámský klíčenkový přívěsek s karabinou Piquadro",
+    "sku": "PC6499W92-ROBI"
+  },
+  {
+    "id": 1053,
+    "name": "Elegantní kožený klíčový přívěsek pro AirTag®",
+    "sku": "AC5834B2-BLU2"
+  },
+  {
+    "id": 1054,
+    "name": "Pánský kožený klíčenka Piquadro Atlas - elegancia a praktičnost",
+    "sku": "PC4855S138-AR"
+  },
+  {
+    "id": 1055,
+    "name": "Pánský kožený klíčenka Piquadro Atlas - elegancia a praktičnost",
+    "sku": "PC6565B3-N"
+  },
+  {
+    "id": 1056,
+    "name": "Elegantní kožený klíčový přívěsek s dvojitými kroužky",
+    "sku": "PC3755B2-MO"
+  },
+  {
+    "id": 1057,
+    "name": "Elegantní kožený klíčový přívěsek s dvojitými kroužky",
+    "sku": "PC6453S134-BLU"
+  },
+  {
+    "id": 1058,
+    "name": "Elegantní cestovní pouzdro na dokumenty s přihrádkou na karty",
+    "sku": "PP3246B2-BLU2"
+  },
+  {
+    "id": 1059,
+    "name": "Stylová peněženka Piquadro s MagSafe a nabíjecím trackerem",
+    "sku": "AC6717B2R-BLU2"
+  },
+  {
+    "id": 1060,
+    "name": "Elegantní kožená peněženka s pružinovým mechanismem",
+    "sku": "PU1666B2-MO"
+  },
+  {
+    "id": 1061,
+    "name": "Elegantní dámská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PD6661B2R-N"
+  },
+  {
+    "id": 1062,
+    "name": "Elegantní dámská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PD1354B2R-R"
+  },
+  {
+    "id": 1063,
+    "name": "Elegantní dámská peněženka s mincovní kapsou",
+    "sku": "PD6661W92R-ROBI"
+  },
+  {
+    "id": 1064,
+    "name": "Elegantní dámská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PD1353B2R-MO"
+  },
+  {
+    "id": 1065,
+    "name": "Stylová dámská peněženka Piquadro s zipem - Velká a elegantní",
+    "sku": "PD1515W92TR-R"
+  },
+  {
+    "id": 1066,
+    "name": "Stylová dámská peněženka Piquadro s zipem - Velká a elegantní",
+    "sku": "PD1515MOSR-BLU"
+  },
+  {
+    "id": 1067,
+    "name": "Malá kožená dámská peněženka s přihrádkou na kartu",
+    "sku": "PD5216W92R-ROBI"
+  },
+  {
+    "id": 1068,
+    "name": "Malá kožená dámská peněženka s přihrádkou na kartu",
+    "sku": "PD5216B2R-N"
+  },
+  {
+    "id": 1069,
+    "name": "Malá kožená dámská peněženka s přihrádkou na kartu",
+    "sku": "PD6471B2R-R"
+  },
+  {
+    "id": 1070,
+    "name": "Elegantní malá dámská peněženka Piquadro s přepážkami na mince",
+    "sku": "PD6660B2R-N"
+  },
+  {
+    "id": 1071,
+    "name": "Elegantní malá dámská peněženka s mincovníkem",
+    "sku": "PD6660W92R-AZBE2"
+  },
+  {
+    "id": 1072,
+    "name": "Elegantní dámský peněženka s mincovníkem - malý klenot pro každou příležitost",
+    "sku": "PD6660W92TR-R"
+  },
+  {
+    "id": 1073,
+    "name": "Elegantní dámská kabelka s obousměrným zipem",
+    "sku": "PD6557B2R-R"
+  },
+  {
+    "id": 1074,
+    "name": "Elegantní dámská peněženka s žinylkovým zipem z kvalitní kůže",
+    "sku": "PD3229B2R-R"
+  },
+  {
+    "id": 1075,
+    "name": "Elegantní dámský peněženka zip-around s moderním designem",
+    "sku": "PD1515B2R-R"
+  },
+  {
+    "id": 1076,
+    "name": "Elegantní dámský peněženka zip-around s moderním designem",
+    "sku": "PD1515W92R-BI"
+  },
+  {
+    "id": 1077,
+    "name": "Elegantní pánská kožená peněženka s kapsou na karty",
+    "sku": "PU1243B3R-CU"
+  },
+  {
+    "id": 1078,
+    "name": "Elegantní kožený pánský peněženka s přihrádkami na karty",
+    "sku": "PU1243B2R-BLU2"
+  },
+  {
+    "id": 1079,
+    "name": "Elegantní kožená peněženka s praktickým přehybem na bankovky",
+    "sku": "PU1666MOSR-N"
+  },
+  {
+    "id": 1080,
+    "name": "Elegantní kožená peněženka s praktickým přehybem na bankovky",
+    "sku": "PU1666B2R-N"
+  },
+  {
+    "id": 1081,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392S138R-VE"
+  },
+  {
+    "id": 1082,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392B2R-BLU2"
+  },
+  {
+    "id": 1083,
+    "name": "Elegatní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392UB00R-GRN"
+  },
+  {
+    "id": 1084,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392S135R-VE"
+  },
+  {
+    "id": 1085,
+    "name": "Elegatní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392B3R-BLU4"
+  },
+  {
+    "id": 1086,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392S136R-VE"
+  },
+  {
+    "id": 1087,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392MOSR-BLU"
+  },
+  {
+    "id": 1088,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1240B2R-MO"
+  },
+  {
+    "id": 1089,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392S134R-BLU"
+  },
+  {
+    "id": 1090,
+    "name": "Elegantní pánská peněženka s přihrádkou na doklady",
+    "sku": "PU1392S137R-AR"
+  },
+  {
+    "id": 1091,
+    "name": "Elegantní černá pánská peněženka s odnímatelným držákem na doklady",
+    "sku": "PU3891MOSR-BLU"
+  },
+  {
+    "id": 1092,
+    "name": "Elegantní černá pánská peněženka s odnímatelným držákem na doklady",
+    "sku": "PU3891S134R-N"
+  },
+  {
+    "id": 1093,
+    "name": "Elegantní černá pánská peněženka s odnímatelným držákem na doklady",
+    "sku": "PU3891B2R-BLU2"
+  },
+  {
+    "id": 1094,
+    "name": "Elegantní černá pánská peněženka s odnímatelným držákem na doklady",
+    "sku": "PU3891S138R-VE"
+  },
+  {
+    "id": 1095,
+    "name": "Elegantní pánská kožená peněženka s přihrádkou na mince",
+    "sku": "PU257B3R-CU"
+  },
+  {
+    "id": 1096,
+    "name": "Elegantní pánská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PU257S138R-AV"
+  },
+  {
+    "id": 1097,
+    "name": "Pánská peněženka s mincovníkem z recyklovaných materiálů",
+    "sku": "PU257S137R-AR"
+  },
+  {
+    "id": 1098,
+    "name": "Elegantní pánská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PU257S134R-M"
+  },
+  {
+    "id": 1099,
+    "name": "Elegantní pánská peněženka s mincovníkem Piquadro Cronus",
+    "sku": "PU4188S134R-BLU"
+  },
+  {
+    "id": 1100,
+    "name": "Luxusní pánská peněženka s mincovníkem Piquadro",
+    "sku": "PU4188MOSR-N"
+  },
+  {
+    "id": 1101,
+    "name": "Luxusní pánská peněženka s mincovníkem Piquadro",
+    "sku": "PU4188B2R-BLU2"
+  },
+  {
+    "id": 1102,
+    "name": "Elegantní pánská peněženka s mincovníkem Piquadro Cronus",
+    "sku": "PU4188S136R-BLU"
+  },
+  {
+    "id": 1103,
+    "name": "Elegantní pánská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PU257MOSR-N"
+  },
+  {
+    "id": 1104,
+    "name": "Elegantní pánská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PU257B2R-R"
+  },
+  {
+    "id": 1105,
+    "name": "Elegantní pánská peněženka s mincovníkem z kvalitní kůže",
+    "sku": "PU257S135R-VE"
+  },
+  {
+    "id": 1106,
+    "name": "Elegantní pánská peněženka s mincovníkem z recyklované kůže",
+    "sku": "PU257S136R-BLU"
+  },
+  {
+    "id": 1107,
+    "name": "Elegantní pánská peněženka s mincovníkem Piquadro Cronus",
+    "sku": "PU4188S135R-BLU"
+  },
+  {
+    "id": 1108,
+    "name": "Elegantní pánská peněženka s mincovníkem Piquadro Cronus",
+    "sku": "PU4188S137R-AR"
+  },
+  {
+    "id": 1109,
+    "name": "Elegantní pánská peněženka s odnímatelným organizérem",
+    "sku": "PU4518MOSR-BLU"
+  },
+  {
+    "id": 1110,
+    "name": "Elegantní pánská peněženka s odnímatelným organizérem",
+    "sku": "PU4518S135R-N"
+  },
+  {
+    "id": 1111,
+    "name": "Elegantní pánská peněženka s odnímatelným organizérem",
+    "sku": "PU4518S134R-BLU"
+  },
+  {
+    "id": 1112,
+    "name": "Elegantní pánská peněženka s odnímatelným organizérem",
+    "sku": "PU4518S136R-BLU"
+  },
+  {
+    "id": 1113,
+    "name": "Elegantní pánská peněženka s vnitřním prostorem na dokumenty",
+    "sku": "PU4518B2R-MO"
+  },
+  {
+    "id": 1114,
+    "name": "Elegantní pánská peněženka s vnitřním prostorem na dokumenty",
+    "sku": "PU4518S138R-AV"
+  },
+  {
+    "id": 1115,
+    "name": "Elegantní pánská peněženka s odnímatelným organizérem",
+    "sku": "PU4518S137R-AR"
+  },
+  {
+    "id": 1116,
+    "name": "Pánská kožená peněženka s zipem - Piquadro S137",
+    "sku": "PU5762S137R-AR"
+  },
+  {
+    "id": 1117,
+    "name": "Elegantní tenká peněženka Piquadro s přihrádkami na karty",
+    "sku": "PU1241B2R-MO"
+  },
+  {
+    "id": 1118,
+    "name": "Elegantní pánská peněženka s přihrádkou na kreditní karty",
+    "sku": "PP6558B2R-N"
+  },
+  {
+    "id": 1119,
+    "name": "Stylová pánská peněženka s mincovníkem - praktičnost a elegance",
+    "sku": "PU5957S135R-VE"
+  },
+  {
+    "id": 1120,
+    "name": "Stylová pánská peněženka s mincovníkem - praktičnost a elegance",
+    "sku": "PU5957S137R-AR"
+  },
+  {
+    "id": 1121,
+    "name": "Elegantní vertikální peněženka pro muže s praktickými přihrádkami",
+    "sku": "PU1393MOSR-BLU"
+  },
+  {
+    "id": 1122,
+    "name": "Elegantní vertikální pánská peněženka Piquadro",
+    "sku": "PU5964S135R-BLU"
+  },
+  {
+    "id": 1123,
+    "name": "Elegantní vertikální peněženka pro muže s praktickými přihrádkami",
+    "sku": "PU1393B2R-BLU2"
+  },
+  {
+    "id": 1124,
+    "name": "Elegantní pánská kožená vertikální peněženka Piquadro",
+    "sku": "PU1740B2R-BLU2"
+  },
+  {
+    "id": 1125,
+    "name": "Elegantní vertikální pánská peněženka z kvalitní kůže",
+    "sku": "PU1740B3R-TM"
+  },
+  {
+    "id": 1126,
+    "name": "Elegantní automatické pánské peněženka Piquadro Atlas",
+    "sku": "PP5585S138R-AV"
+  },
+  {
+    "id": 1127,
+    "name": "Elegantní automatické pánské peněženka Piquadro Atlas",
+    "sku": "PP5585B2BLR-R"
+  },
+  {
+    "id": 1128,
+    "name": "Elegantní automatické pánské peněženka Piquadro Atlas",
+    "sku": "PP5585MOSR-BLU"
+  },
+  {
+    "id": 1129,
+    "name": "Elegantní automatické pánské peněženka Piquadro Atlas",
+    "sku": "PP5585B3R-CU"
+  },
+  {
+    "id": 1130,
+    "name": "Elegantní pánská peněženka s dvojitým držákem na karty",
+    "sku": "PP5472B2BLR-MO"
+  },
+  {
+    "id": 1131,
+    "name": "Elegantní dámská peněženka s popruhem",
+    "sku": "PD6463W134R-N"
+  },
+  {
+    "id": 1132,
+    "name": "Stylová dámská peněženka s velkým zipem a moderním designem",
+    "sku": "PD1515W134R-AR"
+  },
+  {
+    "id": 1133,
+    "name": "Elegantní kožená peněženka s textilními detaily pro ženy",
+    "sku": "PD6661W92TR-R"
+  },
+  {
+    "id": 1134,
+    "name": "Elegantní dámská kožená peněženka s přihrádkami na karty",
+    "sku": "PD5216W134R-VE"
+  },
+  {
+    "id": 1135,
+    "name": "Elegantní dámská kožená peněženka s přihrádkami na karty",
+    "sku": "PD6536W134R-RO"
+  },
+  {
+    "id": 1136,
+    "name": "Elegantní dámská kožená peněženka s přihrádkami na karty",
+    "sku": "PD6471W92R-N"
+  },
+  {
+    "id": 1137,
+    "name": "Elegantní dámská malá vertikální peněženka z kvalitní kůže",
+    "sku": "PD6550W92R-N"
+  },
+  {
+    "id": 1138,
+    "name": "Elegantní pánská peněženka Piquadro - Špičková kvalita a design",
+    "sku": "PU1241B3-CU"
+  },
+  {
+    "id": 1139,
+    "name": "Elegantní pánská peněženka Piquadro - Špičková kvalita a design",
+    "sku": "PU1241P16-CHEVN"
+  },
+  {
+    "id": 1140,
+    "name": "Elegantní pánská peněženka se dvěma přihrádkami",
+    "sku": "PU6190B3R-CU"
+  },
+  {
+    "id": 1141,
+    "name": "Kompaktní pánská peněženka s kapsou na mince",
+    "sku": "PU5957S138R-AV"
+  },
+  {
+    "id": 1142,
+    "name": "Kompaktní pánská peněženka s kapsou na mince",
+    "sku": "PU5957B2R-MO"
+  },
+  {
+    "id": 1143,
+    "name": "Elegantní pánská peněženka s 12 přihrádkami na karty",
+    "sku": "PU1241B2VR-MO"
+  },
+  {
+    "id": 1144,
+    "name": "Pánská peněženka Piquadro s dvěma oddíly pro bankovky",
+    "sku": "PU6190B2VR-N"
+  },
+  {
+    "id": 1145,
+    "name": "Pánská peněženka s držákem na bankovky Piquadro",
+    "sku": "PU1666B2VR-MO"
+  },
+  {
+    "id": 1146,
+    "name": "Elegantní pánská peněženka s držákem na dokumenty",
+    "sku": "PU1392B2VR-BLU"
+  },
+  {
+    "id": 1147,
+    "name": "Pánská peněženka s odnímatelným pouzdrem na doklady",
+    "sku": "PU3891UB00R-GRN"
+  },
+  {
+    "id": 1148,
+    "name": "Pánská peněženka s přihrádkami na doklady a mince",
+    "sku": "PU1392P16-CHEVBLU"
+  },
+  {
+    "id": 1149,
+    "name": "Elegantní pánská peněženka s přihrádkou na mince",
+    "sku": "PU1240B2-BLU2"
+  },
+  {
+    "id": 1150,
+    "name": "Elegantní pánská peněženka s přihrádkou na mince",
+    "sku": "PU257UB00R-GRN"
+  },
+  {
+    "id": 1151,
+    "name": "Elegantní pánská peněženka s přihrádkou na mince",
+    "sku": "PU257B2VR-BLU"
+  },
+  {
+    "id": 1152,
+    "name": "Luxusní pánská peněženka s mincovníkem Piquadro",
+    "sku": "PU4188B2VR-N"
+  },
+  {
+    "id": 1153,
+    "name": "Pánská peněženka s přihrádkami na dokumenty a karty",
+    "sku": "PU1666MO-N"
+  },
+  {
+    "id": 1154,
+    "name": "Elegantní kožená peněženka pro muže s mincovníkem",
+    "sku": "PU257B3-CU"
+  },
+  {
+    "id": 1155,
+    "name": "Elegantní kožená peněženka pro muže s mincovníkem",
+    "sku": "PU257P16-CHEVN"
+  },
+  {
+    "id": 1156,
+    "name": "Stylové pánské pouzdro na smartphone s řemínkem",
+    "sku": "AC5636APR-N"
+  },
+  {
+    "id": 1157,
+    "name": "Elegantní kožená peněženka pro muže Piquadro",
+    "sku": "PU3891B2VR-N"
+  },
+  {
+    "id": 1158,
+    "name": "Pánská tenká peněženka s držákem karet Piquadro",
+    "sku": "PP6558B3R-N"
+  },
+  {
+    "id": 1159,
+    "name": "Elegantní pánská vertikální peněženka s mincovníkem",
+    "sku": "PU5964B2VR-BLU"
+  },
+  {
+    "id": 1160,
+    "name": "Elegantní pánská vertikální peněženka z kvalitní kůže",
+    "sku": "PU5964B2R-MO"
+  },
+  {
+    "id": 1161,
+    "name": "Elegantní vertikální pánská peněženka Piquadro",
+    "sku": "PU5962B3R-CU"
+  },
+  {
+    "id": 1162,
+    "name": "Elegantní vertikální pánský peněženka s mincovníkem",
+    "sku": "PU1740B2-BLU2"
+  },
+  {
+    "id": 1163,
+    "name": "Elegantní pánská vertikální peněženka se sloty pro karty",
+    "sku": "PU1393B2-BLU2"
+  },
+  {
+    "id": 1164,
+    "name": "Vertikální pánská peněženka z kvalitní kůže",
+    "sku": "PU1393B2VR-N"
+  },
+  {
+    "id": 1165,
+    "name": "Elegantní kožené pouzdro na mince Piquadro",
+    "sku": "PU2636B2-MO"
+  },
+  {
+    "id": 1166,
+    "name": "Elegantní kožené pouzdro na mince Piquadro",
+    "sku": "PU2636MOS-N"
+  },
+  {
+    "id": 1167,
+    "name": "Elegantní peněženka s přihrádkami na doklady a kreditní karty",
+    "sku": "PP4822S136R-BLU"
+  },
+  {
+    "id": 1168,
+    "name": "Elegantní peněženka s přihrádkou na doklady a karty",
+    "sku": "PP4822B2R-N"
+  },
+  {
+    "id": 1169,
+    "name": "Elegantní peněženka s přihrádkami na doklady a karty",
+    "sku": "PP4822B2VR-BLU"
+  },
+  {
+    "id": 1170,
+    "name": "Elegantní peněženka s přihrádkou na doklady a karty",
+    "sku": "PP4822UB00R-GRN"
+  },
+  {
+    "id": 1171,
+    "name": "Elegantní peněženka s přihrádkou na doklady a karty",
+    "sku": "PP4822MOSR-BLU"
+  },
+  {
+    "id": 1172,
+    "name": "Elegantní peněženka s přihrádkou na doklady a karty",
+    "sku": "PP4822S138R-AV"
+  },
+  {
+    "id": 1173,
+    "name": "Elegantní peněženka s přihrádkami na doklady a kreditní karty",
+    "sku": "PP4822S134R-N"
+  },
+  {
+    "id": 1174,
+    "name": "Elegantní dámské pouzdro na mince s klíčenkou",
+    "sku": "PP5910W134R-RO"
+  },
+  {
+    "id": 1175,
+    "name": "Elegantní slim peněženka pro ženy s kapsou na karty",
+    "sku": "PP6659B2R-N"
+  },
+  {
+    "id": 1176,
+    "name": "Elegantní dámské miniaturní peněženka s přihrádkou na karty",
+    "sku": "PP6659W92R-GBE"
+  },
+  {
+    "id": 1177,
+    "name": "Elegantní kožené pouzdro na mince Piquadro",
+    "sku": "PU2634B2-BLU2"
+  },
+  {
+    "id": 1178,
+    "name": "Praktická Power Bank 10.000 mAh s Multi-USB Kabelem",
+    "sku": "AC5290BM-GR"
+  },
+  {
+    "id": 1179,
+    "name": "Elegantní linkovaný blok A5 s nádechem luxusu",
+    "sku": "AC4867RA-VE"
+  },
+  {
+    "id": 1180,
+    "name": "Elegantní linkovaný blok A6 pro inspirativní nápady",
+    "sku": "AC4868RA-G"
+  },
+  {
+    "id": 1181,
+    "name": "Vyměnitelná dvojitá kolečka pro dokonalou mobilitu",
+    "sku": "AC6725POP-BLU"
+  },
+  {
+    "id": 1182,
+    "name": "Cestovní set s nafukovacím polštářem na krk",
+    "sku": "AC6435TA-N"
+  },
+  {
+    "id": 1183,
+    "name": "Set 8 kusů barevných ochranných krytů na kolečka",
+    "sku": "AC6395PQL-ARS"
+  },
+  {
+    "id": 1184,
+    "name": "Elegantní nákupní taška s přihrádkou na iPad® mini",
+    "sku": "BD3336B2-R"
+  },
+  {
+    "id": 1185,
+    "name": "Elegantní skládací taška na notebook a tablet 15,6",
+    "sku": "CA6336W92T-VE"
+  },
+  {
+    "id": 1186,
+    "name": "Chytrý sledovací zařízení CONNEQU - Vaše osobní bezpečnost na dosah",
+    "sku": "AC5648BM-GR"
+  },
+  {
+    "id": 1187,
+    "name": "Ekologické sneakers z recyklovaných materiálů pro stylový krok",
+    "sku": "SN5977C2O-BI-40"
+  },
+  {
+    "id": 1188,
+    "name": "Udržitelné pánské sneakers z recyklovaných materiálů",
+    "sku": "SN6711TE-BGRB-40"
+  },
+  {
+    "id": 1189,
+    "name": "Udržitelné pánské sneakers z recyklovaných materiálů",
+    "sku": "SN6710RU-BI-40"
+  },
+  {
+    "id": 1190,
+    "name": "Elegantní kožená podložka s bezdrátovým dobíjením 15W",
+    "sku": "AC6718B2-BLU2"
+  },
+  {
+    "id": 1191,
+    "name": "Elegantní USB nabíjecí adaptér Piquadro",
+    "sku": "AC6577BM-BLU"
+  },
+  {
+    "id": 1192,
+    "name": "Elegantní klíčová značka Piquadro Signo",
+    "sku": "SIGNOTAG-00"
+  },
+  {
+    "id": 1193,
+    "name": "Kožená štítka pro personalizaci Coll BIZ",
+    "sku": "BIZTAG-AR"
+  },
+  {
+    "id": 1194,
+    "name": "Elegantní tote bag s prostorem pro 14 notebook",
+    "sku": "BD6679B2-R"
+  },
+  {
+    "id": 1195,
+    "name": "Stylová taška pro 14 notebook a iPad® Pro 12,9 - Harper",
+    "sku": "CA5681AP-TM"
+  },
+  {
+    "id": 1196,
+    "name": "Stylová kožená taška na laptop 14 s moderním designem",
+    "sku": "CA6644MOS-N"
+  },
+  {
+    "id": 1197,
+    "name": "Stylová dámská tote bag s přihrádkou na notebook 15,6",
+    "sku": "BD6680B2-N"
+  },
+  {
+    "id": 1198,
+    "name": "Multifunkční voděodolná tote bag s možností nošení jako batoh",
+    "sku": "CA6467C2OW-VE"
+  },
+  {
+    "id": 1199,
+    "name": "Pánská kožená taška přes rameno Tracolla Personal Case",
+    "sku": "CA6564MOS-BLU"
+  },
+  {
+    "id": 1200,
+    "name": "Elegantní taška přes rameno Piquadro Personal Case",
+    "sku": "CA6172PQLS2-AR"
+  },
+  {
+    "id": 1201,
+    "name": "Elegantní taška přes rameno Piquadro Personal Case",
+    "sku": "CA6172PQL-NO"
+  },
+  {
+    "id": 1202,
+    "name": "Moderní crossover taška s dvěma přihrádkami",
+    "sku": "CA5086B2-BLU2"
+  },
+  {
+    "id": 1203,
+    "name": "Elegantní kožená crossbody taška v stylu fotoaparátu",
+    "sku": "BD6468W92-AZBE2"
+  },
+  {
+    "id": 1204,
+    "name": "Kožená taška přes rameno pro iPad® – Elegance a praktičnost v jednom",
+    "sku": "CA5086MOS-BLU"
+  },
+  {
+    "id": 1205,
+    "name": "Pánská crossbody taška pro iPad® mini s kapsou na AirPods",
+    "sku": "CA6588B2-N"
+  },
+  {
+    "id": 1206,
+    "name": "Moderní cestovní trolley na čtyřech kolečkách",
+    "sku": "BV5213PQLM-NCU"
+  },
+  {
+    "id": 1207,
+    "name": "Rozšiřitelný kabinový kufr na čtyřech kolech Piquadro",
+    "sku": "BV5398PQL-NO"
+  },
+  {
+    "id": 1208,
+    "name": "Elegantní business vozík na notebook a tablet Piquadro",
+    "sku": "CA3338MO-N"
+  },
+  {
+    "id": 1209,
+    "name": "Luxusní cestovní Trolley Piquadro x Maserati – Styl a výkon v jednom",
+    "sku": "BV4425ALUM-N"
+  },
+  {
+    "id": 1210,
+    "name": "Elegantní cestovní trolley s úložným prostorem pro laptop",
+    "sku": "BV2960MO-N"
+  },
+  {
+    "id": 1211,
+    "name": "Elegantní cestovní trolley na notebook 17 s moderním designem",
+    "sku": "BV6379C2OW-N"
+  },
+  {
+    "id": 1212,
+    "name": "Multifunkční Trolley na Laptop a iPad – Elegantní a Praktický Doplněk",
+    "sku": "BV4817UB00BM-GRN"
+  },
+  {
+    "id": 1213,
+    "name": "Stylový nylonový kufr na 4 kolečkách pro pohodlné cestování",
+    "sku": "BV4425PQLS3-VI"
+  },
+  {
+    "id": 1214,
+    "name": "Piquadro PQL Cestovní kufr s 4 koly pro notebook – elegantní a praktický",
+    "sku": "BV4426PQL-GRR"
+  },
+  {
+    "id": 1215,
+    "name": "Ekologický cestovní vozík Piquadro s ochranou pro podsedadlo",
+    "sku": "BV6343BR2-BLU"
+  },
+  {
+    "id": 1216,
+    "name": "Ultra Slim čtyřkolový kabinový kufr Piquadro",
+    "sku": "BV4343BR2-N"
+  },
+  {
+    "id": 1217,
+    "name": "Moderní cestovní kufr Piquadro s 4 kolečky",
+    "sku": "BV4425PQLM-NCU"
+  },
+  {
+    "id": 1218,
+    "name": "Stylový cestovní kufr Piquadro x Ducati s čtyřmi kolečky",
+    "sku": "BV4425ALUD-R"
+  },
+  {
+    "id": 1219,
+    "name": "Ultra Slim Trolley Piquadro x Ducati – Elegantní kufr na palubu",
+    "sku": "BV4425POPD-R"
+  },
+  {
+    "id": 1220,
+    "name": "Moderní 4-kolový kabinový trolley s prostorem pro 17,3 notebook",
+    "sku": "BV4426PQLM-NCU"
+  },
+  {
+    "id": 1221,
+    "name": "Voděodolný kabinový trolley na 4 kolečkách – Piquadro",
+    "sku": "BV6377C2OW-VE"
+  },
+  {
+    "id": 1222,
+    "name": "Elegantní kufr na oděvy s prostorem pro laptop",
+    "sku": "BV2960MOS-N"
+  },
+  {
+    "id": 1223,
+    "name": "Elegantní kufr na oděvy s prostorem pro laptop",
+    "sku": "BV2960B2-R"
+  },
+  {
+    "id": 1224,
+    "name": "Stylový kufr na kolečkách s oddělením pro notebook 15,6",
+    "sku": "BV6271BR2-BLU"
+  },
+  {
+    "id": 1225,
+    "name": "Trolley na palubu s přihrádkou pro notebook 17,3 a čtyřmi kolečky",
+    "sku": "BV6700PQL-BLUO"
+  },
+  {
+    "id": 1226,
+    "name": "Elegantní cestovní kufr na notebook s přihrádkou pro iPad",
+    "sku": "BV5004B2-BLU2"
+  },
+  {
+    "id": 1227,
+    "name": "Elegatní cestovní trolley pro notebooky do 15,6 - Piquadro",
+    "sku": "BV3849MOS-N"
+  },
+  {
+    "id": 1228,
+    "name": "Praktický a stylový pevný trolley do kabiny na 4 kolech",
+    "sku": "BV4425PQL-R2"
+  },
+  {
+    "id": 1229,
+    "name": "Praktický a stylový pevný trolley do kabiny na 4 kolech",
+    "sku": "BV4425PQLS2-AR"
+  },
+  {
+    "id": 1230,
+    "name": "Personalizovaný pevný kabinový kufr s čtyřmi kolečky",
+    "sku": "BV4425POP-BLU"
+  },
+  {
+    "id": 1231,
+    "name": "Elegantní slim trolley na zavazadla s 4 kolečky",
+    "sku": "BV4425ALU-GRCU"
+  },
+  {
+    "id": 1232,
+    "name": "Elegantní slim trolley na zavazadla s 4 kolečky",
+    "sku": "BV4425ALUB2-BLU2"
+  },
+  {
+    "id": 1233,
+    "name": "Elegantní kabinový podpalubní vozík Piquadro",
+    "sku": "BV6701PQL-R2"
+  },
+  {
+    "id": 1234,
+    "name": "Velký cestovní kufr Piquadro na čtyřech kolech",
+    "sku": "BV4428PQLM-NCU"
+  },
+  {
+    "id": 1235,
+    "name": "Velký cestovní kufr na čtyřech kolečkách Piquadro",
+    "sku": "BV4428PQLS2-G2"
+  },
+  {
+    "id": 1236,
+    "name": "Velký hliníkový cestovní kufr s voděodolným obalem",
+    "sku": "BV4428ALUB2-BLU2"
+  },
+  {
+    "id": 1237,
+    "name": "Velký expanzní cestovní kufr na 4 kolečkách",
+    "sku": "BV6651BR2-N"
+  },
+  {
+    "id": 1238,
+    "name": "Velký hliníkový cestovní kufr na čtyřech kolech",
+    "sku": "BV4428ALU-GRCU"
+  },
+  {
+    "id": 1239,
+    "name": "Velký tvrdý kufr na čtyřech kolech pro pohodlné cestování",
+    "sku": "BV4428PQL-BLUO"
+  },
+  {
+    "id": 1240,
+    "name": "Prostorný expandabilní cestovní kufr Piquadro na čtyřech kolech",
+    "sku": "BV6394PQL-R2"
+  },
+  {
+    "id": 1241,
+    "name": "Prostorný expandabilní cestovní kufr Piquadro na čtyřech kolech",
+    "sku": "BV6394PQLS2-AR"
+  },
+  {
+    "id": 1242,
+    "name": "Elegantní cestovní trolley Piquadro x Maserati – dokonalý společník na cesty",
+    "sku": "BV4427ALUM-N"
+  },
+  {
+    "id": 1243,
+    "name": "Střední cestovní kufr Piquadro s 4 kolečky",
+    "sku": "BV4427PQLS2-G2"
+  },
+  {
+    "id": 1244,
+    "name": "Střední cestovní kufr Piquadro s 4 kolečky",
+    "sku": "BV4427PQLM-NCU"
+  },
+  {
+    "id": 1245,
+    "name": "Střední cestovní kufr s ochranným voděodolným potahem",
+    "sku": "BV4427ALUB2-BLU2"
+  },
+  {
+    "id": 1246,
+    "name": "Střední roz expandující cestovní trolley na čtyřech kolech",
+    "sku": "BV6650BR2-N"
+  },
+  {
+    "id": 1247,
+    "name": "Kvalitní hliníkový cestovní kufr na čtyřech kolech",
+    "sku": "BV4427ALU-GRCU"
+  },
+  {
+    "id": 1248,
+    "name": "Střední pevný cestovní kufr s čtyřmi kolečky Piquadro",
+    "sku": "BV4427POP-BI"
+  },
+  {
+    "id": 1249,
+    "name": "Střední pevný cestovní kufr s čtyřmi kolečky Piquadro",
+    "sku": "BV4427PQL-BLUO"
+  },
+  {
+    "id": 1250,
+    "name": "Expandovatelný střední kufr na čtyřech kolech Piquadro",
+    "sku": "BV6393PQLS3-VI"
+  },
+  {
+    "id": 1251,
+    "name": "Rozšiřitelný střední kufr Piquadro s 4 kolečky",
+    "sku": "BV6393PQLS2-AR"
+  },
+  {
+    "id": 1252,
+    "name": "Rozšiřitelný střední kufr Piquadro s 4 kolečky",
+    "sku": "BV6393PQL-R2"
+  },
+  {
+    "id": 1253,
+    "name": "Cestovní Trolley pro notebook 15,6 s TSA - Elegance pro moderní cestování",
+    "sku": "BV6552PQL-R2"
+  },
+  {
+    "id": 1254,
+    "name": "Cestovní trolley s přihrádkou na laptop 15,6 pro moderní profesionály",
+    "sku": "BV6552PQLM-NCU"
+  },
+  {
+    "id": 1255,
+    "name": "Cestovní Trolley s organizérem a prostorem pro notebook 15,6",
+    "sku": "CA3338MOS-N"
+  },
+  {
+    "id": 1256,
+    "name": "Stylový kožený trolley pro notebook 15,6 s personalizací",
+    "sku": "BV4729B2-MO"
+  },
+  {
+    "id": 1257,
+    "name": "Stylový kožený trolley pro notebook 15,6 s personalizací",
+    "sku": "BV5014B2-MO"
+  },
+  {
+    "id": 1258,
+    "name": "Elegantní Trolley pro Pilota s Přihrádkou pro Notebook 15,6",
+    "sku": "BV4729BR2-BLU"
+  },
+  {
+    "id": 1259,
+    "name": "Špičkový cestovní kufr Piquadro s čtyřmi koly - Trunk Model",
+    "sku": "BV5213PQL-R2"
+  },
+  {
+    "id": 1260,
+    "name": "Pevný kufr Piquadro Trunk s 4 kolečky – elegance a funkčnost na cestách",
+    "sku": "BV5213POP-BLU"
+  },
+  {
+    "id": 1261,
+    "name": "Špičkový cestovní kufr Piquadro s čtyřmi koly - Trunk Model",
+    "sku": "BV5213PQLS2-AR"
+  },
+  {
+    "id": 1262,
+    "name": "Malý pevný kufr na čtyřech kolečkách Piquadro POP",
+    "sku": "BV6699POP-G"
+  },
+  {
+    "id": 1263,
+    "name": "Elegantní kožená taštička na kosmetiku Piquadro",
+    "sku": "BY6543W92-AZBE2"
+  },
+  {
+    "id": 1264,
+    "name": "Moderní kožený batoh Piquadro UB00TAG pro městské dobrodruhy",
+    "sku": "UB00TAG-AR"
+  },
+  {
+    "id": 1265,
+    "name": "Elegantní rozšiřitelná taška na notebook Piquadro 15,6",
+    "sku": "CA3111B2-BLU2"
+  },
+  {
+    "id": 1266,
+    "name": "Elegantní rozšiřitelná taška na notebook Piquadro 15,6",
+    "sku": "CA3111MOS-N"
+  },
+  {
+    "id": 1267,
+    "name": "Elegantní kožená taška na notebook 14 pro moderní profesionály",
+    "sku": "CA1152MOS-N"
+  },
+  {
+    "id": 1268,
+    "name": "Elegantní kožený batoh pro ženy s přihrádkou na iPad® mini",
+    "sku": "CA6677B2-R"
+  },
+  {
+    "id": 1269,
+    "name": "Kožený dámský batoh s kapsou na iPad® mini",
+    "sku": "CA6454W134-AR"
+  },
+  {
+    "id": 1270,
+    "name": "Stylový batoh pro notebook s inteligentním členěním",
+    "sku": "CA3214MO-N"
+  },
+  {
+    "id": 1271,
+    "name": "Elegantní batoh na notebook a iPad® s chytrými kapsami",
+    "sku": "CA3869P16-CHEVBLU"
+  },
+  {
+    "id": 1272,
+    "name": "Elegantní batoh na notebook a iPad® s moderním designem",
+    "sku": "CA3214UB00L-GRN"
+  },
+  {
+    "id": 1273,
+    "name": "Moderní městský batoh na notebook 14 s ochranou",
+    "sku": "CA5608UB00-GRN"
+  },
+  {
+    "id": 1274,
+    "name": "Moderní batoh na laptop z recyklovaného materiálu 14",
+    "sku": "CA3214BR2-BLU"
+  },
+  {
+    "id": 1275,
+    "name": "Nepromokový batoh s rolovacím uzavřením pro městské dobrodružství",
+    "sku": "CA5771CAS2-ES"
+  },
+  {
+    "id": 1276,
+    "name": "Stylový cyklistický batoh s kapsou na notebook 15,6",
+    "sku": "CA4818AP-VETM"
+  },
+  {
+    "id": 1277,
+    "name": "Moderní cyklistický batoh Piquadro - styl a funkčnost na prvním místě",
+    "sku": "CA6103CAS2-ES"
+  },
+  {
+    "id": 1278,
+    "name": "Stylový trekkingový batoh Piquadro pro dobrodružství",
+    "sku": "CA6102CAS2-ES"
+  },
+  {
+    "id": 1279,
+    "name": "Elegantní pánský batoh na laptop a tablet Piquadro 15,6",
+    "sku": "CA4762B3-TM"
+  },
+  {
+    "id": 1280,
+    "name": "Ideální batoh pro alpinismus a trekking - Piquadro",
+    "sku": "CA5738CAS2-ES"
+  },
+  {
+    "id": 1281,
+    "name": "Kompaktní cestovní batoh s rychlým přístupem pro laptop 15,6",
+    "sku": "CA5552MOS-N"
+  },
+  {
+    "id": 1282,
+    "name": "Personalizovaný cestovní batoh s přihrádkou pro laptop 14",
+    "sku": "CA6645MOS-BLU"
+  },
+  {
+    "id": 1283,
+    "name": "Elegantní cestovní batoh pro notebook 14 - ekologický design",
+    "sku": "CA6629S137-AR"
+  },
+  {
+    "id": 1284,
+    "name": "Stylový batoh Piquadro pro notebook 15,6 - cestovní elegance",
+    "sku": "CA6638W129-N"
+  },
+  {
+    "id": 1285,
+    "name": "Stylový cestovní batoh pro notebook 15,6 s místem pro iPad Pro 12,9",
+    "sku": "CA6648BR2-BLU"
+  },
+  {
+    "id": 1286,
+    "name": "Stylový cestovní batoh pro notebook 15,6 s místem pro iPad Pro 12,9",
+    "sku": "CA6630S137-BLU"
+  },
+  {
+    "id": 1287,
+    "name": "Stylový cestovní batoh pro notebook 15,6 s místem pro iPad Pro 12,9",
+    "sku": "CA6905S140-BLU"
+  },
+  {
+    "id": 1288,
+    "name": "Stylový cestovní batoh na notebook 15,6 s možností personalizace",
+    "sku": "CA6690S134BM-M"
+  },
+  {
+    "id": 1289,
+    "name": "Stylový cestovní batoh s kapsou pro notebook 17,3",
+    "sku": "CA6631S137-VE"
+  },
+  {
+    "id": 1290,
+    "name": "Praktický cestovní batoh pro laptop 17,3 – styl a funkčnost",
+    "sku": "CA6691S125-VE"
+  },
+  {
+    "id": 1291,
+    "name": "Odolný podsedákový batoh na notebook a tablet - Piquadro C2OW",
+    "sku": "CA6638C2OW-VE"
+  },
+  {
+    "id": 1292,
+    "name": "Elegantní dámský kožený batoh s přihrádkou na notebook 15,6",
+    "sku": "CA6456W134-VE"
+  },
+  {
+    "id": 1293,
+    "name": "Elegantní kožený batoh pro 14 notebook a iPad®",
+    "sku": "CA6678B2-RO2"
+  },
+  {
+    "id": 1294,
+    "name": "Elegantní kožený batoh pro 14 notebook a iPad®",
+    "sku": "CA6455W134-RO"
+  },
+  {
+    "id": 1295,
+    "name": "Elegantní batoh pro ženy s přihrádkou na iPad®",
+    "sku": "CA5566W92T-VE"
+  },
+  {
+    "id": 1296,
+    "name": "Elegantní batoh pro ženy s přihrádkou na iPad®",
+    "sku": "CA5566W92-AZBE2"
+  },
+  {
+    "id": 1297,
+    "name": "Elegantní dámský batoh na notebook 14“ s přihrádkou na iPad®",
+    "sku": "CA4576W92T-VE"
+  },
+  {
+    "id": 1298,
+    "name": "Elegantní batoh Piquadro pro laptop 14 s pouzdrem na iPad®",
+    "sku": "CA4576W92-ROBI"
+  },
+  {
+    "id": 1299,
+    "name": "Stylový dámský batoh na notebook 15,6 s rozšířením",
+    "sku": "CA6216W92T-R"
+  },
+  {
+    "id": 1300,
+    "name": "Stylový dámský batoh na notebook 15,6 s rozšířením",
+    "sku": "CA6216W92-AZBE2"
+  },
+  {
+    "id": 1301,
+    "name": "Elegantní školní batoh Piquadro s rychlým přístupem k laptopu a iPadu",
+    "sku": "CA4532UB00L-GRN"
+  },
+  {
+    "id": 1302,
+    "name": "Elegantní kožená taška přes rameno pro muže - Piquadro Modus",
+    "sku": "CA5107MOS-N"
+  },
+  {
+    "id": 1303,
+    "name": "Elegantní kožená taška přes rameno pro muže - Piquadro Modus",
+    "sku": "CA5678AP-TM"
+  },
+  {
+    "id": 1304,
+    "name": "Pánský batoh s LED osvětlením z recyklovaných materiálů",
+    "sku": "CA4536BR2L-BLU"
+  },
+  {
+    "id": 1305,
+    "name": "Pánská snadno nositelná taška z recyklovaného materiálu",
+    "sku": "CA6625S136-N"
+  },
+  {
+    "id": 1306,
+    "name": "Moderní ekologický batoh pro muže z recyklovaného materiálu",
+    "sku": "CA6904S140-N"
+  },
+  {
+    "id": 1307,
+    "name": "Moderní ekologický batoh pro muže z recyklovaného materiálu",
+    "sku": "CA4536BR2-BLU"
+  },
+  {
+    "id": 1308,
+    "name": "Stylový univerzální batoh pro iPad® mini",
+    "sku": "CA6540UB00-GRN"
+  },
+  {
+    "id": 1309,
+    "name": "Moderní Příruční Batoh pro iPad® mini - Styl a Funkčnost",
+    "sku": "CA5577MOS-BLU"
+  },
+  {
+    "id": 1310,
+    "name": "Moderní jednoramenný batoh Piquadro pro iPad® mini",
+    "sku": "CA6686S134-M"
+  },
+  {
+    "id": 1311,
+    "name": "Elegantní přizpůsobitelný batoh přes rameno pro muže",
+    "sku": "CA5577B2-BLU2"
+  },
+  {
+    "id": 1312,
+    "name": "Stylový kožený batoh Piquadro pro moderní muže",
+    "sku": "CA6898B2-G"
+  },
+  {
+    "id": 1313,
+    "name": "Moderní kožený messenger batoh pro iPad® Piquadro",
+    "sku": "CA4827B2-MO"
+  },
+  {
+    "id": 1314,
+    "name": "Moderní kožený messenger batoh pro iPad® Piquadro",
+    "sku": "CA4827B3-CU"
+  },
+  {
+    "id": 1315,
+    "name": "Elegantní pánský batoh na rameno pro iPad® mini",
+    "sku": "CA6616S135-BLU"
+  },
+  {
+    "id": 1316,
+    "name": "Stylový městský batoh pro tablety Piquadro S137",
+    "sku": "CA6632S137-VE"
+  },
+  {
+    "id": 1317,
+    "name": "Stylový voděodolný batoh pro muže s prostorom na iPad® mini",
+    "sku": "CA6466C2OW-VE"
+  },
+  {
+    "id": 1318,
+    "name": "Elegantní batoh na laptop 14 a iPad® Pro 12,9 z recyklovaného materiálu",
+    "sku": "CA5856C2O-VE2"
+  },
+  {
+    "id": 1319,
+    "name": "Elegantní kožený batoh pro notebook 14 - Piquadro",
+    "sku": "CA3214UB00-GRN"
+  },
+  {
+    "id": 1320,
+    "name": "Elegantní kožený batoh na notebook 14 s prostorem pro iPad®",
+    "sku": "CA3214B2-R"
+  },
+  {
+    "id": 1321,
+    "name": "Elegantní kožený batoh na notebook 14 s prostorem pro iPad®",
+    "sku": "CA3214MOS-BLU"
+  },
+  {
+    "id": 1322,
+    "name": "Elegantní kožený batoh na notebook 14 s prostorem pro iPad®",
+    "sku": "CA3214B3-CU"
+  },
+  {
+    "id": 1323,
+    "name": "Malý skládací batoh na notebook s moderním designem",
+    "sku": "CA6005FLD-VE"
+  },
+  {
+    "id": 1324,
+    "name": "Stylish batoh pro laptop 14 a iPad® s ochrannými prvky",
+    "sku": "CA5574B2V-N"
+  },
+  {
+    "id": 1325,
+    "name": "Elegantní kožený batoh pro notebook 14 s oddělením pro iPad®",
+    "sku": "CA6289B2V-N"
+  },
+  {
+    "id": 1326,
+    "name": "Multifunkční batoh Piquadro CONNE s LED osvětlením",
+    "sku": "CA3214UB00BML-GRN"
+  },
+  {
+    "id": 1327,
+    "name": "Univerzální batoh Piquadro pro laptop a tablet - personalizovatelný",
+    "sku": "CA3214UB00BM-N"
+  },
+  {
+    "id": 1328,
+    "name": "Moderní batoh na notebook a tablet s praktickými kapsami",
+    "sku": "CA3444MO-N"
+  },
+  {
+    "id": 1329,
+    "name": "Praktický batoh pro notebook a iPad® s elegantním designem",
+    "sku": "CA4174P16-CHEVN"
+  },
+  {
+    "id": 1330,
+    "name": "Elegantní batoh pro notebook a iPad® s bezpečnostním kabelem",
+    "sku": "CA4818B2V-N"
+  },
+  {
+    "id": 1331,
+    "name": "Elegantní batoh na notebook s držákem na láhev a deštník",
+    "sku": "CA5381B2V-BLU"
+  },
+  {
+    "id": 1332,
+    "name": "Elegantní batoh na laptop a iPad® s prémiovým designem",
+    "sku": "CA5575B2V-N"
+  },
+  {
+    "id": 1333,
+    "name": "Luxusní batoh Piquadro x Maserati s integrovaným zámkem",
+    "sku": "CA4818MOSM-N"
+  },
+  {
+    "id": 1334,
+    "name": "Stylový batoh na notebook 13,3 s přihrádkou pro iPad®Pro 12,9",
+    "sku": "CA6609S135-N"
+  },
+  {
+    "id": 1335,
+    "name": "Stylový batoh Piquadro pro laptop 14 - elegance a funkčnost",
+    "sku": "CA6610S135-N"
+  },
+  {
+    "id": 1336,
+    "name": "Stylový batoh Piquadro na notebook a tablet – 14 s bezpečnostním kabelem",
+    "sku": "CA6289AP-VETM"
+  },
+  {
+    "id": 1337,
+    "name": "Elegatní batoh pro notebook 14 s možností personalizace",
+    "sku": "CA6591B2-CU4"
+  },
+  {
+    "id": 1338,
+    "name": "Elegantní batoh na laptop Piquadro 15,6 - moderní design a funkčnost",
+    "sku": "CA6611S135-VE"
+  },
+  {
+    "id": 1339,
+    "name": "Elegantní batoh pro notebook a iPad® - 15,6",
+    "sku": "CA5939B2V-N"
+  },
+  {
+    "id": 1340,
+    "name": "Elegantní batoh na notebook 15,6 z recyklované tkaniny a kůže",
+    "sku": "CA5477BR2-BLU"
+  },
+  {
+    "id": 1341,
+    "name": "Personalizovaný batoh na notebook 15,6 s moderním designem",
+    "sku": "CA6592B2BM-N"
+  },
+  {
+    "id": 1342,
+    "name": "Personalizovaný batoh na notebook 15,6 s moderním designem",
+    "sku": "CA6593B2-G"
+  },
+  {
+    "id": 1343,
+    "name": "Voděodolný batoh s přihrádkou na notebook 14",
+    "sku": "CA6642C2OW-BI"
+  },
+  {
+    "id": 1344,
+    "name": "Voděodolný batoh Piquadro pro notebook 14 a iPad Pro 12,9",
+    "sku": "CA5856C2OW-G"
+  },
+  {
+    "id": 1345,
+    "name": "Voděodolný batoh na laptop 14 - styl a ochrana pro každého",
+    "sku": "CA6464C2OW-VE2"
+  },
+  {
+    "id": 1346,
+    "name": "Voděodolný batoh na notebook 15,6 - Moderní styl a funkčnost",
+    "sku": "CA6465C2OW-N"
+  },
+  {
+    "id": 1347,
+    "name": "Roll-top batoh Piquadro x Ducati pro notebook 15,6",
+    "sku": "CA6291C2OWD-R"
+  },
+  {
+    "id": 1348,
+    "name": "Stylový roll-top batoh s přihrádkou na laptop 15,6",
+    "sku": "CA6612S135-VE"
+  },
+  {
+    "id": 1349,
+    "name": "Vodeodolný roll-top batoh pro PC 15,6 s hrudními popruhy",
+    "sku": "CA6291C2OW-BI"
+  },
+  {
+    "id": 1350,
+    "name": "Stylový snowboardový batoh s roll-top zavíráním",
+    "sku": "CA6274CAS2-ES"
+  },
+  {
+    "id": 1351,
+    "name": "Elegantní tenký batoh pro notebook 14 z recyklovaného materiálu",
+    "sku": "CA6383BR2-VE2"
+  },
+  {
+    "id": 1352,
+    "name": "Sportovní batoh Piquadro pro notebook a iPad® Pro 12,9",
+    "sku": "CA5999S125-VEAR"
+  },
+  {
+    "id": 1353,
+    "name": "Sportovní batoh Piquadro na kolo s úložným prostorem pro notebook a iPad",
+    "sku": "CA5998S125-VEAR"
+  },
+  {
+    "id": 1354,
+    "name": "Moderní cestovní trolley batoh pro notebook 15,6 s kapsou na iPad®",
+    "sku": "BV4817BR2BM-N"
+  },
+  {
+    "id": 1355,
+    "name": "Elegantní cestovní taška s kolečky a přihrádkou na notebook 15,6",
+    "sku": "BV6270BR2-BLU"
+  },
+  {
+    "id": 1356,
+    "name": "Moderní pánský batoh Piquadro Fast-Check pro notebook 15,6",
+    "sku": "CA4550UB00BM-GRN"
+  },
+  {
+    "id": 1357,
+    "name": "Stylový batoh Piquadro s rychlou kontrolou – pro notebook 15,6",
+    "sku": "CA4439BR2BM-BLU"
+  },
+  {
+    "id": 1358,
+    "name": "Stylový a personalizovatelný batoh Piquadro pro laptop 15,6",
+    "sku": "CA4762B2-BLU2"
+  },
+  {
+    "id": 1359,
+    "name": "Elegantní kožený batoh pro laptop 13 s moderním designem",
+    "sku": "CA6687S134-N"
+  },
+  {
+    "id": 1360,
+    "name": "Stylový batoh Piquadro na laptop 13,3 z recyklovaných materiálů",
+    "sku": "CA6619S136-VE"
+  },
+  {
+    "id": 1361,
+    "name": "Elegantní pánský batoh Piquadro s úložným prostorem pro laptop 14",
+    "sku": "CA6238W129-BLU"
+  },
+  {
+    "id": 1362,
+    "name": "Pánský batoh Piquadro s ochranou pro notebook 14",
+    "sku": "CA3869AP-G"
+  },
+  {
+    "id": 1363,
+    "name": "Moderní pánský batoh na notebook 14 s voděodolnou ochranou",
+    "sku": "CA5676AP-VETM"
+  },
+  {
+    "id": 1364,
+    "name": "Elegantní batoh pro laptop 14 vyrobený z recyklovaného materiálu",
+    "sku": "CA6621S136-G"
+  },
+  {
+    "id": 1365,
+    "name": "Elegantní batoh pro laptop 14 vyrobený z recyklovaného materiálu",
+    "sku": "CA6620S136-BLU"
+  },
+  {
+    "id": 1366,
+    "name": "Stylový batoh Piquadro pro laptop 14 – personalizovatelný",
+    "sku": "CA6501B3-TM"
+  },
+  {
+    "id": 1367,
+    "name": "Stylový batoh Piquadro pro laptop 14 – personalizovatelný",
+    "sku": "CA6289MOS-BLU"
+  },
+  {
+    "id": 1368,
+    "name": "Elegantní pánský batoh na notebook 14 s možností personalizace",
+    "sku": "CA6688S134-BLU"
+  },
+  {
+    "id": 1369,
+    "name": "Stylový voděodolný batoh pro notebook 14 od Piquadro",
+    "sku": "CA6238W129W-N"
+  },
+  {
+    "id": 1370,
+    "name": "Elegantní kožený batoh pro notebook 15 s antivandalským kabelem",
+    "sku": "CA3349AP-N"
+  },
+  {
+    "id": 1371,
+    "name": "Elegantní kožený batoh s přihrádkou na notebook 15,6",
+    "sku": "CA4818UB00-GRN"
+  },
+  {
+    "id": 1372,
+    "name": "Pánský batoh na laptop 15,6 s prostornými kapsami",
+    "sku": "CA3444MOS-N"
+  },
+  {
+    "id": 1373,
+    "name": "Kožený batoh s LED osvětlením na laptop 15,6 – moderní elegance",
+    "sku": "CA4550UB00BML-NGR"
+  },
+  {
+    "id": 1374,
+    "name": "Moderní batoh Piquadro s LED osvětlením pro notebooky 15,6",
+    "sku": "CA4439BR2BML-BLU"
+  },
+  {
+    "id": 1375,
+    "name": "Pánský batoh Piquadro Fast-Check na notebook 15,6",
+    "sku": "CA6239W129BM-TM"
+  },
+  {
+    "id": 1376,
+    "name": "Stylový batoh pro notebook 15,6 z recyklovaných materiálů",
+    "sku": "CA6384BR2-BLU"
+  },
+  {
+    "id": 1377,
+    "name": "Piquadro Zelený batoh na notebook 15,6 z recyklovaného materiálu",
+    "sku": "CA4532BR2-BLU"
+  },
+  {
+    "id": 1378,
+    "name": "Stylový batoh Piquadro pro notebook 15,6 z recyklovaného materiálu",
+    "sku": "CA4818BR2-VE2"
+  },
+  {
+    "id": 1379,
+    "name": "Pánský batoh na notebook 15,6 s možností personalizace",
+    "sku": "CA6503B3-CU"
+  },
+  {
+    "id": 1380,
+    "name": "Moderní pánský batoh pro notebook 15,6 - přizpůsobitelný styl",
+    "sku": "CA4532UB00-N"
+  },
+  {
+    "id": 1381,
+    "name": "Stylový batoh Piquadro na notebook 15,6 – personalizovatelný",
+    "sku": "CA6689S134-G"
+  },
+  {
+    "id": 1382,
+    "name": "Pánský roll-top batoh Piquadro s úložným prostorem pro notebook 15,6",
+    "sku": "CA5677AP-G"
+  },
+  {
+    "id": 1383,
+    "name": "Elegantní pánský batoh na notebook 14 s kapsou pro iPad®",
+    "sku": "CA6311MOS-BLU"
+  },
+  {
+    "id": 1384,
+    "name": "Stylový tenký batoh na notebook 15,6 s USB portem",
+    "sku": "CA4818MOS-BLU"
+  },
+  {
+    "id": 1385,
+    "name": "Elegantní tenký batoh pro notebook 17,3 – Piquadro",
+    "sku": "CA4972UB00BM-N"
+  },
+  {
+    "id": 1386,
+    "name": "Kožená kabelka přes rameno Marta, hnědá",
+    "sku": "27324"
+  },
+  {
+    "id": 1387,
+    "name": "Kožená kabelka Valentini Cadence, bordó",
+    "sku": "27322"
+  },
+  {
+    "id": 1388,
+    "name": "Malá černá kabelka Cynthia",
+    "sku": "27592"
+  },
+  {
+    "id": 1389,
+    "name": "Malá zelená kabelka Cynthia",
+    "sku": "27591"
+  },
+  {
+    "id": 1390,
+    "name": "Malá kabelka Cynthia bordó",
+    "sku": "27590"
+  },
+  {
+    "id": 1391,
+    "name": "Malá černá kabelka Jade",
+    "sku": "27415"
+  },
+  {
+    "id": 1392,
+    "name": "Taška Celeste Resort béžová",
+    "sku": "27402"
+  },
+  {
+    "id": 1393,
+    "name": "Nákupní taška Celeste černá",
+    "sku": "27320"
+  },
+  {
+    "id": 1394,
+    "name": "Kožená crossbody taška Marta černá",
+    "sku": "27319"
+  },
+  {
+    "id": 1395,
+    "name": "Kožená crossbody taška Marta, červená",
+    "sku": "27318"
+  },
+  {
+    "id": 1396,
+    "name": "Dámská kabelka Valentini Metallic P62 zelená",
+    "sku": "25644"
+  },
+  {
+    "id": 1397,
+    "name": "Dámská peněženka Valentini Metallic 820 modrá",
+    "sku": "25643"
+  },
+  {
+    "id": 1398,
+    "name": "Dámská peněženka Valentini Metallic 503 modrá",
+    "sku": "25639"
+  },
+  {
+    "id": 1399,
+    "name": "Dámská kabelka Valentini Metallic 447 modrá",
+    "sku": "25633"
+  },
+  {
+    "id": 1400,
+    "name": "Dámská kabelka Valentini Metallic 445 modrá",
+    "sku": "25623"
+  },
+  {
+    "id": 1401,
+    "name": "Dámská kabelka Valentini Metallic 277 modrá",
+    "sku": "25609"
+  },
+  {
+    "id": 1402,
+    "name": "Dámská kabelka Valentini Metallic 127 zelená",
+    "sku": "25606"
+  },
+  {
+    "id": 1403,
+    "name": "Dámská peněženka Valentini Metallic 446 červená",
+    "sku": "16819"
+  },
+  {
+    "id": 1404,
+    "name": "Dámská kabelka Valentini Metallic 410 červená",
+    "sku": "16817"
+  },
+  {
+    "id": 1405,
+    "name": "Dámská kabelka Valentini Metallic 123 červená",
+    "sku": "16810"
+  },
+  {
+    "id": 1406,
+    "name": "Dámská kabelka Valentini New Colors 410 červená",
+    "sku": "16320"
+  },
+  {
+    "id": 1407,
+    "name": "Dámská peněženka Valentini Colors P8 černá",
+    "sku": "15926"
+  },
+  {
+    "id": 1408,
+    "name": "Dámská kabelka Valentini Colors 297 žlutá",
+    "sku": "11788"
+  },
+  {
+    "id": 1409,
+    "name": "Dámská peněženka Valentini Colors 866 žlutá",
+    "sku": "11651"
+  },
+  {
+    "id": 1410,
+    "name": "Dámská peněženka Valentini Colors 417 Fialová",
+    "sku": "10165"
+  },
+  {
+    "id": 1411,
+    "name": "Dámská taška na notebook 15,6 Valentini Siena zelená",
+    "sku": "17060"
+  },
+  {
+    "id": 1412,
+    "name": "Dámská taška na notebook 14 Valentini Siena růžová",
+    "sku": "17052"
+  },
+  {
+    "id": 1413,
+    "name": "Kožená aktovka Valentini Ambassador 612 černá",
+    "sku": "26907"
+  },
+  {
+    "id": 1414,
+    "name": "Kožená aktovka Valentini Ambassador 611 černá",
+    "sku": "26906"
+  },
+  {
+    "id": 1415,
+    "name": "Kožená brašna Valentini Ambassador 606 hnědá",
+    "sku": "27660"
+  },
+  {
+    "id": 1416,
+    "name": "Kožená aktovka Valentini Ambassador 613 černá",
+    "sku": "27657"
+  },
+  {
+    "id": 1417,
+    "name": "Kožená aktovka Valentini Ambassador 605 hnědá",
+    "sku": "27656"
+  },
+  {
+    "id": 1418,
+    "name": "Obal na notebook 15,6 Coraggio 535 zelený",
+    "sku": "27388"
+  },
+  {
+    "id": 1419,
+    "name": "Obal na notebook 15,6 Coraggio 534 zelený",
+    "sku": "27387"
+  },
+  {
+    "id": 1420,
+    "name": "Kožená brašna na notebook 15,6 Coraggio 533 zelená",
+    "sku": "27386"
+  },
+  {
+    "id": 1421,
+    "name": "Obal na notebook 15,6 Valentini Coraggio 535 černý",
+    "sku": "26905"
+  },
+  {
+    "id": 1422,
+    "name": "Obal na notebook 15,6 Valentini Coraggio 534 černý",
+    "sku": "26904"
+  },
+  {
+    "id": 1423,
+    "name": "Obal na notebook 15,6 Valentini Coraggio 533 černý",
+    "sku": "26903"
+  },
+  {
+    "id": 1424,
+    "name": "Brašna na notebook 15,6 Valentini Coraggio 532 černá",
+    "sku": "17175"
+  },
+  {
+    "id": 1425,
+    "name": "Obal na notebook 15,6 Valentini Coraggio 530 černý",
+    "sku": "17174"
+  },
+  {
+    "id": 1426,
+    "name": "Malá černá kožená peněženka Melisma",
+    "sku": "27328"
+  },
+  {
+    "id": 1427,
+    "name": "Kožená shopperka Paola karamelové barvy",
+    "sku": "25500"
+  },
+  {
+    "id": 1428,
+    "name": "Kožená shopperka Paola, černá",
+    "sku": "25495"
+  },
+  {
+    "id": 1429,
+    "name": "Kožená béžová kabelka Demi",
+    "sku": "27313"
+  },
+  {
+    "id": 1430,
+    "name": "Kabelka Adoro béžová",
+    "sku": "26716"
+  }
+]
