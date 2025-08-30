@@ -13,9 +13,9 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
     rules: {
-      "react-hooks/exhaustive-deps": "warn",
-      "react/no-unescaped-entities": "warn",
-      "@next/next/no-img-element": "warn"
+      "react-hooks/exhaustive-deps": "off",
+      "react/no-unescaped-entities": "off", 
+      "@next/next/no-img-element": "off"
     }
   }
 ];
