@@ -1,11 +1,12 @@
 import { OrderDetailPage } from "../../../components/order-detail-page"
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default function OrderDetailPageRoute({ params }: PageProps) {
-  return <OrderDetailPage orderId={params.id} />
+export default async function OrderDetailPageRoute({ params }: PageProps) {
+  const { id } = await params
+  return <OrderDetailPage orderId={id} />
 }
