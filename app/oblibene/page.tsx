@@ -1,12 +1,12 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import { Button } from "../components/ui/button"
+import { Card } from "../components/ui/card"
 import { Heart, ShoppingCart, Star, Trash2, Filter } from "lucide-react"
 import { useState } from "react"
-import Header from "@/components/header"
+import Header from "../components/header"
 import Link from "next/link"
-import { createProductSlug } from "@/lib/utils"
+import { createProductSlug } from "../lib/utils"
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([

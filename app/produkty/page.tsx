@@ -1,16 +1,16 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { Button } from "../components/ui/button"
+import { Card } from "../components/ui/card"
+import { Input } from "../components/ui/input"
 import { Star, Heart, ShoppingCart, Filter, Grid, List, Search, X } from "lucide-react"
 import { useState, useEffect } from "react"
-import Header from "@/components/header"
+import Header from "../components/header"
 import Link from "next/link"
 import { useProducts, useCollections, useBrands } from "@/hooks/useProducts"
-import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "@/lib/api"
-import { createProductSlug } from "@/lib/utils"
-import ColorVariantSelector from "@/components/color-variant-selector"
+import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "../lib/api"
+import { createProductSlug } from "../lib/utils"
+import ColorVariantSelector from "../components/color-variant-selector"
 
 export default function ProduktyPage() {
   const [selectedFilters, setSelectedFilters] = useState({

@@ -1,4 +1,4 @@
-import { OrderDetailPage } from "@/components/order-detail-page"
+import { OrderDetailPage } from "../components/order-detail-page"
 
 interface PageProps {
   params: {

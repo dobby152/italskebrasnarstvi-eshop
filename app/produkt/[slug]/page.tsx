@@ -1,18 +1,18 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import { Button } from "../components/ui/button"
+import { Card } from "../components/ui/card"
 import { Heart, ShoppingCart, Star, Minus, Plus, Shield, Truck, RotateCcw, Check } from "lucide-react"
 import { useState, useEffect, use, useRef } from "react"
-import Header from "@/components/header"
+import Header from "../components/header"
 import Link from "next/link"
 import { useProduct } from "@/hooks/useProducts"
-import { formatPrice, getImageUrl, getProductDisplayName, getProductDisplayCollection, getProductDisplayDescription } from "@/lib/utils"
-import ProductVariantSelector from "@/components/product-variant-selector"
+import { formatPrice, getImageUrl, getProductDisplayName, getProductDisplayCollection, getProductDisplayDescription } from "../lib/utils"
+import ProductVariantSelector from "../components/product-variant-selector"
 import { useVariants } from "@/hooks/useVariants"
-import VariantImageGallery from "@/components/variant-image-gallery"
-import { useCart } from "@/context/cart-context"
-import { ProductVariant } from "@/lib/types/variants"
+import VariantImageGallery from "../components/variant-image-gallery"
+import { useCart } from "../context/cart-context"
+import { ProductVariant } from "../lib/types/variants"
 
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params)

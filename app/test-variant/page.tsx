@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useVariants } from "@/hooks/useVariants"
-import { formatPrice } from "@/lib/utils"
+import { formatPrice } from "../lib/utils"
 
 export default function TestVariantPage() {
   const [baseSku, setBaseSku] = useState("BD6658W")

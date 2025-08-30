@@ -1,12 +1,12 @@
 "use client"
 
-import { useCart } from "@/context/cart-context"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import { useCart } from "../context/cart-context"
+import { Button } from "../components/ui/button"
+import { Card } from "../components/ui/card"
 import { Minus, Plus, X, ShoppingCart } from "lucide-react"
-import { formatPrice, getImageUrl } from "@/lib/utils"
+import { formatPrice, getImageUrl } from "../lib/utils"
 import Link from "next/link"
-import Header from "@/components/header"
+import Header from "../components/header"
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalPrice, totalItems } = useCart()

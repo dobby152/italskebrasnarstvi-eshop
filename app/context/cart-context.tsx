@@ -1,8 +1,8 @@
 "use client"
 
 import { createContext, useContext, useState, ReactNode } from "react"
-import { CartItem, CartContextType } from "@/lib/types/variants"
-import { formatPrice } from "@/lib/utils"
+import { CartItem, CartContextType } from "../lib/types/variants"
+import { formatPrice } from "../lib/utils"
 
 interface CartProviderProps {
   children: ReactNode

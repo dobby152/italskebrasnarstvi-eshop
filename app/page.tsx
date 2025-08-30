@@ -1,16 +1,16 @@
 "use client"
 
 import React from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "../components/ui/button"
 import { useState, lazy, Suspense, useEffect } from "react"
-import Header from "@/components/header"
+import Header from "../components/header"
 import { Star } from "lucide-react"
 import Link from "next/link"
-import ProductSection from "@/components/product-section"
+import ProductSection from "../components/product-section"
 
-const SustainabilitySection = lazy(() => import("@/components/sustainability-section"))
-const CollectionsSection = lazy(() => import("@/components/collections-section"))
-const BrandStorySection = lazy(() => import("@/components/brand-story-section"))
+const SustainabilitySection = lazy(() => import("../components/sustainability-section"))
+const CollectionsSection = lazy(() => import("../components/collections-section"))
+const BrandStorySection = lazy(() => import("../components/brand-story-section"))
 
 export default function HomePage() {
   const [sustainabilityExpanded, setSustainabilityExpanded] = useState(false)
