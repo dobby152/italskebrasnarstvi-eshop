@@ -17,8 +17,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "clean": "rm -rf .next out node_modules/.cache",
-    "postinstall": "prisma generate || echo 'Prisma not configured'"
+    "clean": "rm -rf .next out node_modules/.cache"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
