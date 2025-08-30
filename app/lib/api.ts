@@ -1,3 +1,6 @@
+// Re-export types from api-client for consistency
+export type { Product } from './api-client'
+
 export const formatPrice = (price: number) => {
   return new Intl.NumberFormat('cs-CZ', {
     style: 'currency',
