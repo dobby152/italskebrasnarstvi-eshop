@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { useProducts, useCollections, useBrands } from '@/hooks/useProducts'
+import { useProducts, useCollections, useBrands } from '../hooks/useProducts'
 import ProductGrid from '../components/product-grid'
 import ProductFilters from '../components/product-filters'
 import { Button } from "../components/ui/button"

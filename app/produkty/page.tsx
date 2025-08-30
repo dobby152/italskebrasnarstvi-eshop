@@ -7,7 +7,7 @@ import { Star, Heart, ShoppingCart, Filter, Grid, List, Search, X } from "lucide
 import { useState, useEffect } from "react"
 import Header from "../components/header"
 import Link from "next/link"
-import { useProducts, useCollections, useBrands } from "@/hooks/useProducts"
+import { useProducts, useCollections, useBrands } from "../hooks/useProducts"
 import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "../lib/api"
 import { createProductSlug } from "../lib/utils"
 import ColorVariantSelector from "../components/color-variant-selector"

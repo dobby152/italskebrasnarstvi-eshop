@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useVariants } from "@/hooks/useVariants"
+import { useVariants } from "../hooks/useVariants"
 import { formatPrice } from "../lib/utils"
 
 export default function TestVariantPage() {
