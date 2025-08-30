@@ -275,7 +275,13 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
         updatedFormData.images = existingImages.join(', ')
       }
       
-      const updatedProduct = await apiClient.updateProduct(product.id, updatedFormData)
+      // Convert form data to API format
+      const apiData = {
+        ...updatedFormData,
+        images: updatedFormData.images ? updatedFormData.images.split(',').map(img => img.trim()).filter(Boolean) : []
+      }
+      
+      const updatedProduct = await apiClient.updateProduct(product.id, apiData)
       onSave(updatedProduct)
       setIsDirty(false)
       setUploadedFiles([]) // Vymazat nahrané soubory po úspěšném uložení
