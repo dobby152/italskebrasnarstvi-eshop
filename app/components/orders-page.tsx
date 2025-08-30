@@ -270,7 +270,7 @@ export function OrdersPage() {
                     </div>
                   </TableCell>
                   <TableCell>{getPaymentBadge(order.payment, getPaymentLabel(order.payment))}</TableCell>
-                  <TableCell className="font-medium">{order.total.toLocaleString('cs-CZ')} Kč</TableCell>
+                  <TableCell className="font-medium">{order.total}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>

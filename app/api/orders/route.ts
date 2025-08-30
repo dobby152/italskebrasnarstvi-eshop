@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
       statusLabel: getStatusLabel(order.status),
       payment: order.payment_status || 'pending',
       paymentLabel: getPaymentLabel(order.payment_status),
-      total: order.total || 0,
+      total: (order.total || 0).toLocaleString('cs-CZ') + ' Kč',
       items: Array.isArray(order.line_items) ? order.line_items.length : 0
     })) || []
 
