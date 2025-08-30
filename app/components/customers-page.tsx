@@ -162,10 +162,10 @@ export function CustomersPage() {
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="font-medium text-card-foreground">{customer.orders}</div>
+                          <div className="font-medium text-card-foreground">{(customer as any).orders || 0}</div>
                           <div className="text-sm text-muted-foreground">objednávek</div>
                         </td>
-                        <td className="px-6 py-4 font-medium text-card-foreground">{customer.totalSpent}</td>
+                        <td className="px-6 py-4 font-medium text-card-foreground">{(customer as any).totalSpent || '0 Kč'}</td>
                         <td className="px-6 py-4">
                           <div className="text-sm text-muted-foreground flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
