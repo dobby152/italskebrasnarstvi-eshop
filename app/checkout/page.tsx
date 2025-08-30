@@ -713,10 +713,10 @@ export default function CheckoutPage() {
                         <div className="flex items-center gap-1 my-1">
                           <div 
                             className="w-3 h-3 rounded-full border border-gray-300"
-                            style={{ backgroundColor: item.attributes.hexColor || '#CCCCCC' }}
+                            style={{ backgroundColor: (item.attributes.color as any)?.hexColor || item.attributes.hexColor?.value || '#CCCCCC' }}
                           />
                           <Badge variant="outline" className="text-xs">
-                            {item.attributes.color}
+                            {(item.attributes.color as any)?.displayValue || item.attributes.color?.value || 'Barva'}
                           </Badge>
                         </div>
                       )}
