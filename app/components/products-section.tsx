@@ -333,11 +333,11 @@ export default function ProductsSection() {
                             colors={availableColors}
                             onColorChange={(color) => console.log('Color selected:', color)}
                           />
-                          {product.hasVariants && (
+                          {availableColors.length > 0 && (
                             <span className="text-xs text-gray-500">
-                              {product.variantCount || availableColors.length} barevn{
-                                (product.variantCount || availableColors.length) === 1 ? 'á varianta' :
-                                (product.variantCount || availableColors.length) < 5 ? 'é varianty' : 'ých variant'
+                              {availableColors.length} barevn{
+                                availableColors.length === 1 ? 'á varianta' :
+                                availableColors.length < 5 ? 'é varianty' : 'ých variant'
                               }
                             </span>
                           )}
