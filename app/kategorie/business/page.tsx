@@ -112,7 +112,7 @@ export default function BusinessPage() {
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <ProductFilters
                   collections={collections}
-                  brands={brands}
+                  brands={brands?.map(brand => brand.name) || []}
                   selectedCollection={selectedCollection}
                   selectedBrand={selectedBrand}
                   onCollectionChange={setSelectedCollection}
