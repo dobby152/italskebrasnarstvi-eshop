@@ -31,7 +31,7 @@ export function useCustomers() {
         setLoading(true)
         setError(null)
         
-        const response = await fetch('http://localhost:3001/api/customers')
+        const response = await fetch('/api/customers')
         if (!response.ok) {
           throw new Error('Failed to fetch customers')
         }

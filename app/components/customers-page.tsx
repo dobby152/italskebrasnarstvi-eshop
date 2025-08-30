@@ -104,7 +104,7 @@ export function CustomersPage() {
           {/* Customers Table */}
           <Card className="bg-card border-border">
               <CardHeader>
-              <CardTitle className="text-lg font-semibold">Zákazníci ({(stats as any)?.customers?.length || 0})</CardTitle>
+              <CardTitle className="text-lg font-semibold">Zákazníci ({stats?.total || 0})</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
@@ -158,21 +158,21 @@ export function CustomersPage() {
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-1 text-sm text-muted-foreground">
                             <MapPin className="h-3 w-3" />
-                            {(customer as any).location || 'N/A'}
+                            {customer.phone || 'N/A'}
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="font-medium text-card-foreground">{(customer as any).orders || 0}</div>
+                          <div className="font-medium text-card-foreground">{customer.orders_count}</div>
                           <div className="text-sm text-muted-foreground">objednávek</div>
                         </td>
-                        <td className="px-6 py-4 font-medium text-card-foreground">{(customer as any).totalSpent || '0 Kč'}</td>
+                        <td className="px-6 py-4 font-medium text-card-foreground">{customer.total_spent.toLocaleString()} Kč</td>
                         <td className="px-6 py-4">
                           <div className="text-sm text-muted-foreground flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
-                            {customer.lastOrder}
+                            {new Date(customer.last_order_date).toLocaleDateString('cs-CZ')}
                           </div>
                         </td>
-                        <td className="px-6 py-4">{getStatusBadge(customer.status, customer.statusLabel)}</td>
+                        <td className="px-6 py-4">{getStatusBadge(customer.status, customer.status === 'new' ? 'Nový' : customer.status === 'regular' ? 'Pravidelný' : 'VIP')}</td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
                             <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
