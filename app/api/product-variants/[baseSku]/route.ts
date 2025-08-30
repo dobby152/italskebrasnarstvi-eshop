@@ -4,10 +4,10 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { baseSku: string } }
+  { params }: { params: Promise<{ baseSku: string }> }
 ) {
   try {
-    const { baseSku } = params
+    const { baseSku } = await params
     const url = `${API_BASE_URL}/api/product-variants/${baseSku}`
     
     console.log('🔗 API Route: Proxying variants request to:', url)

@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const authToken = request.headers.get('authorization')
     const sessionId = request.headers.get('x-session-id')
     const body = await request.json()
     
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user-experience/cart/items/${params.id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user-experience/cart/items/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -40,13 +41,14 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const authToken = request.headers.get('authorization')
     const sessionId = request.headers.get('x-session-id')
     
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user-experience/cart/items/${params.id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user-experience/cart/items/${id}`, {
       method: 'DELETE',
       headers: {
         ...(authToken && { 'Authorization': authToken }),
