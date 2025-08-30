@@ -111,14 +111,22 @@ export default function BusinessPage() {
             <div className="w-64 shrink-0">
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <ProductFilters
-                  collections={collections}
+                  filters={{
+                    brand: selectedBrand ? [selectedBrand] : [],
+                    search: searchQuery || '',
+                    category: selectedCollection ? [selectedCollection] : []
+                  }}
+                  onFiltersChange={(filters) => {
+                    setSelectedBrand(filters.brand?.[0] || '')
+                    setSearchQuery(filters.search || '')
+                    setSelectedCollection(filters.category?.[0] || '')
+                  }}
+                  onClearFilters={() => {
+                    setSelectedBrand('')
+                    setSearchQuery('')
+                    setSelectedCollection('')
+                  }}
                   brands={brands?.map(brand => brand.name) || []}
-                  selectedCollection={selectedCollection}
-                  selectedBrand={selectedBrand}
-                  onCollectionChange={setSelectedCollection}
-                  onBrandChange={setSelectedBrand}
-                  searchQuery={searchQuery}
-                  onSearchChange={setSearchQuery}
                 />
               </div>
             </div>
