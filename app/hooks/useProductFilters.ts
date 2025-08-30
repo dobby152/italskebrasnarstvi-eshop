@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { ProductFilters } from '@/lib/types'
+import { ProductFilters } from '../lib/types'
 
 export function useProductFilters() {
   const router = useRouter()

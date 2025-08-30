@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { VariantGroup, ProductVariant, BaseProduct } from '@/lib/types/variants'
-import { apiClient } from '@/lib/api-client'
+import { VariantGroup, ProductVariant, BaseProduct } from '../lib/types/variants'
+import { apiClient } from '../lib/api-client'
 
 export interface UseVariantsReturn {
   variantGroup: VariantGroup | null
