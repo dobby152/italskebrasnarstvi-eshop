@@ -136,6 +136,8 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
         price: product.price || 0,
         brand: product.brand || '',
         availability: product.availability || 'in_stock',
+        image_url: product.image_url || '',
+        images: product.images?.join(', ') || ''
       })
       
       // Inicializace existujících obrázků
