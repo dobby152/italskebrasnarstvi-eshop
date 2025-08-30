@@ -219,25 +219,24 @@ export default function ShoppingCart() {
                           {item.variant && (
                             <div className="flex gap-2 mb-2">
                               {/* Color information */}
-                              {item.variant.attributes?.color && (
+                              {item.variant.option1_value && (
                                 <div className="flex items-center gap-1">
                                   <div 
-                                    className="w-4 h-4 rounded-full border border-gray-300"
-                                    style={{ backgroundColor: item.variant.attributes?.hexColor || '#CCCCCC' }}
+                                    className="w-4 h-4 rounded-full border border-gray-300 bg-gray-200"
                                   />
                                   <Badge variant="secondary">
-                                    {item.variant.attributes.color}
+                                    {item.variant.option1_value}
                                   </Badge>
                                 </div>
-                              )}
-                              {item.variant.option1_value && (
-                                <Badge variant="secondary">
-                                  {item.variant.option1_value}
-                                </Badge>
                               )}
                               {item.variant.option2_value && (
                                 <Badge variant="secondary">
                                   {item.variant.option2_value}
+                                </Badge>
+                              )}
+                              {item.variant.option3_value && (
+                                <Badge variant="secondary">
+                                  {item.variant.option3_value}
                                 </Badge>
                               )}
                             </div>
