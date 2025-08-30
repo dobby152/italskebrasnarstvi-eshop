@@ -1,12 +1,12 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "../app/components/ui/button"
 import { Search, User, Heart, ShoppingCart, Menu, X, ChevronDown, LogOut } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { STATIC_CATEGORIES, NavigationCategory } from "@/lib/types"
-import { useCart } from "@/context/cart-context"
-import { useAuth } from "@/contexts/auth-context"
+import { STATIC_CATEGORIES, NavigationCategory } from "../app/lib/types"
+import { useCart } from "../app/context/cart-context"
+import { useAuth } from "../app/contexts/auth-context"
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

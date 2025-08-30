@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useProducts } from '@/hooks/useProducts';
-import { getImageUrl, getProductDisplayName, getProductDisplayCollection } from '@/lib/api';
+import { useProducts } from '../app/hooks/useProducts';
+import { getImageUrl, getProductDisplayName, getProductDisplayCollection } from '../app/lib/api';
 
 export default function ProductSection() {
   const { products, loading } = useProducts({ 

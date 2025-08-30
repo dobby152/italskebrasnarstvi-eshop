@@ -1,6 +1,6 @@
 "use client"
 
-import { VariantAttributeOption } from "@/lib/types/variants"
+import { VariantAttributeOption } from "../app/lib/types/variants"
 
 interface ColorSelectorProps {
   colors: VariantAttributeOption[]

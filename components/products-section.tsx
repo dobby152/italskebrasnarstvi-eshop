@@ -1,17 +1,17 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "../app/components/ui/button"
+import { Card } from "../app/components/ui/card"
+import { Input } from "../app/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../app/components/ui/select"
 import { Star, Heart, ShoppingCart, Search, X, Filter, Grid, List } from "lucide-react"
 import Link from "next/link"
-import { useProducts, useCollections } from "@/hooks/useProducts"
-import { getImageUrl } from "@/lib/utils";
-import { ProductTagList, type Tag } from "@/components/ui/product-tag"
-import ColorSelector from "@/components/color-selector"
-import { VariantAttributeOption } from "@/lib/types/variants"
+import { useProducts, useCollections } from "../app/hooks/useProducts"
+import { getImageUrl } from "../app/lib/utils";
+import { ProductTagList, type Tag } from "../app/components/ui/product-tag"
+import ColorSelector from "../app/components/color-selector"
+import { VariantAttributeOption } from "../app/lib/types/variants"
 
 export default function ProductsSection() {
   const [searchQuery, setSearchQuery] = useState("")

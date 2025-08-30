@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Product } from '@/lib/api-client'
+import { Product } from '../app/lib/api-client'
 import Link from 'next/link'
-import { createProductSlug } from '@/lib/utils'
+import { createProductSlug } from '../app/lib/utils'
 
 interface ColorVariant {
   id: string | number

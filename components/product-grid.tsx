@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '../app/components/ui/card'
+import { Badge } from '../app/components/ui/badge'
+import { Button } from '../app/components/ui/button'
 import { ShoppingCart, Heart } from 'lucide-react'
 
 interface Product {

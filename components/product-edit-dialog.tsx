@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Product } from '@/lib/api'
+import { Product } from '../app/lib/api'
 import { ProductEditForm } from './product-edit-form'
 import {
   Dialog,
@@ -9,10 +9,10 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Badge } from '@/components/ui/badge'
-import { formatPrice, getProductDisplayName } from '@/lib/api'
+} from '../app/components/ui/dialog'
+import { ScrollArea } from '../app/components/ui/scroll-area'
+import { Badge } from '../app/components/ui/badge'
+import { formatPrice, getProductDisplayName } from '../app/lib/api'
 
 interface ProductEditDialogProps {
   product: Product | null

@@ -1,9 +1,9 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
+import { Button } from "../app/components/ui/button"
+import { Badge } from "../app/components/ui/badge"
+import { Input } from "../app/components/ui/input"
 import {
   Home,
   ShoppingCart,
@@ -24,7 +24,7 @@ import {
   Gift,
 } from "lucide-react"
 import Link from "next/link"
-import { useDiscounts } from "@/hooks/use-discounts"
+import { useDiscounts } from "../app/hooks/use-discounts"
 
 const sidebarItems = [
   { icon: Home, label: "Domů", href: "/" },

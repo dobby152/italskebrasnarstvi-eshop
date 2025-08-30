@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { trackClick, trackForm } from "@/lib/api"; // Assuming trackClick and trackForm are utility functions for tracking
+import { trackClick, trackForm } from "../app/lib/api"; // Assuming trackClick and trackForm are utility functions for tracking
 
 const CustomerBehaviorAnalysis = () => {
   useEffect(() => {

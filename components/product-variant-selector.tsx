@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ProductVariant } from "@/lib/types/variants"
-import { formatPrice } from "@/lib/utils"
+import { Button } from "../app/components/ui/button"
+import { Badge } from "../app/components/ui/badge"
+import { ProductVariant } from "../app/lib/types/variants"
+import { formatPrice } from "../app/lib/utils"
 
 interface ProductVariantSelectorProps {
   variants: ProductVariant[]

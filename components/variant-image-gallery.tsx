@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react"
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import { ProductVariant } from "@/lib/types/variants"
-import { getImageUrl } from "@/lib/utils"
+import { ProductVariant } from "../app/lib/types/variants"
+import { getImageUrl } from "../app/lib/utils"
 
 interface VariantImageGalleryProps {
   selectedVariant: ProductVariant | null

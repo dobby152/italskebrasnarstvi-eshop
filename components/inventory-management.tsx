@@ -1,14 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Button } from "../app/components/ui/button"
+import { Input } from "../app/components/ui/input"
+import { Label } from "../app/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../app/components/ui/select"
+import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
+import { Badge } from "../app/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../app/components/ui/tabs"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../app/components/ui/table"
 import { 
   Package, 
   Warehouse, 
@@ -20,7 +20,7 @@ import {
   ArrowUpDown,
   MapPin
 } from "lucide-react"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Alert, AlertDescription } from "../app/components/ui/alert"
 
 interface InventoryLocation {
   id: number

@@ -2,17 +2,17 @@
 
 import { useState } from 'react'
 import { useRouter } from "next/navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
+import { Button } from "../app/components/ui/button"
+import { Badge } from "../app/components/ui/badge"
+import { Input } from "../app/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "../app/components/ui/select"
 import {
   Search,
   Filter,
@@ -30,14 +30,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from '../app/components/ui/table'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { useOrders } from '@/hooks/use-orders'
+} from '../app/components/ui/dropdown-menu'
+import { useOrders } from '../app/hooks/use-orders'
 
 
 

@@ -1,9 +1,9 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
+import { Button } from "../app/components/ui/button"
+import { Badge } from "../app/components/ui/badge"
+import { Input } from "../app/components/ui/input"
 import {
   Search,
   Filter,
@@ -14,7 +14,7 @@ import {
   Calendar,
   Plus,
 } from "lucide-react"
-import { useCustomers } from "@/hooks/use-customers"
+import { useCustomers } from "../app/hooks/use-customers"
 
 const getStatusBadge = (status: string, label: string) => {
   const variants = {

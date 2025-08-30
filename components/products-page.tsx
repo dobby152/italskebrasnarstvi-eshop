@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
+import { Button } from "../app/components/ui/button"
+import { Badge } from "../app/components/ui/badge"
+import { Input } from "../app/components/ui/input"
 import {
   Search,
   Filter,
@@ -27,18 +27,18 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '../app/components/ui/dropdown-menu'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Separator } from '@/components/ui/separator'
-import { useProducts, useProductStats } from '@/hooks/useProducts'
-import { formatPrice, getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct, Product } from '@/lib/api'
+} from '../app/components/ui/select'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../app/components/ui/table'
+import { Separator } from '../app/components/ui/separator'
+import { useProducts, useProductStats } from '../app/hooks/useProducts'
+import { formatPrice, getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct, Product } from '../app/lib/api'
 import { ProductEditDialog } from './product-edit-dialog'
 import { InventoryManagement } from './inventory-management'
 

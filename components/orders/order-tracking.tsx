@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
+import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
+import { Badge } from "../app/components/ui/badge"
+import { Button } from "../app/components/ui/button"
+import { Input } from "../app/components/ui/input"
+import { Separator } from "../app/components/ui/separator"
 import { 
   Package, 
   Truck, 

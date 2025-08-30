@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
+import { Button } from "../app/components/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "../app/components/ui/popover"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../app/components/ui/select"
+import { Input } from "../app/components/ui/input"
 import { Heart, Plus, Check, Loader2 } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "../app/lib/utils"
 
 interface WishlistButtonProps {
   productId: string

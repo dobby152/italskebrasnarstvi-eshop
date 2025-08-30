@@ -1,17 +1,17 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Slider } from "@/components/ui/slider"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "../app/components/ui/button"
+import { Badge } from "../app/components/ui/badge"
+import { Slider } from "../app/components/ui/slider"
+import { Checkbox } from "../app/components/ui/checkbox"
 import { 
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { ProductFilters, STATIC_CATEGORIES } from "@/lib/types"
+} from "../app/components/ui/accordion"
+import { ProductFilters, STATIC_CATEGORIES } from "../app/lib/types"
 import { X, Filter } from "lucide-react"
 
 interface ProductFiltersProps {

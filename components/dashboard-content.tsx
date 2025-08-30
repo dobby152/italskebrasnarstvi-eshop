@@ -1,9 +1,9 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "../app/components/ui/card"
+import { Button } from "../app/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../app/components/ui/select"
+import { Badge } from "../app/components/ui/badge"
 import {
   ShoppingCart,
   ChevronRight,
@@ -23,8 +23,8 @@ import {
   MoreHorizontal
 } from "lucide-react"
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
-import { useStats } from "@/hooks/useStats"
-import { useAnalytics } from "@/hooks/useAnalytics"
+import { useStats } from "../app/hooks/useStats"
+import { useAnalytics } from "../app/hooks/useAnalytics"
 import { useState } from "react"
 
 export default function DashboardContent() {
