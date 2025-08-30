@@ -536,8 +536,8 @@ export function ProductsPage() {
                             </TableCell>
                             <TableCell>
                               <div className="flex items-center space-x-2">
-                                <span className={product.stock <= 0 ? 'text-red-600 font-medium' : product.stock < 10 ? 'text-yellow-600 font-medium' : 'text-green-600 font-medium'}>
-                                  {product.stock}
+                                <span className={(product.stock ?? 0) <= 0 ? 'text-red-600 font-medium' : (product.stock ?? 0) < 10 ? 'text-yellow-600 font-medium' : 'text-green-600 font-medium'}>
+                                  {product.stock ?? 0}
                                 </span>
                                 <span className="text-gray-400 text-sm">ks</span>
                               </div>
