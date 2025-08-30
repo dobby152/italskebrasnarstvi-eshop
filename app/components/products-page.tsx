@@ -208,8 +208,8 @@ export function ProductsPage() {
     if (selectedStatus === 'all') return true
     
     // Map product stock to status
-    if (selectedStatus === 'active') return product.stock > 0
-    if (selectedStatus === 'archived') return product.stock === 0
+    if (selectedStatus === 'active') return (product.stock ?? 0) > 0
+    if (selectedStatus === 'archived') return (product.stock ?? 0) === 0
     if (selectedStatus === 'draft') return false // No draft status in real data
     
     return true
