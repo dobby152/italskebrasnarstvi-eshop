@@ -7,7 +7,10 @@ import { Button } from "../components/ui/button"
 import { Card } from "../components/ui/card"
 import { Heart, ShoppingCart, Star, Trash2, Filter } from "lucide-react"
 import { useState } from "react"
-import Header from "../components/header"
+import dynamic from 'next/dynamic'
+
+// Dynamically import Header to prevent SSR issues
+const Header = dynamic(() => import("../components/header"), { ssr: false })
 import Link from "next/link"
 import { createProductSlug } from "../lib/utils"
 

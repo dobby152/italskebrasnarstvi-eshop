@@ -10,8 +10,11 @@ import { Label } from "../components/ui/label"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import Header from "../components/header"
+import dynamic from 'next/dynamic'
 import Link from "next/link"
+
+// Dynamically import Header to prevent SSR issues
+const Header = dynamic(() => import("../components/header"), { ssr: false })
 import { useAuth } from "../contexts/auth-context"
 
 export default function LoginPage() {

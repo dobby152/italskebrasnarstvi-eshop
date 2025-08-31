@@ -6,7 +6,10 @@ import { Card } from "../components/ui/card"
 import { Minus, Plus, X, ShoppingCart } from "lucide-react"
 import { formatPrice, getImageUrl } from "../lib/utils"
 import Link from "next/link"
-import Header from "../components/header"
+import dynamic from 'next/dynamic'
+
+// Dynamically import Header to prevent SSR issues
+const Header = dynamic(() => import("../components/header"), { ssr: false })
 
 // Disable static generation for cart page since it requires client-side cart data
 export const dynamic = 'force-dynamic'
