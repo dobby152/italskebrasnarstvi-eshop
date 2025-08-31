@@ -119,8 +119,8 @@ export function ProductsPage() {
     if (selectedStatus === 'all') return true
     
     // Map product stock to status
-    if (selectedStatus === 'active') return product.stock > 0
-    if (selectedStatus === 'archived') return product.stock === 0
+    if (selectedStatus === 'active') return (product.stock ?? 0) > 0
+    if (selectedStatus === 'archived') return (product.stock ?? 0) === 0
     if (selectedStatus === 'draft') return false // No draft status in real data
     
     return true
@@ -447,8 +447,8 @@ export function ProductsPage() {
                             </TableCell>
                             <TableCell>
                               <div className="flex items-center space-x-2">
-                                <span className={product.stock <= 0 ? 'text-red-600 font-medium' : product.stock < 10 ? 'text-yellow-600 font-medium' : 'text-green-600 font-medium'}>
-                                  {product.stock}
+                                <span className={(product.stock ?? 0) <= 0 ? 'text-red-600 font-medium' : (product.stock ?? 0) < 10 ? 'text-yellow-600 font-medium' : 'text-green-600 font-medium'}>
+                                  {product.stock ?? 0}
                                 </span>
                                 <span className="text-gray-400 text-sm">ks</span>
                               </div>
@@ -623,10 +623,10 @@ export function ProductsPage() {
                            <div className="flex items-center justify-between">
                              <div className="font-medium text-lg">{formatPrice(product.price)}</div>
                              <div className={`text-sm font-medium ${
-                               product.stock <= 0 ? 'text-red-600' : 
-                               product.stock < 10 ? 'text-yellow-600' : 'text-green-600'
+                               (product.stock ?? 0) <= 0 ? 'text-red-600' : 
+                               (product.stock ?? 0) < 10 ? 'text-yellow-600' : 'text-green-600'
                              }`}>
-                               {product.stock} ks
+                               {product.stock ?? 0} ks
                              </div>
                            </div>
                          </div>

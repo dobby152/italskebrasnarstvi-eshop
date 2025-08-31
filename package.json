@@ -69,6 +69,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^20",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "@types/react-image-gallery": "^1.2.4"
   }
 }
