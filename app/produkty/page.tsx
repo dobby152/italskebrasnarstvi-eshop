@@ -8,11 +8,11 @@ import { Card } from "../../components/ui/card"
 import { Input } from "../../components/ui/input"
 import { Star, Heart, ShoppingCart, Filter, Grid, List, Search, X } from "lucide-react"
 import { useState, useEffect } from "react"
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import Link from "next/link"
 
 // Dynamically import Header to prevent SSR issues
-const Header = dynamic(() => import("../../components/header"), { ssr: false })
+const Header = dynamicImport(() => import("../../components/header"), { ssr: false })
 import { useProducts, useCollections, useBrands } from "../../hooks/useProducts"
 import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "../../lib/api"
 import { createProductSlug } from "../../lib/utils"

@@ -10,10 +10,10 @@ import { Label } from "../components/ui/label"
 import { User, Package, Heart, Settings, LogOut, Edit, Save, X, Loader2 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 
 // Dynamically import Header to prevent SSR issues
-const Header = dynamic(() => import("../components/header"), { ssr: false })
+const Header = dynamicImport(() => import("../components/header"), { ssr: false })
 import { useAuth } from "../contexts/auth-context"
 import { Order } from "../hooks/use-orders"
 
