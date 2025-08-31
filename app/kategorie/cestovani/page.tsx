@@ -101,7 +101,7 @@ export default function CestovaniPage() {
                   Cestovní produkty
                 </h2>
                 <p className="text-gray-600 mt-1">
-                  {loading ? 'Načítám...' : `Nalezeno ${total} produktů`}
+                  Objevte naši kolekci cestovních produktů
                 </p>
               </div>
             </div>
