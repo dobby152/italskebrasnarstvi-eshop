@@ -3,19 +3,19 @@
 export const dynamic = 'force-dynamic'
 // Vercel deployment fix
 
-import { Button } from "../../components/ui/button"
-import { Card } from "../../components/ui/card"
-import { Input } from "../../components/ui/input"
+import { Button } from "../components/ui/button"
+import { Card } from "../components/ui/card"
+import { Input } from "../components/ui/input"
 import { Star, Heart, ShoppingCart, Filter, Grid, List, Search, X } from "lucide-react"
 import { useState, useEffect } from "react"
 import dynamicImport from 'next/dynamic'
 import Link from "next/link"
 
 // Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("../../components/header"), { ssr: false })
-import { useProducts, useCollections, useBrands } from "../../hooks/useProducts"
-import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "../../lib/api"
-import { createProductSlug } from "../../lib/utils"
+const Header = dynamicImport(() => import("../components/header"), { ssr: false })
+import { useProducts, useCollections, useBrands } from "../hooks/useProducts"
+import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "../lib/api"
+import { createProductSlug } from "../lib/utils"
 import ColorVariantSelector from "../../components/color-variant-selector"
 
 export default function ProduktyPage() {
