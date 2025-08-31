@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+import { supabase } from '../../../lib/supabase'
 
 export async function GET(
   request: NextRequest,
@@ -8,34 +7,71 @@ export async function GET(
 ) {
   try {
     const { baseSku } = await params
-    const url = `${API_BASE_URL}/api/product-variants/${baseSku}`
-    
-    console.log('🔗 API Route: Proxying variants request to:', url)
-    
-    const response = await fetch(url, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      signal: AbortSignal.timeout(10000)
-    })
-    
-    if (!response.ok) {
-      console.error('❌ API Route: Backend variants response not ok:', response.status, response.statusText)
+
+    if (!baseSku) {
       return NextResponse.json(
-        { error: 'Failed to fetch variants from backend' },
-        { status: response.status }
+        { error: 'Base SKU is required' },
+        { status: 400 }
       )
     }
-    
-    const data = await response.json()
-    console.log('✅ API Route: Successfully proxied variants request')
-    
-    return NextResponse.json(data)
+
+    // Query for variants with the same base SKU pattern
+    const { data: variants, error } = await supabase
+      .from('product_variants')
+      .select(`
+        *,
+        products:product_id (
+          id,
+          name,
+          description,
+          brand,
+          collection,
+          product_images (
+            id,
+            image_path,
+            alt_text,
+            display_order
+          )
+        )
+      `)
+      .like('sku', `${baseSku}%`)
+      .order('sku')
+
+    if (error) {
+      console.error('Supabase query error:', error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    // Transform variants with image processing
+    const transformedVariants = variants?.map(variant => {
+      let images = []
+      
+      if (variant.products?.product_images && variant.products.product_images.length > 0) {
+        images = variant.products.product_images
+          .sort((a, b) => (a.display_order || 999) - (b.display_order || 999))
+          .map(img => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
+      }
+
+      return {
+        ...variant,
+        images,
+        image_url: images[0] || null,
+        productName: variant.products?.name,
+        productBrand: variant.products?.brand,
+        productCollection: variant.products?.collection
+      }
+    }) || []
+
+    return NextResponse.json({
+      baseSku,
+      variants: transformedVariants,
+      total: transformedVariants.length
+    })
+
   } catch (error) {
-    console.error('❌ API Route: Error proxying variants request:', error)
+    console.error('API Route Error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error' }, 
       { status: 500 }
     )
   }

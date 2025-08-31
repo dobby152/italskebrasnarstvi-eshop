@@ -38,8 +38,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
     const fetchVariants = async () => {
       setLoading(true)
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
-        const response = await fetch(`${baseUrl}/api/product-variants/${baseSku}`)
+        const response = await fetch(`/api/product-variants/${baseSku}`)
         const data = await response.json()
         
         if (data.variants && data.variants.length > 1) {
