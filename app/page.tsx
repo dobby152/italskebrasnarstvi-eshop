@@ -1,5 +1,8 @@
 "use client"
 
+// Disable static generation for home page since it uses header with context providers
+export const dynamic = 'force-dynamic'
+
 import React from "react"
 import { Button } from "./components/ui/button"
 import { useState, lazy, Suspense, useEffect } from "react"
