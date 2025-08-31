@@ -419,7 +419,7 @@ function AccountContent() {
                             </div>
                             <div className="text-lg font-bold text-gray-900">{item.price}</div>
                           </div>
-                        )}
+                        </div>
                       </div>
 
                       <div className="flex gap-3 mt-6 pt-6 border-t border-gray-200">
