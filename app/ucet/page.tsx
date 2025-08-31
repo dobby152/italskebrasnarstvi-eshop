@@ -423,7 +423,7 @@ export default function AccountPage() {
                         <Button variant="outline" className="border-gray-300 hover:border-black bg-transparent">
                           Zobrazit detail
                         </Button>
-                        {order.status === "Doručeno" && (
+                        {order.status === "fulfilled" && (
                           <Button variant="outline" className="border-gray-300 hover:border-black bg-transparent">
                             Koupit znovu
                           </Button>
