@@ -235,6 +235,5 @@ class ApiClient {
 }
 
 // Create and export the API client instance
-export const apiClient = new ApiClient(
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
-)
+// Use Next.js API routes instead of external server
+export const apiClient = new ApiClient('')
