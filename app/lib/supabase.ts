@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Simple lazy loading approach
+// Truly lazy Supabase client - only create when actually used
 let supabaseInstance: any = null
 
 function createSupabaseClient() {
@@ -14,9 +14,16 @@ function createSupabaseClient() {
   return createClient(supabaseUrl, supabaseAnonKey)
 }
 
-export const supabase = (() => {
+function getSupabase() {
   if (!supabaseInstance) {
     supabaseInstance = createSupabaseClient()
   }
   return supabaseInstance
-})()
+}
+
+// Use Proxy to defer client creation until method is actually called
+export const supabase = new Proxy({} as any, {
+  get(target, prop) {
+    return getSupabase()[prop]
+  }
+})
