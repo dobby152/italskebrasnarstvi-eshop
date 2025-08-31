@@ -13,6 +13,9 @@ import Link from "next/link"
 import { useCart } from "../context/cart-context"
 import { Badge } from "../components/ui/badge"
 
+// Disable static generation for checkout page since it requires client-side cart data
+export const dynamic = 'force-dynamic'
+
 export default function CheckoutPage() {
   const { items: cartItems, totalPrice } = useCart()
   const [currentStep, setCurrentStep] = useState(1)
