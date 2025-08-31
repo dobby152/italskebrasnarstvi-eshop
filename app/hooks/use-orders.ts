@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react'
 
+export interface OrderItem {
+  id: number
+  name: string
+  image: string
+  quantity: number
+  price: string
+}
+
 export interface Order {
   id: string
   customer: string
@@ -9,7 +17,7 @@ export interface Order {
   payment: 'paid' | 'pending' | 'failed'
   paymentLabel: string
   total: string
-  items: number
+  items: OrderItem[]
 }
 
 export interface OrderStats {
