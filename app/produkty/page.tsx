@@ -1,7 +1,8 @@
-"use client"
-
 // Disable static generation for products page since it uses header with context providers
 export const dynamic = 'force-dynamic'
+export const runtime = 'edge'
+
+"use client"
 
 import { Button } from "../../components/ui/button"
 import { Card } from "../../components/ui/card"
