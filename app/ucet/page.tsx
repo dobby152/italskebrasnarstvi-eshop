@@ -389,14 +389,14 @@ export default function AccountPage() {
                         <div className="text-right">
                           <div
                             className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                              order.status === "Doručeno"
+                              order.status === "fulfilled"
                                 ? "bg-green-100 text-green-800"
-                                : order.status === "Zpracovává se"
+                                : order.status === "pending"
                                   ? "bg-yellow-100 text-yellow-800"
                                   : "bg-gray-100 text-gray-800"
                             }`}
                           >
-                            {order.status}
+                            {order.statusLabel || order.status}
                           </div>
                           <div className="text-xl font-bold text-gray-900 mt-2">{order.total}</div>
                         </div>
