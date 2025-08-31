@@ -13,7 +13,17 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const headerRef = useRef<HTMLElement>(null)
-  const { totalItems } = useCart()
+  
+  // Safe cart usage - handle case when CartProvider is not available (during SSR)
+  let totalItems = 0
+  try {
+    const cart = useCart()
+    totalItems = cart?.totalItems || 0
+  } catch (error) {
+    // Cart provider not available (e.g., during SSR), use default value
+    totalItems = 0
+  }
+  
   const { user, isAuthenticated, logout } = useAuth()
 
   // Zavřít dropdown při kliknutí mimo
