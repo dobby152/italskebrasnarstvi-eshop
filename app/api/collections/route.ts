@@ -17,10 +17,10 @@ export async function GET(request: NextRequest) {
     // Get unique collections with explicit types
     const collectionList = collections?.map((product: any) => product.collection).filter(Boolean) || []
     const uniqueCollections = [...new Set(collectionList)]
-      .map((name: string, index: number) => ({
-        id: name,
-        name: name,
-        originalName: name,
+      .map((name: unknown, index: number) => ({
+        id: name as string,
+        name: name as string,
+        originalName: name as string,
         dbId: index + 1
       }))
 

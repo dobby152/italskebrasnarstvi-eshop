@@ -17,9 +17,9 @@ export async function GET(request: NextRequest) {
     // Get unique brands with explicit types
     const brandList = brands?.map((product: any) => product.brand).filter(Boolean) || []
     const uniqueBrands = [...new Set(brandList)]
-      .map((name: string, index: number) => ({
+      .map((name: unknown, index: number) => ({
         id: index + 1,
-        name: name
+        name: name as string
       }))
 
     return NextResponse.json({ brands: uniqueBrands })
