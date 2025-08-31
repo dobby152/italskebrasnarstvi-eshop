@@ -43,7 +43,7 @@ export async function GET(
     }
 
     // Transform variants with image processing
-    const transformedVariants = variants?.map(variant => {
+    const transformedVariants = variants?.map((variant: any) => {
       let images = []
       
       if (variant.products?.product_images && variant.products.product_images.length > 0) {

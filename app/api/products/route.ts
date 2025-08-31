@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Transform products with image processing
-    const transformedProducts = products?.map(product => {
+    const transformedProducts = products?.map((product: any) => {
       // Process images
       let images = []
       if (product.product_images && product.product_images.length > 0) {
