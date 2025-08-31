@@ -16,14 +16,14 @@ import {
 } from "lucide-react"
 import { useCustomers } from "../app/hooks/use-customers"
 
-const getStatusBadge = (status: string, label: string) => {
+const getStatusBadge = (status: string) => {
   const variants = {
-    new: "bg-blue-100 text-blue-800",
-    regular: "bg-green-100 text-green-800",
-    vip: "bg-purple-100 text-purple-800",
+    new: { style: "bg-blue-100 text-blue-800", label: "Nový" },
+    regular: { style: "bg-green-100 text-green-800", label: "Pravidelný" },
+    vip: { style: "bg-purple-100 text-purple-800", label: "VIP" },
   }
-
-  return <Badge className={`${variants[status as keyof typeof variants]} border-0`}>{label}</Badge>
+  const variant = variants[status as keyof typeof variants] || variants.regular
+  return <Badge className={`${variant.style} border-0`}>{variant.label}</Badge>
 }
 
 const getInitials = (name: string) => {
@@ -162,17 +162,17 @@ export function CustomersPage() {
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="font-medium text-card-foreground">{customer.orders}</div>
+                          <div className="font-medium text-card-foreground">{customer.orders_count}</div>
                           <div className="text-sm text-muted-foreground">objednávek</div>
                         </td>
-                        <td className="px-6 py-4 font-medium text-card-foreground">{customer.totalSpent}</td>
+                        <td className="px-6 py-4 font-medium text-card-foreground">{customer.total_spent}</td>
                         <td className="px-6 py-4">
                           <div className="text-sm text-muted-foreground flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
-                            {customer.lastOrder}
+                            {customer.last_order_date || 'Nikdy'}
                           </div>
                         </td>
-                        <td className="px-6 py-4">{getStatusBadge(customer.status, customer.statusLabel)}</td>
+                        <td className="px-6 py-4">{getStatusBadge(customer.status)}</td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
                             <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -247,10 +247,10 @@ export function CustomersPage() {
                           </div>
                           <div>
                             <div className="font-medium text-card-foreground">{customer.name}</div>
-                            <div className="text-sm text-muted-foreground">{customer.orders} objednávek</div>
+                            <div className="text-sm text-muted-foreground">{customer.orders_count} objednávek</div>
                           </div>
                         </div>
-                        <div className="font-medium text-card-foreground">{customer.totalSpent}</div>
+                        <div className="font-medium text-card-foreground">{customer.total_spent}</div>
                       </div>
                     ))
                 ) : (
@@ -280,7 +280,7 @@ export function CustomersPage() {
                           </div>
                           <div>
                             <div className="font-medium text-card-foreground">{customer.name}</div>
-                            <div className="text-sm text-muted-foreground">Připojil se {customer.joinDate}</div>
+                            <div className="text-sm text-muted-foreground">Připojil se {customer.created_at}</div>
                           </div>
                         </div>
                         <Badge className="bg-blue-100 text-blue-800 border-0">Nový</Badge>
