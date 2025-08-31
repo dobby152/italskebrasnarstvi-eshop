@@ -1,5 +1,8 @@
 "use client"
 
+// Disable static generation for login page since it uses auth context
+export const dynamic = 'force-dynamic'
+
 import { Button } from "../components/ui/button"
 import { Card } from "../components/ui/card"
 import { Input } from "../components/ui/input"
