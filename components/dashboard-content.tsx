@@ -175,7 +175,7 @@ export default function DashboardContent() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">Produkty</p>
-                <p className="text-3xl font-bold text-gray-900">{stats?.totalProducts?.count || 0}</p>
+                <p className="text-3xl font-bold text-gray-900">{stats?.totalProducts || 0}</p>
                 <div className="flex items-center mt-2">
                   <TrendingUp className="h-4 w-4 text-yellow-500 mr-1" />
                   <span className="text-sm text-yellow-600 font-medium">+{stats?.productsGrowth || 0}</span>

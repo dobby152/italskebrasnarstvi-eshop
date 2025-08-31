@@ -233,8 +233,8 @@ export function CustomersPage() {
                   customers
                     .sort(
                       (a, b) =>
-                        Number.parseFloat(b.totalSpent.replace("$", "").replace(",", "")) -
-                        Number.parseFloat(a.totalSpent.replace("$", "").replace(",", "")),
+                        Number.parseFloat(String(b.total_spent).replace("$", "").replace(",", "")) -
+                        Number.parseFloat(String(a.total_spent).replace("$", "").replace(",", "")),
                     )
                     .slice(0, 3)
                     .map((customer, index) => (

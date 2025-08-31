@@ -159,7 +159,7 @@ export function OrdersPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-green-600">{stats?.fulfilledOrders || 0}</div>
+                <div className="text-2xl font-bold text-green-600">{stats?.fulfilled || 0}</div>
                 <div className="text-sm text-muted-foreground">Vyřízené</div>
               </div>
             </div>
@@ -169,7 +169,7 @@ export function OrdersPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-yellow-600">{stats?.pendingOrders || 0}</div>
+                <div className="text-2xl font-bold text-yellow-600">{stats?.unfulfilled || 0}</div>
                 <div className="text-sm text-muted-foreground">Nevyřízené</div>
               </div>
             </div>
@@ -179,7 +179,7 @@ export function OrdersPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-2xl font-bold text-blue-600">{stats?.partiallyFulfilledOrders || 0}</div>
+                <div className="text-2xl font-bold text-blue-600">{stats?.partiallyFulfilled || 0}</div>
                 <div className="text-sm text-muted-foreground">Částečně vyřízené</div>
               </div>
             </div>
