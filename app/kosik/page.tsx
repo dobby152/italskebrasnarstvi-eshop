@@ -8,6 +8,9 @@ import { formatPrice, getImageUrl } from "../lib/utils"
 import Link from "next/link"
 import Header from "../components/header"
 
+// Disable static generation for cart page since it requires client-side cart data
+export const dynamic = 'force-dynamic'
+
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalPrice, totalItems } = useCart()
 
