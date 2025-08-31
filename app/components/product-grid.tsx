@@ -25,9 +25,11 @@ interface ProductGridProps {
   category?: string
   searchQuery?: string
   limit?: number
+  sortBy?: string
+  sortOrder?: string
 }
 
-export default function ProductGrid({ category, searchQuery, limit = 12 }: ProductGridProps) {
+export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrder }: ProductGridProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -38,6 +40,8 @@ export default function ProductGrid({ category, searchQuery, limit = 12 }: Produ
         if (category) params.append('collection', category)
         if (searchQuery) params.append('search', searchQuery)
         if (limit) params.append('limit', limit.toString())
+        if (sortBy) params.append('sortBy', sortBy)
+        if (sortOrder) params.append('sortOrder', sortOrder)
 
         const response = await fetch(`/api/products?${params}`)
         const data = await response.json()
@@ -53,7 +57,7 @@ export default function ProductGrid({ category, searchQuery, limit = 12 }: Produ
     }
 
     fetchProducts()
-  }, [category, searchQuery, limit])
+  }, [category, searchQuery, limit, sortBy, sortOrder])
 
   if (loading) {
     return (

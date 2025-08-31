@@ -1,4 +1,4 @@
-import ProductGrid from '../../components/product-grid'
+import { ProductGrid } from '../../components/product-grid'
 
 interface CategoryPageProps {
   params: Promise<{
