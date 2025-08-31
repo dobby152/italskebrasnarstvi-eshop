@@ -53,13 +53,13 @@ images/
 *.gif
 *.webp
 
-# Video files (large files - exclude from repo)
-*.mp4
-*.avi
-*.mov
-*.wmv
-*.flv
-*.webm
+# Video files (commented out to allow videos)
+# *.mp4
+# *.avi
+# *.mov
+# *.wmv
+# *.flv
+# *.webm
 
 # Database
 *.sqlite
