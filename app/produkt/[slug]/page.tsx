@@ -20,22 +20,14 @@ import VariantImageGallery from "../../components/variant-image-gallery"
 import { useCart } from "../../context/cart-context"
 import { ProductVariant } from "../../lib/types/variants"
 
-export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+// Client-only product content
+function ProductDetailContent({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params)
   console.log('ProductDetailPage: resolvedParams.slug:', resolvedParams.slug)
   const { product, loading, error } = useProduct(resolvedParams.slug)
   console.log('ProductDetailPage: useProduct result:', { product: !!product, loading, error })
   const { variantGroup, selectedVariant, setSelectedVariant, loading: variantsLoading, error: variantsError, fetchVariantGroup } = useVariants()
-  // Safe cart usage - handle case when CartProvider is not available (during SSR)
-  let addItem = (variant: any, quantity: number) => {}
-  
-  try {
-    const cart = useCart()
-    addItem = cart?.addItem || ((variant: any, quantity: number) => {})
-  } catch (error) {
-    // Cart provider not available (e.g., during SSR), use default values
-    addItem = (variant: any, quantity: number) => {}
-  }
+  const { addItem } = useCart()
   
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState("popis")
@@ -464,4 +456,24 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
       </div>
     </div>
   )
+}
+
+// Create client-only wrapper for product
+const ClientOnlyProduct = dynamicImport(() => Promise.resolve(ProductDetailContent), { 
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání produktu...</div></div>
+})
+
+export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const [isClient, setIsClient] = useState(false)
+  
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
+  if (!isClient) {
+    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání produktu...</div></div>
+  }
+  
+  return <ClientOnlyProduct params={params} />
 }

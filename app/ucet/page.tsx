@@ -17,7 +17,8 @@ const Header = dynamicImport(() => import("../components/header"), { ssr: false 
 import { useAuth } from "../contexts/auth-context"
 import { Order } from "../hooks/use-orders"
 
-export default function AccountPage() {
+// Client-only account content
+function AccountContent() {
   const [activeTab, setActiveTab] = useState("profil")
   const [isEditing, setIsEditing] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -579,4 +580,24 @@ export default function AccountPage() {
       </div>
     </div>
   )
+}
+
+// Create client-only wrapper for account
+const ClientOnlyAccount = dynamicImport(() => Promise.resolve(AccountContent), { 
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání účtu...</div></div>
+})
+
+export default function AccountPage() {
+  const [isClient, setIsClient] = useState(false)
+  
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
+  if (!isClient) {
+    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání účtu...</div></div>
+  }
+  
+  return <ClientOnlyAccount />
 }
