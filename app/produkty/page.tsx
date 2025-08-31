@@ -1,6 +1,5 @@
 "use client"
 
-// Disable static generation for products page since it uses header with context providers
 export const dynamic = 'force-dynamic'
 
 import { Button } from "../../components/ui/button"
