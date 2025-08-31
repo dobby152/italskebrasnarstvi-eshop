@@ -31,8 +31,8 @@ interface FormData {
   price: number
   brand: string
   availability: string
-  local_images: string
-  online_images: string
+  image_url: string
+  images: string
 }
 
 interface UploadedImage {
@@ -60,8 +60,8 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
     price: product.price || 0,
     brand: product.brand || '',
     availability: product.availability || 'in_stock',
-    local_images: product.local_images || '',
-    online_images: product.online_images || ''
+    image_url: product.image_url || '',
+    images: product.images?.join(', ') || ''
   })
 
   const [collections, setCollections] = useState<Collection[]>([])
@@ -136,20 +136,18 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
         price: product.price || 0,
         brand: product.brand || '',
         availability: product.availability || 'in_stock',
-        local_images: product.local_images || '',
-        online_images: product.online_images || '',
+        image_url: product.image_url || '',
+        images: product.images?.join(', ') || ''
       })
       
       // Inicializace existujících obrázků
       const images: string[] = []
       if (product.image_url) images.push(product.image_url)
-      if (product.local_images) {
-        const localImages = product.local_images.split(',').map(img => img.trim()).filter(Boolean)
-        images.push(...localImages)
-      }
-      if (product.online_images) {
-        const onlineImages = product.online_images.split(',').map(img => img.trim()).filter(Boolean)
-        images.push(...onlineImages)
+      if (product.images && Array.isArray(product.images)) {
+        images.push(...product.images)
+      } else if (product.images && typeof product.images === 'string') {
+        const imageList = product.images.split(',').map(img => img.trim()).filter(Boolean)
+        images.push(...imageList)
       }
       setExistingImages(images)
     }
@@ -212,8 +210,8 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
     }
 
     // Validace URL obrázků
-    if (formData.online_images) {
-      const urls = formData.online_images.split(',').map(url => url.trim()).filter(url => url)
+    if (formData.images) {
+      const urls = formData.images.split(',').map(url => url.trim()).filter(url => url)
       const invalidUrls = urls.filter(url => {
         try {
           const urlObj = new URL(url)
@@ -223,18 +221,10 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
         }
       })
       if (invalidUrls.length > 0) {
-        newErrors.online_images = 'Některé URL obrázků nejsou platné (musí začínat http:// nebo https://)'
+        newErrors.images = 'Některé URL obrázků nejsou platné (musí začínat http:// nebo https://)'
       }
       if (urls.length > 10) {
-        newErrors.online_images = 'Můžete zadat maximálně 10 URL obrázků'
-      }
-    }
-
-    // Validace lokálních obrázků
-    if (formData.local_images) {
-      const paths = formData.local_images.split(',').map(path => path.trim()).filter(path => path)
-      if (paths.length > 10) {
-        newErrors.local_images = 'Můžete zadat maximálně 10 cest k obrázkům'
+        newErrors.images = 'Můžete zadat maximálně 10 URL obrázků'
       }
     }
 
@@ -272,7 +262,7 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
           
           // Aktualizovat form data s novými URL
           if (allImages.length > 0) {
-            updatedFormData.online_images = allImages.join(', ')
+            updatedFormData.images = allImages.join(', ')
           }
         } catch (uploadError) {
           setErrors({ submit: 'Chyba při nahrávání obrázků. Zkuste to prosím znovu.' })
@@ -280,7 +270,7 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
         }
       } else {
         // Použít pouze existující obrázky
-        updatedFormData.online_images = existingImages.join(', ')
+        updatedFormData.images = existingImages.join(', ')
       }
       
       const updatedProduct = await apiClient.updateProduct(product.id, updatedFormData)
@@ -504,40 +494,40 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
               
               <div className="space-y-4 mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="local_images">Lokální obrázky</Label>
+                  <Label htmlFor="image_url">Hlavní obrázek (URL)</Label>
                   <Input
-                    id="local_images"
-                    value={formData.local_images}
-                    onChange={(e) => handleInputChange('local_images', e.target.value)}
-                    placeholder="Cesty k lokálním obrázkům (oddělené čárkami)"
-                    className={errors.local_images ? 'border-red-500' : ''}
+                    id="image_url"
+                    value={formData.image_url}
+                    onChange={(e) => handleInputChange('image_url', e.target.value)}
+                    placeholder="URL hlavního obrázku produktu"
+                    className={errors.image_url ? 'border-red-500' : ''}
                   />
-                  {errors.local_images && (
-                    <p className="text-sm text-red-500">{errors.local_images}</p>
+                  {errors.image_url && (
+                    <p className="text-sm text-red-500">{errors.image_url}</p>
                   )}
                   <p className="text-sm text-gray-500">
-                    Zadejte cesty k obrázkům oddělené čárkami (max. 10)
+                    Zadejte URL hlavního obrázku produktu
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="online_images">Online obrázky (URL)</Label>
+                  <Label htmlFor="images">Dodatečné obrázky (URL)</Label>
                   <Textarea
-                    id="online_images"
-                    value={formData.online_images}
-                    onChange={(e) => handleInputChange('online_images', e.target.value)}
-                    placeholder="URL adres obrázků (oddělené čárkami)"
+                    id="images"
+                    value={formData.images}
+                    onChange={(e) => handleInputChange('images', e.target.value)}
+                    placeholder="URL adres dodatečných obrázků (oddělené čárkami)"
                     rows={3}
-                    className={errors.online_images ? 'border-red-500' : ''}
+                    className={errors.images ? 'border-red-500' : ''}
                   />
-                  {errors.online_images && (
-                    <p className="text-sm text-red-500">{errors.online_images}</p>
+                  {errors.images && (
+                    <p className="text-sm text-red-500">{errors.images}</p>
                   )}
                   <p className="text-sm text-gray-500">
-                    Zadejte URL adresy obrázků oddělené čárkami (max. 10)
-                    {formData.online_images && (
+                    Zadejte URL adresy dodatečných obrázků oddělené čárkami (max. 10)
+                    {formData.images && (
                       <span className="ml-2 font-medium">
-                        {formData.online_images.split(',').filter(url => url.trim()).length}/10 URL
+                        {formData.images.split(',').filter(url => url.trim()).length}/10 URL
                       </span>
                     )}
                   </p>
