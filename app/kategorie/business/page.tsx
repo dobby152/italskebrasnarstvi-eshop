@@ -10,6 +10,9 @@ import Link from "next/link"
 
 export default function BusinessPage() {
   const [showFilters, setShowFilters] = useState(false)
+  const [selectedBrand, setSelectedBrand] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCollection, setSelectedCollection] = useState('')
 
   // Business category search terms
   const businessTerms = ['aktovka', 'business', 'notebook', 'laptop', 'teczka', 'skorzana', 'briefcase', 'messenger', 'work', 'office']
