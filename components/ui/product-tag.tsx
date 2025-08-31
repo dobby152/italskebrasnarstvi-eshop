@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Badge } from './badge'
-import { cn } from '../app/lib/utils'
+import { cn } from '../../app/lib/utils'
 
 export interface Tag {
   id: number

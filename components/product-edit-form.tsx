@@ -146,7 +146,7 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
       if (product.images && Array.isArray(product.images)) {
         images.push(...product.images)
       } else if (product.images && typeof product.images === 'string') {
-        const imageList = product.images.split(',').map(img => img.trim()).filter(Boolean)
+        const imageList = (product.images as string).split(',').map((img: string) => img.trim()).filter(Boolean)
         images.push(...imageList)
       }
       setExistingImages(images)
@@ -273,7 +273,13 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
         updatedFormData.images = existingImages.join(', ')
       }
       
-      const updatedProduct = await apiClient.updateProduct(product.id, updatedFormData)
+      // Convert images string to array for API call
+      const productUpdateData = {
+        ...updatedFormData,
+        images: updatedFormData.images ? updatedFormData.images.split(',').map(url => url.trim()).filter(Boolean) : []
+      }
+      
+      const updatedProduct = await apiClient.updateProduct(product.id, productUpdateData)
       onSave(updatedProduct)
       setIsDirty(false)
       setUploadedFiles([]) // Vymazat nahrané soubory po úspěšném uložení

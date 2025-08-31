@@ -24,6 +24,11 @@ export interface Product {
   color?: string
   created_at?: string
   availability?: string
+  slug?: string
+  stockStatus?: string
+  stockCount?: number
+  hasVariants?: boolean
+  variantCount?: number
 }
 
 export interface Collection {
