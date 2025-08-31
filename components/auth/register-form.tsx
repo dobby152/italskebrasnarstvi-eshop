@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "../app/components/ui/button"
-import { Input } from "../app/components/ui/input"
-import { Label } from "../app/components/ui/label"
-import { Checkbox } from "../app/components/ui/checkbox"
-import { Alert, AlertDescription } from "../app/components/ui/alert"
+import { Button } from "../../app/components/ui/button"
+import { Input } from "../../app/components/ui/input"
+import { Label } from "../../app/components/ui/label"
+import { Checkbox } from "../../app/components/ui/checkbox"
+import { Alert, AlertDescription } from "../../app/components/ui/alert"
 import { Eye, EyeOff, Mail, Lock, User, Phone, Loader2 } from "lucide-react"
 
 interface RegisterFormProps {
