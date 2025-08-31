@@ -9,13 +9,14 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Header from "../components/header"
 import { useAuth } from "../contexts/auth-context"
+import { Order } from "../hooks/use-orders"
 
 export default function AccountPage() {
   const [activeTab, setActiveTab] = useState("profil")
   const [isEditing, setIsEditing] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState<Order[]>([])
   
   const { user, isAuthenticated, updateProfile, logout, loading: authLoading } = useAuth()
   const router = useRouter()
