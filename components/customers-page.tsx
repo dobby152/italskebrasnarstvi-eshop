@@ -204,19 +204,19 @@ export function CustomersPage() {
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-blue-600">{stats?.newThisMonth || 0}</div>
+                <div className="text-2xl font-bold text-blue-600">{stats?.new_this_month || 0}</div>
                 <div className="text-sm text-muted-foreground">Nových tento měsíc</div>
               </CardContent>
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-green-600">{stats?.regularCustomers || 0}</div>
+                <div className="text-2xl font-bold text-green-600">0</div>
                 <div className="text-sm text-muted-foreground">Pravidelní zákazníci</div>
               </CardContent>
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-purple-600">{stats?.vipCustomers || 0}</div>
+                <div className="text-2xl font-bold text-purple-600">0</div>
                 <div className="text-sm text-muted-foreground">VIP zákazníci</div>
               </CardContent>
             </Card>

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { cn } from "../../app/lib/utils"
 import { Upload, X, Image as ImageIcon } from "lucide-react"
-import { Button } from "../app/components/ui/button"
+import { Button } from "../../app/components/ui/button"
 
 interface FileUploadProps {
   onFilesChange: (files: File[]) => void
