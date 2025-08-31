@@ -108,14 +108,10 @@ export default function CestovaniPage() {
             <div className="w-64 shrink-0">
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <ProductFilters
-                  collections={collections}
+                  filters={{}}
+                  onFiltersChange={() => {}}
+                  onClearFilters={() => {}}
                   brands={brands.map(brand => brand.name)}
-                  selectedCollection={selectedCollection}
-                  selectedBrand={selectedBrand}
-                  onCollectionChange={setSelectedCollection}
-                  onBrandChange={setSelectedBrand}
-                  searchQuery={searchQuery}
-                  onSearchChange={setSearchQuery}
                 />
               </div>
             </div>
