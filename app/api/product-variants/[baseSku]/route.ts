@@ -48,8 +48,8 @@ export async function GET(
       
       if (variant.products?.product_images && variant.products.product_images.length > 0) {
         images = variant.products.product_images
-          .sort((a, b) => (a.display_order || 999) - (b.display_order || 999))
-          .map(img => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
+          .sort((a: any, b: any) => (a.display_order || 999) - (b.display_order || 999))
+          .map((img: any) => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
       }
 
       return {

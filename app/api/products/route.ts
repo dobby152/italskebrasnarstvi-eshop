@@ -94,8 +94,8 @@ export async function GET(request: NextRequest) {
       let images = []
       if (product.product_images && product.product_images.length > 0) {
         images = product.product_images
-          .sort((a, b) => (a.display_order || 999) - (b.display_order || 999))
-          .map(img => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
+          .sort((a: any, b: any) => (a.display_order || 999) - (b.display_order || 999))
+          .map((img: any) => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
       } else if (product.image_url && product.image_url.trim() !== '') {
         let imageUrl = product.image_url
         if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('http')) {
