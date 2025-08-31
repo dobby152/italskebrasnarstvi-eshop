@@ -408,20 +408,10 @@ function AccountContent() {
                       </div>
 
                       <div className="space-y-4">
-                        {order.items.map((item, index) => (
-                          <div key={index} className="flex items-center gap-4">
-                            <img
-                              src={`/placeholder.svg?height=80&width=80&query=${item.image}`}
-                              alt={item.name}
-                              className="w-20 h-20 object-cover rounded-lg bg-gray-100"
-                            />
-                            <div className="flex-1">
-                              <h4 className="font-semibold text-gray-900">{item.name}</h4>
-                              <p className="text-gray-600">Množství: {item.quantity}</p>
-                            </div>
-                            <div className="text-lg font-bold text-gray-900">{item.price}</div>
-                          </div>
-                        ))}
+                        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                          <span className="text-gray-600">Počet položek:</span>
+                          <span className="font-semibold text-gray-900">{order.items}</span>
+                        </div>
                       </div>
 
                       <div className="flex gap-3 mt-6 pt-6 border-t border-gray-200">
