@@ -15,7 +15,7 @@ import dynamicImport from 'next/dynamic'
 const Header = dynamicImport(() => import("../components/header"), { ssr: false })
 import { useAuth } from "../contexts/auth-context"
 import { Order } from "../hooks/use-orders"
-  const [orders, setOrders] = useState([])
+import { useRouter } from "next/navigation"
 // Client-only account content
 function AccountContent() {
   const [activeTab, setActiveTab] = useState("profil")
