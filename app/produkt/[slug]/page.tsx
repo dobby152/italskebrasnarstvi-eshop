@@ -27,14 +27,14 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   console.log('ProductDetailPage: useProduct result:', { product: !!product, loading, error })
   const { variantGroup, selectedVariant, setSelectedVariant, loading: variantsLoading, error: variantsError, fetchVariantGroup } = useVariants()
   // Safe cart usage - handle case when CartProvider is not available (during SSR)
-  let addItem = () => {}
+  let addItem = (variant: any, quantity: number) => {}
   
   try {
     const cart = useCart()
-    addItem = cart?.addItem || (() => {})
+    addItem = cart?.addItem || ((variant: any, quantity: number) => {})
   } catch (error) {
     // Cart provider not available (e.g., during SSR), use default values
-    addItem = () => {}
+    addItem = (variant: any, quantity: number) => {}
   }
   
   const [quantity, setQuantity] = useState(1)
