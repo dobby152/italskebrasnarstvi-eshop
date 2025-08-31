@@ -198,7 +198,7 @@ export function CustomersPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="text-2xl font-bold text-card-foreground">{stats?.totalCustomers || 0}</div>
+                <div className="text-2xl font-bold text-card-foreground">{stats?.total || 0}</div>
                 <div className="text-sm text-muted-foreground">Celkem zákazníků</div>
               </CardContent>
             </Card>

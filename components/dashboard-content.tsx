@@ -156,10 +156,10 @@ export default function DashboardContent() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">Zákazníci</p>
-                <p className="text-3xl font-bold text-gray-900">{stats?.totalCustomers || 0}</p>
+                <p className="text-3xl font-bold text-gray-900">{stats?.total || 0}</p>
                 <div className="flex items-center mt-2">
                   <TrendingUp className="h-4 w-4 text-orange-500 mr-1" />
-                  <span className="text-sm text-orange-600 font-medium">+{stats?.customersGrowth || 0}%</span>
+                  <span className="text-sm text-orange-600 font-medium">+{stats?.new_this_month || 0}</span>
                   <span className="text-sm text-gray-500 ml-1">nárůst</span>
                 </div>
               </div>
