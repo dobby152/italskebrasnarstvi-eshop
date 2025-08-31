@@ -15,7 +15,28 @@ const Header = dynamicImport(() => import("../components/header"), { ssr: false 
 export const dynamic = 'force-dynamic'
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, totalPrice, totalItems } = useCart()
+  // Safe cart usage - handle case when CartProvider is not available (during SSR)
+  let items: any[] = []
+  let removeItem = () => {}
+  let updateQuantity = () => {}
+  let totalPrice = 0
+  let totalItems = 0
+  
+  try {
+    const cart = useCart()
+    items = cart?.items || []
+    removeItem = cart?.removeItem || (() => {})
+    updateQuantity = cart?.updateQuantity || (() => {})
+    totalPrice = cart?.totalPrice || 0
+    totalItems = cart?.totalItems || 0
+  } catch (error) {
+    // Cart provider not available (e.g., during SSR), use default values
+    items = []
+    removeItem = () => {}
+    updateQuantity = () => {}
+    totalPrice = 0
+    totalItems = 0
+  }
 
   if (items.length === 0) {
     return (

@@ -20,7 +20,20 @@ import { Badge } from "../components/ui/badge"
 export const dynamic = 'force-dynamic'
 
 export default function CheckoutPage() {
-  const { items: cartItems, totalPrice } = useCart()
+  // Safe cart usage - handle case when CartProvider is not available (during SSR)
+  let cartItems: any[] = []
+  let totalPrice = 0
+  
+  try {
+    const cart = useCart()
+    cartItems = cart?.items || []
+    totalPrice = cart?.totalPrice || 0
+  } catch (error) {
+    // Cart provider not available (e.g., during SSR), use default values
+    cartItems = []
+    totalPrice = 0
+  }
+  
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
     // Personal info

@@ -26,7 +26,17 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   const { product, loading, error } = useProduct(resolvedParams.slug)
   console.log('ProductDetailPage: useProduct result:', { product: !!product, loading, error })
   const { variantGroup, selectedVariant, setSelectedVariant, loading: variantsLoading, error: variantsError, fetchVariantGroup } = useVariants()
-  const { addItem } = useCart()
+  // Safe cart usage - handle case when CartProvider is not available (during SSR)
+  let addItem = () => {}
+  
+  try {
+    const cart = useCart()
+    addItem = cart?.addItem || (() => {})
+  } catch (error) {
+    // Cart provider not available (e.g., during SSR), use default values
+    addItem = () => {}
+  }
+  
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState("popis")
   const [selectedColorVariant, setSelectedColorVariant] = useState<any>(null)
