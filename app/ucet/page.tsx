@@ -388,14 +388,11 @@ function AccountContent() {
                   {orders.map((order) => (
                     <Card key={order.id} className="p-6 border border-gray-200 shadow-sm">
                       <div className="flex items-center justify-between mb-6">
-                              order.status === "Doručeno"
                           <h3 className="text-xl font-bold text-gray-900">Objednávka #{order.id}</h3>
-                                : order.status === "Zpracovává se"
-                        </div>
                         <div className="text-right">
                           <div
                             className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                            {order.status}
+                            order.status === "Doručeno"
                                 ? "bg-green-100 text-green-800"
                                 : order.status === "pending"
                                   ? "bg-yellow-100 text-yellow-800"
@@ -422,7 +419,7 @@ function AccountContent() {
                             </div>
                             <div className="text-lg font-bold text-gray-900">{item.price}</div>
                           </div>
-                        {order.status === "Doručeno" && (
+                        </div>
                       </div>
 
                       <div className="flex gap-3 mt-6 pt-6 border-t border-gray-200">
