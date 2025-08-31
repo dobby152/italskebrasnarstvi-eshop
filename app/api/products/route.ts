@@ -21,32 +21,7 @@ export async function GET(request: NextRequest) {
 
     let query = supabase
       .from('products')
-      .select(`
-        *,
-        product_images (
-          id,
-          image_path,
-          alt_text,
-          display_order
-        ),
-        product_variants (
-          id,
-          sku,
-          title,
-          option1_name,
-          option1_value,
-          option2_name,
-          option2_value,
-          option3_name,
-          option3_value,
-          price,
-          compare_at_price,
-          inventory_quantity,
-          weight,
-          created_at,
-          updated_at
-        )
-      `)
+      .select('*')
 
     // Apply filters
     if (search) {
@@ -54,11 +29,17 @@ export async function GET(request: NextRequest) {
     }
 
     if (collection) {
-      query = query.eq('collection', collection)
+      const collectionId = parseInt(collection)
+      if (!isNaN(collectionId)) {
+        query = query.eq('collection_id', collectionId)
+      }
     }
 
     if (brand) {
-      query = query.eq('brand', brand)
+      const brandId = parseInt(brand)
+      if (!isNaN(brandId)) {
+        query = query.eq('brand_id', brandId)
+      }
     }
 
     if (priceMin) {
@@ -95,10 +76,15 @@ export async function GET(request: NextRequest) {
     const transformedProducts = products?.map((product: any) => {
       // Process images
       let images = []
-      if (product.product_images && product.product_images.length > 0) {
-        images = product.product_images
-          .sort((a: any, b: any) => (a.display_order || 999) - (b.display_order || 999))
-          .map((img: any) => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
+      
+      // Use images array if available
+      if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+        images = product.images.map((img: string) => {
+          if (img.startsWith('/images/') || img.startsWith('http')) {
+            return img
+          }
+          return `/images/${img}`
+        })
       } else if (product.image_url && product.image_url.trim() !== '') {
         let imageUrl = product.image_url
         if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('http')) {
@@ -111,7 +97,7 @@ export async function GET(request: NextRequest) {
         ...product,
         images,
         image_url: images[0] || null,
-        hasVariants: product.product_variants && product.product_variants.length > 1
+        hasVariants: false // No variants table exists
       }
     }) || []
 
