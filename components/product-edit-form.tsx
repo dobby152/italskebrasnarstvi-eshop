@@ -145,8 +145,8 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
       if (product.image_url) images.push(product.image_url)
       if (product.images && Array.isArray(product.images)) {
         images.push(...product.images)
-      } else if (product.images && typeof product.images === 'string') {
-        const imageList = (product.images as string).split(',').map((img: string) => img.trim()).filter(Boolean)
+      } else if (typeof product.images === 'string') {
+        const imageList = product.images.split(',').map((img: string) => img.trim()).filter(Boolean)
         images.push(...imageList)
       }
       setExistingImages(images)
