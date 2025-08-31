@@ -3,6 +3,7 @@ import { supabase } from '../../lib/supabase'
 
 export async function GET(request: NextRequest) {
   try {
+    console.log('API /products called');
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '20')
@@ -15,6 +16,8 @@ export async function GET(request: NextRequest) {
     const priceMax = searchParams.get('priceMax')
     const inStock = searchParams.get('inStock')
     const tags = searchParams.get('tags')
+    
+    console.log('Supabase client:', !!supabase);
 
     let query = supabase
       .from('products')

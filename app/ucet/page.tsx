@@ -9,14 +9,13 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { User, Package, Heart, Settings, LogOut, Edit, Save, X, Loader2 } from "lucide-react"
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import dynamicImport from 'next/dynamic'
 
 // Dynamically import Header to prevent SSR issues
 const Header = dynamicImport(() => import("../components/header"), { ssr: false })
 import { useAuth } from "../contexts/auth-context"
 import { Order } from "../hooks/use-orders"
-
+  const [orders, setOrders] = useState([])
 // Client-only account content
 function AccountContent() {
   const [activeTab, setActiveTab] = useState("profil")
@@ -389,14 +388,14 @@ function AccountContent() {
                   {orders.map((order) => (
                     <Card key={order.id} className="p-6 border border-gray-200 shadow-sm">
                       <div className="flex items-center justify-between mb-6">
-                        <div>
+                              order.status === "Doručeno"
                           <h3 className="text-xl font-bold text-gray-900">Objednávka #{order.id}</h3>
-                          <p className="text-gray-600">{order.date}</p>
+                                : order.status === "Zpracovává se"
                         </div>
                         <div className="text-right">
                           <div
                             className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                              order.status === "fulfilled"
+                            {order.status}
                                 ? "bg-green-100 text-green-800"
                                 : order.status === "pending"
                                   ? "bg-yellow-100 text-yellow-800"
@@ -423,7 +422,7 @@ function AccountContent() {
                             </div>
                             <div className="text-lg font-bold text-gray-900">{item.price}</div>
                           </div>
-                        ))}
+                        {order.status === "Doručeno" && (
                       </div>
 
                       <div className="flex gap-3 mt-6 pt-6 border-t border-gray-200">

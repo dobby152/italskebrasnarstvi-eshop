@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { useCollections, useBrands } from '../../hooks/useProducts'
+import { useProducts, useCollections, useBrands } from '../../hooks/useProducts'
 import ProductGrid from '../../components/product-grid'
 import ProductFilters from '../../components/product-filters'
 import { Button } from "../../components/ui/button"
@@ -9,6 +9,7 @@ import { SlidersHorizontal, X } from "lucide-react"
 import Link from "next/link"
 
 export default function CestovaniPage() {
+  const [currentPage, setCurrentPage] = useState(1)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCollection, setSelectedCollection] = useState<any>(null)
   const [selectedBrand, setSelectedBrand] = useState<any>(null)
@@ -18,8 +19,22 @@ export default function CestovaniPage() {
   const travelTerms = ['kufr', 'trolley', 'cestovni', 'travel', 'zavazadlo', 'kosmetick', 'backpack', 'batoh']
   const travelSearchQuery = travelTerms.join(' OR ')
 
+  const { products, total, loading, error } = useProducts({
+    page: currentPage,
+    limit: 20,
+    search: searchQuery || travelSearchQuery,
+    collection: selectedCollection?.originalName,
+    brand: selectedBrand?.name,
+    autoFetch: true
+  })
+
   const { collections } = useCollections()
   const { brands } = useBrands()
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -93,22 +108,14 @@ export default function CestovaniPage() {
             <div className="w-64 shrink-0">
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <ProductFilters
-                  filters={{
-                    brand: selectedBrand ? [selectedBrand] : [],
-                    search: searchQuery || '',
-                    category: selectedCollection ? [selectedCollection] : []
-                  }}
-                  onFiltersChange={(filters) => {
-                    setSelectedBrand(filters.brand?.[0] || '')
-                    setSearchQuery(filters.search || '')
-                    setSelectedCollection(filters.category?.[0] || '')
-                  }}
-                  onClearFilters={() => {
-                    setSelectedBrand('')
-                    setSearchQuery('')
-                    setSelectedCollection('')
-                  }}
+                  collections={collections}
                   brands={brands.map(brand => brand.name)}
+                  selectedCollection={selectedCollection}
+                  selectedBrand={selectedBrand}
+                  onCollectionChange={setSelectedCollection}
+                  onBrandChange={setSelectedBrand}
+                  searchQuery={searchQuery}
+                  onSearchChange={setSearchQuery}
                 />
               </div>
             </div>
@@ -123,16 +130,20 @@ export default function CestovaniPage() {
                   Cestovní produkty
                 </h2>
                 <p className="text-gray-600 mt-1">
-                  Produkty pro cestování a dovolenou
+                  {loading ? 'Načítám...' : `Nalezeno ${total} produktů`}
                 </p>
               </div>
             </div>
 
             {/* Product Grid */}
             <ProductGrid
-              category="cestovani"
-              searchQuery={travelSearchQuery}
-              limit={20}
+              products={products}
+              loading={loading}
+              error={error}
+              total={total}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+              totalPages={Math.ceil(total / 20)}
             />
           </div>
         </div>
