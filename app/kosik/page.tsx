@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { useCart } from "../context/cart-context"
 import { Button } from "../components/ui/button"
 import { Card } from "../components/ui/card"
@@ -14,29 +15,9 @@ const Header = dynamicImport(() => import("../components/header"), { ssr: false 
 // Disable static generation for cart page since it requires client-side cart data
 export const dynamic = 'force-dynamic'
 
-export default function CartPage() {
-  // Safe cart usage - handle case when CartProvider is not available (during SSR)
-  let items: any[] = []
-  let removeItem = () => {}
-  let updateQuantity = () => {}
-  let totalPrice = 0
-  let totalItems = 0
-  
-  try {
-    const cart = useCart()
-    items = cart?.items || []
-    removeItem = cart?.removeItem || (() => {})
-    updateQuantity = cart?.updateQuantity || (() => {})
-    totalPrice = cart?.totalPrice || 0
-    totalItems = cart?.totalItems || 0
-  } catch (error) {
-    // Cart provider not available (e.g., during SSR), use default values
-    items = []
-    removeItem = () => {}
-    updateQuantity = () => {}
-    totalPrice = 0
-    totalItems = 0
-  }
+// Client-only cart content
+function CartContent() {
+  const { items, removeItem, updateQuantity, totalPrice, totalItems } = useCart()
 
   if (items.length === 0) {
     return (
@@ -179,4 +160,24 @@ export default function CartPage() {
       </div>
     </div>
   )
+}
+
+// Create client-only wrapper for cart
+const ClientOnlyCart = dynamicImport(() => Promise.resolve(CartContent), { 
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání košíku...</div></div>
+})
+
+export default function CartPage() {
+  const [isClient, setIsClient] = useState(false)
+  
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
+  if (!isClient) {
+    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání košíku...</div></div>
+  }
+  
+  return <ClientOnlyCart />
 }

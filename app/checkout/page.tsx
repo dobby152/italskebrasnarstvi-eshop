@@ -7,7 +7,7 @@ import { Label } from "../components/ui/label"
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group"
 import { Checkbox } from "../components/ui/checkbox"
 import { CreditCard, Truck, User, Phone, Mail, Building, Check, Lock, ArrowLeft, Shield } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import dynamicImport from 'next/dynamic'
 
 // Dynamically import Header to prevent SSR issues
@@ -19,20 +19,9 @@ import { Badge } from "../components/ui/badge"
 // Disable static generation for checkout page since it requires client-side cart data
 export const dynamic = 'force-dynamic'
 
-export default function CheckoutPage() {
-  // Safe cart usage - handle case when CartProvider is not available (during SSR)
-  let cartItems: any[] = []
-  let totalPrice = 0
-  
-  try {
-    const cart = useCart()
-    cartItems = cart?.items || []
-    totalPrice = cart?.totalPrice || 0
-  } catch (error) {
-    // Cart provider not available (e.g., during SSR), use default values
-    cartItems = []
-    totalPrice = 0
-  }
+// Client-only checkout content
+function CheckoutContent() {
+  const { items: cartItems, totalPrice } = useCart()
   
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
@@ -813,4 +802,24 @@ export default function CheckoutPage() {
       </div>
     </div>
   )
+}
+
+// Create client-only wrapper for checkout
+const ClientOnlyCheckout = dynamicImport(() => Promise.resolve(CheckoutContent), { 
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání...</div></div>
+})
+
+export default function CheckoutPage() {
+  const [isClient, setIsClient] = useState(false)
+  
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
+  if (!isClient) {
+    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání...</div></div>
+  }
+  
+  return <ClientOnlyCheckout />
 }
