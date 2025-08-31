@@ -15,8 +15,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Get unique collections
-    const uniqueCollections = [...new Set(collections?.map(p => p.collection).filter(Boolean))]
-      .map((name, index) => ({
+    const uniqueCollections = [...new Set(collections?.map((p: any) => p.collection).filter(Boolean))]
+      .map((name: any, index: number) => ({
         id: name,
         name: name,
         originalName: name,

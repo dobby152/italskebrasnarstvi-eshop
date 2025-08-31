@@ -15,8 +15,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Get unique brands
-    const uniqueBrands = [...new Set(brands?.map(p => p.brand).filter(Boolean))]
-      .map((name, index) => ({
+    const uniqueBrands = [...new Set(brands?.map((p: any) => p.brand).filter(Boolean))]
+      .map((name: any, index: number) => ({
         id: index + 1,
         name: name
       }))
