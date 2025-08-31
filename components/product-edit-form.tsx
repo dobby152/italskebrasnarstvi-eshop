@@ -148,7 +148,8 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
         if (Array.isArray(product.images)) {
           images.push(...product.images)
         } else if (typeof product.images === 'string') {
-          const imageList = product.images.split(',').map((img: string) => img.trim()).filter(Boolean)
+          const imageString = product.images as string
+          const imageList = imageString.split(',').map((img: string) => img.trim()).filter(Boolean)
           images.push(...imageList)
         }
       }
