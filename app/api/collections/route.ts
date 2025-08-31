@@ -14,9 +14,10 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    // Get unique collections
-    const uniqueCollections = [...new Set(collections?.map((p: any) => p.collection).filter(Boolean))]
-      .map((name: any, index: number) => ({
+    // Get unique collections with explicit types
+    const collectionList = collections?.map((product: any) => product.collection).filter(Boolean) || []
+    const uniqueCollections = [...new Set(collectionList)]
+      .map((name: string, index: number) => ({
         id: name,
         name: name,
         originalName: name,

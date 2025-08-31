@@ -14,9 +14,10 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    // Get unique brands
-    const uniqueBrands = [...new Set(brands?.map((p: any) => p.brand).filter(Boolean))]
-      .map((name: any, index: number) => ({
+    // Get unique brands with explicit types
+    const brandList = brands?.map((product: any) => product.brand).filter(Boolean) || []
+    const uniqueBrands = [...new Set(brandList)]
+      .map((name: string, index: number) => ({
         id: index + 1,
         name: name
       }))
