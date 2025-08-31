@@ -392,11 +392,13 @@ function AccountContent() {
                         <div className="text-right">
                           <div
                             className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                            order.status === "Doručeno"
+                            order.status === "fulfilled"
                                 ? "bg-green-100 text-green-800"
                                 : order.status === "pending"
                                   ? "bg-yellow-100 text-yellow-800"
-                                  : "bg-gray-100 text-gray-800"
+                                  : order.status === "partially_fulfilled"
+                                    ? "bg-blue-100 text-blue-800"
+                                    : "bg-gray-100 text-gray-800"
                             }`}
                           >
                             {order.statusLabel || order.status}
