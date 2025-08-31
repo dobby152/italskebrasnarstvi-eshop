@@ -1,57 +1,136 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+import { supabase } from '../../lib/supabase'
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const queryString = searchParams.toString()
-    const url = `${API_BASE_URL}/api/products${queryString ? `?${queryString}` : ''}`
-    
-    console.log('🔗 API Route: Proxying request to:', url)
-    
-    const response = await fetch(url, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      signal: AbortSignal.timeout(10000)
-    })
-    
-    if (!response.ok) {
-      console.error('❌ API Route: Backend response not ok:', response.status, response.statusText)
-      return NextResponse.json(
-        { error: 'Failed to fetch products from backend' },
-        { status: response.status }
-      )
+    const page = parseInt(searchParams.get('page') || '1')
+    const limit = parseInt(searchParams.get('limit') || '20')
+    const search = searchParams.get('search') || ''
+    const collection = searchParams.get('collection') || ''
+    const brand = searchParams.get('brand') || ''
+    const sortBy = searchParams.get('sortBy') || 'created_at'
+    const sortOrder = searchParams.get('sortOrder') || 'desc'
+    const priceMin = searchParams.get('priceMin')
+    const priceMax = searchParams.get('priceMax')
+    const inStock = searchParams.get('inStock')
+    const tags = searchParams.get('tags')
+
+    let query = supabase
+      .from('products')
+      .select(`
+        *,
+        product_images (
+          id,
+          image_path,
+          alt_text,
+          display_order
+        ),
+        product_variants (
+          id,
+          sku,
+          title,
+          option1_name,
+          option1_value,
+          option2_name,
+          option2_value,
+          option3_name,
+          option3_value,
+          price,
+          compare_at_price,
+          inventory_quantity,
+          weight,
+          created_at,
+          updated_at
+        )
+      `)
+
+    // Apply filters
+    if (search) {
+      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%,sku.ilike.%${search}%`)
     }
-    
-    const data = await response.json()
-    console.log('✅ API Route: Successfully proxied products request')
-    
-    // Map products data to fix common issues
-    if (data.products) {
-      data.products = data.products.map((product: any) => ({
+
+    if (collection) {
+      query = query.eq('collection', collection)
+    }
+
+    if (brand) {
+      query = query.eq('brand', brand)
+    }
+
+    if (priceMin) {
+      query = query.gte('price', parseFloat(priceMin))
+    }
+
+    if (priceMax) {
+      query = query.lte('price', parseFloat(priceMax))
+    }
+
+    if (inStock === 'true') {
+      query = query.gt('inventory_quantity', 0)
+    }
+
+    if (tags) {
+      query = query.contains('tags', [tags])
+    }
+
+    // Apply sorting
+    query = query.order(sortBy, { ascending: sortOrder === 'asc' })
+
+    // Apply pagination
+    const offset = (page - 1) * limit
+    query = query.range(offset, offset + limit - 1)
+
+    const { data: products, error, count } = await query
+
+    if (error) {
+      console.error('Supabase query error:', error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    // Transform products with image processing
+    const transformedProducts = products?.map(product => {
+      // Process images
+      let images = []
+      if (product.product_images && product.product_images.length > 0) {
+        images = product.product_images
+          .sort((a, b) => (a.display_order || 999) - (b.display_order || 999))
+          .map(img => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
+      } else if (product.image_url && product.image_url.trim() !== '') {
+        let imageUrl = product.image_url
+        if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('http')) {
+          imageUrl = `/images/${imageUrl}`
+        }
+        images = [imageUrl]
+      }
+
+      return {
         ...product,
-        image_url: product.image_url || '/placeholder.svg',
-        images: product.images || ['/placeholder.svg'],
-        name_cz: product.name_cz || product.name,
-        description_cz: product.description_cz || product.description,
-        collection: product.normalized_collection || product.collection,
-        brand: product.normalized_brand || product.brand,
-        features: product.features || [],
-        colors: product.colors || [],
-        tags: product.tags || []
-      }))
-      
-      // Keep original total count from backend - don't modify it
-    }
-    
-    return NextResponse.json(data)
+        images,
+        image_url: images[0] || null,
+        hasVariants: product.product_variants && product.product_variants.length > 1
+      }
+    }) || []
+
+    // Get total count for pagination
+    const { count: totalCount } = await supabase
+      .from('products')
+      .select('*', { count: 'exact', head: true })
+
+    return NextResponse.json({
+      products: transformedProducts,
+      pagination: {
+        total: totalCount || 0,
+        page,
+        limit,
+        pages: Math.ceil((totalCount || 0) / limit)
+      }
+    })
+
   } catch (error) {
-    console.error('❌ API Route: Error proxying products request:', error)
+    console.error('API Route Error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error' }, 
       { status: 500 }
     )
   }

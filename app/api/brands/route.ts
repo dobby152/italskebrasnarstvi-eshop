@@ -1,37 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+import { supabase } from '../../lib/supabase'
 
 export async function GET(request: NextRequest) {
   try {
-    const url = `${API_BASE_URL}/api/brands`
-    
-    console.log('🔗 API Route: Proxying brands request to:', url)
-    
-    const response = await fetch(url, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      signal: AbortSignal.timeout(10000)
-    })
-    
-    if (!response.ok) {
-      console.error('❌ API Route: Backend response not ok:', response.status, response.statusText)
-      return NextResponse.json(
-        { error: 'Failed to fetch brands from backend' },
-        { status: response.status }
-      )
+    const { data: brands, error } = await supabase
+      .from('products')
+      .select('brand')
+      .not('brand', 'is', null)
+      .not('brand', 'eq', '')
+
+    if (error) {
+      console.error('Supabase query error:', error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
     }
-    
-    const data = await response.json()
-    console.log('✅ API Route: Successfully proxied brands request')
-    
-    return NextResponse.json(data)
+
+    // Get unique brands
+    const uniqueBrands = [...new Set(brands?.map(p => p.brand).filter(Boolean))]
+      .map((name, index) => ({
+        id: index + 1,
+        name: name
+      }))
+
+    return NextResponse.json({ brands: uniqueBrands })
+
   } catch (error) {
-    console.error('❌ API Route: Error proxying brands request:', error)
+    console.error('API Route Error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error' }, 
       { status: 500 }
     )
   }

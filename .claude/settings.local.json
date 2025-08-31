@@ -59,7 +59,8 @@
       "Bash(mv:*)",
       "Bash(npm run type-check:*)",
       "Bash(npm run lint)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(npx next lint:*)"
     ],
     "deny": [],
     "additionalDirectories": [

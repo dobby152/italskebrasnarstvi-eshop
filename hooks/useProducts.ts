@@ -134,7 +134,7 @@ export function useProduct(slug: string) {
         setError(null)
         
         // Use the same API URL as the apiClient
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+        const baseUrl = ''
         let productId: string | null = null
         
         console.log('🔍 Fetching product with slug:', slug)
