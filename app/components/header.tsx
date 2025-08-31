@@ -24,7 +24,18 @@ export default function Header() {
     totalItems = 0
   }
   
-  const { user, isAuthenticated, logout } = useAuth()
+  // Safe auth usage - handle case when AuthProvider is not available (during SSR)
+  let user = null
+  let isAuthenticated = false
+  let logout = () => {}
+  try {
+    const auth = useAuth()
+    user = auth?.user || null
+    isAuthenticated = auth?.isAuthenticated || false
+    logout = auth?.logout || (() => {})
+  } catch (error) {
+    // Auth provider not available (e.g., during SSR), use default values
+  }
 
   // Zavřít dropdown při kliknutí mimo
   useEffect(() => {
