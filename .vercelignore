@@ -1,0 +1,76 @@
+# Dependencies
+node_modules
+
+# Build outputs
+.next
+out
+dist
+build
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Backend folder
+backend/
+
+# Database files
+*.sql
+*.db
+*.sqlite
+
+# Documentation
+*.md
+README.md
+SETUP_INSTRUCTIONS.md
+FINAL_TEST_INSTRUCTIONS.md
+PRODUCTION_CLEANUP.md
+SECURITY_ANALYSIS.md
+MCP_TESTS_README.md
+
+# Test files
+test-runner.js
+run-mcp-tests.bat
+start-backend.bat
+playwright.config.ts
+
+# Setup files
+setup-database.js
+direct-supabase-setup.js
+quick-setup.sql
+database-setup.sql
+user_experience_schema.sql
+FINAL_SETUP.sql
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# IDE files
+.claude/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Large assets (if any)
+public/images/
+public/videos/
