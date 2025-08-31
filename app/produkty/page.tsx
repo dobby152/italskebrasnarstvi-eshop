@@ -1,6 +1,5 @@
 // Disable static generation for products page since it uses header with context providers
 export const dynamic = 'force-dynamic'
-export const runtime = 'edge'
 
 "use client"
 
@@ -9,8 +8,11 @@ import { Card } from "../../components/ui/card"
 import { Input } from "../../components/ui/input"
 import { Star, Heart, ShoppingCart, Filter, Grid, List, Search, X } from "lucide-react"
 import { useState, useEffect } from "react"
-import Header from "../../components/header"
+import dynamic from 'next/dynamic'
 import Link from "next/link"
+
+// Dynamically import Header to prevent SSR issues
+const Header = dynamic(() => import("../../components/header"), { ssr: false })
 import { useProducts, useCollections, useBrands } from "../../hooks/useProducts"
 import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "../../lib/api"
 import { createProductSlug } from "../../lib/utils"
