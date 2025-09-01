@@ -208,7 +208,7 @@ export default function ProduktyPage() {
                   {brandsLoading ? (
                     <div className="text-sm text-gray-500">Načítání...</div>
                   ) : brands ? (
-                    brands.map((brand) => (
+                    brands?.map((brand) => (
                       <label key={brand.id} className="flex items-center cursor-pointer group">
                         <input
                           type="checkbox"

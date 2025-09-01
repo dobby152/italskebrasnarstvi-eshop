@@ -218,7 +218,7 @@ export default function ProductFiltersComponent({
             </AccordionTrigger>
             <AccordionContent>
               <div className="space-y-3">
-                {brands.map(brand => (
+                {brands?.map(brand => (
                   <div key={brand} className="flex items-center space-x-2">
                     <Checkbox
                       id={`brand-${brand}`}

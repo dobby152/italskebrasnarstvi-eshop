@@ -100,3 +100,8 @@ E2E_*.md
 .supabase/
 
 .vercel
+
+# Ensure product images are included
+!public/1_*.jpg
+!public/muzi.webp
+!public/zeny.webp
