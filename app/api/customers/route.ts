@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '../../lib/supabase'
 
+// Order interface for type safety
+interface Order {
+  id: string
+  billing_email: string
+  total_amount: string
+  created_at: string
+  [key: string]: any
+}
+
 export async function GET(request: NextRequest) {
   try {
     console.log('🔍 API Route: GET /api/customers called')
@@ -31,7 +40,7 @@ export async function GET(request: NextRequest) {
       created_at: string
     }>()
 
-    orders?.forEach(order => {
+    orders?.forEach((order: Order) => {
       const email = order.billing_email
       if (!email) return
 
