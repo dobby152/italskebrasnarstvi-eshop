@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
       
       // Use images array if available
       if (product.images && Array.isArray(product.images) && product.images.length > 0) {
-        images = product.images.map((img: string) => {
+        images = product.images?.map((img: string) => {
           if (img.startsWith('/images/') || img.startsWith('http')) {
             return img
           }

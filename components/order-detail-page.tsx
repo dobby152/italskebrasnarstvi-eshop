@@ -371,7 +371,7 @@ export function OrderDetailPage({ orderId }: OrderDetailProps) {
                 <CardContent>
                   <ScrollArea className="h-96">
                     <div className="space-y-4">
-                      {order.events.map((event, index) => (
+                      {order.events?.map((event, index) => (
                         <div key={event.id} className="flex items-start space-x-3">
                           <div className="flex-shrink-0">
                             <div className={`w-2 h-2 rounded-full mt-2 ${
@@ -413,7 +413,7 @@ export function OrderDetailPage({ orderId }: OrderDetailProps) {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {order.fulfillments.map((fulfillment) => (
+                      {order.fulfillments?.map((fulfillment) => (
                         <div key={fulfillment.id} className="border rounded-lg p-4">
                           <div className="flex items-center justify-between mb-2">
                             <Badge className={getStatusColor(fulfillment.status, 'fulfillment')}>
@@ -523,7 +523,7 @@ export function OrderDetailPage({ orderId }: OrderDetailProps) {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {order.tags.map((tag, index) => (
+                  {order.tags?.map((tag, index) => (
                     <Badge key={index} variant="secondary">
                       {tag}
                     </Badge>
