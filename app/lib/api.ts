@@ -22,16 +22,16 @@ export const getImageUrl = (imagePath: string | undefined | null) => {
     return imagePath
   }
   
-  // If it already starts with /images/, return as is
-  if (imagePath.startsWith('/images/')) {
+  // If it already starts with /, return as is (direct public path)
+  if (imagePath.startsWith('/')) {
     return imagePath
   }
   
-  // Remove any leading slashes and 'images/' prefix to get just filename
-  const cleanPath = imagePath.replace(/^\/+|images\//g, '')
+  // Remove any 'images/' prefix to get just filename
+  const cleanPath = imagePath.replace(/^images\//g, '')
   
-  // Use the API route to handle image lookup and serving
-  return `/api/images/${cleanPath}`
+  // Return direct path to public folder
+  return `/${cleanPath}`
 };
 
 export const getProductDisplayName = (product: any) => {

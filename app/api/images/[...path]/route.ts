@@ -7,9 +7,8 @@ export async function GET(request: NextRequest, context: { params: Promise<{ pat
     
     console.log('Image API called:', imagePath)
     
-    // On Vercel, just redirect to static images path - Next.js will serve them
-    // If the image doesn't exist, Next.js will return 404
-    const imageUrl = `/images/${imagePath}`
+    // Images are directly in public folder, not in images subfolder
+    const imageUrl = `/${imagePath}`
     console.log('Redirecting to:', imageUrl)
     
     // Simply redirect to the static image URL - let Next.js handle serving
