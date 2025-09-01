@@ -11,60 +11,28 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search') || ''
     const collection = searchParams.get('collection') || ''
     const brand = searchParams.get('brand') || ''
-    const sortBy = searchParams.get('sortBy') || 'id'
+    const sortBy = searchParams.get('sortBy') || 'created_at'
     const sortOrder = searchParams.get('sortOrder') || 'desc'
     const priceMin = searchParams.get('priceMin')
     const priceMax = searchParams.get('priceMax')
     const inStock = searchParams.get('inStock')
     const tags = searchParams.get('tags')
 
+    console.log('Building query with params:', { page, limit, sortBy, sortOrder });
+
+    // Start with basic query first
     let query = supabase
       .from('products')
-      .select('*', { count: 'exact' })
+      .select('*')
+      .limit(limit)
 
-    // Apply filters
-    if (search) {
-      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%,sku.ilike.%${search}%`)
+    // Apply sorting if column exists  
+    if (['created_at', 'name', 'price'].includes(sortBy)) {
+      query = query.order(sortBy, { ascending: sortOrder === 'asc' })
     }
 
-    if (collection) {
-      const collectionId = parseInt(collection)
-      if (!isNaN(collectionId)) {
-        query = query.eq('collection_id', collectionId)
-      }
-    }
-
-    if (brand) {
-      const brandId = parseInt(brand)
-      if (!isNaN(brandId)) {
-        query = query.eq('brand_id', brandId)
-      }
-    }
-
-    if (priceMin && !isNaN(parseFloat(priceMin))) {
-      query = query.gte('price', parseFloat(priceMin))
-    }
-
-    if (priceMax && !isNaN(parseFloat(priceMax))) {
-      query = query.lte('price', parseFloat(priceMax))
-    }
-
-    if (inStock === 'true') {
-      query = query.gt('inventory_quantity', 0)
-    }
-
-    if (tags) {
-      query = query.contains('tags', [tags])
-    }
-
-    // Apply sorting
-    query = query.order(sortBy, { ascending: sortOrder === 'asc' })
-
-    // Apply pagination
-    const offset = (page - 1) * limit
-    query = query.range(offset, offset + limit - 1)
-
-    const { data: products, error, count } = await query
+    console.log('Executing simple products query...');
+    const { data: products, error } = await query
 
     if (error) {
       console.error('Supabase query error:', error)
@@ -117,13 +85,15 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    console.log(`Found ${products?.length || 0} products`);
+
     return NextResponse.json({
-      products: transformedProducts,
+      products: transformedProducts || [],
       pagination: {
-        total: count || 0,
+        total: products?.length || 0,
         page,
         limit,
-        pages: Math.ceil((count || 0) / limit)
+        pages: 1
       }
     })
 
