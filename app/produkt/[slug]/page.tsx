@@ -17,6 +17,9 @@ import { formatPrice, getImageUrl, getProductDisplayName, getProductDisplayColle
 import ProductVariantSelector from "../../components/product-variant-selector"
 import { useVariants } from "../../hooks/useVariants"
 import VariantImageGallery from "../../components/variant-image-gallery"
+import SmartColorVariantSelector from "../../components/smart-color-variant-selector"
+import SmartVariantImageGallery from "../../components/smart-variant-image-gallery"
+import { ProductVariant as SmartVariant, extractBaseSku, getVariantsForBaseSku } from "../../lib/smart-variants"
 import { useCart } from "../../context/cart-context"
 import { ProductVariant } from "../../lib/types/variants"
 
@@ -33,6 +36,11 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
   const [activeTab, setActiveTab] = useState("popis")
   const [selectedColorVariant, setSelectedColorVariant] = useState<any>(null)
   const lastFetchedSkuRef = useRef<string | null>(null)
+  
+  // Smart variant states
+  const [smartVariants, setSmartVariants] = useState<SmartVariant[]>([])
+  const [selectedSmartVariant, setSelectedSmartVariant] = useState<SmartVariant | null>(null)
+  const [allProducts, setAllProducts] = useState<any[]>([])
 
   // Fetch variant data when product is loaded
   useEffect(() => {
@@ -46,6 +54,42 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
         fetchVariantGroup(baseSku)
       }
     }
+  }, [product?.sku])
+
+  // Fetch smart variants
+  useEffect(() => {
+    const fetchSmartVariants = async () => {
+      if (!product?.sku) return
+
+      try {
+        console.log('🔍 Fetching smart variants for:', product.sku)
+        
+        const baseSku = extractBaseSku(product.sku)
+        const response = await fetch(`/api/variants?baseSku=${baseSku}`)
+        
+        if (response.ok) {
+          const data = await response.json()
+          console.log('📦 Smart variants data:', data)
+          
+          if (data.success && data.variants) {
+            setSmartVariants(data.variants)
+            
+            // Set current product as selected variant
+            const currentVariant = data.variants.find((v: SmartVariant) => v.sku === product.sku)
+            if (currentVariant) {
+              setSelectedSmartVariant(currentVariant)
+              console.log('✅ Set current variant:', currentVariant.colorName)
+            } else if (data.variants.length > 0) {
+              setSelectedSmartVariant(data.variants[0])
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching smart variants:', error)
+      }
+    }
+
+    fetchSmartVariants()
   }, [product?.sku])
 
   const handleAddToCart = () => {
@@ -163,8 +207,9 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
     )
   }
 
-  // Use selected variant price, color variant price, or fallback to product price
-  const displayPrice = selectedVariant ? selectedVariant.price : 
+  // Use selected smart variant price, variant price, color variant price, or fallback to product price
+  const displayPrice = selectedSmartVariant ? selectedSmartVariant.price :
+                       selectedVariant ? selectedVariant.price : 
                        selectedColorVariant ? selectedColorVariant.price : 
                        product.price
 
@@ -202,11 +247,20 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
       <div className="container mx-auto px-6 py-12">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Product Images */}
-          <VariantImageGallery
-            selectedVariant={selectedVariant}
-            baseImages={product.images || []}
-            productName={getProductDisplayName(product)}
-          />
+          {smartVariants.length > 1 ? (
+            <SmartVariantImageGallery
+              selectedVariant={selectedSmartVariant}
+              allVariants={smartVariants}
+              baseImages={product.images || []}
+              productName={getProductDisplayName(product)}
+            />
+          ) : (
+            <VariantImageGallery
+              selectedVariant={selectedVariant}
+              baseImages={product.images || []}
+              productName={getProductDisplayName(product)}
+            />
+          )}
 
           {/* Product Info */}
           <div className="space-y-8">
@@ -236,8 +290,22 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
               </div>
             )}
 
-            {/* Variant Selector */}
-            {variantGroup && variantGroup.variants.length > 1 && (
+            {/* Smart Color Variant Selector */}
+            {smartVariants.length > 1 && (
+              <div>
+                <SmartColorVariantSelector
+                  variants={smartVariants}
+                  selectedSku={selectedSmartVariant?.sku}
+                  onVariantChange={(variant) => {
+                    setSelectedSmartVariant(variant)
+                    console.log('🎨 Selected variant:', variant.colorName, variant.sku)
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Fallback to old Variant Selector */}
+            {smartVariants.length <= 1 && variantGroup && variantGroup.variants.length > 1 && (
               <div>
                 <ProductVariantSelector
                   variants={variantGroup.variants}
