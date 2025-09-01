@@ -67,7 +67,7 @@ export function AnalyticsPage() {
 
         <nav className="flex-1 px-2">
           <div className="space-y-1">
-            {sidebarItems.map((item) => (
+            {sidebarItems?.map((item) => (
               <Link key={item.label} href={item.href}>
                 <div
                   className={`flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors ${
@@ -95,7 +95,7 @@ export function AnalyticsPage() {
               Prodejní kanály
             </h3>
             <div className="space-y-1">
-              {salesChannels.map((channel) => (
+              {salesChannels?.map((channel) => (
                 <div
                   key={channel.label}
                   className="flex items-center gap-3 px-3 py-2 text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground rounded-md cursor-pointer transition-colors"
@@ -276,7 +276,7 @@ export function AnalyticsPage() {
                       paddingAngle={5}
                       dataKey="value"
                     >
-                      {topProductsData.map((entry, index) => (
+                      {topProductsData?.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
@@ -284,7 +284,7 @@ export function AnalyticsPage() {
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="space-y-2 mt-4">
-                  {topProductsData.map((product, index) => (
+                  {topProductsData?.map((product, index) => (
                     <div key={index} className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: product.color }} />
@@ -303,7 +303,7 @@ export function AnalyticsPage() {
                 <CardTitle className="text-lg font-semibold">Zdroje návštěvnosti</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {trafficSourcesData.map((source, index) => (
+                {trafficSourcesData?.map((source, index) => (
                   <div key={index} className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">{source.source}</span>

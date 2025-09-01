@@ -127,7 +127,7 @@ function CheckoutContent() {
 
           {/* Progress Steps */}
           <div className="flex items-center justify-between max-w-2xl">
-            {steps.map((step, index) => (
+            {steps?.map((step, index) => (
               <div key={step.number} className="flex items-center">
                 <div className="flex items-center">
                   <div

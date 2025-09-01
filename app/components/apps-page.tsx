@@ -191,7 +191,7 @@ export function AppsPage() {
 
           {/* Categories */}
           <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <Button
                 key={category.name}
                 variant={category.name === "Všechny" ? "default" : "outline"}
@@ -215,7 +215,7 @@ export function AppsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {installedApps.map((app) => (
+              {installedApps?.map((app) => (
                 <Card key={app.id} className="bg-card border-border">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -266,7 +266,7 @@ export function AppsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {recommendedApps.map((app) => (
+              {recommendedApps?.map((app) => (
                 <Card key={app.id} className="bg-card border-border relative">
                   {app.featured && (
                     <div className="absolute top-3 right-3">
