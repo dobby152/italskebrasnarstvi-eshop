@@ -115,7 +115,6 @@ export default function SmartColorVariantSelector({
                 </div>
                 
                 <Badge 
-                  size="sm"
                   variant={
                     getStockStatus(variant).status === 'in-stock' ? 'default' :
                     getStockStatus(variant).status === 'low-stock' ? 'secondary' :
