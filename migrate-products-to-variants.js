@@ -27,23 +27,28 @@ async function migrateProductsToVariants() {
     products.forEach(product => {
       if (!product.sku) return;
       
-      // Extract base SKU (everything before last hyphen and color/variant suffix)
-      let baseSku = product.sku;
+      // Extract base SKU - everything before the last hyphen (which is the color variant)
+      // Examples:
+      // - "CA1234-R" -> base: "CA1234", variant: "R" (Rose)
+      // - "BD5678W92-BLU" -> base: "BD5678W92", variant: "BLU" (Blue)
+      // - "AC5290BM-GR" -> base: "AC5290BM", variant: "GR" (Grey)
       
-      // Common patterns: 
-      // - "CA1234-BLK" -> "CA1234"
-      // - "CA1234-BLU-L" -> "CA1234" 
-      // - "BD5678W92-AZBE2" -> "BD5678W92"
+      const lastHyphenIndex = product.sku.lastIndexOf('-');
+      let baseSku, variantCode;
       
-      // Remove color codes and size indicators
-      baseSku = baseSku.replace(/-[A-Z]{2,5}2?$/, ''); // Remove color codes like -AZBE2, -BLK, -BLU
-      baseSku = baseSku.replace(/-[SMLXL]+$/, ''); // Remove sizes like -L, -XL, -SM
-      baseSku = baseSku.replace(/-\d+$/, ''); // Remove numeric suffixes
+      if (lastHyphenIndex > 0) {
+        baseSku = product.sku.substring(0, lastHyphenIndex);
+        variantCode = product.sku.substring(lastHyphenIndex + 1);
+      } else {
+        // No hyphen found, treat whole SKU as base
+        baseSku = product.sku;
+        variantCode = 'DEFAULT';
+      }
       
       if (!baseGroups.has(baseSku)) {
         baseGroups.set(baseSku, []);
       }
-      baseGroups.get(baseSku).push(product);
+      baseGroups.get(baseSku).push({...product, variantCode});
     });
 
     console.log(`Created ${baseGroups.size} base product groups\n`);
@@ -98,34 +103,47 @@ async function migrateProductsToVariants() {
         // Create variants for each product in group
         for (const product of groupProducts) {
           try {
-            // Extract color info from SKU
+            // Extract color info from variant code (end of SKU)
             let colorName = 'Default';
-            let colorCode = null;
+            let colorCode = product.variantCode || 'DEFAULT';
             let hexColor = '#CCCCCC';
             
-            const skuSuffix = product.sku.replace(baseSku, '').replace(/^-/, '');
-            if (skuSuffix) {
-              // Common color mappings
-              const colorMap = {
-                'BLK': { name: 'Black', hex: '#000000' },
-                'WHT': { name: 'White', hex: '#FFFFFF' },
-                'BLU': { name: 'Blue', hex: '#0066CC' },
-                'RED': { name: 'Red', hex: '#CC0000' },
-                'GRN': { name: 'Green', hex: '#00AA00' },
-                'GR': { name: 'Grey', hex: '#808080' },
-                'AZBE2': { name: 'Azure Blue', hex: '#4B9CD3' },
-                'BR': { name: 'Brown', hex: '#8B4513' },
-                'G': { name: 'Green', hex: '#00AA00' }
-              };
+            // Enhanced color mappings for Italian leather goods
+            const colorMap = {
+              // Basic colors
+              'BLK': { name: 'Černá', hex: '#000000' },
+              'WHT': { name: 'Bílá', hex: '#FFFFFF' },
+              'BLU': { name: 'Modrá', hex: '#1E40AF' },
+              'RED': { name: 'Červená', hex: '#DC2626' },
+              'GRN': { name: 'Zelená', hex: '#16A34A' },
+              'GR': { name: 'Šedá', hex: '#6B7280' },
+              'BR': { name: 'Hnědá', hex: '#92400E' },
               
-              colorCode = skuSuffix;
-              const colorInfo = colorMap[skuSuffix] || colorMap[skuSuffix.split('-')[0]];
-              if (colorInfo) {
-                colorName = colorInfo.name;
-                hexColor = colorInfo.hex;
-              } else {
-                colorName = skuSuffix.charAt(0).toUpperCase() + skuSuffix.slice(1).toLowerCase();
-              }
+              // Specific Italian leather colors
+              'R': { name: 'Růžová', hex: '#EC4899' },
+              'ROSE': { name: 'Růžová', hex: '#EC4899' },
+              'G': { name: 'Zelená', hex: '#16A34A' },
+              'AZBE2': { name: 'Azurová modrá', hex: '#3B82F6' },
+              'BI': { name: 'Bílá', hex: '#F8FAFC' },
+              'N': { name: 'Černá', hex: '#111827' },
+              'NERO': { name: 'Černá', hex: '#111827' },
+              'MARRONE': { name: 'Hnědá', hex: '#92400E' },
+              'BEI': { name: 'Béžová', hex: '#D4B896' },
+              'BEIGE': { name: 'Béžová', hex: '#D4B896' },
+              'CUOIO': { name: 'Kožená', hex: '#CD853F' },
+              'COGNAC': { name: 'Koňak', hex: '#8B4513' },
+              'TAN': { name: 'Tan', hex: '#D2691E' },
+              'CAMEL': { name: 'Velbloudí', hex: '#C19A6B' },
+              'DEFAULT': { name: 'Výchozí', hex: '#6B7280' }
+            };
+            
+            const colorInfo = colorMap[colorCode.toUpperCase()];
+            if (colorInfo) {
+              colorName = colorInfo.name;
+              hexColor = colorInfo.hex;
+            } else {
+              // Fallback: capitalize first letter
+              colorName = colorCode.charAt(0).toUpperCase() + colorCode.slice(1).toLowerCase();
             }
 
             // Create variant
