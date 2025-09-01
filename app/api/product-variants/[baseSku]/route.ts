@@ -7,20 +7,31 @@ export async function GET(
   try {
     const { baseSku } = await params
     
-    // Return empty variant group since we don't have variant system implemented yet
-    // This prevents 500 errors and allows product pages to load normally
-    const variantGroup = {
-      baseSku,
-      variants: [],
-      total: 0,
-      success: true
+    // Redirect to main variants API
+    const url = new URL('/api/variants', request.url)
+    url.searchParams.set('baseSku', baseSku)
+    
+    const response = await fetch(url.toString(), {
+      headers: request.headers
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Variants API error: ${response.statusText}`)
     }
     
-    return NextResponse.json(variantGroup)
+    const data = await response.json()
+    return NextResponse.json(data)
+    
   } catch (error) {
     console.error('Error in product-variants/[baseSku] route:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch variant group', success: false },
+      { 
+        baseSku: (await params).baseSku,
+        variants: [],
+        total: 0,
+        success: false,
+        error: 'Failed to fetch variant group'
+      },
       { status: 500 }
     )
   }
