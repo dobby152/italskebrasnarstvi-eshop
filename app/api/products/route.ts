@@ -68,6 +68,10 @@ export async function GET(request: NextRequest) {
           if (img.startsWith('/images/')) {
             return img
           }
+          // Handle api/ prefix
+          if (img.startsWith('api/')) {
+            return `/images/${img.substring(4)}`
+          }
           return `/images/${img}`
         })
       } else if (product.image_url && product.image_url.trim() !== '') {
@@ -79,6 +83,8 @@ export async function GET(request: NextRequest) {
           // Direct path to images - no processing needed
           if (imageUrl.startsWith('/images/')) {
             images = [imageUrl]
+          } else if (imageUrl.startsWith('api/')) {
+            images = [`/images/${imageUrl.substring(4)}`]
           } else {
             images = [`/images/${imageUrl}`]
           }
