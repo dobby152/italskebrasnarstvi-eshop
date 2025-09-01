@@ -65,7 +65,7 @@ export default function Header() {
                 <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                   <div className="p-6">
                     <div className="grid grid-cols-2 gap-6">
-                      {STATIC_CATEGORIES.men.map((category) => (
+                      {STATIC_CATEGORIES?.men?.map((category) => (
                         <div key={category.id} className="space-y-3">
                           <Link 
                             href={category.href} 
@@ -122,7 +122,7 @@ export default function Header() {
                 <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                   <div className="p-6">
                     <div className="grid grid-cols-2 gap-6">
-                      {STATIC_CATEGORIES.women.map((category) => (
+                      {STATIC_CATEGORIES?.women?.map((category) => (
                         <div key={category.id} className="space-y-3">
                           <Link 
                             href={category.href} 
@@ -366,7 +366,7 @@ export default function Header() {
                   Pánské
                 </div>
                 <div className="pl-4 space-y-3">
-                  {STATIC_CATEGORIES.men.map((category) => (
+                  {STATIC_CATEGORIES?.men?.map((category) => (
                     <div key={category.id}>
                       <Link 
                         href={category.href} 
@@ -398,7 +398,7 @@ export default function Header() {
                   Dámské
                 </div>
                 <div className="pl-4 space-y-3">
-                  {STATIC_CATEGORIES.women.map((category) => (
+                  {STATIC_CATEGORIES?.women?.map((category) => (
                     <div key={category.id}>
                       <Link 
                         href={category.href} 

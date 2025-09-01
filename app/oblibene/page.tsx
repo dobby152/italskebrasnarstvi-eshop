@@ -149,7 +149,7 @@ export default function FavoritesPage() {
                   <span className="font-semibold text-gray-900">Kategorie:</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {categories.map((category) => (
+                  {categories?.map((category) => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
@@ -181,7 +181,7 @@ export default function FavoritesPage() {
 
             {/* Products Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {sortedFavorites.map((product) => (
+              {sortedFavorites?.map((product) => (
                 <Card
                   key={product.id}
                   className="group bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-1"
@@ -241,7 +241,7 @@ export default function FavoritesPage() {
                     {/* Colors */}
                     <div className="flex items-center gap-2 mb-6">
                       <span className="text-sm text-gray-600 mr-2">Barvy:</span>
-                      {product.colors.map((color, colorIndex) => (
+                      {product.colors?.map((color, colorIndex) => (
                         <div
                           key={colorIndex}
                           className="w-5 h-5 rounded-full border-2 border-gray-300 shadow-sm"

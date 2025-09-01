@@ -50,7 +50,7 @@ export default function CollectionsSection() {
                   <h3 className="text-xl font-bold mb-1">{collection.name}</h3>
                   <p className="text-white/90 text-sm mb-3">{collection.description}</p>
                   <div className="flex flex-wrap gap-1">
-                    {collection.tags.map((tag, tagIndex) => (
+                    {collection.tags?.map((tag, tagIndex) => (
                       <span key={tagIndex} className="px-2 py-1 bg-white/20 backdrop-blur-sm text-xs rounded-full text-white/90">
                         {tag}
                       </span>

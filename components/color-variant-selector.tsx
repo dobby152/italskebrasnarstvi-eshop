@@ -43,7 +43,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
         
         if (data.variants && data.variants.length > 1) {
           // Convert new API format to ColorVariant format
-          const colorVariants = data.variants.map((variant: any) => ({
+          const colorVariants = data.variants?.map((variant: any) => ({
             id: variant.id,
             sku: variant.sku,
             name: variant.name,
@@ -51,7 +51,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
             colorCode: variant.attributes?.color?.value || variant.colorCode,
             colorName: variant.attributes?.color?.displayValue || variant.colorName,
             hexColor: variant.attributes?.color?.hexColor || variant.hexColor,
-            images: variant.images ? variant.images.map((img: any) => img.image_url) : [],
+            images: variant.images ? variant.images?.map((img: any) => img.image_url) : [],
             availability: variant.availability,
             stock: variant.inventory_quantity
           }))
