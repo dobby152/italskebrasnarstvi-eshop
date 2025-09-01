@@ -42,9 +42,9 @@ export async function GET(request: NextRequest) {
       customer: order.customer_name || order.customer_email || 'Unknown',
       date: order.created_at,
       status: order.status || 'pending',
-      statusLabel: getStatusLabel(order.status),
+      statusLabel: getStatusLabel(order.status || 'pending'),
       payment: order.payment_status || 'pending',
-      paymentLabel: getPaymentLabel(order.payment_status),
+      paymentLabel: getPaymentLabel(order.payment_status || 'pending'),
       total: (order.total || 0).toLocaleString('cs-CZ') + ' Kč',
       items: Array.isArray(order.line_items) ? order.line_items.length : 0
     })) || []
@@ -52,9 +52,9 @@ export async function GET(request: NextRequest) {
     // Calculate stats
     const stats = {
       totalOrders: transformedOrders.length,
-      fulfilled: transformedOrders.filter(order => order.status === 'fulfilled').length,
-      unfulfilled: transformedOrders.filter(order => order.status === 'unfulfilled' || order.status === 'pending').length,
-      partiallyFulfilled: transformedOrders.filter(order => order.status === 'partially_fulfilled').length
+      fulfilled: transformedOrders.filter((order: any) => order.status === 'fulfilled').length,
+      unfulfilled: transformedOrders.filter((order: any) => order.status === 'unfulfilled' || order.status === 'pending').length,
+      partiallyFulfilled: transformedOrders.filter((order: any) => order.status === 'partially_fulfilled').length
     }
 
     return NextResponse.json({
