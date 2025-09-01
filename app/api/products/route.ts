@@ -1,6 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/app/lib/supabase'
 
+const SUPABASE_STORAGE_URL = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
+
+function getSupabaseImageUrl(imagePath: string): string {
+  if (!imagePath || typeof imagePath !== 'string') {
+    return '/placeholder.svg'
+  }
+  
+  // If it's already a full URL, return as is
+  if (imagePath.startsWith('http')) {
+    return imagePath
+  }
+  
+  // If it's already a direct path, return as is
+  if (imagePath.startsWith('/images/') || imagePath.startsWith('/placeholder')) {
+    return imagePath
+  }
+  
+  // Convert database folder-relative path to Supabase URL with WebP
+  // Database: "folder-name/image.jpg" → Supabase: "folder-name/image.webp"
+  if (imagePath.includes('/') && !imagePath.startsWith('/')) {
+    const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp')
+    return `${SUPABASE_STORAGE_URL}/${webpPath}`
+  }
+  
+  // If it's just a folder name, construct path to first image
+  // Pattern: folder-name → folder-name/1_FOLDER_NAME_1.webp
+  const folderName = imagePath
+  const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.webp`
+  return `${SUPABASE_STORAGE_URL}/${folderName}/${imageFileName}`
+}
+
 export async function GET(request: NextRequest) {
   try {
     console.log('API /products called');
@@ -69,22 +100,8 @@ export async function GET(request: NextRequest) {
             return img
           }
           
-          // The database contains folder-relative paths like "folder-name/image.jpg"
-          // Convert to full path /images/folder-relative-path
-          if (img.includes('/') && !img.startsWith('/')) {
-            return `/images/${img}`
-          }
-          
-          // Handle api/ prefix
-          if (img.startsWith('api/')) {
-            return `/images/${img.substring(4)}`
-          }
-          
-          // If it's just a folder name, try to construct path to first image
-          // Pattern: /images/folder-name/1_FOLDER_NAME_1.jpg
-          const folderName = img
-          const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.jpg`
-          return `/images/${folderName}/${imageFileName}`
+          // Supabase Storage integration
+          return getSupabaseImageUrl(img)
         })
       } else if (product.image_url && product.image_url.trim() !== '') {
         let imageUrl = product.image_url
@@ -95,16 +112,9 @@ export async function GET(request: NextRequest) {
           // Direct path to images - no processing needed
           if (imageUrl.startsWith('/images/')) {
             images = [imageUrl]
-          } else if (imageUrl.startsWith('api/')) {
-            images = [`/images/${imageUrl.substring(4)}`]
-          } else if (imageUrl.includes('/') && !imageUrl.startsWith('/')) {
-            // Database contains folder-relative path
-            images = [`/images/${imageUrl}`]
           } else {
-            // If it's a folder name, try to construct path to first image
-            const folderName = imageUrl
-            const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.jpg`
-            images = [`/images/${folderName}/${imageFileName}`]
+            // Supabase Storage integration  
+            images = [getSupabaseImageUrl(imageUrl)]
           }
         }
       }

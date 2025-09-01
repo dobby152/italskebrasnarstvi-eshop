@@ -71,6 +71,6 @@ tsconfig.tsbuildinfo
 *.tmp
 *.temp
 
-# Large assets (commented out - needed for production)
-# public/images/
+# Large assets - too big for Vercel free (2.4GB vs 100MB limit)
+public/images/
 # public/videos/
