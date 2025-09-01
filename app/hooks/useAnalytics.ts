@@ -39,8 +39,8 @@ export function useAnalytics(params: AnalyticsParams = {}) {
         
         // Fetch real analytics data from multiple sources
         const [statsResponse, ordersResponse] = await Promise.all([
-          fetch('http://localhost:3001/api/dashboard-stats'),
-          fetch('http://localhost:3001/api/orders')
+          fetch('/api/dashboard-stats'),
+          fetch('/api/orders')
         ])
         
         if (!statsResponse.ok || !ordersResponse.ok) {

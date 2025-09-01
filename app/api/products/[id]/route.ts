@@ -33,7 +33,7 @@ export async function GET(
       )
     }
 
-    // Transform product with image processing
+    // Transform product with image processing (same logic as products route)
     let images = []
     if (product.images && Array.isArray(product.images) && product.images.length > 0) {
       images = product.images.map((img: string) => {
@@ -44,7 +44,23 @@ export async function GET(
         if (img.startsWith('/images/')) {
           return img
         }
-        return `/images/${img}`
+        
+        // The database contains folder-relative paths like "folder-name/image.jpg"
+        // Convert to full path /images/folder-relative-path
+        if (img.includes('/') && !img.startsWith('/')) {
+          return `/images/${img}`
+        }
+        
+        // Handle api/ prefix
+        if (img.startsWith('api/')) {
+          return `/images/${img.substring(4)}`
+        }
+        
+        // If it's just a folder name, try to construct path to first image
+        // Pattern: /images/folder-name/1_FOLDER_NAME_1.jpg
+        const folderName = img
+        const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.jpg`
+        return `/images/${folderName}/${imageFileName}`
       })
     } else if (product.image_url && product.image_url.trim() !== '') {
       let imageUrl = product.image_url
@@ -54,8 +70,16 @@ export async function GET(
         // Direct path to images - no processing needed
         if (imageUrl.startsWith('/images/')) {
           images = [imageUrl]
-        } else {
+        } else if (imageUrl.startsWith('api/')) {
+          images = [`/images/${imageUrl.substring(4)}`]
+        } else if (imageUrl.includes('/') && !imageUrl.startsWith('/')) {
+          // Database contains folder-relative path
           images = [`/images/${imageUrl}`]
+        } else {
+          // If it's a folder name, try to construct path to first image
+          const folderName = imageUrl
+          const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.jpg`
+          images = [`/images/${folderName}/${imageFileName}`]
         }
       }
     }
@@ -64,6 +88,8 @@ export async function GET(
       ...product,
       images,
       image_url: images[0] || null,
+      brand: product.normalized_brand || null,
+      collection: product.normalized_collection || null,
       hasVariants: false
     }
 

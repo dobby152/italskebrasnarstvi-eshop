@@ -1,0 +1,63 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { supabase } from '@/app/lib/supabase'
+
+export async function GET(request: NextRequest) {
+  try {
+    // Get total revenue from orders
+    const { data: orders, error: ordersError } = await supabase
+      .from('orders')
+      .select('total')
+
+    if (ordersError) {
+      console.error('Error fetching orders:', ordersError)
+    }
+
+    // Get total products
+    const { count: productsCount, error: productsError } = await supabase
+      .from('products')
+      .select('*', { count: 'exact', head: true })
+
+    if (productsError) {
+      console.error('Error fetching products count:', productsError)
+    }
+
+    // Get total customers (users with orders)
+    const { count: customersCount, error: customersError } = await supabase
+      .from('orders')
+      .select('customer_email', { count: 'exact', head: true })
+
+    if (customersError) {
+      console.error('Error fetching customers count:', customersError)
+    }
+
+    // Calculate stats
+    const totalRevenue = orders?.reduce((sum, order) => sum + (order.total || 0), 0) || 0
+    const totalOrders = orders?.length || 0
+    const totalProducts = productsCount || 0
+    const totalCustomers = customersCount || 0
+
+    // Mock growth data (in real app, calculate from historical data)
+    const revenueGrowth = 12.5 // 12.5% growth
+    const ordersGrowth = 8 // 8 new orders today
+    const customersGrowth = 15.2 // 15.2% growth
+    const productsGrowth = 5 // 5 new products
+
+    return NextResponse.json({
+      totalRevenue,
+      totalOrders,
+      totalCustomers,
+      totalProducts,
+      revenueGrowth,
+      ordersGrowth,
+      customersGrowth,
+      productsGrowth
+    })
+
+  } catch (error) {
+    console.error('API Route Error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' }, 
+      { status: 500 }
+    )
+  }
+}

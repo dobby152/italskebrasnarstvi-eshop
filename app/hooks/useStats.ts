@@ -20,7 +20,7 @@ export function useStats() {
     const fetchStats = async () => {
       try {
         setIsLoading(true)
-        const response = await fetch('http://localhost:3001/api/dashboard-stats')
+        const response = await fetch('/api/dashboard-stats')
         if (!response.ok) {
           throw new Error('Failed to fetch stats')
         }
