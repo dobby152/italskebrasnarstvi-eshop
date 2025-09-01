@@ -52,15 +52,18 @@ export default function Header() {
           </Link>
 
           <div className="hidden lg:flex items-center space-x-8">
-            {/* Pánské dropdown */}
-            <div className="relative group">
-              <button
-                className="flex items-center text-gray-700 hover:text-black transition-colors font-medium"
-                onClick={() => setDropdownOpen(dropdownOpen === 'men' ? null : 'men')}
-              >
-                Pánské
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
+            <Link href="/produkty" className="text-gray-700 hover:text-black transition-colors font-medium">
+              PRODUKTY
+            </Link>
+            <Link href="/kolekce" className="text-gray-700 hover:text-black transition-colors font-medium">
+              KOLEKCE
+            </Link>
+            <Link href="/o-nas" className="text-gray-700 hover:text-black transition-colors font-medium">
+              O NÁS
+            </Link>
+            <Link href="/kontakt" className="text-gray-700 hover:text-black transition-colors font-medium">
+              KONTAKT
+            </Link>
               {dropdownOpen === 'men' && (
                 <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                   <div className="p-6">
@@ -109,13 +112,13 @@ export default function Header() {
               )}
             </div>
 
-            {/* Dámské dropdown */}
+            {/* DÁMSKÉ dropdown */}
             <div className="relative group">
               <button
                 className="flex items-center text-gray-700 hover:text-black transition-colors font-medium"
                 onClick={() => setDropdownOpen(dropdownOpen === 'women' ? null : 'women')}
               >
-                Dámské
+                DÁMSKÉ
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               {dropdownOpen === 'women' && (
@@ -360,10 +363,10 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden pb-4">
             <div className="space-y-4">
-              {/* Pánské section */}
+              {/* PÁNSKÉ section */}
               <div className="space-y-2">
                 <div className="font-medium text-gray-900 border-b border-gray-200 pb-2">
-                  Pánské
+                  PÁNSKÉ
                 </div>
                 <div className="pl-4 space-y-3">
                   {STATIC_CATEGORIES?.men?.map((category) => (
@@ -392,10 +395,10 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Dámské section */}
+              {/* DÁMSKÉ section */}
               <div className="space-y-2">
                 <div className="font-medium text-gray-900 border-b border-gray-200 pb-2">
-                  Dámské
+                  DÁMSKÉ
                 </div>
                 <div className="pl-4 space-y-3">
                   {STATIC_CATEGORIES?.women?.map((category) => (
