@@ -505,7 +505,7 @@ export function ProductsPage() {
                                   <div className="h-14 w-14 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0 border">
                                     {product.image_url || product.images?.[0] ? (
                                       <img
-                                        src={product.image_url || (product.images?.[0] ? getImageUrl(product.images[0]) : '')}
+                                        src={(product.image_url || (product.images?.[0] ? getImageUrl(product.images[0]) : '')) || '/placeholder.jpg'}
                                         alt={displayName}
                                         className="h-full w-full object-cover object-center"
                                         onError={(e) => {
