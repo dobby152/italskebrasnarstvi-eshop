@@ -93,7 +93,7 @@ export default function ProductSection() {
               className="flex overflow-x-auto gap-6 pb-4 scrollbar-hide" 
               style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
             >
-              {products.map((product) => {
+              {products?.map((product) => {
                 const mainImage = product.images?.[0];
                 const imageUrl = mainImage ? getImageUrl(mainImage) : '/placeholder.jpg';
                 const displayName = getProductDisplayName(product);

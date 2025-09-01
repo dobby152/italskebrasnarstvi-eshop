@@ -14,15 +14,16 @@ export const getImageUrl = (imagePath: string | undefined | null) => {
     return imagePath
   }
   
-  // If imagePath is null/undefined, return null
+  // If imagePath is null/undefined, return placeholder
   if (!imagePath) {
-    return null
+    return '/placeholder.svg'
   }
   
   // Remove any leading slashes and 'images/' prefix
   const cleanPath = imagePath.replace(/^\/+|images\//g, '')
   
-  // Return the full path
+  // For now, return the path as-is. The actual file validation would need to be done server-side.
+  // If image doesn't exist, the img onError handler will fallback to placeholder
   return `/images/${cleanPath}`
 };
 
