@@ -8,14 +8,19 @@ export const formatPrice = (price: number) => {
 };
 
 // Existing functions
-export const getImageUrl = (imagePath: string) => {
+export const getImageUrl = (imagePath: string | undefined | null) => {
   // If it's already a full URL, return as is
   if (imagePath && imagePath.startsWith('http')) {
     return imagePath
   }
   
+  // If imagePath is null/undefined, return null
+  if (!imagePath) {
+    return null
+  }
+  
   // Remove any leading slashes and 'images/' prefix
-  const cleanPath = imagePath ? imagePath.replace(/^\/+|images\//g, '') : ''
+  const cleanPath = imagePath.replace(/^\/+|images\//g, '')
   
   // Return the full path
   return `/images/${cleanPath}`

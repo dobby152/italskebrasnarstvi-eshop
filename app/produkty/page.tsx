@@ -397,7 +397,7 @@ export default function ProduktyPage() {
                   >
                     <div className={`relative overflow-hidden ${viewMode === "list" ? "w-48 flex-shrink-0" : ""}`}>
                       <img
-                        src={product.image_url ? getImageUrl(product.image_url) : '/placeholder.svg'}
+                        src={getImageUrl(product.image_url || '') || '/placeholder.svg'}
                         alt={getProductDisplayName(product)}
                         className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
                           viewMode === "list" ? "w-full h-48" : "w-full h-[300px]"
