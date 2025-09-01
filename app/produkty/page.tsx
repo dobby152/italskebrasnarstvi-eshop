@@ -269,7 +269,7 @@ export default function ProduktyPage() {
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
               <div>
                 <p className="text-gray-600 text-lg">
-                  Zobrazeno <span className="font-semibold">{products.length}</span> z{" "}
+                  Zobrazeno <span className="font-semibold">{products?.length || 0}</span> z{" "}
                   <span className="font-semibold">{total}</span> produktů
                 </p>
                 {searchQuery && (
@@ -377,7 +377,7 @@ export default function ProduktyPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Chyba při načítání produktů</h3>
                 <p className="text-gray-600 mb-8">{productsError}</p>
               </div>
-            ) : sortedProducts.length === 0 ? (
+            ) : (!sortedProducts || sortedProducts.length === 0) ? (
               <div className="text-center py-20">
                 <div className="text-6xl mb-4">🔍</div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Žádné produkty nenalezeny</h3>
@@ -388,7 +388,7 @@ export default function ProduktyPage() {
               </div>
             ) : (
               <div className={viewMode === "grid" ? "grid md:grid-cols-2 xl:grid-cols-3 gap-8" : "space-y-6"}>
-                {sortedProducts.map((product) => (
+                {sortedProducts?.map((product) => (
                   <Card
                     key={product.id}
                     className={`group bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-1 ${
@@ -397,7 +397,7 @@ export default function ProduktyPage() {
                   >
                     <div className={`relative overflow-hidden ${viewMode === "list" ? "w-48 flex-shrink-0" : ""}`}>
                       <img
-                        src={product.image_url || '/placeholder.svg'}
+                        src={getImageUrl(product.image_url) || '/placeholder.svg'}
                         alt={getProductDisplayName(product)}
                         className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
                           viewMode === "list" ? "w-full h-48" : "w-full h-[300px]"
