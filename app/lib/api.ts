@@ -11,17 +11,21 @@ export const formatPrice = (price: number) => {
 };
 
 // Existing functions
-export const getImageUrl = (imagePath: string) => {
+export const getImageUrl = (imagePath: string | undefined | null) => {
+  if (!imagePath) {
+    return null
+  }
+  
   // If it's already a full URL, return as is
   if (imagePath && imagePath.startsWith('http')) {
     return imagePath
   }
   
-  // Remove any leading slashes and 'images/' prefix
-  const cleanPath = imagePath ? imagePath.replace(/^\/+|images\//g, '') : ''
+  // Remove any leading slashes and 'images/' prefix to get just filename
+  const cleanPath = imagePath.replace(/^\/+|images\//g, '')
   
-  // Return the full path
-  return `/images/${cleanPath}`
+  // Use the API route to handle image lookup and serving
+  return `/api/images/${cleanPath}`
 };
 
 export const getProductDisplayName = (product: any) => {
@@ -65,7 +69,7 @@ export const transformProduct = (product: any) => {
     description: getProductDisplayDescription(product),
     image: product.image_url || (product.images?.[0] ? getImageUrl(product.images[0]) : null),
     mainImage: product.image_url || (product.images?.[0] ? getImageUrl(product.images[0]) : null),
-    images: product.images ? product.images.map((image: any) => getImageUrl(image)) : [],
+    images: product.images ? product.images?.map((image: any) => getImageUrl(image)) : [],
     tags: product.tags,
     availability: product.stock > 0 ? 'in_stock' : 'out_of_stock',
     price: product.price || 0,
