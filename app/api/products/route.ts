@@ -40,6 +40,8 @@ export async function GET(request: NextRequest) {
       }, { status: 500 })
     }
 
+    console.log(`Found ${products?.length || 0} products, processing images...`);
+
     // Transform products with image processing
     const transformedProducts = (products || []).map((product: any) => {
       let images = []
@@ -81,7 +83,7 @@ export async function GET(request: NextRequest) {
       }
     })
 
-    console.log(`Found ${products?.length || 0} products`);
+    console.log(`Transformed ${transformedProducts?.length || 0} products with API image URLs`);
 
     return NextResponse.json({
       products: transformedProducts || [],
