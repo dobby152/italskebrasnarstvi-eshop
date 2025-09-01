@@ -5,34 +5,30 @@ export async function GET(request: NextRequest) {
   try {
     console.log('API /products called');
     
+    // First test Supabase connection
+    try {
+      const { data: testConnection } = await supabase.auth.getSession()
+      console.log('Supabase connection test successful');
+    } catch (connError) {
+      console.error('Supabase connection failed:', connError);
+      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    }
+    
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
-    const limit = parseInt(searchParams.get('limit') || '20')
-    const search = searchParams.get('search') || ''
-    const collection = searchParams.get('collection') || ''
-    const brand = searchParams.get('brand') || ''
-    const sortBy = searchParams.get('sortBy') || 'created_at'
-    const sortOrder = searchParams.get('sortOrder') || 'desc'
-    const priceMin = searchParams.get('priceMin')
-    const priceMax = searchParams.get('priceMax')
-    const inStock = searchParams.get('inStock')
-    const tags = searchParams.get('tags')
+    const limit = parseInt(searchParams.get('limit') || '12')
+    const sortBy = searchParams.get('sortBy') || 'name'
+    const sortOrder = searchParams.get('sortOrder') || 'asc'
 
-    console.log('Building query with params:', { page, limit, sortBy, sortOrder });
+    console.log('Query params:', { page, limit, sortBy, sortOrder });
 
-    // Start with basic query first
-    let query = supabase
+    // Very basic query to test table access
+    console.log('Testing table access...');
+    const { data: products, error } = await supabase
       .from('products')
-      .select('*')
+      .select('id, name, price, image_url, images, description, sku')
+      .order('name', { ascending: true })
       .limit(limit)
-
-    // Apply sorting if column exists  
-    if (['created_at', 'name', 'price'].includes(sortBy)) {
-      query = query.order(sortBy, { ascending: sortOrder === 'asc' })
-    }
-
-    console.log('Executing simple products query...');
-    const { data: products, error } = await query
 
     if (error) {
       console.error('Supabase query error:', error)
