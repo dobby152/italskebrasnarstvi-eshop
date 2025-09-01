@@ -7,15 +7,21 @@ export function cn(...inputs: ClassValue[]) {
 
 // Extract product ID from slug (format: product-name-ID)
 export function extractIdFromSlug(slug: string): string | null {
+  console.log('🔍 Extracting ID from slug:', slug)
   const parts = slug.split('-')
+  console.log('📋 Slug parts:', parts)
+  
   if (parts.length > 0) {
     const lastPart = parts[parts.length - 1]
+    console.log('📋 Last part:', lastPart)
+    
     if (lastPart && /^\d+$/.test(lastPart)) {
+      console.log('✅ Valid ID found:', lastPart)
       return lastPart
     }
   }
   // If no numeric ID found, log for debugging
-  console.warn('No valid ID found in slug:', slug)
+  console.warn('❌ No valid ID found in slug:', slug)
   return null
 }
 

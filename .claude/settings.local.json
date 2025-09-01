@@ -65,7 +65,16 @@
       "Bash(git merge:*)",
       "Bash(PORT=3005 npm run dev)",
       "Bash(npx vercel logs:*)",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(PORT=3001 npm run dev)",
+      "Bash(PORT=3009 npm run dev)",
+      "WebFetch(domain:italske-brasnarstvi-eshop.vercel.app)",
+      "WebFetch(domain:italskebrasnarstvi-eshop-q3hug89id-frantiseks-projects-0ba688b4.vercel.app)",
+      "WebFetch(domain:italskebrasnarstvi-eshop-3ts124dlh-frantiseks-projects-0ba688b4.vercel.app)",
+      "Bash(dir /s)",
+      "WebFetch(domain:italskebrasnarstvi-eshop.vercel.app)",
+      "WebFetch(domain:italskebrasnarstvi-eshop-nu.vercel.app)",
+      "WebFetch(domain:dbnfkzctensbpktgbsgn.supabase.co)"
     ],
     "deny": [],
     "additionalDirectories": [

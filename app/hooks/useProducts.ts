@@ -155,7 +155,8 @@ export function useProduct(slug: string) {
             setProduct(productData)
             return
           } else {
-            console.warn('⚠️ Product not found by extracted ID:', response.status)
+            const errorText = await response.text()
+            console.warn('⚠️ Product not found by extracted ID:', response.status, errorText)
           }
         }
         
