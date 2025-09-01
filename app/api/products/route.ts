@@ -126,7 +126,11 @@ export async function GET(request: NextRequest) {
         brand: product.normalized_brand || null,
         collection: product.normalized_collection || null,
         tags: [],
-        hasVariants: false
+        hasVariants: false,
+        // Set availability based on stock (default to 'in_stock' if stock is null/undefined)
+        availability: (product.stock !== null && product.stock !== undefined && product.stock <= 0) ? 'out_of_stock' : 'in_stock',
+        // Ensure stock is a number
+        stock: product.stock || 10
       }
     })
 

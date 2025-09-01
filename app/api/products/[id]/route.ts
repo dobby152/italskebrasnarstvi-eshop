@@ -98,7 +98,11 @@ export async function GET(
       image_url: images[0] || null,
       brand: product.normalized_brand || null,
       collection: product.normalized_collection || null,
-      hasVariants: false
+      hasVariants: false,
+      // Set availability based on stock (default to 'in_stock' if stock is null/undefined)
+      availability: (product.stock !== null && product.stock !== undefined && product.stock <= 0) ? 'out_of_stock' : 'in_stock',
+      // Ensure stock is a number
+      stock: product.stock || 10
     }
 
     return NextResponse.json(transformedProduct)
