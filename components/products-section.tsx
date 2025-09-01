@@ -271,7 +271,7 @@ export default function ProductsSection() {
                         />
                       ) : product.images && product.images.length > 0 ? (
                         <img
-                          src={getImageUrl(product.images[0])}
+                          src={getImageUrl(product.images[0]) || '/placeholder.jpg'}
                           alt={product.name || 'Produkt'}
                           className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
                             viewMode === "list" ? "w-full h-full" : "w-full h-[250px]"
