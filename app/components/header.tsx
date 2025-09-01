@@ -1,30 +1,27 @@
 "use client"
 
 import { Button } from "./ui/button"
-import { Search, User, Heart, ShoppingCart, Menu, X, ChevronDown, LogOut } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
+import { Search, User, Heart, ShoppingCart, Menu, X } from "lucide-react"
+import { useState } from "react"
 import Link from "next/link"
-import { STATIC_CATEGORIES, NavigationCategory } from "../lib/types"
 import { useCart } from "../context/cart-context"
 import { useAuth } from "../contexts/auth-context"
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
-  const headerRef = useRef<HTMLElement>(null)
+  const [searchQuery, setSearchQuery] = useState("")
   
-  // Safe cart usage - handle case when CartProvider is not available (during SSR)
+  // Safe cart usage
   let totalItems = 0
   try {
     const cart = useCart()
     totalItems = cart?.totalItems || 0
   } catch (error) {
-    // Cart provider not available (e.g., during SSR), use default value
     totalItems = 0
   }
   
-  // Safe auth usage - handle case when AuthProvider is not available (during SSR)
+  // Safe auth usage
   let user = null
   let isAuthenticated = false
   let logout = () => {}
@@ -34,480 +31,205 @@ export default function Header() {
     isAuthenticated = auth?.isAuthenticated || false
     logout = auth?.logout || (() => {})
   } catch (error) {
-    // Auth provider not available (e.g., during SSR), use default values
+    // Auth provider not available
   }
 
-  // Zavřít dropdown při kliknutí mimo
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setDropdownOpen(null)
-      }
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      window.location.href = `/produkty?search=${encodeURIComponent(searchQuery.trim())}`
     }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+  }
 
   return (
-    <nav ref={headerRef} className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto px-6">
-        {/* Top bar */}
-        <div className="flex items-center justify-center py-2 text-sm text-gray-600 border-b border-gray-100">
-          <div className="flex items-center space-x-6">
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+      <div className="container mx-auto px-4">
+        {/* Compact top bar */}
+        <div className="hidden md:flex items-center justify-center py-1 text-xs text-gray-600 border-b border-gray-100">
+          <div className="flex items-center space-x-4">
             <span>📞 +420 774 977 971</span>
             <span>🚚 Doprava zdarma nad 2.500 Kč</span>
-            <span>🇨🇿 Český zákaznický servis</span>
-            <span>💰 Garance nejlepší ceny</span>
           </div>
         </div>
 
         {/* Main navigation */}
-        <div className="flex items-center justify-between py-4">
-          <Link href="/" className="text-2xl font-black tracking-tight">
+        <div className="flex items-center justify-between py-3">
+          {/* Logo */}
+          <Link href="/" className="text-xl font-black tracking-tight">
             <span className="text-gray-900">italske</span>
             <span className="text-black">Brasnarstvi</span>
             <span className="text-gray-400 text-sm font-normal">.cz</span>
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-8">
-            {/* Pánské dropdown */}
-            <div className="relative group">
-              <button
-                className="flex items-center text-gray-700 hover:text-black transition-colors font-medium"
-                onClick={() => setDropdownOpen(dropdownOpen === 'men' ? null : 'men')}
-              >
-                Pánské
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              {dropdownOpen === 'men' && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="p-6">
-                    <div className="grid grid-cols-2 gap-6">
-                      {STATIC_CATEGORIES?.men?.map((category) => (
-                        <div key={category.id} className="space-y-3">
-                          <Link 
-                            href={category.href} 
-                            className="block text-sm font-semibold text-gray-900 hover:text-black transition-colors"
-                            onClick={() => setDropdownOpen(null)}
-                          >
-                            {category.name}
-                          </Link>
-                          <div className="space-y-2">
-                            {category.children?.map((subcategory) => (
-                              <Link
-                                key={subcategory.id}
-                                href={subcategory.href}
-                                className="block text-xs text-gray-600 hover:text-black transition-colors pl-2"
-                                onClick={() => setDropdownOpen(null)}
-                              >
-                                {subcategory.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <div className="text-xs text-gray-500 mb-2">Vlastnosti:</div>
-                      <div className="flex flex-wrap gap-2">
-                        {STATIC_CATEGORIES.men.flatMap(cat => cat.features || []).map((feature) => (
-                          <Link
-                            key={feature.id}
-                            href={feature.href}
-                            className="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-600 hover:bg-gray-200 transition-colors"
-                            onClick={() => setDropdownOpen(null)}
-                          >
-                            {feature.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+          {/* Desktop navigation */}
+          <div className="hidden lg:flex items-center space-x-6">
+            <Link href="/produkty?collection=pánské" className="text-gray-700 hover:text-black transition-colors font-medium">
+              Pánské
+            </Link>
+            <Link href="/produkty?collection=dámské" className="text-gray-700 hover:text-black transition-colors font-medium">
+              Dámské
+            </Link>
+            <Link href="/produkty" className="text-gray-700 hover:text-black transition-colors font-medium">
+              Všechny produkty
+            </Link>
 
-            {/* Dámské dropdown */}
-            <div className="relative group">
-              <button
-                className="flex items-center text-gray-700 hover:text-black transition-colors font-medium"
-                onClick={() => setDropdownOpen(dropdownOpen === 'women' ? null : 'women')}
+            {/* Search */}
+            {!searchOpen ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSearchOpen(true)}
+                className="text-gray-700 hover:text-black p-2"
               >
-                Dámské
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              {dropdownOpen === 'women' && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="p-6">
-                    <div className="grid grid-cols-2 gap-6">
-                      {STATIC_CATEGORIES?.women?.map((category) => (
-                        <div key={category.id} className="space-y-3">
-                          <Link 
-                            href={category.href} 
-                            className="block text-sm font-semibold text-gray-900 hover:text-black transition-colors"
-                            onClick={() => setDropdownOpen(null)}
-                          >
-                            {category.name}
-                          </Link>
-                          <div className="space-y-2">
-                            {category.children?.map((subcategory) => (
-                              <Link
-                                key={subcategory.id}
-                                href={subcategory.href}
-                                className="block text-xs text-gray-600 hover:text-black transition-colors pl-2"
-                                onClick={() => setDropdownOpen(null)}
-                              >
-                                {subcategory.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <div className="text-xs text-gray-500 mb-2">Vlastnosti:</div>
-                      <div className="flex flex-wrap gap-2">
-                        {STATIC_CATEGORIES.women.flatMap(cat => cat.features || []).map((feature) => (
-                          <Link
-                            key={feature.id}
-                            href={feature.href}
-                            className="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-600 hover:bg-gray-200 transition-colors"
-                            onClick={() => setDropdownOpen(null)}
-                          >
-                            {feature.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Business dropdown */}
-            <div className="relative group">
-              <button
-                className="flex items-center text-gray-700 hover:text-black transition-colors font-medium"
-                onClick={() => setDropdownOpen(dropdownOpen === 'business' ? null : 'business')}
-              >
-                Business
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              {dropdownOpen === 'business' && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="p-4">
-                    <Link href="/kategorie/aktoky" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Aktovky</Link>
-                    <Link href="/kategorie/notebook-tasky" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Notebook tašky</Link>
-                    <Link href="/kategorie/business-batohy" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Business batohy</Link>
-                    <Link href="/kategorie/messenger" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Messenger tašky</Link>
-                    <Link href="/kategorie/organizery" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Organizéry</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Cestování dropdown */}
-            <div className="relative group">
-              <button
-                className="flex items-center text-gray-700 hover:text-black transition-colors font-medium"
-                onClick={() => setDropdownOpen(dropdownOpen === 'travel' ? null : 'travel')}
-              >
-                Cestování
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              {dropdownOpen === 'travel' && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="p-4">
-                    <Link href="/kategorie/kufry" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Kufry a trolley</Link>
-                    <Link href="/kategorie/cestovni-tasky" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Cestovní tašky</Link>
-                    <Link href="/kategorie/cestovni-batohy" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Cestovní batohy</Link>
-                    <Link href="/kategorie/kosmeticke-tasky" className="block py-2 text-sm text-gray-600 hover:text-black transition-colors">Kosmetické tašky</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Ostatní kategorie */}
-            {STATIC_CATEGORIES.unisex.map((category) => (
-              <div key={category.id} className="relative group">
-                <button
-                  className="flex items-center text-gray-700 hover:text-black transition-colors font-medium"
-                  onClick={() => setDropdownOpen(dropdownOpen === category.id ? null : category.id)}
-                >
-                  {category.name}
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </button>
-                {dropdownOpen === category.id && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                    <div className="p-4">
-                      <Link 
-                        href={category.href} 
-                        className="block text-sm font-medium text-gray-900 hover:text-black mb-3 transition-colors"
-                        onClick={() => setDropdownOpen(null)}
-                      >
-                        Vše v kategorii
-                      </Link>
-                      <div className="space-y-2">
-                        {category.children?.map((subcategory) => (
-                          <Link
-                            key={subcategory.id}
-                            href={subcategory.href}
-                            className="block text-sm text-gray-600 hover:text-black transition-colors"
-                            onClick={() => setDropdownOpen(null)}
-                          >
-                            {subcategory.name}
-                          </Link>
-                        ))}
-                      </div>
-                      {category.features && category.features.length > 0 && (
-                        <div className="mt-4 pt-3 border-t border-gray-100">
-                          <div className="flex flex-wrap gap-2">
-                            {category.features.map((feature) => (
-                              <Link
-                                key={feature.id}
-                                href={feature.href}
-                                className="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-600 hover:bg-gray-200 transition-colors"
-                                onClick={() => setDropdownOpen(null)}
-                              >
-                                {feature.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
+                <Search className="h-5 w-5" />
+              </Button>
+            ) : (
+              <div className="relative">
+                <form onSubmit={handleSearch} className="flex">
+                  <input
+                    type="text"
+                    placeholder="Hledat produkty..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent w-64"
+                    autoFocus
+                  />
+                  <Button type="submit" variant="default" size="sm" className="rounded-l-none px-4">
+                    <Search className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setSearchOpen(false)
+                      setSearchQuery("")
+                    }}
+                    className="ml-2 text-gray-500"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </form>
               </div>
-            ))}
+            )}
 
-            <Link href="/novinky" className="text-gray-700 hover:text-black transition-colors font-medium">
-              Novinky
-            </Link>
-            <Link href="/vyprodej" className="text-red-600 hover:text-red-700 transition-colors font-medium">
-              Výprodej
-            </Link>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setSearchOpen(!searchOpen)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              <Search className="h-5 w-5 text-gray-600 hover:text-black transition-colors" />
-            </button>
+            {/* User menu */}
             {isAuthenticated ? (
-              <div className="relative group">
-                <button className="flex items-center p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                  <User className="h-5 w-5 text-gray-600 hover:text-black transition-colors" />
-                  {user?.firstName && (
-                    <span className="ml-1 text-sm text-gray-600 hidden md:block">
-                      {user.firstName}
-                    </span>
-                  )}
-                </button>
-                <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 hidden group-hover:block">
-                  <div className="p-2">
-                    <Link 
-                      href="/ucet" 
-                      className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded transition-colors"
-                    >
-                      Můj účet
-                    </Link>
-                    {user?.role === 'admin' && (
-                      <Link 
-                        href="/admin" 
-                        className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded transition-colors"
-                      >
-                        Admin panel
-                      </Link>
-                    )}
-                    <button 
-                      onClick={logout}
-                      className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded transition-colors flex items-center"
-                    >
-                      <LogOut className="h-4 w-4 mr-2" />
-                      Odhlásit se
-                    </button>
-                  </div>
-                </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-700">Ahoj, {user?.email || 'uživateli'}!</span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={logout}
+                  className="text-gray-700 hover:text-black"
+                >
+                  Odhlásit
+                </Button>
               </div>
             ) : (
-              <Link href="/prihlaseni" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <User className="h-5 w-5 text-gray-600 hover:text-black transition-colors" />
+              <Link href="/prihlaseni">
+                <Button variant="ghost" size="sm" className="text-gray-700 hover:text-black p-2">
+                  <User className="h-5 w-5" />
+                </Button>
               </Link>
             )}
-            <Link href="/oblibene" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <Heart className="h-5 w-5 text-gray-600 hover:text-black transition-colors" />
-            </Link>
-            <Link href="/kosik" className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <ShoppingCart className="h-5 w-5 text-gray-600 hover:text-black transition-colors" />
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5 text-gray-600" /> : <Menu className="h-5 w-5 text-gray-600" />}
-            </button>
-          </div>
-        </div>
 
-        {/* Search bar */}
-        {searchOpen && (
-          <div className="pb-4">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Hledat produkty..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-                autoFocus
-              />
-              <Button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black hover:bg-gray-800">
-                Hledat
+            {/* Cart */}
+            <Link href="/kosik">
+              <Button variant="ghost" size="sm" className="text-gray-700 hover:text-black p-2 relative">
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
               </Button>
-            </div>
+            </Link>
           </div>
-        )}
+
+          {/* Mobile menu button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="lg:hidden text-gray-700 hover:text-black p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+        </div>
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden pb-4">
+          <div className="lg:hidden border-t border-gray-200 py-4">
             <div className="space-y-4">
-              {/* Pánské section */}
+              {/* Mobile search */}
+              <form onSubmit={handleSearch} className="flex">
+                <input
+                  type="text"
+                  placeholder="Hledat produkty..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                />
+                <Button type="submit" variant="default" size="sm" className="rounded-l-none">
+                  <Search className="h-4 w-4" />
+                </Button>
+              </form>
+
+              {/* Mobile navigation */}
               <div className="space-y-2">
-                <div className="font-medium text-gray-900 border-b border-gray-200 pb-2">
+                <Link 
+                  href="/produkty?collection=pánské" 
+                  className="block py-2 text-gray-700 hover:text-black font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   Pánské
-                </div>
-                <div className="pl-4 space-y-3">
-                  {STATIC_CATEGORIES?.men?.map((category) => (
-                    <div key={category.id}>
-                      <Link 
-                        href={category.href} 
-                        className="block text-sm font-medium text-gray-700 hover:text-black transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {category.name}
-                      </Link>
-                      <div className="pl-3 mt-1 space-y-1">
-                        {category.children?.map((subcategory) => (
-                          <Link
-                            key={subcategory.id}
-                            href={subcategory.href}
-                            className="block text-xs text-gray-600 hover:text-black transition-colors"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {subcategory.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Dámské section */}
-              <div className="space-y-2">
-                <div className="font-medium text-gray-900 border-b border-gray-200 pb-2">
+                </Link>
+                <Link 
+                  href="/produkty?collection=dámské" 
+                  className="block py-2 text-gray-700 hover:text-black font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   Dámské
-                </div>
-                <div className="pl-4 space-y-3">
-                  {STATIC_CATEGORIES?.women?.map((category) => (
-                    <div key={category.id}>
-                      <Link 
-                        href={category.href} 
-                        className="block text-sm font-medium text-gray-700 hover:text-black transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {category.name}
-                      </Link>
-                      <div className="pl-3 mt-1 space-y-1">
-                        {category.children?.map((subcategory) => (
-                          <Link
-                            key={subcategory.id}
-                            href={subcategory.href}
-                            className="block text-xs text-gray-600 hover:text-black transition-colors"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {subcategory.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Ostatní kategorie */}
-              {STATIC_CATEGORIES.unisex.map((category) => (
-                <div key={category.id} className="space-y-2">
-                  <div className="font-medium text-gray-900 border-b border-gray-200 pb-2">
-                    {category.name}
-                  </div>
-                  <div className="pl-4 space-y-2">
-                    <Link 
-                      href={category.href} 
-                      className="block text-sm text-gray-600 hover:text-black transition-colors"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Vše v kategorii
-                    </Link>
-                    {category.children?.map((subcategory) => (
-                      <Link
-                        key={subcategory.id}
-                        href={subcategory.href}
-                        className="block text-sm text-gray-600 hover:text-black transition-colors pl-3"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {subcategory.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-
-              {/* Business section */}
-              <div className="space-y-2">
-                <div className="font-medium text-gray-900 border-b border-gray-200 pb-2">
-                  Business
-                </div>
-                <div className="pl-4 space-y-2">
-                  <Link href="/kategorie/aktoky" className="block text-sm text-gray-600 hover:text-black transition-colors">Aktovky</Link>
-                  <Link href="/kategorie/notebook-tasky" className="block text-sm text-gray-600 hover:text-black transition-colors">Notebook tašky</Link>
-                  <Link href="/kategorie/business-batohy" className="block text-sm text-gray-600 hover:text-black transition-colors">Business batohy</Link>
-                  <Link href="/kategorie/messenger" className="block text-sm text-gray-600 hover:text-black transition-colors">Messenger tašky</Link>
-                </div>
-              </div>
-
-              {/* Cestování section */}
-              <div className="space-y-2">
-                <div className="font-medium text-gray-900 border-b border-gray-200 pb-2">
-                  Cestování
-                </div>
-                <div className="pl-4 space-y-2">
-                  <Link href="/kategorie/kufry" className="block text-sm text-gray-600 hover:text-black transition-colors">Kufry a trolley</Link>
-                  <Link href="/kategorie/cestovni-tasky" className="block text-sm text-gray-600 hover:text-black transition-colors">Cestovní tašky</Link>
-                  <Link href="/kategorie/cestovni-batohy" className="block text-sm text-gray-600 hover:text-black transition-colors">Cestovní batohy</Link>
-                  <Link href="/kategorie/kosmeticke-tasky" className="block text-sm text-gray-600 hover:text-black transition-colors">Kosmetické tašky</Link>
-                </div>
-              </div>
-
-              {/* Novinky a Výprodej */}
-              <div className="space-y-2">
-                <Link href="/novinky" className="block text-black hover:text-gray-700 transition-colors font-semibold">Novinky</Link>
-                <Link href="/vyprodej" className="block text-red-600 hover:text-red-700 transition-colors font-semibold">Výprodej</Link>
+                </Link>
+                <Link 
+                  href="/produkty" 
+                  className="block py-2 text-gray-700 hover:text-black font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Všechny produkty
+                </Link>
+                <Link 
+                  href="/kosik" 
+                  className="block py-2 text-gray-700 hover:text-black font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Košík ({totalItems})
+                </Link>
+                {!isAuthenticated ? (
+                  <Link 
+                    href="/prihlaseni" 
+                    className="block py-2 text-gray-700 hover:text-black font-medium"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Přihlášení
+                  </Link>
+                ) : (
+                  <button 
+                    onClick={() => {
+                      logout()
+                      setMobileMenuOpen(false)
+                    }}
+                    className="block py-2 text-gray-700 hover:text-black font-medium text-left w-full"
+                  >
+                    Odhlásit se
+                  </button>
+                )}
               </div>
             </div>
           </div>
         )}
       </div>
-    </nav>
+    </header>
   )
 }

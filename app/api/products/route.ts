@@ -142,7 +142,7 @@ export async function GET(request: NextRequest) {
         total: count || 0,
         page,
         limit,
-        pages: Math.ceil((count || 0) / limit)
+        totalPages: Math.ceil((count || 0) / limit)
       }
     })
 
