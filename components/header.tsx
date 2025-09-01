@@ -244,7 +244,7 @@ export default function Header() {
                       {category.features && category.features.length > 0 && (
                         <div className="mt-4 pt-3 border-t border-gray-100">
                           <div className="flex flex-wrap gap-2">
-                            {category.features.map((feature) => (
+                            {category.features?.map((feature) => (
                               <Link
                                 key={feature.id}
                                 href={feature.href}
