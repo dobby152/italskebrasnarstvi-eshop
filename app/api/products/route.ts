@@ -69,8 +69,10 @@ export async function GET(request: NextRequest) {
             cleanPath = cleanPath.substring(8)
           } else if (cleanPath.startsWith('images/')) {
             cleanPath = cleanPath.substring(7)
+          } else if (cleanPath.startsWith('api/')) {
+            cleanPath = cleanPath.substring(4)
           }
-          return `/api/images/${cleanPath}`
+          return `/images/${cleanPath}`
         })
       } else if (product.image_url && product.image_url.trim() !== '') {
         let imageUrl = product.image_url
@@ -83,8 +85,10 @@ export async function GET(request: NextRequest) {
             cleanPath = cleanPath.substring(8)
           } else if (cleanPath.startsWith('images/')) {
             cleanPath = cleanPath.substring(7)
+          } else if (cleanPath.startsWith('api/')) {
+            cleanPath = cleanPath.substring(4)
           }
-          images = [`/api/images/${cleanPath}`]
+          images = [`/images/${cleanPath}`]
         }
       }
 

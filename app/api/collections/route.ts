@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
+    console.log(`Found ${collections?.length || 0} collections`);
     return NextResponse.json({ collections: collections || [] })
 
   } catch (error) {
