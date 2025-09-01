@@ -4,28 +4,12 @@ import { supabase } from '../../lib/supabase'
 export async function GET(request: NextRequest) {
   try {
     console.log('API /products called');
-    console.log('Environment check:', {
-      hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
-      hasSupabaseKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    });
-
-    // Test supabase connection first
-    console.log('Testing supabase connection...');
-    try {
-      const { data: testData, error: testError } = await supabase
-        .from('products')
-        .select('count(*)')
-        .limit(1)
-      
-      if (testError) {
-        console.error('Supabase connection test failed:', testError);
-        return NextResponse.json({ error: 'Database connection failed', details: testError }, { status: 500 })
-      }
-      console.log('Supabase connection test passed');
-    } catch (connError) {
-      console.error('Supabase connection error:', connError);
-      return NextResponse.json({ error: 'Database connection error', details: connError }, { status: 500 })
-    }
+    
+    // Return minimal response first to test basic functionality
+    return NextResponse.json({
+      products: [],
+      pagination: { total: 0, page: 1, limit: 20, pages: 0 }
+    })
     
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
