@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '../../lib/supabase'
+import { supabase } from '@/app/lib/supabase'
 
 // Order interface for type safety
 interface Order {

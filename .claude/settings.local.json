@@ -62,7 +62,8 @@
       "Bash(sed:*)",
       "Bash(npx next lint:*)",
       "Bash(git checkout:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(PORT=3005 npm run dev)"
     ],
     "deny": [],
     "additionalDirectories": [

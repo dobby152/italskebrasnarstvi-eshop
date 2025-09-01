@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '../../lib/supabase'
+import { supabase } from '@/app/lib/supabase'
 
 // GET /api/variants - Načte všechny base products s jejich variantami
 export async function GET(request: NextRequest) {
