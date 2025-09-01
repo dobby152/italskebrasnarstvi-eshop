@@ -71,6 +71,6 @@ tsconfig.tsbuildinfo
 *.tmp
 *.temp
 
-# Large assets (if any)
-public/images/
-public/videos/
+# Large assets (commented out - needed for production)
+# public/images/
+# public/videos/
