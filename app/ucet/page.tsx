@@ -385,7 +385,7 @@ function AccountContent() {
                 <h2 className="text-3xl font-black text-gray-900 mb-8">Moje objednávky</h2>
 
                 <div className="space-y-6">
-                  {orders.map((order) => (
+                  {orders?.map((order) => (
                     <Card key={order.id} className="p-6 border border-gray-200 shadow-sm">
                       <div className="flex items-center justify-between mb-6">
                           <h3 className="text-xl font-bold text-gray-900">Objednávka #{order.id}</h3>

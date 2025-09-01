@@ -705,7 +705,7 @@ function CheckoutContent() {
               <h3 className="text-xl font-bold text-gray-900 mb-6">Vaše objednávka</h3>
 
               <div className="space-y-4 mb-6">
-                {cartItems.map((item) => (
+                {cartItems?.map((item) => (
                   <div key={item.id} className="flex items-center gap-4">
                     <img
                       src={item.image || '/placeholder.svg'}

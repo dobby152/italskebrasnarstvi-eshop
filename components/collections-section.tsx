@@ -34,7 +34,7 @@ export default function CollectionsSection() {
           <p className="text-lg text-gray-600">Objevte jedinečné kolekce pro moderní životní styl</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {collections.map((collection, index) => (
+          {collections?.map((collection, index) => (
             <Card
               key={index}
               className="group cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
@@ -50,7 +50,7 @@ export default function CollectionsSection() {
                   <h3 className="text-xl font-bold mb-1">{collection.name}</h3>
                   <p className="text-white/90 text-sm mb-3">{collection.description}</p>
                   <div className="flex flex-wrap gap-1">
-                    {collection.tags.map((tag, tagIndex) => (
+                    {collection.tags?.map((tag, tagIndex) => (
                       <span key={tagIndex} className="px-2 py-1 bg-white/20 backdrop-blur-sm text-xs rounded-full text-white/90">
                         {tag}
                       </span>

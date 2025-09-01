@@ -184,7 +184,7 @@ export default function ShoppingCart() {
           </div>
 
           <div className="space-y-4">
-            {cart.items.map((item) => (
+            {cart.items?.map((item) => (
               <Card key={item.id}>
                 <CardContent className="p-6">
                   <div className="flex gap-4">
