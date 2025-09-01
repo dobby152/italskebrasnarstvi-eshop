@@ -2,9 +2,10 @@ import { NextRequest } from 'next/server'
 import { existsSync } from 'fs'
 import { join } from 'path'
 
-export async function GET(request: NextRequest, { params }: { params: { path: string[] } }) {
+export async function GET(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   try {
-    const imagePath = params.path.join('/')
+    const { path } = await context.params
+    const imagePath = path.join('/')
     const publicImagesDir = join(process.cwd(), 'public', 'images')
     
     console.log('Image API called:', imagePath)
