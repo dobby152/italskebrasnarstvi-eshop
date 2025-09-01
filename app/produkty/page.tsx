@@ -25,6 +25,16 @@ export default function ProduktyPage() {
     priceRanges: [] as string[],
     features: [] as string[],
   })
+
+  // Debug: Log when products are loaded
+  useEffect(() => {
+    console.log('🔍 Products state:', { 
+      productsCount: products?.length, 
+      total, 
+      loading: productsLoading, 
+      error: productsError 
+    })
+  }, [products, total, productsLoading, productsError])
   const [sortBy, setSortBy] = useState("popularity")
   const [viewMode, setViewMode] = useState("grid")
   const [searchQuery, setSearchQuery] = useState("")
@@ -70,20 +80,10 @@ export default function ProduktyPage() {
 
   const features = ["RFID ochrana", "USB port", "Voděodolný", "Antivražedný kabel", "Pravá kůže", "TSA zámek"]
 
-  // Sort products if available
-  const sortedProducts = products ? products.slice().sort((a, b) => {
-    switch (sortBy) {
-      case "price-low":
-        return a.price - b.price
-      case "price-high":
-        return b.price - a.price
-      case "newest":
-        return new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
-      
-      default:
-        return 0
-    }
-  }) : []
+  // Simplified: Use products directly without complex sorting (for debugging)
+  const sortedProducts = products || []
+  
+  console.log('🎯 Final sorted products:', sortedProducts?.length)
   
   // Trigger new API call when filters change
   useEffect(() => {
