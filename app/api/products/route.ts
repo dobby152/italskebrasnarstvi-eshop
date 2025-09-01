@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     console.log('Query params:', { page, limit, sortBy, sortOrder });
 
     // Map sortBy to valid column names
-    const validSorts = {
+    const validSorts: Record<string, string> = {
       'id': 'id',
       'name': 'name', 
       'price': 'price',
