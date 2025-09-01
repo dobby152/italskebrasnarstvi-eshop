@@ -63,7 +63,9 @@
       "Bash(npx next lint:*)",
       "Bash(git checkout:*)",
       "Bash(git merge:*)",
-      "Bash(PORT=3005 npm run dev)"
+      "Bash(PORT=3005 npm run dev)",
+      "Bash(npx vercel logs:*)",
+      "Bash(npx vercel:*)"
     ],
     "deny": [],
     "additionalDirectories": [
