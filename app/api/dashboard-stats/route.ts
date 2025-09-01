@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Calculate stats
-    const totalRevenue = orders?.reduce((sum, order) => sum + (order.total || 0), 0) || 0
+    const totalRevenue = orders?.reduce((sum: number, order: any) => sum + (order.total || 0), 0) || 0
     const totalOrders = orders?.length || 0
     const totalProducts = productsCount || 0
     const totalCustomers = customersCount || 0
