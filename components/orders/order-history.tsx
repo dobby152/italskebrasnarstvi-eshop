@@ -363,7 +363,7 @@ export default function OrderHistory() {
                             <div>
                               <h4 className="font-medium mb-3">Položky objednávky</h4>
                               <div className="space-y-3">
-                                {selectedOrder.items.map((item) => (
+                                {selectedOrder.items?.map((item) => (
                                   <div key={item.id} className="flex gap-3 p-3 bg-gray-50 rounded-lg">
                                     <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100">
                                       <Image

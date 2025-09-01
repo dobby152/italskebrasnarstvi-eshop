@@ -184,7 +184,7 @@ export default function ProduktyPage() {
                   {collectionsLoading ? (
                     <div className="text-sm text-gray-500">Načítání...</div>
                   ) : collections ? (
-                    collections.map((collection) => (
+                    collections?.map((collection) => (
                       <label key={collection.id} className="flex items-center cursor-pointer group">
                         <input
                           type="checkbox"

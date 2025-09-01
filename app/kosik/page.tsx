@@ -47,7 +47,7 @@ function CartContent() {
         <div className="grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
             <div className="space-y-6">
-              {items.map((item) => (
+              {items?.map((item) => (
                 <Card key={item.id} className="p-6">
                   <div className="flex gap-6">
                     {/* Product Image */}

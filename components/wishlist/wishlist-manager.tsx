@@ -276,7 +276,7 @@ export default function WishlistManager() {
                   </p>
                 </div>
               ) : (
-                currentWishlist.items.map((item) => (
+                currentWishlist.items?.map((item) => (
                   <Card key={item.id}>
                     <CardContent className="p-6">
                       <div className="flex gap-4">

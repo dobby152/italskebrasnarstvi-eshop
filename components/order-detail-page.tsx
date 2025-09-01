@@ -323,7 +323,7 @@ export function OrderDetailPage({ orderId }: OrderDetailProps) {
                         </tr>
                       </thead>
                       <tbody className="divide-y">
-                        {order.items.map((item) => (
+                        {order.items?.map((item) => (
                           <tr key={item.id}>
                             <td className="px-6 py-4">
                               <div>

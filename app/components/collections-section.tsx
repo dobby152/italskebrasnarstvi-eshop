@@ -34,7 +34,7 @@ export default function CollectionsSection() {
           <p className="text-lg text-gray-600">Objevte jedinečné kolekce pro moderní životní styl</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {collections.map((collection, index) => (
+          {collections?.map((collection, index) => (
             <Card
               key={index}
               className="group cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"

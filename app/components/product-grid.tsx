@@ -77,7 +77,7 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {products.map((product) => (
+      {products?.map((product) => (
         <Card key={product.id} className="group hover:shadow-lg transition-shadow">
           <CardContent className="p-0">
             <div className="relative">

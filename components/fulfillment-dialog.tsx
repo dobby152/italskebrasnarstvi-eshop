@@ -52,7 +52,7 @@ export function FulfillmentDialog({
   onFulfillmentCreated
 }: FulfillmentDialogProps) {
   const [fulfillmentItems, setFulfillmentItems] = useState<FulfillmentItem[]>(
-    items.map(item => ({
+    items?.map(item => ({
       order_item_id: item.id,
       quantity: Math.max(0, item.fulfillable_quantity - item.fulfilled_quantity)
     }))
@@ -111,7 +111,7 @@ export function FulfillmentDialog({
       setService('standard')
       setNotifyCustomer(true)
       setFulfillmentItems(
-        items.map(item => ({
+        items?.map(item => ({
           order_item_id: item.id,
           quantity: Math.max(0, item.fulfillable_quantity - item.fulfilled_quantity)
         }))
@@ -152,7 +152,7 @@ export function FulfillmentDialog({
               <CardTitle className="text-base">Položky k expedici</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {items.map((item) => {
+              {items?.map((item) => {
                 const maxFulfillable = item.fulfillable_quantity - item.fulfilled_quantity
                 const currentQuantity = fulfillmentItems.find(fi => fi.order_item_id === item.id)?.quantity || 0
                 

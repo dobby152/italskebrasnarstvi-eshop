@@ -56,7 +56,7 @@ export function RefundDialog({
   onRefundCreated
 }: RefundDialogProps) {
   const [refundItems, setRefundItems] = useState<RefundItem[]>(
-    items.map(item => ({
+    items?.map(item => ({
       order_item_id: item.id,
       quantity: 0,
       subtotal: 0
@@ -121,7 +121,7 @@ export function RefundDialog({
       
       // Reset form
       setRefundItems(
-        items.map(item => ({
+        items?.map(item => ({
           order_item_id: item.id,
           quantity: 0,
           subtotal: 0
@@ -167,7 +167,7 @@ export function RefundDialog({
               <CardTitle className="text-base">Položky k vrácení</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {items.map((item) => {
+              {items?.map((item) => {
                 const maxRefundable = item.quantity - item.refunded_quantity
                 const currentQuantity = refundItems.find(ri => ri.order_item_id === item.id)?.quantity || 0
                 const currentSubtotal = refundItems.find(ri => ri.order_item_id === item.id)?.subtotal || 0

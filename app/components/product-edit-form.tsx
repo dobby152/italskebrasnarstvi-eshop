@@ -405,7 +405,7 @@ export function ProductEditForm({ product, onSave, onCancel, isLoading = false }
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="none">Bez kolekce</SelectItem>
-                  {collections.map((collection) => (
+                  {collections?.map((collection) => (
                     <SelectItem key={collection.name} value={collection.name}>
                       {collection.name}
                     </SelectItem>
