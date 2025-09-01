@@ -19,6 +19,7 @@ interface Product {
   availability?: string
   brand?: string
   collection?: string
+  tags?: string[]
 }
 
 interface ProductGridProps {
@@ -107,11 +108,23 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
                 </h3>
               </Link>
               
-              {product.brand && (
-                <Badge variant="secondary" className="text-xs mb-2">
-                  {product.brand}
-                </Badge>
-              )}
+              <div className="flex flex-wrap gap-1 mb-2">
+                {product.brand && (
+                  <Badge variant="secondary" className="text-xs">
+                    {product.brand}
+                  </Badge>
+                )}
+                {product.collection && (
+                  <Badge variant="outline" className="text-xs">
+                    {product.collection}
+                  </Badge>
+                )}
+                {product.tags && product.tags.slice(0, 2).map((tag, index) => (
+                  <Badge key={index} variant="default" className="text-xs">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
               
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-lg">
