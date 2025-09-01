@@ -72,7 +72,12 @@ export async function GET(request: NextRequest) {
           if (img.startsWith('api/')) {
             return `/images/${img.substring(4)}`
           }
-          return `/images/${img}`
+          
+          // If it's a folder name, try to construct path to first image
+          // Pattern: /images/folder-name/1_FOLDER_NAME_1.jpg
+          const folderName = img
+          const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.jpg`
+          return `/images/${folderName}/${imageFileName}`
         })
       } else if (product.image_url && product.image_url.trim() !== '') {
         let imageUrl = product.image_url
@@ -86,7 +91,10 @@ export async function GET(request: NextRequest) {
           } else if (imageUrl.startsWith('api/')) {
             images = [`/images/${imageUrl.substring(4)}`]
           } else {
-            images = [`/images/${imageUrl}`]
+            // If it's a folder name, try to construct path to first image
+            const folderName = imageUrl
+            const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.jpg`
+            images = [`/images/${folderName}/${imageFileName}`]
           }
         }
       }
