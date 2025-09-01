@@ -86,16 +86,18 @@ function getProductImages(product) {
       }
       
       return qualityFiltered.map(img => {
-        // If image already starts with /images/, use as is
-        if (img.startsWith('/images/')) {
-          return img;
+        // Use API route for all image paths to enable automatic subdirectory search
+        let cleanPath = img;
+        
+        // Remove any existing /images/ prefix to get clean filename
+        if (cleanPath.startsWith('/images/')) {
+          cleanPath = cleanPath.substring(8); // Remove '/images/' prefix
+        } else if (cleanPath.startsWith('images/')) {
+          cleanPath = cleanPath.substring(7); // Remove 'images/' prefix
         }
-        // If image starts with images/, add leading slash
-        if (img.startsWith('images/')) {
-          return `/${img}`;
-        }
-        // Otherwise, add /images/ prefix
-        return `/images/${img}`;
+        
+        // Use API route which will search subdirectories if needed
+        return `/api/images/${cleanPath}`;
       });
     }
   }
@@ -103,15 +105,21 @@ function getProductImages(product) {
   // Use single image_url if available
   if (product.image_url && product.image_url.trim() !== '') {
     let imageUrl = product.image_url;
-    // Ensure proper format
-    if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('http')) {
-      if (imageUrl.startsWith('images/')) {
-        imageUrl = `/${imageUrl}`;
-      } else {
-        imageUrl = `/images/${imageUrl}`;
-      }
+    
+    // If it's already a full HTTP URL, use as is
+    if (imageUrl.startsWith('http')) {
+      return [imageUrl];
     }
-    return [imageUrl];
+    
+    // Clean path and use API route for subdirectory search
+    let cleanPath = imageUrl;
+    if (cleanPath.startsWith('/images/')) {
+      cleanPath = cleanPath.substring(8); // Remove '/images/' prefix
+    } else if (cleanPath.startsWith('images/')) {
+      cleanPath = cleanPath.substring(7); // Remove 'images/' prefix
+    }
+    
+    return [`/api/images/${cleanPath}`];
   }
   
   // Fallback to placeholder

@@ -95,7 +95,7 @@ export default function ProductSection() {
             >
               {products?.map((product) => {
                 const mainImage = product.images?.[0];
-                const imageUrl = mainImage ? getImageUrl(mainImage) : '/placeholder.jpg';
+                const imageUrl = mainImage ? getImageUrl(mainImage) || '/placeholder.jpg' : '/placeholder.jpg';
                 const displayName = getProductDisplayName(product);
                 const displayCollection = getProductDisplayCollection(product);
 
@@ -108,7 +108,7 @@ export default function ProductSection() {
                     <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 h-full">
                       <div className="relative aspect-square overflow-hidden bg-gray-50">
                         <img
-                          src={imageUrl}
+                          src={imageUrl!}
                           alt={displayName}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />

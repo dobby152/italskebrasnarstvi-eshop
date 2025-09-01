@@ -73,24 +73,42 @@ export async function GET(request: NextRequest) {
     }
 
     // Transform products with image processing
-    const transformedProducts = products?.map((product: any) => {
+    const transformedProducts = (products || []).map((product: any) => {
       // Process images
       let images = []
       
       // Use images array if available
       if (product.images && Array.isArray(product.images) && product.images.length > 0) {
         images = product.images?.map((img: string) => {
-          if (img.startsWith('/images/') || img.startsWith('http')) {
+          if (img.startsWith('http')) {
             return img
           }
-          return `/images/${img}`
+          // Remove any existing /images/ prefix to get clean filename
+          let cleanPath = img
+          if (cleanPath.startsWith('/images/')) {
+            cleanPath = cleanPath.substring(8)
+          } else if (cleanPath.startsWith('images/')) {
+            cleanPath = cleanPath.substring(7)
+          }
+          // Use API route for automatic subdirectory search
+          return `/api/images/${cleanPath}`
         })
       } else if (product.image_url && product.image_url.trim() !== '') {
         let imageUrl = product.image_url
-        if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('http')) {
-          imageUrl = `/images/${imageUrl}`
+        
+        if (imageUrl.startsWith('http')) {
+          images = [imageUrl]
+        } else {
+          // Remove any existing /images/ prefix to get clean filename
+          let cleanPath = imageUrl
+          if (cleanPath.startsWith('/images/')) {
+            cleanPath = cleanPath.substring(8)
+          } else if (cleanPath.startsWith('images/')) {
+            cleanPath = cleanPath.substring(7)
+          }
+          // Use API route for automatic subdirectory search
+          images = [`/api/images/${cleanPath}`]
         }
-        images = [imageUrl]
       }
 
       return {

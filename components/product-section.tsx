@@ -95,7 +95,7 @@ export default function ProductSection() {
             >
               {products?.map((product) => {
                 const mainImage = product.images?.[0];
-                const imageUrl = mainImage ? getImageUrl(mainImage) : '/placeholder.jpg';
+                const imageUrl = mainImage ? (getImageUrl(mainImage) || '/placeholder.jpg') : '/placeholder.jpg';
                 const displayName = getProductDisplayName(product);
                 const displayCollection = getProductDisplayCollection(product);
 

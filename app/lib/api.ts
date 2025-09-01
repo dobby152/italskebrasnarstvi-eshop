@@ -12,12 +12,18 @@ export const formatPrice = (price: number) => {
 
 // Existing functions
 export const getImageUrl = (imagePath: string | undefined | null) => {
-  if (!imagePath) {
-    return null
+  // Handle undefined/null cases
+  if (!imagePath || typeof imagePath !== 'string') {
+    return '/placeholder.svg'
   }
   
   // If it's already a full URL, return as is
-  if (imagePath && imagePath.startsWith('http')) {
+  if (imagePath.startsWith('http')) {
+    return imagePath
+  }
+  
+  // If it already starts with /images/, return as is
+  if (imagePath.startsWith('/images/')) {
     return imagePath
   }
   

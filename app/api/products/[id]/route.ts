@@ -63,13 +63,28 @@ export async function GET(
     if (product.product_images && product.product_images.length > 0) {
       images = product.product_images
         .sort((a: any, b: any) => (a.display_order || 999) - (b.display_order || 999))
-        ?.map((img: any) => img.image_path.startsWith('/images/') ? img.image_path : `/images/${img.image_path}`)
+        ?.map((img: any) => {
+          let cleanPath = img.image_path
+          if (cleanPath.startsWith('/images/')) {
+            cleanPath = cleanPath.substring(8)
+          } else if (cleanPath.startsWith('images/')) {
+            cleanPath = cleanPath.substring(7)
+          }
+          return `/api/images/${cleanPath}`
+        })
     } else if (product.image_url && product.image_url.trim() !== '') {
       let imageUrl = product.image_url
-      if (!imageUrl.startsWith('/images/') && !imageUrl.startsWith('http')) {
-        imageUrl = `/images/${imageUrl}`
+      if (imageUrl.startsWith('http')) {
+        images = [imageUrl]
+      } else {
+        let cleanPath = imageUrl
+        if (cleanPath.startsWith('/images/')) {
+          cleanPath = cleanPath.substring(8)
+        } else if (cleanPath.startsWith('images/')) {
+          cleanPath = cleanPath.substring(7)
+        }
+        images = [`/api/images/${cleanPath}`]
       }
-      images = [imageUrl]
     }
 
     const transformedProduct = {
