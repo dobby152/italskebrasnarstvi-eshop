@@ -17,8 +17,8 @@ interface Product {
   sku: string
   description?: string
   availability?: string
-  brand?: string
-  collection?: string
+  brand?: string | null
+  collection?: string | null
   tags?: string[]
 }
 

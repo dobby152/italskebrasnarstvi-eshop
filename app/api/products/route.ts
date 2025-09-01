@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     
     const { data: products, error, count } = await supabase
       .from('products')
-      .select('id, name, price, image_url, images, description, sku', { count: 'exact' })
+      .select('id, name, price, image_url, images, description, sku, normalized_brand, normalized_collection', { count: 'exact' })
       .order(actualSortBy, { ascending: sortOrder === 'asc' })
       .range(offset, offset + limit - 1)
 
@@ -68,12 +68,19 @@ export async function GET(request: NextRequest) {
           if (img.startsWith('/images/')) {
             return img
           }
+          
+          // The database contains folder-relative paths like "folder-name/image.jpg"
+          // Convert to full path /images/folder-relative-path
+          if (img.includes('/') && !img.startsWith('/')) {
+            return `/images/${img}`
+          }
+          
           // Handle api/ prefix
           if (img.startsWith('api/')) {
             return `/images/${img.substring(4)}`
           }
           
-          // If it's a folder name, try to construct path to first image
+          // If it's just a folder name, try to construct path to first image
           // Pattern: /images/folder-name/1_FOLDER_NAME_1.jpg
           const folderName = img
           const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.jpg`
@@ -90,6 +97,9 @@ export async function GET(request: NextRequest) {
             images = [imageUrl]
           } else if (imageUrl.startsWith('api/')) {
             images = [`/images/${imageUrl.substring(4)}`]
+          } else if (imageUrl.includes('/') && !imageUrl.startsWith('/')) {
+            // Database contains folder-relative path
+            images = [`/images/${imageUrl}`]
           } else {
             // If it's a folder name, try to construct path to first image
             const folderName = imageUrl
@@ -103,6 +113,9 @@ export async function GET(request: NextRequest) {
         ...product,
         images,
         image_url: images[0] || null,
+        brand: product.normalized_brand || null,
+        collection: product.normalized_collection || null,
+        tags: [],
         hasVariants: false
       }
     })
