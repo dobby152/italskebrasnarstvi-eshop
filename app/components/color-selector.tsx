@@ -17,7 +17,7 @@ export default function ColorSelector({
 }: ColorSelectorProps) {
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
-      {colors.map((color) => {
+      {colors?.map((color) => {
         const isSelected = selectedColor === color.value
         const isAvailable = color.available
         

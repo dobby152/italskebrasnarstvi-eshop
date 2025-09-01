@@ -106,7 +106,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
     <div className="mb-4">
       <span className="text-sm text-gray-600 block mb-2">Dostupné barvy:</span>
       <div className="flex flex-wrap gap-2">
-        {variants.map((variant) => {
+        {variants?.map((variant) => {
           const isSelected = selectedVariant === variant.colorCode
           const isCurrent = variant.id === product.id
           

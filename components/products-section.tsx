@@ -90,7 +90,7 @@ export default function ProductsSection() {
     
     // Fallback to using colors array if available
     if (product.colors && Array.isArray(product.colors) && product.colors.length > 0) {
-      return product.colors.map((color: string, index: number) => ({
+      return product.colors?.map((color: string, index: number) => ({
         value: `color-${index}`,
         displayValue: 'Barva',
         hexColor: color,

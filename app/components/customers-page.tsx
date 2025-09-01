@@ -135,7 +135,7 @@ export function CustomersPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
-                    {customers.map((customer) => (
+                    {customers?.map((customer) => (
                       <tr key={customer.id} className="hover:bg-muted/50 transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">

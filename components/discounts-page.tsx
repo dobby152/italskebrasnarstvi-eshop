@@ -107,7 +107,7 @@ export function DiscountsPage() {
 
         <nav className="flex-1 px-2">
           <div className="space-y-1">
-            {sidebarItems.map((item) => (
+            {sidebarItems?.map((item) => (
               <Link key={item.label} href={item.href}>
                 <div
                   className={`flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors ${
@@ -135,7 +135,7 @@ export function DiscountsPage() {
               Prodejní kanály
             </h3>
             <div className="space-y-1">
-              {salesChannels.map((channel) => (
+              {salesChannels?.map((channel) => (
                 <div
                   key={channel.label}
                   className="flex items-center gap-3 px-3 py-2 text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground rounded-md cursor-pointer transition-colors"
@@ -228,7 +228,7 @@ export function DiscountsPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
-                    {discounts.map((discount) => (
+                    {discounts?.map((discount) => (
                       <tr key={discount.id} className="hover:bg-muted/50 transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
