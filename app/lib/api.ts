@@ -22,7 +22,12 @@ export const getImageUrl = (imagePath: string | undefined | null) => {
     return imagePath
   }
   
-  // If it already starts with /, return as is (direct public path)
+  // If it already starts with /images/, return as is
+  if (imagePath.startsWith('/images/')) {
+    return imagePath
+  }
+  
+  // If it starts with /, but not /images/, assume it's a direct public path
   if (imagePath.startsWith('/')) {
     return imagePath
   }
@@ -30,8 +35,8 @@ export const getImageUrl = (imagePath: string | undefined | null) => {
   // Remove any 'images/' prefix to get just filename
   const cleanPath = imagePath.replace(/^images\//g, '')
   
-  // Return direct path to public folder
-  return `/${cleanPath}`
+  // Return path to images/products folder in public
+  return `/images/products/${cleanPath}`
 };
 
 export const getProductDisplayName = (product: any) => {

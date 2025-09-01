@@ -64,15 +64,11 @@ export async function GET(request: NextRequest) {
           if (img.startsWith('http')) {
             return img
           }
-          let cleanPath = img
-          if (cleanPath.startsWith('/images/')) {
-            cleanPath = cleanPath.substring(8)
-          } else if (cleanPath.startsWith('images/')) {
-            cleanPath = cleanPath.substring(7)
-          } else if (cleanPath.startsWith('api/')) {
-            cleanPath = cleanPath.substring(4)
+          // Direct path to images - no processing needed
+          if (img.startsWith('/images/')) {
+            return img
           }
-          return `/images/${cleanPath}`
+          return `/images/${img}`
         })
       } else if (product.image_url && product.image_url.trim() !== '') {
         let imageUrl = product.image_url
@@ -80,15 +76,12 @@ export async function GET(request: NextRequest) {
         if (imageUrl.startsWith('http')) {
           images = [imageUrl]
         } else {
-          let cleanPath = imageUrl
-          if (cleanPath.startsWith('/images/')) {
-            cleanPath = cleanPath.substring(8)
-          } else if (cleanPath.startsWith('images/')) {
-            cleanPath = cleanPath.substring(7)
-          } else if (cleanPath.startsWith('api/')) {
-            cleanPath = cleanPath.substring(4)
+          // Direct path to images - no processing needed
+          if (imageUrl.startsWith('/images/')) {
+            images = [imageUrl]
+          } else {
+            images = [`/images/${imageUrl}`]
           }
-          images = [`/images/${cleanPath}`]
         }
       }
 

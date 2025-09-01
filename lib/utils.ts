@@ -46,8 +46,8 @@ export function getImageUrl(imagePath: string | undefined | null): string {
     return imagePath
   }
   
-  // If it's just the filename, add the /images/ prefix
-  return `/images/${imagePath.replace(/^\/+/, '')}`
+  // If it's just the filename, add the /images/products/ prefix
+  return `/images/products/${imagePath.replace(/^\/+/, '')}`
 }
 
 // Get product display name (remove SKU from title)
