@@ -26,12 +26,8 @@ export async function GET(
           description,
           brand,
           collection,
-          product_images (
-            id,
-            image_path,
-            alt_text,
-            display_order
-          )
+          images,
+          image_url
         )
       `)
       .like('sku', `${baseSku}%`)
@@ -46,18 +42,29 @@ export async function GET(
     const transformedVariants = variants?.map((variant: any) => {
       let images = []
       
-      if (variant.products?.product_images && variant.products.product_images.length > 0) {
-        images = variant.products.product_images
-          .sort((a: any, b: any) => (a.display_order || 999) - (b.display_order || 999))
-          ?.map((img: any) => {
-            let cleanPath = img.image_path
-            if (cleanPath.startsWith('/images/')) {
-              cleanPath = cleanPath.substring(8)
-            } else if (cleanPath.startsWith('images/')) {
-              cleanPath = cleanPath.substring(7)
-            }
-            return `/api/images/${cleanPath}`
-          })
+      if (variant.products?.images && Array.isArray(variant.products.images) && variant.products.images.length > 0) {
+        images = variant.products.images.map((img: string) => {
+          if (img.startsWith('http')) {
+            return img
+          }
+          // Direct path to images - no processing needed
+          if (img.startsWith('/images/')) {
+            return img
+          }
+          return `/images/${img}`
+        })
+      } else if (variant.products?.image_url && variant.products.image_url.trim() !== '') {
+        let imageUrl = variant.products.image_url
+        if (imageUrl.startsWith('http')) {
+          images = [imageUrl]
+        } else {
+          // Direct path to images - no processing needed
+          if (imageUrl.startsWith('/images/')) {
+            images = [imageUrl]
+          } else {
+            images = [`/images/${imageUrl}`]
+          }
+        }
       }
 
       return {

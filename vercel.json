@@ -18,7 +18,7 @@
     {
       "source": "/admin",
       "destination": "/admin/dashboard", 
-      "permanent": true
+      "permanent": false
     }
   ]
 }
