@@ -17,18 +17,31 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '12')
-    const sortBy = searchParams.get('sortBy') || 'name'
+    const sortBy = searchParams.get('sortBy') || 'id'
     const sortOrder = searchParams.get('sortOrder') || 'asc'
 
     console.log('Query params:', { page, limit, sortBy, sortOrder });
 
-    // Very basic query to test table access
-    console.log('Testing table access...');
-    const { data: products, error } = await supabase
+    // Map sortBy to valid column names
+    const validSorts = {
+      'id': 'id',
+      'name': 'name', 
+      'price': 'price',
+      'created_at': 'created_at'
+    }
+    const actualSortBy = validSorts[sortBy] || 'id'
+
+    console.log('Using sort column:', actualSortBy);
+    
+    // Query with pagination
+    console.log('Querying with pagination...');
+    const offset = (page - 1) * limit
+    
+    const { data: products, error, count } = await supabase
       .from('products')
-      .select('id, name, price, image_url, images, description, sku')
-      .order('name', { ascending: true })
-      .limit(limit)
+      .select('id, name, price, image_url, images, description, sku', { count: 'exact' })
+      .order(actualSortBy, { ascending: sortOrder === 'asc' })
+      .range(offset, offset + limit - 1)
 
     if (error) {
       console.error('Supabase query error:', error)
@@ -88,10 +101,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       products: transformedProducts || [],
       pagination: {
-        total: products?.length || 0,
+        total: count || 0,
         page,
         limit,
-        pages: 1
+        pages: Math.ceil((count || 0) / limit)
       }
     })
 
