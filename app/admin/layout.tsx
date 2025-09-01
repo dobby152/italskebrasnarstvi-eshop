@@ -68,14 +68,14 @@ export default function AdminLayout({
           {navigationItems?.map((item) => {
             const Icon = item.icon
             return (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="flex items-center gap-3 px-3 py-2.5 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-colors duration-200 group"
               >
                 <Icon className="h-5 w-5 text-gray-400 group-hover:text-white transition-colors" />
                 <span className="font-medium">{item.label}</span>
-              </a>
+              </Link>
             )
           })}
           

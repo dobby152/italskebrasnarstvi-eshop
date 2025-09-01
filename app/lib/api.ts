@@ -35,8 +35,8 @@ export const getImageUrl = (imagePath: string | undefined | null) => {
   // Remove any 'images/' prefix to get just filename
   const cleanPath = imagePath.replace(/^images\//g, '')
   
-  // Return path to images/products folder in public
-  return `/images/products/${cleanPath}`
+  // Return path to images folder in public
+  return `/images/${cleanPath}`
 };
 
 export const getProductDisplayName = (product: any) => {
