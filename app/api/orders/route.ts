@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '../../lib/supabase'
 
+interface Order {
+  id: string
+  customer_email?: string
+  customer_name?: string
+  created_at: string
+  status?: string
+  payment_status?: string
+  total?: number
+  line_items?: any[]
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { data: orders, error } = await supabase
@@ -26,7 +37,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Transform orders data
-    const transformedOrders = orders?.map(order => ({
+    const transformedOrders = orders?.map((order: Order) => ({
       id: order.id,
       customer: order.customer_name || order.customer_email || 'Unknown',
       date: order.created_at,
