@@ -7,18 +7,14 @@ export async function GET(
   try {
     const { baseSku } = await params
     
-    // Proxy to the main variants endpoint with baseSku parameter
-    const url = new URL('/api/variants', request.url)
-    url.searchParams.set('baseSku', baseSku)
-    
-    const response = await fetch(url.toString())
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch variants: ${response.statusText}`)
+    // For now, return empty variant group since we don't have variant data in our current database
+    // This prevents the 500 error and allows the product page to load normally
+    const variantGroup = {
+      baseSku,
+      variants: []
     }
     
-    const data = await response.json()
-    return NextResponse.json(data)
+    return NextResponse.json(variantGroup)
   } catch (error) {
     console.error('Error in variants/[baseSku] route:', error)
     return NextResponse.json(
