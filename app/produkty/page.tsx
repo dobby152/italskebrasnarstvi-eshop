@@ -3,10 +3,13 @@
 export const dynamic = 'force-dynamic'
 // Vercel deployment fix
 
+"use client"
+
 import { Button } from "../components/ui/button"
 import { Card } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import { Star, Heart, ShoppingCart, Filter, Grid, List, Search, X } from "lucide-react"
+
 import { useState, useEffect } from "react"
 import dynamicImport from 'next/dynamic'
 import Link from "next/link"
@@ -26,15 +29,6 @@ export default function ProduktyPage() {
     features: [] as string[],
   })
 
-  // Debug: Log when products are loaded
-  useEffect(() => {
-    console.log('🔍 Products state:', { 
-      productsCount: products?.length, 
-      total, 
-      loading: productsLoading, 
-      error: productsError 
-    })
-  }, [products, total, productsLoading, productsError])
   const [sortBy, setSortBy] = useState("popularity")
   const [viewMode, setViewMode] = useState("grid")
   const [searchQuery, setSearchQuery] = useState("")
@@ -77,6 +71,16 @@ export default function ProduktyPage() {
     sortOrder: 'desc',
     autoFetch: true
   })
+
+  // Debug: Log when products are loaded
+  useEffect(() => {
+    console.log('🔍 Products state:', { 
+      productsCount: products?.length, 
+      total, 
+      loading: productsLoading, 
+      error: productsError 
+    })
+  }, [products, total, productsLoading, productsError])
 
   const features = ["RFID ochrana", "USB port", "Voděodolný", "Antivražedný kabel", "Pravá kůže", "TSA zámek"]
 

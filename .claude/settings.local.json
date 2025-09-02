@@ -74,7 +74,10 @@
       "Bash(dir /s)",
       "WebFetch(domain:italskebrasnarstvi-eshop.vercel.app)",
       "WebFetch(domain:italskebrasnarstvi-eshop-nu.vercel.app)",
-      "WebFetch(domain:dbnfkzctensbpktgbsgn.supabase.co)"
+      "WebFetch(domain:dbnfkzctensbpktgbsgn.supabase.co)",
+      "Bash(PORT=3010 npm run dev)",
+      "WebFetch(domain:)",
+      "Bash(PORT=3015 npm run dev)"
     ],
     "deny": [],
     "additionalDirectories": [
