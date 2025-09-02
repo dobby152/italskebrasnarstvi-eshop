@@ -63,7 +63,7 @@ export default function ProductFiltersComponent({
 
   const getActiveFiltersCount = () => {
     let count = 0
-    if (filters.category?.length) count += filters.category.length
+    if (filters.category) count += 1
     if (filters.subcategory?.length) count += filters.subcategory.length
     if (filters.brand?.length) count += filters.brand.length
     if (filters.gender?.length) count += filters.gender.length
@@ -118,15 +118,15 @@ export default function ProductFiltersComponent({
                 />
               </Badge>
             ))}
-            {filters.category?.map(category => (
-              <Badge key={category} variant="secondary" className="text-xs">
-                {allCategories.find(c => c.slug === category)?.name || category}
+            {filters.category && (
+              <Badge key={filters.category} variant="secondary" className="text-xs">
+                {allCategories.find(c => c.slug === filters.category)?.name || filters.category}
                 <X 
                   className="ml-1 h-3 w-3 cursor-pointer" 
-                  onClick={() => handleArrayFilterChange('category', category, false)}
+                  onClick={() => clearFilter('category')}
                 />
               </Badge>
-            ))}
+            )}
             {filters.brand?.map(brand => (
               <Badge key={brand} variant="secondary" className="text-xs">
                 {brand}
@@ -193,9 +193,9 @@ export default function ProductFiltersComponent({
                 <div key={category.id} className="flex items-center space-x-2">
                   <Checkbox
                     id={`category-${category.slug}`}
-                    checked={filters.category?.includes(category.slug) || false}
+                    checked={filters.category === category.slug}
                     onCheckedChange={(checked) => 
-                      handleArrayFilterChange('category', category.slug, checked as boolean)
+                      handleFilterChange('category', checked ? category.slug : undefined)
                     }
                   />
                   <label 
