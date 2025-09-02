@@ -215,4 +215,123 @@ router.post('/products', async (req, res) => {
   }
 });
 
+// Newsletter subscribers management
+router.get('/newsletter', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 50;
+    const offset = (page - 1) * limit;
+
+    // Create newsletter_subscribers table if it doesn't exist
+    const { data: tables, error: tablesError } = await supabase
+      .from('information_schema.tables')
+      .select('table_name')
+      .eq('table_schema', 'public')
+      .eq('table_name', 'newsletter_subscribers');
+
+    if (!tables?.length) {
+      // Table doesn't exist, create it
+      const { error: createError } = await supabase.rpc('create_newsletter_table');
+      if (createError) {
+        console.log('📧 Creating newsletter table manually...');
+        // We'll handle this in the frontend for now
+      }
+    }
+
+    const { data: subscribers, error, count } = await supabase
+      .from('newsletter_subscribers')
+      .select('*', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(offset, offset + limit - 1);
+
+    if (error && error.code === '42P01') {
+      // Table doesn't exist, return empty result
+      return res.json({
+        subscribers: [],
+        pagination: {
+          page: 1,
+          limit,
+          total: 0,
+          pages: 0
+        }
+      });
+    }
+
+    if (error) throw error;
+
+    res.json({
+      subscribers: subscribers || [],
+      pagination: {
+        page,
+        limit,
+        total: count || 0,
+        pages: Math.ceil((count || 0) / limit)
+      }
+    });
+  } catch (error) {
+    console.error('❌ Admin - Error fetching newsletter subscribers:', error);
+    res.status(500).json({ error: 'Failed to fetch newsletter subscribers' });
+  }
+});
+
+// Add newsletter subscriber
+router.post('/newsletter', async (req, res) => {
+  try {
+    const { email } = req.body;
+    
+    if (!email || !email.includes('@')) {
+      return res.status(400).json({ error: 'Valid email is required' });
+    }
+
+    // Check if subscriber already exists
+    const { data: existing } = await supabase
+      .from('newsletter_subscribers')
+      .select('id')
+      .eq('email', email)
+      .single();
+
+    if (existing) {
+      return res.status(409).json({ error: 'Email already subscribed' });
+    }
+
+    const { data: subscriber, error } = await supabase
+      .from('newsletter_subscribers')
+      .insert([{
+        email,
+        subscribed_at: new Date().toISOString(),
+        active: true
+      }])
+      .select('*')
+      .single();
+
+    if (error) throw error;
+
+    console.log(`📧 New newsletter subscriber: ${email}`);
+    res.status(201).json(subscriber);
+  } catch (error) {
+    console.error('❌ Admin - Error adding newsletter subscriber:', error);
+    res.status(500).json({ error: 'Failed to add newsletter subscriber' });
+  }
+});
+
+// Unsubscribe from newsletter
+router.delete('/newsletter/:email', async (req, res) => {
+  try {
+    const { email } = req.params;
+    
+    const { error } = await supabase
+      .from('newsletter_subscribers')
+      .update({ active: false, unsubscribed_at: new Date().toISOString() })
+      .eq('email', email);
+
+    if (error) throw error;
+
+    console.log(`📧 Newsletter unsubscribe: ${email}`);
+    res.json({ message: 'Successfully unsubscribed' });
+  } catch (error) {
+    console.error('❌ Admin - Error unsubscribing from newsletter:', error);
+    res.status(500).json({ error: 'Failed to unsubscribe' });
+  }
+});
+
 module.exports = router;

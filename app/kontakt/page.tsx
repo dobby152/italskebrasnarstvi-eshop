@@ -1,285 +1,165 @@
 import { Button } from "../components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
-import { Input } from "../components/ui/input"
-import { Textarea } from "../components/ui/textarea"
-import { MapPin, Phone, Mail, Clock, Car, Train } from "lucide-react"
+import { Card, CardContent } from "../components/ui/card"
+import { Phone, Mail, Clock, MapPin, MessageCircle } from "lucide-react"
 import Link from "next/link"
+import Header from "../components/header"
 
 export default function KontaktPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
-              italskeBrasnarstvi.cz
-            </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-600 hover:text-gray-900">
-                Domů
-              </Link>
-              <Link href="/produkty" className="text-gray-600 hover:text-gray-900">
-                Produkty
-              </Link>
-              <Link href="/o-nas" className="text-gray-600 hover:text-gray-900">
-                O nás
-              </Link>
-              <Link href="/kontakt" className="text-gray-900 font-medium">
-                Kontakt
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
 
-      {/* Header */}
-      <div className="bg-gray-50 py-12">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-gray-900 to-black py-16">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Kontaktujte nás
+          </h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Máte dotazy nebo potřebujete radu ohledně našich produktů či objednávky? Nebojte se nám napsat nebo zavolat. Jsme tu, abychom vám pomohli.
+          </p>
+        </div>
+      </div>
+
+      {/* Contact Info */}
+      <section className="py-16">
         <div className="container mx-auto px-6">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Kontaktujte nás</h1>
-          <p className="text-lg text-gray-600">Jsme tu pro vás. Rádi odpovíme na vaše dotazy a pomůžeme s výběrem.</p>
-        </div>
-      </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Email */}
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Mail className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">E-mail</h3>
+                <a href="mailto:info@italskeBrasnarstvi.cz" className="text-blue-600 hover:underline">
+                  info@italskeBrasnarstvi.cz
+                </a>
+              </CardContent>
+            </Card>
 
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div>
-            <Card>
-              <CardHeader>
-                <CardTitle>Napište nám</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Jméno *</label>
-                      <Input placeholder="Vaše jméno" required />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Příjmení *</label>
-                      <Input placeholder="Vaše příjmení" required />
-                    </div>
-                  </div>
+            {/* Phone */}
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Phone className="h-8 w-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Telefon</h3>
+                <a href="tel:+420774977971" className="text-green-600 hover:underline">
+                  +420 774 977 971
+                </a>
+              </CardContent>
+            </Card>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">E-mail *</label>
-                    <Input type="email" placeholder="vas@email.cz" required />
-                  </div>
+            {/* Hours */}
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Otevírací doba</h3>
+                <p className="text-gray-600">Po-Pá: 10:00 - 16:00</p>
+                <p className="text-sm text-gray-500">kromě svátků</p>
+              </CardContent>
+            </Card>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Telefon</label>
-                    <Input type="tel" placeholder="+420 123 456 789" />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Předmět</label>
-                    <select className="w-full border border-gray-300 rounded-md px-3 py-2">
-                      <option>Obecný dotaz</option>
-                      <option>Dotaz k produktu</option>
-                      <option>Reklamace</option>
-                      <option>Objednávka</option>
-                      <option>Jiné</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Zpráva *</label>
-                    <Textarea placeholder="Napište nám svůj dotaz nebo zprávu..." rows={5} required />
-                  </div>
-
-                  <div className="flex items-center">
-                    <input type="checkbox" id="gdpr" className="mr-2" required />
-                    <label htmlFor="gdpr" className="text-sm text-gray-600">
-                      Souhlasím se zpracováním osobních údajů podle GDPR *
-                    </label>
-                  </div>
-
-                  <Button type="submit" className="w-full bg-gray-900 hover:bg-gray-800">
-                    Odeslat zprávu
-                  </Button>
-                </form>
+            {/* Support */}
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="h-8 w-8 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Zákaznický servis</h3>
+                <p className="text-gray-600">Rychlá odpověď na vaše dotazy</p>
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
 
-          {/* Contact Information */}
-          <div className="space-y-6">
-            {/* Store Prague */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-2" />
-                  Prodejna Praha
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="font-medium">Adresa:</p>
-                  <p className="text-gray-600">
-                    Wenceslas Square 14
-                    <br />
-                    110 00 Praha 1
-                  </p>
-                </div>
+      {/* Stores */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Naše prodejny</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Můžete nás navštívit také na jedné z našich kamenných prodejen v Praze, kde vám náš školený personál přímo poradí s výběrem a vy si můžete produkty detailně prohlédnout.
+            </p>
+          </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center">
-                    <Phone className="h-4 w-4 mr-2 text-gray-500" />
-                    <span className="text-sm">+420 224 234 567</span>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Westfield Chodov */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-red-600" />
                   </div>
-                  <div className="flex items-center">
-                    <Mail className="h-4 w-4 mr-2 text-gray-500" />
-                    <span className="text-sm">praha@italskebrasnarstvi.cz</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center mb-2">
-                    <Clock className="h-4 w-4 mr-2 text-gray-500" />
-                    <span className="font-medium text-sm">Otevírací doba:</span>
-                  </div>
-                  <div className="text-sm text-gray-600 space-y-1">
-                    <p>Po - Pá: 9:00 - 19:00</p>
-                    <p>So: 9:00 - 17:00</p>
-                    <p>Ne: 10:00 - 16:00</p>
-                  </div>
-                </div>
-
-                <div>
-                  <p className="font-medium text-sm mb-2">Doprava:</p>
-                  <div className="flex items-center space-x-4 text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <Train className="h-4 w-4 mr-1" />
-                      Metro A, B - Můstek
-                    </div>
-                    <div className="flex items-center">
-                      <Car className="h-4 w-4 mr-1" />
-                      Parkoviště Kotva
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">PIQUADRO Westfield Chodov</h3>
+                    <p className="text-gray-600 mb-2">
+                      Roztylská 2321/19<br />
+                      Praha 11-Chodov 148 00<br />
+                      Česko
+                    </p>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Clock className="h-4 w-4 mr-1" />
+                      Po — Ne: 9.00 — 21.00 hod.
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Store Brno */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-2" />
-                  Prodejna Brno
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="font-medium">Adresa:</p>
-                  <p className="text-gray-600">
-                    Náměstí Svobody 8<br />
-                    602 00 Brno
-                  </p>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center">
-                    <Phone className="h-4 w-4 mr-2 text-gray-500" />
-                    <span className="text-sm">+420 543 234 567</span>
+            {/* Premium Outlet */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-red-600" />
                   </div>
-                  <div className="flex items-center">
-                    <Mail className="h-4 w-4 mr-2 text-gray-500" />
-                    <span className="text-sm">brno@italskebrasnarstvi.cz</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center mb-2">
-                    <Clock className="h-4 w-4 mr-2 text-gray-500" />
-                    <span className="font-medium text-sm">Otevírací doba:</span>
-                  </div>
-                  <div className="text-sm text-gray-600 space-y-1">
-                    <p>Po - Pá: 9:00 - 18:00</p>
-                    <p>So: 9:00 - 16:00</p>
-                    <p>Ne: zavřeno</p>
-                  </div>
-                </div>
-
-                <div>
-                  <p className="font-medium text-sm mb-2">Doprava:</p>
-                  <div className="flex items-center space-x-4 text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <Train className="h-4 w-4 mr-1" />
-                      Tram 1, 2, 4 - Náměstí Svobody
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">PIQUADRO Premium Outlet Prague</h3>
+                    <p className="text-gray-600 mb-2">
+                      Ke Kopanině 421<br />
+                      Tuchomerice 252 67<br />
+                      Česko
+                    </p>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Clock className="h-4 w-4 mr-1" />
+                      Po — Ne: 10.00 — 20.00 hod.
                     </div>
-                    <div className="flex items-center">
-                      <Car className="h-4 w-4 mr-1" />
-                      Parkoviště Galerie Vaňkovka
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Online Support */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Online podpora</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="font-medium">Zákaznická linka:</p>
-                  <p className="text-lg font-semibold text-gray-900">+420 800 123 456</p>
-                  <p className="text-sm text-gray-600">Bezplatná linka</p>
-                </div>
-
-                <div>
-                  <p className="font-medium">E-mail:</p>
-                  <p className="text-gray-900">info@italskebrasnarstvi.cz</p>
-                </div>
-
-                <div>
-                  <p className="font-medium">Doba odezvy:</p>
-                  <p className="text-sm text-gray-600">
-                    E-mail: do 24 hodin
-                    <br />
-                    Telefon: Po-Pá 8:00-17:00
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t">
-                  <p className="font-medium mb-2">Rychlé odkazy:</p>
-                  <div className="space-y-2">
-                    <Link href="/reklamace" className="block text-sm text-blue-600 hover:underline">
-                      Jak podat reklamaci
-                    </Link>
-                    <Link href="/doprava" className="block text-sm text-blue-600 hover:underline">
-                      Doprava a platba
-                    </Link>
-                    <Link href="/vraceni" className="block text-sm text-blue-600 hover:underline">
-                      Vrácení zboží
-                    </Link>
-                    <Link href="/faq" className="block text-sm text-blue-600 hover:underline">
-                      Často kladené otázky
-                    </Link>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
         </div>
+      </section>
 
-        {/* Map Section */}
-        <div className="mt-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>Najdete nás zde</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
-                <p className="text-gray-600">Mapa s označením našich prodejen</p>
-              </div>
-            </CardContent>
-          </Card>
+      {/* Contact Form CTA */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Potřebujete poradit?</h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Naši odborníci vám rádi pomohou s výběrem správného produktu pro vaše potřeby
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+              <a href="mailto:info@italskeBrasnarstvi.cz">
+                <Mail className="h-5 w-5 mr-2" />
+                Napsat e-mail
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-gray-900">
+              <a href="tel:+420774977971">
+                <Phone className="h-5 w-5 mr-2" />
+                Zavolat
+              </a>
+            </Button>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

@@ -320,18 +320,13 @@ export default function HomePage() {
       <footer className="bg-black text-white py-12">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
+            <div>
               <h3 className="text-2xl font-black mb-4">
                 italskeBrasnarstvi<span className="text-gray-400">.cz</span>
               </h3>
               <p className="text-white mb-6">
                 Oficiální český distributor značky Piquadro. <span className="font-semibold">Italské řemeslné umění s moderním designem.</span>
               </p>
-              <div className="space-y-2 text-gray-400">
-                <div>📞 +420 774 977 971</div>
-                <div>✉️ info@italskeBrasnarstvi.cz</div>
-                <div>🕒 Po-Pá: 10:00-16:00</div>
-              </div>
             </div>
             <div>
               <h4 className="font-bold mb-4">Nakupovat</h4>
@@ -349,7 +344,71 @@ export default function HomePage() {
                 <li><Link href="/vraceni" className="hover:text-white transition-colors">Vrácení a výměna</Link></li>
                 <li><Link href="/faq" className="hover:text-white transition-colors">Časté dotazy</Link></li>
                 <li><Link href="/kontakt" className="hover:text-white transition-colors">Kontaktujte nás</Link></li>
+                <li><Link href="/obchodni-podminky" className="hover:text-white transition-colors">Obchodní podmínky</Link></li>
               </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Kontakt & Newsletter</h4>
+              <div className="space-y-3 text-gray-400 text-sm mb-6">
+                <div className="flex items-center">
+                  <span className="mr-2">📞</span>
+                  <a href="tel:+420774977971" className="hover:text-white transition-colors">+420 774 977 971</a>
+                </div>
+                <div className="flex items-center">
+                  <span className="mr-2">✉️</span>
+                  <a href="mailto:info@italskeBrasnarstvi.cz" className="hover:text-white transition-colors">info@italskeBrasnarstvi.cz</a>
+                </div>
+                <div className="flex items-center">
+                  <span className="mr-2">🕒</span>
+                  <span>Po-Pá: 10:00-16:00</span>
+                </div>
+              </div>
+              <div>
+                <h5 className="font-semibold mb-3">Odběr novinek</h5>
+                <form 
+                  className="flex flex-col space-y-2"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.currentTarget);
+                    const email = formData.get('email') as string;
+                    
+                    try {
+                      const response = await fetch('/api/admin/newsletter', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email }),
+                      });
+                      
+                      if (response.ok) {
+                        alert('Děkujeme za přihlášení k odběru novinek!');
+                        (e.target as HTMLFormElement).reset();
+                      } else if (response.status === 409) {
+                        alert('Tento e-mail je již přihlášen k odběru novinek.');
+                      } else {
+                        throw new Error('Failed to subscribe');
+                      }
+                    } catch (error) {
+                      alert('Došlo k chybě při přihlášení. Zkuste to prosím později.');
+                    }
+                  }}
+                >
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Váš e-mail"
+                    className="px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white placeholder-gray-400 focus:outline-none focus:border-white text-sm"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="bg-white text-black px-4 py-2 rounded font-semibold hover:bg-gray-200 transition-colors text-sm"
+                  >
+                    Odebírat
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
