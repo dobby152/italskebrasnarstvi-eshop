@@ -99,12 +99,12 @@ export default function BusinessPage() {
                   filters={{
                     brand: selectedBrand ? [selectedBrand] : [],
                     search: searchQuery || '',
-                    category: selectedCollection ? [selectedCollection] : []
+                    category: selectedCollection || undefined
                   }}
                   onFiltersChange={(filters) => {
                     setSelectedBrand(filters.brand?.[0] || '')
                     setSearchQuery(filters.search || '')
-                    setSelectedCollection(filters.category?.[0] || '')
+                    setSelectedCollection(filters.category || '')
                   }}
                   onClearFilters={() => {
                     setSelectedBrand('')
