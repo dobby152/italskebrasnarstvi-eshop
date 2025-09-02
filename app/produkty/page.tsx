@@ -18,6 +18,8 @@ import { useProducts, useCollections, useBrands } from "../hooks/useProducts"
 import { getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct } from "../lib/api"
 import { createProductSlug } from "../lib/utils"
 import ColorVariantSelector from "../../components/color-variant-selector"
+import { getAvailableCategories, filterProductsByCategory } from "../lib/product-categories"
+import ProductFilterBar from "../components/product-filter-bar"
 
 export default function ProduktyPage() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -25,6 +27,7 @@ export default function ProduktyPage() {
     brands: [] as string[],
     priceRanges: [] as string[],
     features: [] as string[],
+    productTypes: [] as string[],
   })
 
   const [sortBy, setSortBy] = useState("popularity")
@@ -72,9 +75,17 @@ export default function ProduktyPage() {
   }, [products, total, productsLoading, productsError])
 
   const features = ["RFID ochrana", "USB port", "Voděodolný", "Antivražedný kabel", "Pravá kůže", "TSA zámek"]
+  const productCategories = getAvailableCategories()
 
-  // Simplified: Use products directly without complex sorting (for debugging)
-  const sortedProducts = products || []
+  // Apply local product type filtering
+  let filteredProducts = products || []
+  if (selectedFilters.productTypes.length > 0) {
+    selectedFilters.productTypes.forEach(typeId => {
+      filteredProducts = filterProductsByCategory(filteredProducts, typeId)
+    })
+  }
+
+  const sortedProducts = filteredProducts
   
   console.log('🎯 Final sorted products:', sortedProducts?.length)
   
@@ -109,16 +120,26 @@ export default function ProduktyPage() {
   }
 
   const clearAllFilters = () => {
-    setSelectedFilters({ categories: [] as string[], brands: [] as string[], priceRanges: [] as string[], features: [] as string[] })
+    setSelectedFilters({ categories: [] as string[], brands: [] as string[], priceRanges: [] as string[], features: [] as string[], productTypes: [] as string[] })
     setSearchQuery("")
   }
 
   const activeFiltersCount =
-    selectedFilters.categories.length + selectedFilters.brands.length + selectedFilters.priceRanges.length + selectedFilters.features.length
+    selectedFilters.categories.length + selectedFilters.brands.length + selectedFilters.priceRanges.length + selectedFilters.features.length + selectedFilters.productTypes.length
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
+      
+      {/* Filter Bar */}
+      <ProductFilterBar
+        selectedFilters={selectedFilters}
+        onToggleFilter={toggleFilter}
+        onClearAll={clearAllFilters}
+        collections={collections}
+        brands={brands}
+        loading={productsLoading}
+      />
 
       {/* Header */}
       <div className="bg-gray-50 py-12 border-b">
@@ -158,115 +179,8 @@ export default function ProduktyPage() {
       </div>
 
       <div className="container mx-auto px-6 py-12">
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Sidebar Filters */}
-          <div className="lg:w-1/4">
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 sticky top-6 shadow-lg">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-black text-gray-900 flex items-center">
-                  <Filter className="h-5 w-5 mr-2" />
-                  Filtry
-                </h3>
-                {activeFiltersCount > 0 && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={clearAllFilters}
-                    className="text-gray-500 hover:text-black"
-                  >
-                    Vymazat ({activeFiltersCount})
-                  </Button>
-                )}
-              </div>
-
-              {/* Categories/Collections */}
-              <div className="mb-8">
-                <h4 className="font-bold text-gray-900 mb-4">Kolekce</h4>
-                <div className="space-y-3">
-                  {collectionsLoading ? (
-                    <div className="text-sm text-gray-500">Načítání...</div>
-                  ) : (collections && Array.isArray(collections)) ? (
-                    collections.map((collection) => (
-                      <label key={collection.id} className="flex items-center cursor-pointer group">
-                        <input
-                          type="checkbox"
-                          checked={selectedFilters.categories.includes(collection.id)}
-                          onChange={() => toggleFilter("categories", collection.id)}
-                          className="mr-3 w-4 h-4 text-black focus:ring-black border-gray-300 rounded"
-                        />
-                        <span className="text-gray-700 group-hover:text-black transition-colors">{collection.name}</span>
-                      </label>
-                    ))
-                  ) : (
-                    <div className="text-sm text-red-500">Chyba při načítání kolekcí</div>
-                  )}
-                </div>
-              </div>
-
-              {/* Brands */}
-              <div className="mb-8">
-                <h4 className="font-bold text-gray-900 mb-4">Značky</h4>
-                <div className="space-y-3">
-                  {brandsLoading ? (
-                    <div className="text-sm text-gray-500">Načítání...</div>
-                  ) : (brands && Array.isArray(brands)) ? (
-                    brands.map((brand) => (
-                      <label key={brand.id} className="flex items-center cursor-pointer group">
-                        <input
-                          type="checkbox"
-                          checked={selectedFilters.brands.includes(brand.id.toString())}
-                          onChange={() => toggleFilter("brands", brand.id.toString())}
-                          className="mr-3 w-4 h-4 text-black focus:ring-black border-gray-300 rounded"
-                        />
-                        <span className="text-gray-700 group-hover:text-black transition-colors">{brand.name}</span>
-                      </label>
-                    ))
-                  ) : (
-                    <div className="text-sm text-red-500">Chyba při načítání značek</div>
-                  )}
-                </div>
-              </div>
-
-              {/* Price Range */}
-              <div className="mb-8">
-                <h4 className="font-bold text-gray-900 mb-4">Cena</h4>
-                <div className="space-y-3">
-                  {priceRanges.map((range) => (
-                    <label key={range.label} className="flex items-center cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={selectedFilters.priceRanges.includes(range.label)}
-                        onChange={() => toggleFilter("priceRanges", range.label)}
-                        className="mr-3 w-4 h-4 text-black focus:ring-black border-gray-300 rounded"
-                      />
-                      <span className="text-gray-700 group-hover:text-black transition-colors">{range.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Features */}
-              <div className="mb-8">
-                <h4 className="font-bold text-gray-900 mb-4">Vlastnosti</h4>
-                <div className="space-y-3">
-                  {features.map((feature) => (
-                    <label key={feature} className="flex items-center cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={selectedFilters.features.includes(feature)}
-                        onChange={() => toggleFilter("features", feature)}
-                        className="mr-3 w-4 h-4 text-black focus:ring-black border-gray-300 rounded"
-                      />
-                      <span className="text-gray-700 group-hover:text-black transition-colors">{feature}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Products Grid */}
-          <div className="lg:w-3/4">
+        {/* Products Grid */}
+        <div>
             {/* Toolbar */}
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
               <div>
@@ -315,49 +229,6 @@ export default function ProduktyPage() {
               </div>
             </div>
 
-            {/* Active Filters */}
-            {activeFiltersCount > 0 && (
-              <div className="mb-8 p-4 bg-gray-50 rounded-lg">
-                <div className="flex flex-wrap gap-2">
-                  {selectedFilters.categories.map((collectionId) => {
-                    const collection = collections?.find(col => col.id === collectionId)
-                    return (
-                      <span
-                        key={collectionId}
-                        className="inline-flex items-center gap-1 bg-black text-white px-3 py-1 rounded-full text-sm"
-                      >
-                        {collection?.name || collectionId}
-                        <button onClick={() => toggleFilter("categories", collectionId)}>
-                          <X className="h-3 w-3" />
-                        </button>
-                      </span>
-                    )
-                  })}
-                  {selectedFilters.priceRanges.map((range) => (
-                    <span
-                      key={range}
-                      className="inline-flex items-center gap-1 bg-black text-white px-3 py-1 rounded-full text-sm"
-                    >
-                      {range}
-                      <button onClick={() => toggleFilter("priceRanges", range)}>
-                        <X className="h-3 w-3" />
-                      </button>
-                    </span>
-                  ))}
-                  {selectedFilters.features.map((feature) => (
-                    <span
-                      key={feature}
-                      className="inline-flex items-center gap-1 bg-black text-white px-3 py-1 rounded-full text-sm"
-                    >
-                      {feature}
-                      <button onClick={() => toggleFilter("features", feature)}>
-                        <X className="h-3 w-3" />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Products */}
             {productsLoading ? (
