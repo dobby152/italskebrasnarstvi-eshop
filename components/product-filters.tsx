@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, React } from "react"
 import { Button } from "../app/components/ui/button"
 import { Badge } from "../app/components/ui/badge"
 import { Slider } from "../app/components/ui/slider"
@@ -123,13 +123,15 @@ export default function ProductFiltersComponent({
           </div>
           <div className="flex flex-wrap gap-2">
             {filters.gender?.map(gender => (
-              <Badge key={gender} variant="secondary" className="text-xs">
-                {gender === 'men' ? 'Muži' : gender === 'women' ? 'Ženy' : 'Unisex'}
-                <X 
-                  className="ml-1 h-3 w-3 cursor-pointer" 
-                  onClick={() => handleArrayFilterChange('gender', gender, false)}
-                />
-              </Badge>
+              <React.Fragment key={gender}> 
+                <Badge variant="secondary" className="text-xs">
+                  {gender === 'men' ? 'Muži' : gender === 'women' ? 'Ženy' : 'Unisex'}
+                  <X 
+                    className="ml-1 h-3 w-3 cursor-pointer" 
+                    onClick={() => handleArrayFilterChange('gender', gender, false)}
+                  />
+                </Badge>
+              </React.Fragment>
             ))}
             {filters.category && (
               <Badge variant="secondary" className="text-xs">
