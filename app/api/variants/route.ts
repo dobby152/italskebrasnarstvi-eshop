@@ -27,7 +27,7 @@ function getSupabaseImageUrl(imagePath: string): string {
   return `${SUPABASE_STORAGE_URL}/${folderName}/${imageFileName}`
 }
 
-// GET /api/variants - Smart variant detection from existing products
+// GET /api/variants - Smart variant detection with color-based image filtering
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
