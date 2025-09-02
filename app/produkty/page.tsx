@@ -9,6 +9,7 @@ import { Input } from "../components/ui/input"
 import { Star, Heart, ShoppingCart, Filter, Grid, List, Search, X } from "lucide-react"
 
 import { useState, useEffect } from "react"
+import { useSearchParams } from 'next/navigation'
 import dynamicImport from 'next/dynamic'
 import Link from "next/link"
 
@@ -22,12 +23,15 @@ import { getAvailableCategories, filterProductsByCategory } from "../lib/product
 import ProductFilterBar from "../components/product-filter-bar"
 
 export default function ProduktyPage() {
+  const searchParams = useSearchParams()
+  const productTypeFromUrl = searchParams.get('productType')
+  
   const [selectedFilters, setSelectedFilters] = useState({
     categories: [] as string[],
     brands: [] as string[],
     priceRanges: [] as string[],
     features: [] as string[],
-    productTypes: [] as string[],
+    productTypes: productTypeFromUrl ? [productTypeFromUrl] : [] as string[],
   })
 
   const [sortBy, setSortBy] = useState("popularity")

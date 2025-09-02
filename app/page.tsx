@@ -82,9 +82,9 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <h3 className="text-4xl font-bold mb-2 drop-shadow-lg">MUŽI</h3>
-                    <p className="text-lg drop-shadow-md">Objevte pánskou kolekci</p>
+                  <div className="text-center">
+                    <h3 className="text-4xl font-bold mb-2 drop-shadow-lg text-white">MUŽI</h3>
+                    <p className="text-lg drop-shadow-md text-white">Objevte pánskou kolekci</p>
                   </div>
                 </div>
               </div>
@@ -100,13 +100,80 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <h3 className="text-4xl font-bold mb-2 drop-shadow-lg">ŽENY</h3>
-                    <p className="text-lg drop-shadow-md">Objevte dámskou kolekci</p>
+                  <div className="text-center">
+                    <h3 className="text-4xl font-bold mb-2 drop-shadow-lg text-white">ŽENY</h3>
+                    <p className="text-lg drop-shadow-md text-white">Objevte dámskou kolekci</p>
                   </div>
                 </div>
               </div>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Made in Italy */}
+      <section className="py-8 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white bg-black rounded-lg py-8">MADE IN ITALY</h2>
+          </div>
+        </div>
+      </section>
+
+      {/* Výhody */}
+      <section className="py-8 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
+              <div className="w-12 h-12 bg-gray-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Oficiální české zastoupení</h3>
+                <p className="text-sm md:text-base text-gray-600">Reklamace a zákaznický servis řešíte snadno v češtině přímo u nás.</p>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
+              <div className="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Garance nejlepší ceny</strong></h3>
+                <p className="text-sm md:text-base text-gray-600">
+                  <strong>Našli jste identický produkt jinde levněji? Cenu dorovnáme a dáme navíc 5% slevu!</strong>
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Doprava zdarma</strong></h3>
+                <p className="text-sm md:text-base text-gray-600">
+                  <strong>Při objednávce nad 2.500 Kč doručíme zdarma po celé ČR.</strong>
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
+              <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Záruka kvality</strong></h3>
+                <p className="text-sm md:text-base text-gray-600">
+                  <strong>2 roky záruka na všechny produkty Piquadro.</strong>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -203,62 +270,6 @@ export default function HomePage() {
 
       <ProductSection />
 
-      <section className="py-8 md:py-16 bg-gray-50 hidden md:block">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
-              <div className="w-12 h-12 bg-gray-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Oficiální české zastoupení</h3>
-                <p className="text-sm md:text-base text-gray-600">Reklamace a zákaznický servis řešíte snadno v češtině přímo u nás.</p>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
-              <div className="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Garance nejlepší ceny</strong></h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  <strong>Našli jste identický produkt jinde levněji? Cenu dorovnáme a dáme navíc 5% slevu!</strong>
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Doprava zdarma</strong></h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  <strong>Při objednávce nad 2.500 Kč doručíme zdarma po celé ČR.</strong>
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
-              <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Záruka kvality</strong></h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  <strong>2 roky záruka na všechny produkty Piquadro.</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <Suspense
         fallback={

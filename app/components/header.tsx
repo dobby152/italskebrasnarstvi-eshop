@@ -6,11 +6,14 @@ import { useState } from "react"
 import Link from "next/link"
 import { useCart } from "../context/cart-context"
 import { useAuth } from "../contexts/auth-context"
+import { getAvailableCategories } from "../lib/product-categories"
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
+  
+  const productCategories = getAvailableCategories()
   
   // Safe cart usage
   let totalItems = 0
@@ -63,12 +66,15 @@ export default function Header() {
 
           {/* Desktop navigation - CENTERED */}
           <div className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-            <Link href="/produkty?collection=pánské" className="text-lg font-bold text-gray-700 hover:text-black transition-colors">
-              PÁNSKÉ
-            </Link>
-            <Link href="/produkty?collection=dámské" className="text-lg font-bold text-gray-700 hover:text-black transition-colors">
-              DÁMSKÉ
-            </Link>
+            {productCategories.map((category) => (
+              <Link 
+                key={category.id}
+                href={`/produkty?productType=${category.id}`} 
+                className="text-lg font-bold text-gray-700 hover:text-black transition-colors uppercase"
+              >
+                {category.name.toUpperCase()}
+              </Link>
+            ))}
             <Link href="/produkty" className="text-lg font-bold text-gray-700 hover:text-black transition-colors">
               VŠECHNY PRODUKTY
             </Link>
@@ -178,26 +184,22 @@ export default function Header() {
 
               {/* Mobile navigation */}
               <div className="space-y-2">
-                <Link 
-                  href="/produkty?collection=pánské" 
-                  className="block py-2 text-gray-700 hover:text-black font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Pánské
-                </Link>
-                <Link 
-                  href="/produkty?collection=dámské" 
-                  className="block py-2 text-gray-700 hover:text-black font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Dámské
-                </Link>
+                {productCategories.map((category) => (
+                  <Link 
+                    key={category.id}
+                    href={`/produkty?productType=${category.id}`} 
+                    className="block py-3 text-lg font-bold text-gray-700 hover:text-black uppercase"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {category.name.toUpperCase()}
+                  </Link>
+                ))}
                 <Link 
                   href="/produkty" 
-                  className="block py-2 text-gray-700 hover:text-black font-medium"
+                  className="block py-3 text-lg font-bold text-gray-700 hover:text-black uppercase"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Všechny produkty
+                  VŠECHNY PRODUKTY
                 </Link>
                 <Link 
                   href="/kosik" 
