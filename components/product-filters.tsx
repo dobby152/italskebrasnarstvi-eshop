@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, React } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "../app/components/ui/button"
 import { Badge } from "../app/components/ui/badge"
 import { Slider } from "../app/components/ui/slider"

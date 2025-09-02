@@ -25,9 +25,11 @@ export function useProductFilters() {
     const sortOrder = searchParams.get('sortOrder')
     if (sortOrder) urlFilters.sortOrder = sortOrder as 'asc' | 'desc'
 
+    // Single category parameter
+    const category = searchParams.get('category')
+    if (category) urlFilters.category = category
+
     // Array parameters
-    const category = searchParams.getAll('category')
-    if (category.length > 0) urlFilters.category = category
 
     const subcategory = searchParams.getAll('subcategory') 
     if (subcategory.length > 0) urlFilters.subcategory = subcategory
@@ -72,8 +74,10 @@ export function useProductFilters() {
     if (newFilters.sortBy) params.set('sortBy', newFilters.sortBy)
     if (newFilters.sortOrder) params.set('sortOrder', newFilters.sortOrder)
 
+    // Single category parameter
+    if (newFilters.category) params.set('category', newFilters.category)
+
     // Array parameters - use multiple values with same key
-    newFilters.category?.forEach(cat => params.append('category', cat))
     newFilters.subcategory?.forEach(sub => params.append('subcategory', sub))
     newFilters.brand?.forEach(brand => params.append('brand', brand))
     newFilters.gender?.forEach(gender => params.append('gender', gender))
@@ -159,7 +163,7 @@ export function useProductFilters() {
     if (filters.sortOrder) params.sortOrder = filters.sortOrder
 
     // Convert arrays to comma-separated strings for API
-    if (filters.category?.length) params.category = filters.category.join(',')
+    if (filters.category) params.category = filters.category
     if (filters.subcategory?.length) params.subcategory = filters.subcategory.join(',')
     if (filters.brand?.length) params.brand = filters.brand.join(',')
     if (filters.gender?.length) params.gender = filters.gender.join(',')
@@ -189,7 +193,7 @@ export function useProductFilters() {
   // Get active filters count
   const getActiveFiltersCount = useCallback(() => {
     let count = 0
-    if (filters.category?.length) count += filters.category.length
+    if (filters.category) count += 1
     if (filters.subcategory?.length) count += filters.subcategory.length
     if (filters.brand?.length) count += filters.brand.length
     if (filters.gender?.length) count += filters.gender.length
