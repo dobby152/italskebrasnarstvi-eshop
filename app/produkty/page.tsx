@@ -130,16 +130,6 @@ export default function ProduktyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
-      {/* Filter Bar */}
-      <ProductFilterBar
-        selectedFilters={selectedFilters}
-        onToggleFilter={toggleFilter}
-        onClearAll={clearAllFilters}
-        collections={collections}
-        brands={brands}
-        loading={productsLoading}
-      />
 
       {/* Header */}
       <div className="bg-gray-50 py-12 border-b">
@@ -179,8 +169,135 @@ export default function ProduktyPage() {
       </div>
 
       <div className="container mx-auto px-6 py-12">
-        {/* Products Grid */}
-        <div>
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Sidebar Filters */}
+          <div className="lg:w-1/4">
+            <div className="bg-white border border-gray-200 rounded-2xl p-8 sticky top-6 shadow-lg">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-black text-gray-900 flex items-center">
+                  <Filter className="h-6 w-6 mr-3" />
+                  Filtry
+                </h3>
+                {activeFiltersCount > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    onClick={clearAllFilters}
+                    className="text-red-600 hover:text-red-700 font-bold"
+                  >
+                    Vymazat ({activeFiltersCount})
+                  </Button>
+                )}
+              </div>
+
+              {/* Product Types */}
+              <div className="mb-10">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Typ produktu</h4>
+                <div className="space-y-4">
+                  {productCategories.map((category) => (
+                    <label key={category.id} className="flex items-center cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={selectedFilters.productTypes.includes(category.id)}
+                        onChange={() => toggleFilter("productTypes", category.id)}
+                        className="mr-4 w-5 h-5 text-black focus:ring-black border-gray-300 rounded"
+                      />
+                      <span className="text-lg text-gray-700 group-hover:text-black transition-colors font-medium">
+                        {category.name}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Categories/Collections */}
+              <div className="mb-10">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Kolekce</h4>
+                <div className="space-y-4">
+                  {collectionsLoading ? (
+                    <div className="text-lg text-gray-500">Načítání...</div>
+                  ) : (collections && Array.isArray(collections)) ? (
+                    collections.map((collection) => (
+                      <label key={collection.id} className="flex items-center cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={selectedFilters.categories.includes(collection.id)}
+                          onChange={() => toggleFilter("categories", collection.id)}
+                          className="mr-4 w-5 h-5 text-black focus:ring-black border-gray-300 rounded"
+                        />
+                        <span className="text-lg text-gray-700 group-hover:text-black transition-colors font-medium">{collection.name}</span>
+                      </label>
+                    ))
+                  ) : (
+                    <div className="text-lg text-red-500">Chyba při načítání kolekcí</div>
+                  )}
+                </div>
+              </div>
+
+              {/* Brands */}
+              <div className="mb-10">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Značky</h4>
+                <div className="space-y-4">
+                  {brandsLoading ? (
+                    <div className="text-lg text-gray-500">Načítání...</div>
+                  ) : (brands && Array.isArray(brands)) ? (
+                    brands.map((brand) => (
+                      <label key={brand.id} className="flex items-center cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={selectedFilters.brands.includes(brand.id.toString())}
+                          onChange={() => toggleFilter("brands", brand.id.toString())}
+                          className="mr-4 w-5 h-5 text-black focus:ring-black border-gray-300 rounded"
+                        />
+                        <span className="text-lg text-gray-700 group-hover:text-black transition-colors font-medium">{brand.name}</span>
+                      </label>
+                    ))
+                  ) : (
+                    <div className="text-lg text-red-500">Chyba při načítání značek</div>
+                  )}
+                </div>
+              </div>
+
+              {/* Price Range */}
+              <div className="mb-10">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Cena</h4>
+                <div className="space-y-4">
+                  {priceRanges.map((range) => (
+                    <label key={range.label} className="flex items-center cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={selectedFilters.priceRanges.includes(range.label)}
+                        onChange={() => toggleFilter("priceRanges", range.label)}
+                        className="mr-4 w-5 h-5 text-black focus:ring-black border-gray-300 rounded"
+                      />
+                      <span className="text-lg text-gray-700 group-hover:text-black transition-colors font-medium">{range.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Features */}
+              <div className="mb-10">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Vlastnosti</h4>
+                <div className="space-y-4">
+                  {features.map((feature) => (
+                    <label key={feature} className="flex items-center cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={selectedFilters.features.includes(feature)}
+                        onChange={() => toggleFilter("features", feature)}
+                        className="mr-4 w-5 h-5 text-black focus:ring-black border-gray-300 rounded"
+                      />
+                      <span className="text-lg text-gray-700 group-hover:text-black transition-colors font-medium">{feature}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Products Grid */}
+          <div className="lg:w-3/4">
             {/* Toolbar */}
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
               <div>

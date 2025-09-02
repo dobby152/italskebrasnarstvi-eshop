@@ -53,24 +53,24 @@ export default function Header() {
         </div>
 
         {/* Main navigation */}
-        <div className="flex items-center justify-between py-3">
+        <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="text-xl font-black tracking-tight">
+          <Link href="/" className="text-2xl font-black tracking-tight">
             <span className="text-gray-900">italske</span>
             <span className="text-black">Brasnarstvi</span>
-            <span className="text-gray-400 text-sm font-normal">.cz</span>
+            <span className="text-gray-400 text-lg font-normal">.cz</span>
           </Link>
 
-          {/* Desktop navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <Link href="/produkty?collection=pánské" className="text-gray-700 hover:text-black transition-colors font-medium">
-              Pánské
+          {/* Desktop navigation - CENTERED */}
+          <div className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+            <Link href="/produkty?collection=pánské" className="text-lg font-bold text-gray-700 hover:text-black transition-colors">
+              PÁNSKÉ
             </Link>
-            <Link href="/produkty?collection=dámské" className="text-gray-700 hover:text-black transition-colors font-medium">
-              Dámské
+            <Link href="/produkty?collection=dámské" className="text-lg font-bold text-gray-700 hover:text-black transition-colors">
+              DÁMSKÉ
             </Link>
-            <Link href="/produkty" className="text-gray-700 hover:text-black transition-colors font-medium">
-              Všechny produkty
+            <Link href="/produkty" className="text-lg font-bold text-gray-700 hover:text-black transition-colors">
+              VŠECHNY PRODUKTY
             </Link>
 
             {/* Search */}
