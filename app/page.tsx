@@ -41,7 +41,7 @@ export default function HomePage() {
         {/* Tmavý overlay pro lepší čitelnost textu */}
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="relative z-10 container mx-auto px-6 h-full flex items-center">
+        <div className="relative z-10 container mx-auto px-6 h-full flex items-center justify-center text-center sm:justify-start sm:text-left">
           <div className="max-w-2xl">
             <div className="mb-6">
               <span className="inline-block bg-white text-black px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
@@ -329,7 +329,7 @@ export default function HomePage() {
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Nakupovat</h4>
+              <h4 className="font-bold mb-4 text-white">Nakupovat</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li><Link href="/produkty?productType=brasnyObaly" className="hover:text-white transition-colors">Batohy na notebook</Link></li>
                 <li><Link href="/produkty?productType=penezenkybusiness" className="hover:text-white transition-colors">KOŽENÉ PENĚŽENKY</Link></li>
@@ -338,7 +338,7 @@ export default function HomePage() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Zákaznický servis</h4>
+              <h4 className="font-bold mb-4 text-white">Zákaznický servis</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li><Link href="/sledovani" className="hover:text-white transition-colors">Sledovat zásilku</Link></li>
                 <li><Link href="/vraceni" className="hover:text-white transition-colors">Vrácení a výměna</Link></li>
@@ -348,7 +348,7 @@ export default function HomePage() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Kontakt & Newsletter</h4>
+              <h4 className="font-bold mb-4 text-white">Kontakt & Newsletter</h4>
               <div className="space-y-3 text-gray-400 text-sm mb-6">
                 <div className="flex items-center">
                   <span className="mr-2">📞</span>

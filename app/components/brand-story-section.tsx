@@ -9,7 +9,7 @@ export default function BrandStorySection() {
         <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 md:p-12 text-white overflow-hidden">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-black mb-6">MADE IN ITALY</h2>
+              <h2 className="text-4xl font-black mb-6 text-white">MADE IN ITALY</h2>
               <p className="text-gray-300 mb-8 text-lg">
                 Kvalitní ruční práce. Všechny produkty Piquadro jsou výsledkem pečlivého designu a používají výhradně
                 italské kůže.
