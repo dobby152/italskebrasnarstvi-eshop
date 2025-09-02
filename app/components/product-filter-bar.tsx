@@ -14,7 +14,7 @@ interface FilterBarProps {
     features: string[]
     productTypes: string[]
   }
-  onToggleFilter: (type: string, value: string) => void
+  onToggleFilter: (type: keyof FilterBarProps['selectedFilters'], value: string) => void
   onClearAll: () => void
   collections?: any[]
   brands?: any[]
