@@ -1,5 +1,6 @@
 import { Button } from "./ui/button"
 import { Star } from "lucide-react"
+import Link from "next/link"
 
 export default function BrandStorySection() {
   return (
@@ -25,7 +26,9 @@ export default function BrandStorySection() {
                 </div>
               </div>
 
-              <Button className="bg-white text-black hover:bg-gray-100 px-6 py-3">Zobrazit všechno</Button>
+              <Button className="bg-white text-black hover:bg-gray-100 px-6 py-3" asChild>
+                <Link href="/produkty">Zobrazit všechny produkty</Link>
+              </Button>
             </div>
             <div className="relative">
               <div className="w-full h-[300px] rounded-full overflow-hidden">

@@ -53,16 +53,20 @@ export default function HomePage() {
               Italské řemeslné umění. Moderní design. Nekompromisní kvalita.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-3 font-semibold text-base shadow-xl">
-                Nakupovat nyní
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-3 bg-transparent text-base shadow-xl"
-              >
-                Naše prodejny
-              </Button>
+              <Link href="/produkty">
+                <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-3 font-semibold text-base shadow-xl">
+                  Nakupovat nyní
+                </Button>
+              </Link>
+              <Link href="/o-nas">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-3 bg-transparent text-base shadow-xl"
+                >
+                  O nás
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -111,14 +115,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Made in Italy */}
-      <section className="py-8 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white bg-black rounded-lg py-8">MADE IN ITALY</h2>
-          </div>
-        </div>
-      </section>
 
       {/* Výhody */}
       <section className="py-8 md:py-16 bg-gray-50">
@@ -190,12 +186,17 @@ export default function HomePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Pánské */}
-            <Link href="/kategorie/panske" className="group">
+            <Link href="/produkty?productType=brasnyObaly" className="group">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-4xl mb-4">💼</div>
-                    <h3 className="text-2xl font-bold">Pánské</h3>
+                <div className="h-64 relative overflow-hidden">
+                  <img 
+                    src="/muzi.webp" 
+                    alt="Pánské produkty" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white">BRAŠNY & OBALY</h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -209,12 +210,17 @@ export default function HomePage() {
             </Link>
 
             {/* Dámské */}
-            <Link href="/kategorie/damske" className="group">
+            <Link href="/produkty?productType=taskyKabelky" className="group">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 bg-gradient-to-br from-pink-900 to-pink-700 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-4xl mb-4">👜</div>
-                    <h3 className="text-2xl font-bold">Dámské</h3>
+                <div className="h-64 relative overflow-hidden">
+                  <img 
+                    src="/zeny.webp" 
+                    alt="Dámské produkty" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white">TAŠKY & KABELKY</h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -228,17 +234,22 @@ export default function HomePage() {
             </Link>
 
             {/* Business */}
-            <Link href="/kategorie/business" className="group">
+            <Link href="/produkty?productType=penezenkybusiness" className="group">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-4xl mb-4">💻</div>
-                    <h3 className="text-2xl font-bold">Business</h3>
+                <div className="h-64 relative overflow-hidden">
+                  <img 
+                    src="/business.webp" 
+                    alt="Business produkty" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white">PENĚŽENKY</h3>
                   </div>
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Pro profesionály</h4>
-                  <p className="text-gray-600 text-sm mb-4">Aktovky, notebook tašky a business batohy</p>
+                  <p className="text-gray-600 text-sm mb-4">Kožené peněženky, cardholders a business doplňky</p>
                   <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
                     Prohlédnout →
                   </div>
@@ -247,12 +258,17 @@ export default function HomePage() {
             </Link>
 
             {/* Cestování */}
-            <Link href="/kategorie/cestovani" className="group">
+            <Link href="/produkty?productType=cestovani" className="group">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 bg-gradient-to-br from-green-900 to-green-700 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-4xl mb-4">🧳</div>
-                    <h3 className="text-2xl font-bold">Cestování</h3>
+                <div className="h-64 relative overflow-hidden">
+                  <img 
+                    src="/cestovani.webp" 
+                    alt="Cestovní produkty" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white">CESTOVÁNÍ</h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -308,8 +324,8 @@ export default function HomePage() {
               <h3 className="text-2xl font-black mb-4">
                 italskeBrasnarstvi<span className="text-gray-400">.cz</span>
               </h3>
-              <p className="text-gray-400 mb-6">
-                Oficiální český distributor značky Piquadro. Italské řemeslné umění s moderním designem.
+              <p className="text-white mb-6">
+                Oficiální český distributor značky Piquadro. <span className="font-semibold">Italské řemeslné umění s moderním designem.</span>
               </p>
               <div className="space-y-2 text-gray-400">
                 <div>📞 +420 774 977 971</div>
@@ -320,19 +336,19 @@ export default function HomePage() {
             <div>
               <h4 className="font-bold mb-4">Nakupovat</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>Batohy na notebook</li>
-                <li>KOŽENÉ PENĚŽENKY</li>
-                <li>CESTOVNÍ KUFRY</li>
-                <li>DÁMSKÉ KABELKY</li>
+                <li><Link href="/produkty?productType=brasnyObaly" className="hover:text-white transition-colors">Batohy na notebook</Link></li>
+                <li><Link href="/produkty?productType=penezenkybusiness" className="hover:text-white transition-colors">KOŽENÉ PENĚŽENKY</Link></li>
+                <li><Link href="/produkty?productType=cestovani" className="hover:text-white transition-colors">CESTOVNÍ KUFRY</Link></li>
+                <li><Link href="/produkty?productType=taskyKabelky" className="hover:text-white transition-colors">DÁMSKÉ KABELKY</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4">Zákaznický servis</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>Sledovat zásilku</li>
-                <li>Vrácení a výměna</li>
-                <li>Časté dotazy</li>
-                <li>Kontaktujte nás</li>
+                <li><Link href="/sledovani" className="hover:text-white transition-colors">Sledovat zásilku</Link></li>
+                <li><Link href="/vraceni" className="hover:text-white transition-colors">Vrácení a výměna</Link></li>
+                <li><Link href="/faq" className="hover:text-white transition-colors">Časté dotazy</Link></li>
+                <li><Link href="/kontakt" className="hover:text-white transition-colors">Kontaktujte nás</Link></li>
               </ul>
             </div>
           </div>

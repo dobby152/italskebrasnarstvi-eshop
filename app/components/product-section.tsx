@@ -8,8 +8,9 @@ import { getImageUrl, getProductDisplayName, getProductDisplayCollection } from 
 export default function ProductSection() {
   const { products, loading } = useProducts({ 
     limit: 12, 
-    sortBy: 'id', 
-    sortOrder: 'asc' 
+    search: 'aktovka brašna briefcase laptop bag business',
+    sortBy: 'created_at', 
+    sortOrder: 'desc' 
   });
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 

@@ -65,17 +65,17 @@ export default function Header() {
           </Link>
 
           {/* Desktop navigation - CENTERED */}
-          <div className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden lg:flex items-center space-x-4 absolute left-1/2 transform -translate-x-1/2">
             {productCategories.map((category) => (
               <Link 
                 key={category.id}
                 href={`/produkty?productType=${category.id}`} 
-                className="text-lg font-bold text-gray-700 hover:text-black transition-colors uppercase"
+                className="text-sm font-bold text-gray-700 hover:text-black transition-colors uppercase whitespace-nowrap"
               >
                 {category.name.toUpperCase()}
               </Link>
             ))}
-            <Link href="/produkty" className="text-lg font-bold text-gray-700 hover:text-black transition-colors">
+            <Link href="/produkty" className="text-sm font-bold text-gray-700 hover:text-black transition-colors whitespace-nowrap">
               VŠECHNY PRODUKTY
             </Link>
 
