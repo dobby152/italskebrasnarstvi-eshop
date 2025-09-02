@@ -150,6 +150,29 @@ export function findVariantGroupBySku(products: any[], targetSku: string): Varia
 }
 
 /**
+ * Filter images by color variant code from image filenames
+ */
+export function filterImagesByColor(images: string[], colorCode: string): string[] {
+  if (!images || images.length === 0) return [];
+  
+  const filteredImages = images.filter(imageUrl => {
+    // Extract filename from URL
+    const filename = imageUrl.split('/').pop() || '';
+    
+    // Look for color code pattern in filename like CA3214B3-N_ or CA3214B3-CU_
+    const colorPattern = new RegExp(`-${colorCode.toUpperCase()}_`, 'i');
+    return colorPattern.test(filename);
+  });
+  
+  // If no color-specific images found, return first few images as fallback
+  if (filteredImages.length === 0 && images.length > 0) {
+    return images.slice(0, 3); // Return first 3 images as fallback
+  }
+  
+  return filteredImages;
+}
+
+/**
  * Get all variants for a base SKU
  */
 export function getVariantsForBaseSku(products: any[], baseSku: string): ProductVariant[] {
@@ -159,6 +182,9 @@ export function getVariantsForBaseSku(products: any[], baseSku: string): Product
     const variantCode = extractVariantCode(product.sku);
     const colorInfo = getColorInfo(variantCode);
     
+    // Filter images to show only those matching this color variant
+    const colorSpecificImages = filterImagesByColor(product.images || [], variantCode);
+    
     return {
       id: product.id,
       sku: product.sku,
@@ -167,7 +193,7 @@ export function getVariantsForBaseSku(products: any[], baseSku: string): Product
       colorName: colorInfo.name,
       hexColor: colorInfo.hex,
       price: product.price || 0,
-      images: product.images || [],
+      images: colorSpecificImages,
       availability: product.availability || 'in_stock',
       stock: product.stock || 10
     };
