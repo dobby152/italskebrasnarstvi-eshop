@@ -9,10 +9,10 @@ export default function ObchodniPodminkyPage() {
       <div className="bg-gradient-to-r from-gray-900 to-black py-16">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Vaeobecné obchodní podmínky
+            VÅ¡eobecnÃ© obchodnÃ­ podmÃ­nky
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Tyto vaeobecné obchodní podmínky upravují vzájemná práva a povinnosti mezi námi a vámi.
+            Tyto vÅ¡eobecnÃ© obchodnÃ­ podmÃ­nky upravujÃ­ vzÃ¡jemnÃ¡ prÃ¡va a povinnosti mezi nÃ¡mi a vÃ¡mi.
           </p>
         </div>
       </div>
@@ -22,135 +22,135 @@ export default function ObchodniPodminkyPage() {
         <div className="max-w-4xl mx-auto prose prose-lg">
           
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Základní informace o spolenosti</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">ZÃ¡kladnÃ­ informace o spoleÄnosti</h2>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <p><strong>Spolenost:</strong> Italské BraanáYství s.r.o.</p>
-              <p><strong>Sídlo:</strong> TYeaHová 437, 250 84 KYenice, esko</p>
-              <p><strong>IO:</strong> 17322014</p>
-              <p><strong>Zapsáno v obchodním rejstYíku pod sp. zn.:</strong> C 369886/MSPH vedeném u Mstskı soud v Praze</p>
-              <p><strong>E-mail:</strong> info@italskeBrasnarstvi.cz</p>
+              <p><strong>SpoleÄnost:</strong> ItalskÃ© BraÅ¡nÃ¡Å™stvÃ­ s.r.o.</p>
+              <p><strong>SÃ­dlo:</strong> TÄ›hov 437, 250 84 KÅ™enice, ÄŒesko</p>
+              <p><strong>IÄŒO:</strong> 17322014</p>
+              <p><strong>ZapsÃ¡no v obchodnÃ­m rejstÅ™Ã­ku pod sp. zn.:</strong> C 369886/MSPH vedenÃ©m u MÄ›stskÃ©ho soudu v Praze</p>
+              <p><strong>E-mail:</strong> info@italskebrasnarstvi.cz</p>
               <p><strong>Telefon:</strong> +420 774 977 971</p>
             </div>
           </div>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Úvodní ustanovení</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. ÃšvodnÃ­ ustanovenÃ­</h2>
             <p className="mb-4">
-              Tyto vaeobecné obchodní podmínky ("Podmínky") spolenosti Italské BraanáYství s.r.o. upravují v souladu s ustanovením § 1751 odst. 1 zákona . 89/2012 Sb., obanskı zákoník, ve znní pozdjaích pYedpiso ("Obanskı zákoník") vzájemná práva a povinnosti Vás, jako~to kupujících, a Nás, jako~to prodávajících, vzniklá v souvislosti nebo na základ kupní smlouvy ("Smlouva") uzavYené prostYednictvím E-shopu na webovıch stránkách www.italskebrasnarstvi.cz
+              Tyto vÅ¡eobecnÃ© obchodnÃ­ podmÃ­nky ("PodmÃ­nky") spoleÄnosti ItalskÃ© BraÅ¡nÃ¡Å™stvÃ­ s.r.o. upravujÃ­ v souladu s ustanovenÃ­m Â§ 1751 odst. 1 zÃ¡kona Ä. 89/2012 Sb., obÄanskÃ½ zÃ¡konÃ­k, ve znÄ›nÃ­ pozdÄ›jÅ¡Ã­ch pÅ™edpisÅ¯ ("ObÄanskÃ½ zÃ¡konÃ­k") vzÃ¡jemnÃ¡ prÃ¡va a povinnosti VÃ¡s, jakoÅ¾to kupujÃ­cÃ­ch, a NÃ¡s, jakoÅ¾to prodÃ¡vajÃ­cÃ­ch, vzniklÃ© v souvislosti nebo na zÃ¡kladÄ› kupnÃ­ smlouvy ("Smlouva") uzavÅ™enÃ© prostÅ™ednictvÃ­m E-shopu na webovÃ½ch strÃ¡nkÃ¡ch www.italskebrasnarstvi.cz
             </p>
             <p className="mb-4">
-              Vaechny informace o zpracování Vaaich osobních údajo jsou obsa~eny v Zásadách zpracování osobních údajo.
+              VÅ¡echny informace o zpracovÃ¡nÃ­ VaÅ¡ich osobnÃ­ch ÃºdajÅ¯ jsou obsaÅ¾eny v ZÃ¡sadÃ¡ch zpracovÃ¡nÃ­ osobnÃ­ch ÃºdajÅ¯.
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Definice</h2>
             <ul className="list-disc list-inside space-y-2">
-              <li><strong>Cena</strong> je finanní ástka, kterou budete hradit za Zbo~í</li>
-              <li><strong>Cena za dopravu</strong> je finanní ástka, kterou budete hradit za doruení Zbo~í</li>
-              <li><strong>Celková cena</strong> je souet Ceny a Ceny za dopravu</li>
-              <li><strong>DPH</strong> je daH z pYidané hodnoty dle platnıch právních pYedpiso</li>
-              <li><strong>Objednávka</strong> je Váa závaznı návrh na uzavYení Smlouvy o koupi Zbo~í s Námi</li>
-              <li><strong>Zbo~í</strong> je vae, co mo~ete nakoupit na E-shopu</li>
+              <li><strong>Cena</strong> je finanÄnÃ­ ÄÃ¡stka, kterou budete hradit za ZboÅ¾Ã­</li>
+              <li><strong>Cena za dopravu</strong> je finanÄnÃ­ ÄÃ¡stka, kterou budete hradit za doruÄenÃ­ ZboÅ¾Ã­</li>
+              <li><strong>CelkovÃ¡ cena</strong> je souÄet Ceny a Ceny za dopravu</li>
+              <li><strong>DPH</strong> je daÅˆ z pÅ™idanÃ© hodnoty dle platnÃ½ch prÃ¡vnÃ­ch pÅ™edpisÅ¯</li>
+              <li><strong>ObjednÃ¡vka</strong> je VÃ¡Å¡ zÃ¡vaznÃ½ nÃ¡vrh na uzavÅ™enÃ­ Smlouvy o koupi ZboÅ¾Ã­ s NÃ¡mi</li>
+              <li><strong>ZboÅ¾Ã­</strong> je vÅ¡e, co mÅ¯Å¾ete nakoupit na E-shopu</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. UzavYení smlouvy</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. UzavÅ™enÃ­ smlouvy</h2>
             <p className="mb-4">
-              Smlouvu s Námi je mo~né uzavYít pouze v eském jazyce prostYednictvím E-shopu. K uzavYení Smlouvy je tYeba, abyste na E-shopu vytvoYili Objednávku obsahující:
+              Smlouvu s NÃ¡mi je moÅ¾nÃ© uzavÅ™Ã­t pouze v ÄeskÃ©m jazyce prostÅ™ednictvÃ­m E-shopu. K uzavÅ™enÃ­ Smlouvy je tÅ™eba, abyste na E-shopu vytvoÅ™ili ObjednÃ¡vku obsahujÃ­cÃ­:
             </p>
             <ul className="list-disc list-inside space-y-2 mb-4">
-              <li>Informace o nakupovaném Zbo~í</li>
-              <li>Informace o Cen, Cen za dopravu a zposobu platby</li>
-              <li>Své identifikaní a kontaktní údaje</li>
+              <li>Informace o nakupovanÃ©m ZboÅ¾Ã­</li>
+              <li>Informace o CenÄ›, CenÄ› za dopravu a zpÅ¯sobu platby</li>
+              <li>SvÃ© identifikaÄnÃ­ a kontaktnÃ­ Ãºdaje</li>
             </ul>
             <p className="mb-4">
-              Vaai Objednávku Vám v co nejkrataí dob potvrdíme zprávou odeslanou na Vaai e-mailovou adresu. Potvrzením Objednávky dochází k uzavYení Smlouvy mezi Námi a Vámi.
+              VaÅ¡i ObjednÃ¡vku VÃ¡m v co nejkratÅ¡Ã­ dobÄ› potvrdÃ­me zprÃ¡vou odeslanou na VaÅ¡i e-mailovou adresu. PotvrzenÃ­m ObjednÃ¡vky dochÃ¡zÃ­ k uzavÅ™enÃ­ Smlouvy mezi NÃ¡mi a VÃ¡mi.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Cenové a platební podmínky</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. CenovÃ© a platebnÃ­ podmÃ­nky</h2>
             <p className="mb-4">
-              Cena je v~dy uvedena v rámci E-shopu vetn DPH vetn veakerıch poplatko stanovenıch zákonem. Úhradu Celkové ceny mo~ete provést následujícími zposoby:
+              Cena je vÅ¾dy uvedena v rÃ¡mci E-shopu vÄetnÄ› DPH vÄetnÄ› veÅ¡kerÃ½ch poplatkÅ¯ stanovenÃ½ch zÃ¡konem. Ãšhradu CelkovÃ© ceny mÅ¯Å¾ete provÃ©st nÃ¡sledujÃ­cÃ­mi zpÅ¯soby:
             </p>
             <ul className="list-disc list-inside space-y-2 mb-4">
-              <li>Bankovním pYevodem (splatnost do 3 dno)</li>
-              <li>Kartou online pYes platební bránu Stripe</li>
-              <li>Dobírkou pYi doruení Zbo~í</li>
-              <li>Hotov pYi osobním odbru</li>
+              <li>BankovnÃ­m pÅ™evodem (splatnost do 3 dnÅ¯)</li>
+              <li>Kartou online pÅ™es platebnÃ­ brÃ¡nu Stripe</li>
+              <li>DobÃ­rkou pÅ™i doruÄenÃ­ ZboÅ¾Ã­</li>
+              <li>HotovÄ› pÅ™i osobnÃ­m odbÄ›ru</li>
             </ul>
             <p className="mb-4">
-              Vlastnické právo ke Zbo~í na Vás pYechází a~ poté, co zaplatíte Celkovou cenu a Zbo~í pYevezmete.
+              VlastnickÃ© prÃ¡vo ke ZboÅ¾Ã­ na VÃ¡s pÅ™echÃ¡zÃ­ aÅ¾ potÃ©, co zaplatÃ­te Celkovou cenu a ZboÅ¾Ã­ pÅ™evezmete.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Doruení zbo~í</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. DoruÄenÃ­ zboÅ¾Ã­</h2>
             <p className="mb-4">
-              Zbo~í Vám bude dorueno nejpozdji do 14 dní zposobem dle Vaaí volby:
+              ZboÅ¾Ã­ VÃ¡m bude doruÄeno nejpozdÄ›ji do 14 dnÅ¯ zpÅ¯sobem dle VaÅ¡Ã­ volby:
             </p>
             <ul className="list-disc list-inside space-y-2 mb-4">
-              <li>Osobní odbr na Naaí provozovn</li>
-              <li>Osobní odbr na vıdejních místech (Zásilkovna, Balíkovna)</li>
-              <li>Doruení prostYednictvím dopravních spoleností (DPD, Zásilkovna)</li>
+              <li>OsobnÃ­ odbÄ›r na NaÅ¡Ã­ provozovnÄ›</li>
+              <li>OsobnÃ­ odbÄ›r na vÃ½dejnÃ­ch mÃ­stech (ZÃ¡silkovna, BalÃ­kovna)</li>
+              <li>DoruÄenÃ­ prostÅ™ednictvÃ­m dopravnÃ­ch spoleÄnostÃ­ (DPD, ZÃ¡silkovna)</li>
             </ul>
             <p className="mb-4">
-              Po pYevzetí Zbo~í je Vaae povinnost zkontrolovat neporuaenost obalu a v pYípad závad tuto skutenost neprodlen oznámit dopravci a Nám.
+              Po pÅ™evzetÃ­ ZboÅ¾Ã­ je VaÅ¡e povinnost zkontrolovat neporuÅ¡enost obalu a v pÅ™Ã­padÄ› zÃ¡vad tuto skuteÄnost neprodlenÄ› oznÃ¡mit dopravci a NÃ¡m.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Práva z vadného plnní (reklamace)</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. PrÃ¡va z vadnÃ©ho plnÄ›nÃ­ (reklamace)</h2>
             <p className="mb-4">
-              V pYípad, ~e bude mít Zbo~í vadu, mo~ete Nám takovou vadu oznámit a uplatnit práva z vadného plnní zasláním e-mailu i dopisu na Naae adresy. Máte následující práva:
+              V pÅ™Ã­padÄ›, Å¾e bude mÃ­t ZboÅ¾Ã­ vadu, mÅ¯Å¾ete NÃ¡m takovou vadu oznÃ¡mit a uplatnit prÃ¡va z vadnÃ©ho plnÄ›nÃ­ zaslÃ¡nÃ­m e-mailu Äi dopisu na NaÅ¡e adresy. MÃ¡te nÃ¡sledujÃ­cÃ­ prÃ¡va:
             </p>
             <ul className="list-disc list-inside space-y-2 mb-4">
-              <li>Na odstranní vady dodáním nového Zbo~í bez vady</li>
-              <li>Na odstranní vady opravou Zbo~í</li>
-              <li>Na pYimYenou slevu z Ceny</li>
-              <li>Na odstoupení od Smlouvy</li>
+              <li>Na odstranÄ›nÃ­ vady dodÃ¡nÃ­m novÃ©ho ZboÅ¾Ã­ bez vady</li>
+              <li>Na odstranÄ›nÃ­ vady opravou ZboÅ¾Ã­</li>
+              <li>Na pÅ™imÄ›Å™enou slevu z Ceny</li>
+              <li>Na odstoupenÃ­ od Smlouvy</li>
             </ul>
             <p className="mb-4">
-              Reklamaci vyYídíme do 30 dno od obdr~ení. Pokud jste spotYebitel, máte právo uplatit práva z vadného plnní u vady, která se vyskytne u spotYebního Zbo~í ve lhot 24 msíco od pYevzetí Zbo~í.
+              Reklamaci vyÅ™Ã­dÃ­me do 30 dnÅ¯ od obdrÅ¾enÃ­. Pokud jste spotÅ™ebitel, mÃ¡te prÃ¡vo uplatit prÃ¡va z vadnÃ©ho plnÄ›nÃ­ u vady, kterÃ¡ se vyskytne u spotÅ™ebnÃ­ho ZboÅ¾Ã­ ve lhÅ¯tÄ› 24 mÄ›sÃ­cÅ¯ od pÅ™evzetÃ­ ZboÅ¾Ã­.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Odstoupení od smlouvy</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. OdstoupenÃ­ od smlouvy</h2>
             <p className="mb-4">
-              V pYípad, ~e jste spotYebitel, máte v souladu s ustanovením §1829 obanského zákoníku právo odstoupit od Smlouvy bez udání dovodu ve lhot 14 dno ode dne uzavYení Smlouvy, resp. pokud se jedná o koupi zbo~í, pak do trnácti dno od jeho pYevzetí.
+              V pÅ™Ã­padÄ›, Å¾e jste spotÅ™ebitel, mÃ¡te v souladu s ustanovenÃ­m Â§1829 obÄanskÃ©ho zÃ¡konÃ­ku prÃ¡vo odstoupit od Smlouvy bez udÃ¡nÃ­ dÅ¯vodu ve lhÅ¯tÄ› 14 dnÅ¯ ode dne uzavÅ™enÃ­ Smlouvy, resp. pokud se jednÃ¡ o koupi zboÅ¾Ã­, pak do ÄtrnÃ¡cti dnÅ¯ od jeho pÅ™evzetÃ­.
             </p>
             <p className="mb-4">
-              V pYípad odstoupení od Smlouvy jste povinni Nám Zbo~í zaslat do 14 dno od odstoupení a nesete náklady spojené s navrácením zbo~í k Nám.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Xeaení sporo</h2>
-            <p className="mb-4">
-              VyYizování stí~ností spotYebitelo zajiaeujeme prostYednictvím elektronické adresy info@italskeBrasnarstvi.cz
-            </p>
-            <p className="mb-4">
-              K mimosoudnímu Yeaení spotYebitelskıch sporo ze Smlouvy je pYísluaná eská obchodní inspekce, se sídlem `tpánská 796/44, 110 00 Praha 1, internetová adresa: http://www.coi.cz
+              V pÅ™Ã­padÄ› odstoupenÃ­ od Smlouvy jste povinni NÃ¡m ZboÅ¾Ã­ zaslat do 14 dnÅ¯ od odstoupenÃ­ a nesete nÃ¡klady spojenÃ© s navrÃ¡cenÃ­m zboÅ¾Ã­ k NÃ¡m.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Závrená ustanovení</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Å˜eÅ¡enÃ­ sporÅ¯</h2>
             <p className="mb-4">
-              Pokud Náa a Váa právní vztah obsahuje mezinárodní prvek, bude se vztah v~dy Yídit právem eské republiky.
+              VyÅ™izovÃ¡nÃ­ stÃ­Å¾nostÃ­ spotÅ™ebitelÅ¯ zajiÅ¡Å¥ujeme prostÅ™ednictvÃ­m elektronickÃ© adresy info@italskebrasnarstvi.cz
             </p>
             <p className="mb-4">
-              Tyto Podmínky nabıvají úinnosti 9.1.2024.
+              K mimosoudnÃ­mu Å™eÅ¡enÃ­ spotÅ™ebitelskÃ½ch sporÅ¯ ze Smlouvy je pÅ™Ã­sluÅ¡nÃ¡ ÄŒeskÃ¡ obchodnÃ­ inspekce, se sÃ­dlem Å tÄ›pÃ¡nskÃ¡ 796/44, 110 00 Praha 1, internetovÃ¡ adresa: http://www.coi.cz
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. ZÃ¡vÄ›reÄnÃ¡ ustanovenÃ­</h2>
+            <p className="mb-4">
+              Pokud NÃ¡Å¡ a VÃ¡Å¡ prÃ¡vnÃ­ vztah obsahuje mezinÃ¡rodnÃ­ prvek, bude se vztah vÅ¾dy Å™Ã­dit prÃ¡vem ÄŒeskÃ© republiky.
+            </p>
+            <p className="mb-4">
+              Tyto PodmÃ­nky nabÃ½vajÃ­ ÃºÄinnosti 9.1.2024.
             </p>
           </section>
 
           <div className="bg-blue-50 p-6 rounded-lg mt-12">
-            <h3 className="text-lg font-semibold text-blue-900 mb-2">Máte otázky k obchodním podmínkám?</h3>
+            <h3 className="text-lg font-semibold text-blue-900 mb-2">MÃ¡te otÃ¡zky k obchodnÃ­m podmÃ­nkÃ¡m?</h3>
             <p className="text-blue-800 mb-4">
-              V pYípad nejasností nás neváhejte kontaktovat na e-mailu info@italskeBrasnarstvi.cz nebo telefonním ísle +420 774 977 971.
+              V pÅ™Ã­padÄ› nejasnostÃ­ nÃ¡s nevÃ¡hejte kontaktovat na e-mailu info@italskebrasnarstvi.cz nebo telefonnÃ­m ÄÃ­sle +420 774 977 971.
             </p>
           </div>
 

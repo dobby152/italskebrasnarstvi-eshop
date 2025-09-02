@@ -262,7 +262,7 @@ export default function HomePage() {
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
                 <div className="h-64 relative overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" 
+                    src="/zeny.webp" 
                     alt="Cestovní kufry a tašky" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
