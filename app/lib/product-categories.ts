@@ -9,7 +9,7 @@ export interface ProductCategory {
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     id: 'taskyKabelky',
-    name: 'Tašky & Kabelky',
+    name: 'Tašky kabelky',
     keywords: [
       'taška', 'kabelka', 'crossbody', 'crossover', 'messenger', 
       'nákupní', 'shopping', 'přes rameno', 'camera case', 'moon bag'
@@ -17,18 +17,10 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     id: 'brasnyObaly',
-    name: 'Brašny & Obaly',
+    name: 'Brašny obaly',
     keywords: [
       'brašna', 'obal', 'notebook', 'laptop', 'ipad', 'tablet',
       'pracovní', 'business', 'computer', 'macbook'
-    ]
-  },
-  {
-    id: 'cestovani',
-    name: 'Cestování',
-    keywords: [
-      'cestovní', 'kosmetická', 'kosmetick', 'oblečení', 'šaty',
-      'kufřík', 'travel', 'garment', 'toiletry', 'wash'
     ]
   },
   {
@@ -44,13 +36,9 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     name: 'Příslušenství',
     keywords: [
       'pouzdro', 'penál', 'organizér', 'agenda', 'klíče', 'klíčenka',
-      'psací potřeby', 'pero', 'plánovač', 'case', 'organizer'
-    ]
-  },
-  {
-    id: 'technika',
-    name: 'Technické doplňky',
-    keywords: [
+      'psací potřeby', 'pero', 'plánovač', 'case', 'organizer',
+      'cestovní', 'kosmetická', 'kosmetick', 'oblečení', 'šaty',
+      'kufřík', 'travel', 'garment', 'toiletry', 'wash',
       'nabíjecí', 'kabel', 'visačka', 'štítek', 'led', 'bezdrátová',
       'charging', 'cable', 'tag', 'luggage', 'wireless', '3v1'
     ]

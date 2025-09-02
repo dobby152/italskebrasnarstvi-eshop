@@ -88,7 +88,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <h3 className="text-4xl font-bold mb-2 drop-shadow-lg text-white">MUŽI</h3>
-                    <p className="text-lg drop-shadow-md text-white">Objevte pánskou kolekci</p>
+                    <p className="text-lg drop-shadow-md text-white">Objevte pánskou kolekci aktovek a tašek</p>
                   </div>
                 </div>
               </div>
@@ -106,7 +106,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <h3 className="text-4xl font-bold mb-2 drop-shadow-lg text-white">ŽENY</h3>
-                    <p className="text-lg drop-shadow-md text-white">Objevte dámskou kolekci</p>
+                    <p className="text-lg drop-shadow-md text-white">Objevte dámskou kolekci kabelek a tašek</p>
                   </div>
                 </div>
               </div>
@@ -364,7 +364,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div>
-                <h5 className="font-semibold mb-3">Odběr novinek</h5>
+                <h5 className="font-semibold mb-3 text-white">Odběr novinek</h5>
                 <form 
                   className="flex flex-col space-y-2"
                   onSubmit={async (e) => {
