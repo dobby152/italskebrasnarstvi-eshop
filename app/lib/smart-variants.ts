@@ -44,6 +44,7 @@ const COLOR_MAP: Record<string, { name: string; hex: string }> = {
   'COGNAC': { name: 'Koňak', hex: '#8B4513' },
   'TAN': { name: 'Tan', hex: '#D2691E' },
   'CAMEL': { name: 'Velbloudí', hex: '#C19A6B' },
+  'M': { name: 'Muse - Hnědá', hex: '#8B4513' },
   'DEFAULT': { name: 'Výchozí', hex: '#6B7280' }
 };
 

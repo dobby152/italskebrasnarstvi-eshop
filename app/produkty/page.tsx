@@ -57,17 +57,8 @@ export default function ProduktyPage() {
     ? priceRanges.find(range => range.label === selectedFilters.priceRanges[0])
     : null;
   
-  const { products, total, totalPages, loading: productsLoading, error: productsError, setPage, setMinPrice, setMaxPrice } = useProducts({
-    page: currentPage,
-    limit: 20,
-    search: searchQuery || '',
-    collection: selectedCollection?.originalName || '',
-    brand: selectedBrand?.name || '',
-    minPrice: selectedPriceRange?.min,
-    maxPrice: selectedPriceRange?.max !== Number.POSITIVE_INFINITY ? selectedPriceRange?.max : undefined,
-    sortBy: 'created_at',
-    sortOrder: 'desc',
-    autoFetch: true
+  const { products, total, totalPages, loading: productsLoading, error: productsError, setPage, setSearch, setCollection, setBrand, setMinPrice, setMaxPrice, refetch } = useProducts({
+    autoFetch: false  // Disable auto-fetch, we'll control it manually
   })
 
   // Debug: Log when products are loaded
@@ -87,19 +78,28 @@ export default function ProduktyPage() {
   
   console.log('🎯 Final sorted products:', sortedProducts?.length)
   
-  // Trigger new API call when filters change
+  // Update parameters and trigger refetch when filters change
   useEffect(() => {
     setCurrentPage(1) // Reset to first page when filters change
-    // Also trigger refetch when filters change
-    if (setMinPrice && setMaxPrice) {
-      const selectedPriceRange = selectedFilters.priceRanges.length > 0
-        ? priceRanges.find(range => range.label === selectedFilters.priceRanges[0])
-        : null;
-      
-      setMinPrice(selectedPriceRange?.min);
-      setMaxPrice(selectedPriceRange?.max !== Number.POSITIVE_INFINITY ? selectedPriceRange?.max : undefined);
-    }
-  }, [selectedFilters, searchQuery, setMinPrice, setMaxPrice])
+    setPage(1)
+    setSearch(searchQuery || '')
+    setCollection(selectedCollection?.originalName || '')
+    setBrand(selectedBrand?.name || '')
+    setMinPrice(selectedPriceRange?.min)
+    setMaxPrice(selectedPriceRange?.max !== Number.POSITIVE_INFINITY ? selectedPriceRange?.max : undefined)
+    refetch()
+  }, [selectedFilters, searchQuery, selectedCollection, selectedBrand, selectedPriceRange, setPage, setSearch, setCollection, setBrand, setMinPrice, setMaxPrice, refetch])
+  
+  // Update page when currentPage changes
+  useEffect(() => {
+    setPage(currentPage)
+    refetch()
+  }, [currentPage, setPage, refetch])
+  
+  // Initial load
+  useEffect(() => {
+    refetch()
+  }, [])
 
   const toggleFilter = (type: keyof typeof selectedFilters, value: string) => {
     setSelectedFilters((prev) => ({
