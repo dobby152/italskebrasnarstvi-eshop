@@ -548,6 +548,7 @@ export default function ProduktyPage() {
               </div>
             )}
           </div>
+        </div>
       </div>
     </div>
   )
