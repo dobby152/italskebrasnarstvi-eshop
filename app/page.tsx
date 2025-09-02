@@ -184,7 +184,7 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
             {/* Pánské */}
             <Link href="/produkty?productType=brasnyObaly" className="group">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
@@ -274,6 +274,54 @@ export default function HomePage() {
                 <div className="p-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Pro cestovatele</h4>
                   <p className="text-gray-600 text-sm mb-4">Kufry, cestovní tašky a cestovní batohy</p>
+                  <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
+                    Prohlédnout →
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Příslušenství */}
+            <Link href="/produkty?productType=prislusenstvi" className="group">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="h-64 relative overflow-hidden">
+                  <img 
+                    src="/prislusenstvi.webp" 
+                    alt="Příslušenství" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white">PŘÍSLUŠENSTVÍ</h3>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-gray-900 mb-2">Doplňky</h4>
+                  <p className="text-gray-600 text-sm mb-4">Klíčenky, pouzdra, organizéry a další doplňky</p>
+                  <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
+                    Prohlédnout →
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Technické doplňky */}
+            <Link href="/produkty?productType=technickeDoplanky" className="group">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="h-64 relative overflow-hidden">
+                  <img 
+                    src="/tech.webp" 
+                    alt="Technické doplňky" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white">TECH DOPLŇKY</h3>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-gray-900 mb-2">Pro technologie</h4>
+                  <p className="text-gray-600 text-sm mb-4">Pouzdra na tablety, powerbanky, tech organizéry</p>
                   <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
                     Prohlédnout →
                   </div>

@@ -27,13 +27,13 @@ export default function ProductSection() {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
             Nejprodávanější produkty
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Objevte naše nejoblíbenější kousky, které si zamilovali tisíce zákazníků po celé České republice
           </p>
         </div>
@@ -137,32 +137,9 @@ export default function ProductSection() {
                           {displayName}
                         </h3>
                         
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center space-x-1">
-                            {/* Star rating */}
-                            {Array(5).fill(0).map((_, i) => (
-                              <svg
-                                key={i}
-                                className={`h-4 w-4 ${i < 4 ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                                />
-                              </svg>
-                            ))}
-                            <span className="text-sm text-gray-600 ml-2">4.8</span>
-                          </div>
-                          
-                          <div className="text-right">
-                            <div className="text-xs text-gray-500">od</div>
-                            <div className="font-black text-lg text-gray-900">{product.price} Kč</div>
-                          </div>
+                        <div className="text-right">
+                          <div className="text-xs text-gray-500">od</div>
+                          <div className="font-black text-lg text-gray-900">{product.price} Kč</div>
                         </div>
                       </div>
                     </div>

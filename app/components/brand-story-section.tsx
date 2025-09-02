@@ -6,8 +6,8 @@ export default function BrandStorySection() {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
-        <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-12 text-white">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 md:p-12 text-white overflow-hidden">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <h2 className="text-4xl font-black mb-6">MADE IN ITALY</h2>
               <p className="text-gray-300 mb-8 text-lg">
@@ -30,8 +30,8 @@ export default function BrandStorySection() {
                 <Link href="/produkty">Zobrazit všechny produkty</Link>
               </Button>
             </div>
-            <div className="relative">
-              <div className="w-full h-[300px] rounded-full overflow-hidden">
+            <div className="relative max-w-full">
+              <div className="w-full h-[250px] md:h-[300px] rounded-full overflow-hidden mx-auto max-w-[400px]">
                 <video
                   className="w-full h-full object-cover"
                   autoPlay
@@ -43,10 +43,10 @@ export default function BrandStorySection() {
                   <source src="/460cf424123f4804b0449742ac4b6279.HD-1080p-7.2Mbps-22008731.mp4" type="video/mp4" />
                 </video>
               </div>
-              <div className="absolute -top-2 -right-2 bg-white rounded-lg p-3 shadow-lg">
+              <div className="absolute top-2 right-2 md:-top-2 md:-right-2 bg-white rounded-lg p-2 md:p-3 shadow-lg">
                 <div className="flex items-center gap-1">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span className="text-sm font-semibold text-gray-900">4.9/5</span>
+                  <Star className="h-3 w-3 md:h-4 md:w-4 fill-yellow-400 text-yellow-400" />
+                  <span className="text-xs md:text-sm font-semibold text-gray-900">4.9/5</span>
                 </div>
               </div>
             </div>
