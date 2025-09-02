@@ -1,4 +1,4 @@
-"use client"
+'''"use client"
 
 import { useState, useEffect } from "react"
 import { Button } from "../app/components/ui/button"
@@ -57,13 +57,26 @@ export default function ProductFiltersComponent({
     handleFilterChange(key, newArray.length > 0 ? newArray : undefined)
   }
 
+  const handleSingleValueFilterChange = (key: keyof ProductFilters, value: string) => {
+    const currentValue = localFilters[key] as string | undefined;
+    let newValue: string | undefined;
+
+    if (currentValue === value) {
+      newValue = undefined; // Deselect if clicking the same item
+    } else {
+      newValue = value; // Select the new item
+    }
+    
+    handleFilterChange(key, newValue);
+  };
+
   const clearFilter = (key: keyof ProductFilters) => {
     handleFilterChange(key, undefined)
   }
 
   const getActiveFiltersCount = () => {
     let count = 0
-    if (filters.category?.length) count += filters.category.length
+    if (filters.category) count += 1
     if (filters.subcategory?.length) count += filters.subcategory.length
     if (filters.brand?.length) count += filters.brand.length
     if (filters.gender?.length) count += filters.gender.length
@@ -118,15 +131,15 @@ export default function ProductFiltersComponent({
                 />
               </Badge>
             ))}
-            {filters.category?.map(category => (
-              <Badge key={category} variant="secondary" className="text-xs">
-                {allCategories.find(c => c.slug === category)?.name || category}
+            {filters.category && (
+              <Badge variant="secondary" className="text-xs">
+                {allCategories.find(c => c.slug === filters.category)?.name || filters.category}
                 <X 
                   className="ml-1 h-3 w-3 cursor-pointer" 
-                  onClick={() => handleArrayFilterChange('category', category, false)}
+                  onClick={() => handleFilterChange('category', undefined)}
                 />
               </Badge>
-            ))}
+            )}
             {filters.brand?.map(brand => (
               <Badge key={brand} variant="secondary" className="text-xs">
                 {brand}
@@ -193,9 +206,9 @@ export default function ProductFiltersComponent({
                 <div key={category.id} className="flex items-center space-x-2">
                   <Checkbox
                     id={`category-${category.slug}`}
-                    checked={filters.category?.includes(category.slug) || false}
-                    onCheckedChange={(checked) => 
-                      handleArrayFilterChange('category', category.slug, checked as boolean)
+                    checked={filters.category === category.slug}
+                    onCheckedChange={() => 
+                      handleSingleValueFilterChange('category', category.slug)
                     }
                   />
                   <label 
@@ -437,3 +450,4 @@ export default function ProductFiltersComponent({
     </>
   )
 }
+'''

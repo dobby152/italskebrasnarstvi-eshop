@@ -148,7 +148,7 @@ export interface NavigationFeature {
 
 // Filter interfaces for improved product filtering
 export interface ProductFilters {
-  category?: string[]
+  category?: string
   subcategory?: string[]
   brand?: string[]
   gender?: ('men' | 'women' | 'unisex')[]
