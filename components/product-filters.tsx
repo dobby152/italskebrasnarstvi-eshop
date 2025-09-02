@@ -122,7 +122,7 @@ export default function ProductFiltersComponent({
             </Button>
           </div>
           <div className="flex flex-wrap gap-2">
-            {filters.gender?.map(gender => (
+            {filters.category && (
               <Badge key={gender} variant="secondary" className="text-xs">
                 {gender === 'men' ? 'Muži' : gender === 'women' ? 'Ženy' : 'Unisex'}
                 <X 
