@@ -99,7 +99,7 @@ export function useProducts(options: UseProductsOptions = {}): UseProductsReturn
     if (autoFetch) {
       fetchProducts()
     }
-  }, [page, limit, search, collection, brand, minPrice, maxPrice, sortBy, sortOrder, autoFetch])
+  }, [fetchProducts, autoFetch])
 
   return {
     products,
