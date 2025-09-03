@@ -7,7 +7,7 @@ import { ProductVariant } from "../app/lib/types/variants"
 import { getImageUrl } from "../app/lib/utils"
 
 interface VariantImageGalleryProps {
-  selectedVariant: ProductVariant | null
+  selectedVariant: (ProductVariant & { images?: (string | { image_url: string })[] }) | null
   baseImages: string[]
   productName: string
 }
@@ -31,11 +31,11 @@ export default function VariantImageGallery({
         items = selectedVariant.images
           .filter((image) => {
             // Handle both string URLs and image objects
-            if (typeof image === 'string') return image.trim() !== '';
-            return image && image.image_url && typeof image.image_url === 'string';
+            if (typeof image === 'string') return (image as string).trim() !== '';
+            return image && (image as any).image_url && typeof (image as any).image_url === 'string';
           })
           .map((image) => {
-            const imageUrl = typeof image === 'string' ? image : image.image_url;
+            const imageUrl = typeof image === 'string' ? image : (image as any).image_url;
             return {
               original: getImageUrl(imageUrl),
               thumbnail: getImageUrl(imageUrl),
