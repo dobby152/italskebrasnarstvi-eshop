@@ -1,7 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/app/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 const SUPABASE_STORAGE_URL = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
+
+// Cache for inventory data
+let inventoryCache: any = null
+let cacheTime: number = 0
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
+function getInventoryData(): any {
+  const now = Date.now()
+  
+  if (inventoryCache && (now - cacheTime) < CACHE_DURATION) {
+    return inventoryCache
+  }
+  
+  try {
+    const inventoryPath = path.join(process.cwd(), 'inventory-parsed.json')
+    const inventoryContent = fs.readFileSync(inventoryPath, 'utf-8')
+    inventoryCache = JSON.parse(inventoryContent)
+    cacheTime = now
+    return inventoryCache
+  } catch (error) {
+    console.error('Error loading inventory data:', error)
+    return null
+  }
+}
+
+function getStockForSku(sku: string): number {
+  if (!sku) return 0
+  
+  const inventoryData = getInventoryData()
+  if (!inventoryData) return 0
+  
+  let totalStock = 0
+  
+  // Sum stock from all locations
+  Object.keys(inventoryData.inventory).forEach(location => {
+    const items = inventoryData.inventory[location]
+    items.forEach((item: any) => {
+      if (item.productId === sku || 
+          item.productId.includes(sku) || 
+          sku.includes(item.productId)) {
+        totalStock += item.stock
+      }
+    })
+  })
+  
+  return totalStock
+}
 
 function getSupabaseImageUrl(imagePath: string): string {
   if (!imagePath || typeof imagePath !== 'string') {
@@ -77,7 +126,7 @@ export async function GET(request: NextRequest) {
 
     console.log(`Found ${products?.length || 0} products, processing images...`);
 
-    // Transform products with image processing
+    // Transform products with image processing and real stock data
     const transformedProducts = (products || []).map((product: any) => {
       let images = []
       
@@ -128,10 +177,10 @@ export async function GET(request: NextRequest) {
         collection: product.normalized_collection || null,
         tags: [],
         hasVariants: false,
-        // Set availability based on stock (default to 'in_stock' if stock is null/undefined)
-        availability: (product.stock !== null && product.stock !== undefined && product.stock <= 0) ? 'out_of_stock' : 'in_stock',
-        // Ensure stock is a number
-        stock: product.stock || 10
+        // Get real stock from inventory data
+        stock: getStockForSku(product.sku),
+        // Set availability based on real stock
+        availability: getStockForSku(product.sku) > 0 ? 'in_stock' : 'out_of_stock'
       }
     })
 

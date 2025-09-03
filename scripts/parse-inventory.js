@@ -45,21 +45,25 @@ function parseInventory() {
           }
           
           if (productId && typeof stockValue === 'number' && stockValue >= 0) {
-            if (!inventory[sheetName]) {
-              inventory[sheetName] = [];
+            // Map OUTET to OUTLET for correct display
+            const locationName = sheetName === 'OUTET' ? 'OUTLET' : sheetName;
+            
+            if (!inventory[locationName]) {
+              inventory[locationName] = [];
             }
             
-            inventory[sheetName].push({
+            inventory[locationName].push({
               productId: productId,
               stock: stockValue,
               row: row + 1,
-              location: sheetName
+              location: locationName
             });
           }
         }
       }
       
-      console.log(`Found ${inventory[sheetName] ? inventory[sheetName].length : 0} inventory items in ${sheetName}`);
+      const locationName = sheetName === 'OUTET' ? 'OUTLET' : sheetName;
+      console.log(`Found ${inventory[locationName] ? inventory[locationName].length : 0} inventory items in ${sheetName} (mapped to ${locationName})`);
     });
     
     // Summary
