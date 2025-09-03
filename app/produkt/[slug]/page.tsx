@@ -214,6 +214,10 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                        selectedColorVariant ? selectedColorVariant.price : 
                        product.price
 
+  console.log('ProductDetailContent: selectedVariant state:', selectedVariant);
+  console.log('ProductDetailContent: selectedSmartVariant state:', selectedSmartVariant);
+  console.log('ProductDetailContent: product.images:', product?.images);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />

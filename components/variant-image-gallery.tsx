@@ -22,11 +22,13 @@ export default function VariantImageGallery({
   useEffect(() => {
     let items: any[] = []
     
+    console.log('VariantImageGallery: Props received:', { selectedVariant, baseImages, productName });
+    
     try {
       if (selectedVariant && selectedVariant.images && selectedVariant.images.length > 0) {
-        // Use variant-specific images
+        console.log('VariantImageGallery: Using selectedVariant images:', selectedVariant.images);
         items = selectedVariant.images
-          .filter((image) => image && image.image_url && typeof image.image_url === 'string') // Filter out invalid images
+          .filter((image) => image && image.image_url && typeof image.image_url === 'string')
           .map((image) => ({
             original: getImageUrl(image.image_url),
             thumbnail: getImageUrl(image.image_url),
@@ -34,9 +36,9 @@ export default function VariantImageGallery({
             thumbnailAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
           }))
       } else if (baseImages && baseImages.length > 0) {
-        // Fallback to base product images
+        console.log('VariantImageGallery: Falling back to baseImages:', baseImages);
         items = baseImages
-          .filter((image) => image && typeof image === 'string' && image.trim() !== '') // Filter out invalid images
+          .filter((image) => image && typeof image === 'string' && image.trim() !== '')
           .map((image) => ({
             original: getImageUrl(image),
             thumbnail: getImageUrl(image),
@@ -45,8 +47,10 @@ export default function VariantImageGallery({
           }))
       }
       
-      // If no items found, add a placeholder
+      console.log('VariantImageGallery: Final items before setting state:', items);
+      
       if (items.length === 0) {
+        console.log('VariantImageGallery: No items found, using placeholder.');
         items = [{
           original: '/placeholder.svg',
           thumbnail: '/placeholder.svg',
@@ -56,7 +60,6 @@ export default function VariantImageGallery({
       }
     } catch (error) {
       console.error('Error processing images:', error)
-      // Fallback to placeholder
       items = [{
         original: '/placeholder.svg',
         thumbnail: '/placeholder.svg',
