@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Transform data to match expected format
-    const stockLevels = products?.map(product => ({
+    const stockLevels = products?.map((product: any) => ({
       sku: product.sku,
       product_name: product.name,
       variant_title: 'Default',
