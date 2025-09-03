@@ -344,7 +344,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
               </div>
 
               {/* Stock Display */}
-              <StockDisplay sku={product.sku} />
+              <StockDisplay sku={product.sku || ''} />
 
               {/* Quantity and Add to Cart */}
               <div className="flex gap-4 mb-6">
