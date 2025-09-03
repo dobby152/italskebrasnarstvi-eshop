@@ -39,7 +39,7 @@ export function AnalyticsPage() {
   })
 
   const salesData = analytics?.salesChart || []
-  const conversionData = analytics?.conversionChart || []
+  const conversionData = (analytics as any)?.conversionChart || []
 
   if (statsLoading || analyticsLoading) {
     return (
@@ -117,13 +117,13 @@ export function AnalyticsPage() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-card-foreground">{analytics?.totalVisitors || 0}</div>
+                    <div className="text-2xl font-bold text-card-foreground">{(analytics as any)?.totalVisitors || 0}</div>
                     <div className="text-sm text-muted-foreground">Návštěvníci</div>
                   </div>
-                  <div className={`flex items-center gap-1 ${analytics?.visitorsGrowth && analytics.visitorsGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                    {analytics?.visitorsGrowth && analytics.visitorsGrowth >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                  <div className={`flex items-center gap-1 ${(analytics as any)?.visitorsGrowth && (analytics as any).visitorsGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {(analytics as any)?.visitorsGrowth && (analytics as any).visitorsGrowth >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
                     <span className="text-sm font-medium">
-                      {analytics?.visitorsGrowth ? `${analytics.visitorsGrowth > 0 ? '+' : ''}${analytics.visitorsGrowth.toFixed(1)}%` : '0%'}
+                      {(analytics as any)?.visitorsGrowth ? `${(analytics as any).visitorsGrowth > 0 ? '+' : ''}${(analytics as any).visitorsGrowth.toFixed(1)}%` : '0%'}
                     </span>
                   </div>
                 </div>
@@ -135,14 +135,14 @@ export function AnalyticsPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-2xl font-bold text-card-foreground">
-                      {analytics?.conversionRate ? `${analytics.conversionRate.toFixed(1)}%` : '0%'}
+                      {(analytics as any)?.conversionRate ? `${(analytics as any).conversionRate.toFixed(1)}%` : '0%'}
                     </div>
                     <div className="text-sm text-muted-foreground">Konverzní poměr</div>
                   </div>
-                  <div className={`flex items-center gap-1 ${analytics?.conversionGrowth && analytics.conversionGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                    {analytics?.conversionGrowth && analytics.conversionGrowth >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                  <div className={`flex items-center gap-1 ${(analytics as any)?.conversionGrowth && (analytics as any).conversionGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {(analytics as any)?.conversionGrowth && (analytics as any).conversionGrowth >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
                     <span className="text-sm font-medium">
-                      {analytics?.conversionGrowth ? `${analytics.conversionGrowth > 0 ? '+' : ''}${analytics.conversionGrowth.toFixed(1)}%` : '0%'}
+                      {(analytics as any)?.conversionGrowth ? `${(analytics as any).conversionGrowth > 0 ? '+' : ''}${(analytics as any).conversionGrowth.toFixed(1)}%` : '0%'}
                     </span>
                   </div>
                 </div>
@@ -220,9 +220,9 @@ export function AnalyticsPage() {
                 <CardTitle className="text-lg font-semibold">Nejprodávanější produkty</CardTitle>
               </CardHeader>
               <CardContent>
-                {analytics?.topProducts && analytics.topProducts.length > 0 ? (
+                {(analytics as any)?.topProducts && (analytics as any).topProducts.length > 0 ? (
                   <div className="space-y-4">
-                    {analytics.topProducts.map((product, index) => (
+                    {(analytics as any).topProducts.map((product: any, index: number) => (
                       <div key={index} className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -251,9 +251,9 @@ export function AnalyticsPage() {
                 <CardTitle className="text-lg font-semibold">Zdroje návštěvnosti</CardTitle>
               </CardHeader>
               <CardContent>
-                {analytics?.trafficSources && analytics.trafficSources.length > 0 ? (
+                {(analytics as any)?.trafficSources && (analytics as any).trafficSources.length > 0 ? (
                   <div className="space-y-4">
-                    {analytics.trafficSources.map((source, index) => (
+                    {(analytics as any).trafficSources.map((source: any, index: number) => (
                       <div key={index} className="space-y-2">
                         <div className="flex items-center justify-between text-sm">
                           <span className="text-muted-foreground">{source.source}</span>
@@ -283,9 +283,9 @@ export function AnalyticsPage() {
                 <CardTitle className="text-lg font-semibold">Nedávná aktivita</CardTitle>
               </CardHeader>
               <CardContent>
-                {analytics?.recentActivity && analytics.recentActivity.length > 0 ? (
+                {(analytics as any)?.recentActivity && (analytics as any).recentActivity.length > 0 ? (
                   <div className="space-y-4">
-                    {analytics.recentActivity.map((activity, index) => (
+                    {(analytics as any).recentActivity.map((activity: any, index: number) => (
                       <div key={index} className="flex items-center gap-3">
                         <div className={`w-8 h-8 ${activity.type === 'order' ? 'bg-green-100' : activity.type === 'customer' ? 'bg-blue-100' : 'bg-yellow-100'} rounded-full flex items-center justify-center`}>
                           {activity.type === 'order' ? (
