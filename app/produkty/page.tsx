@@ -391,7 +391,7 @@ export default function ProduktyPage() {
                   >
                     <div className={`relative overflow-hidden ${viewMode === "list" ? "w-48 flex-shrink-0" : ""}`}>
                       <img
-                        src={getImageUrl(product.image_url || '') || '/placeholder.svg'}
+                        src={product.images?.[0] || product.image_url || '/placeholder.svg'}
                         alt={getProductDisplayName(product)}
                         className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
                           viewMode === "list" ? "w-full h-48" : "w-full h-[300px]"
@@ -503,22 +503,28 @@ export default function ProduktyPage() {
                   </Button>
                   
                   {/* Page numbers */}
-                  {[...Array(Math.min(5, totalPages))].map((_, i) => {
-                    const pageNum = i + 1;
-                    return (
-                      <Button 
-                        key={pageNum}
-                        variant={currentPage === pageNum ? "default" : "outline"}
-                        onClick={() => {
-                          setCurrentPage(pageNum);
-                          setPage(pageNum);
-                        }}
-                        className={currentPage === pageNum ? "bg-black text-white" : "border-gray-300 hover:border-black bg-transparent"}
-                      >
-                        {pageNum}
-                      </Button>
-                    );
-                  })}
+                  {(() => {
+                    const startPage = Math.max(1, currentPage - 2);
+                    const endPage = Math.min(totalPages, startPage + 4);
+                    const adjustedStartPage = Math.max(1, endPage - 4);
+                    
+                    return [...Array(endPage - adjustedStartPage + 1)].map((_, i) => {
+                      const pageNum = adjustedStartPage + i;
+                      return (
+                        <Button 
+                          key={pageNum}
+                          variant={currentPage === pageNum ? "default" : "outline"}
+                          onClick={() => {
+                            setCurrentPage(pageNum);
+                            setPage(pageNum);
+                          }}
+                          className={currentPage === pageNum ? "bg-black text-white" : "border-gray-300 hover:border-black bg-transparent"}
+                        >
+                          {pageNum}
+                        </Button>
+                      );
+                    });
+                  })()}
                   
                   {totalPages > 5 && currentPage < totalPages - 2 && (
                     <>

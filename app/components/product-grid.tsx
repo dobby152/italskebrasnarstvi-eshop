@@ -85,7 +85,7 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
               <Link href={`/produkt/${product.sku}`}>
                 <div className="relative aspect-square overflow-hidden rounded-t-lg">
                   <Image
-                    src={product.image_url || '/placeholder.svg'}
+                    src={product.images?.[0] || product.image_url || '/placeholder.svg'}
                     alt={product.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
