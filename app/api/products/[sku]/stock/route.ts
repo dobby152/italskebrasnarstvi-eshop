@@ -91,7 +91,7 @@ export async function GET(
       locations: stockLocations,
       totalStock,
       available: totalStock > 0,
-      lastUpdated: inventoryData.parsedAt || null
+      lastUpdated: (inventoryData as any).parsedAt || null
     })
     
   } catch (error) {
