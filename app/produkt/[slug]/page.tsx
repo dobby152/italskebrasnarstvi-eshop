@@ -19,6 +19,7 @@ import { useVariants } from "../../hooks/useVariants"
 import VariantImageGallery from "../../components/variant-image-gallery"
 import SmartColorVariantSelector from "../../components/smart-color-variant-selector"
 import SmartVariantImageGallery from "../../components/smart-variant-image-gallery"
+import StockDisplay from "../../components/stock-display"
 import { ProductVariant as SmartVariant, extractBaseSku, getVariantsForBaseSku } from "../../lib/smart-variants"
 import { useCart } from "../../context/cart-context"
 import { ProductVariant } from "../../lib/types/variants"
@@ -341,6 +342,9 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                   <div className="text-xs text-gray-500 mt-1">Doprava zdarma nad 2.500 Kč</div>
                 </div>
               </div>
+
+              {/* Stock Display */}
+              <StockDisplay sku={product.sku} />
 
               {/* Quantity and Add to Cart */}
               <div className="flex gap-4 mb-6">
