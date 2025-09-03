@@ -80,7 +80,7 @@ function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
     console.log('🎯 Raw filename detected:', { number, skuPart, variant, ext });
     
     // Smart mapping based on discovered patterns
-    const skuToFolder = {
+    const skuToFolder: { [key: string]: string } = {
       'CA6024S134': 'work-bag-for-laptop-15-6-ca6024s134',
       'PD6661B2R': 'elegant-women-wallet-pd6661b2r',
       'CA4818AP': 'work-bag-for-laptop-15-6-ca6024s134' // Fallback mapping
@@ -92,7 +92,7 @@ function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
     
     if (folderName) {
       // Map specific patterns to known working images
-      const specificMappings = {
+      const specificMappings: { [key: string]: string } = {
         'CA4818AP-GR': '7_CA6024S134-N_1.webp',     // Fallback to working image
         'CA6024S134-N': '7_CA6024S134-N_1.webp',    // Known working
         'CA6024S134-BLU': '1_CA6024S134-BLU_1.webp', // Known working
