@@ -39,7 +39,20 @@ export function useVariants(): UseVariantsReturn {
       
       // Set the first variant as selected by default
       if (data.variants && data.variants.length > 0) {
-        setSelectedVariant(data.variants[0])
+        const firstVariant = data.variants[0];
+        const mappedVariant: ProductVariant = {
+          ...firstVariant,
+          images: firstVariant.images ? firstVariant.images.map((url: string, index: number) => ({
+            id: index, // Assign a dummy ID
+            variant_id: firstVariant.id, // Use the variant's ID
+            image_url: url,
+            alt_text: firstVariant.name, // Use product name as alt text
+            sort_order: index,
+            is_featured: index === 0, // First image as featured
+            image_type: 'product' // Default type
+          })) : []
+        };
+        setSelectedVariant(mappedVariant);
       }
     } catch (err) {
       console.error('Error fetching variant data:', err)

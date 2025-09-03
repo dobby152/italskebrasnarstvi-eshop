@@ -258,11 +258,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
           ) : (
             <VariantImageGallery
               selectedVariant={selectedVariant}
-              baseImages={
-                selectedSmartVariant?.images?.map((url: string) => ({ image_url: url })) ||
-                product.images?.map((url: string) => ({ image_url: url })) ||
-                []
-              }
+              baseImages={selectedSmartVariant?.images || product.images || []}
               baseImageUrl={product.image_url}
               productName={getProductDisplayName(product)}
             />
