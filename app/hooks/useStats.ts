@@ -10,6 +10,7 @@ export interface Stats {
   customersGrowth: number
   productsGrowth: number
   pendingOrders: number
+  lowStockProducts: number
 }
 
 export function useStats() {
