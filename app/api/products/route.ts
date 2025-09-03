@@ -36,13 +36,55 @@ export async function GET(request: NextRequest) {
   try {
     console.log('API /products called');
     
-    // First test Supabase connection
+    // Return test data if Supabase is having issues
+    const testMode = process.env.NODE_ENV === 'development' && process.env.TEST_MODE === 'true'
+    if (testMode) {
+      console.log('Running in test mode - returning mock data');
+      return NextResponse.json({
+        products: [
+          {
+            id: 1,
+            name: 'Test Product',
+            price: 999,
+            image_url: '/placeholder.svg',
+            images: ['/placeholder.svg'],
+            description: 'Test product description',
+            sku: 'TEST001',
+            brand: null,
+            collection: null,
+            tags: [],
+            hasVariants: false,
+            availability: 'in_stock',
+            stock: 10
+          }
+        ],
+        pagination: {
+          total: 1,
+          page: 1,
+          limit: 12,
+          totalPages: 1
+        }
+      })
+    }
+    
+    // Add timeout for Supabase operations
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Request timeout')), 10000)
+    )
+    
+    // First test Supabase connection with timeout
     try {
-      const { data: testConnection } = await supabase.auth.getSession()
+      await Promise.race([
+        supabase.auth.getSession(),
+        timeoutPromise
+      ])
       console.log('Supabase connection test successful');
     } catch (connError) {
       console.error('Supabase connection failed:', connError);
-      return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+      return NextResponse.json({ 
+        error: 'Database connection failed', 
+        details: connError instanceof Error ? connError.message : 'Connection timeout'
+      }, { status: 500 })
     }
     
     const { searchParams } = new URL(request.url)
@@ -68,11 +110,14 @@ export async function GET(request: NextRequest) {
     console.log('Querying with pagination...');
     const offset = (page - 1) * limit
     
-    const { data: products, error, count } = await supabase
-      .from('products')
-      .select('id, name, price, image_url, images, description, sku, normalized_brand, normalized_collection', { count: 'exact' })
-      .order(actualSortBy, { ascending: sortOrder === 'asc' })
-      .range(offset, offset + limit - 1)
+    const { data: products, error, count } = await Promise.race([
+      supabase
+        .from('products')
+        .select('id, name, price, image_url, images, description, sku, normalized_brand, normalized_collection', { count: 'exact' })
+        .order(actualSortBy, { ascending: sortOrder === 'asc' })
+        .range(offset, offset + limit - 1),
+      timeoutPromise
+    ])
 
     if (error) {
       console.error('Supabase query error:', error)
