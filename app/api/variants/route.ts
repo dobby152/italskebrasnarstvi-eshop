@@ -9,22 +9,36 @@ function getSupabaseImageUrl(imagePath: string): string {
     return '/placeholder.svg'
   }
   
+  console.log('🔧 variants getSupabaseImageUrl processing:', imagePath);
+  
   if (imagePath.startsWith('http')) {
+    console.log('✅ Already full URL:', imagePath);
     return imagePath
   }
   
   if (imagePath.startsWith('/images/') || imagePath.startsWith('/placeholder')) {
+    console.log('✅ Already local path:', imagePath);
     return imagePath
+  }
+  
+  // CRITICAL FIX: Handle raw filenames like "1_CA4818AP-GR_1.jpg"
+  if (/^[0-9]+_[A-Z0-9-]+_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i.test(imagePath)) {
+    console.log('🚨 Raw filename detected, returning placeholder for:', imagePath);
+    return '/placeholder.svg'
   }
   
   if (imagePath.includes('/') && !imagePath.startsWith('/')) {
     const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp')
-    return `${SUPABASE_STORAGE_URL}/${webpPath}`
+    const finalUrl = `${SUPABASE_STORAGE_URL}/${webpPath}`;
+    console.log('🔗 Folder path converted:', imagePath, '->', finalUrl);
+    return finalUrl
   }
   
   const folderName = imagePath
   const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.webp`
-  return `${SUPABASE_STORAGE_URL}/${folderName}/${imageFileName}`
+  const finalUrl = `${SUPABASE_STORAGE_URL}/${folderName}/${imageFileName}`;
+  console.log('📁 Folder name converted:', imagePath, '->', finalUrl);
+  return finalUrl
 }
 
 // GET /api/variants - Smart variant detection with color-based image filtering
