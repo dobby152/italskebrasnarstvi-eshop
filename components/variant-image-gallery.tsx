@@ -36,9 +36,12 @@ export default function VariantImageGallery({
           })
           .map((image: any) => {
             const imageUrl = typeof image === 'string' ? image : image.image_url;
+            // CRITICAL FIX: Don't double-transform URLs that are already processed by API
+            const finalUrl = imageUrl && imageUrl.startsWith('http') ? imageUrl : getImageUrl(imageUrl);
+            console.log('VariantImageGallery: Raw imageUrl:', imageUrl, '-> Final URL:', finalUrl);
             return {
-              original: getImageUrl(imageUrl),
-              thumbnail: getImageUrl(imageUrl),
+              original: finalUrl,
+              thumbnail: finalUrl,
               originalAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
               thumbnailAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
             };
@@ -47,12 +50,17 @@ export default function VariantImageGallery({
         console.log('VariantImageGallery: Falling back to baseImages:', baseImages);
         items = baseImages
           .filter((image) => image && typeof image === 'string' && image.trim() !== '')
-          .map((image) => ({
-            original: getImageUrl(image),
-            thumbnail: getImageUrl(image),
-            originalAlt: productName || 'Product Image',
-            thumbnailAlt: productName || 'Product Image',
-          }))
+          .map((image) => {
+            // CRITICAL FIX: Don't double-transform URLs that are already processed by API
+            const finalUrl = image && image.startsWith('http') ? image : getImageUrl(image);
+            console.log('VariantImageGallery: Base image:', image, '-> Final URL:', finalUrl);
+            return {
+              original: finalUrl,
+              thumbnail: finalUrl,
+              originalAlt: productName || 'Product Image',
+              thumbnailAlt: productName || 'Product Image',
+            };
+          })
       }
       
       console.log('VariantImageGallery: Final items before setting state:', items);

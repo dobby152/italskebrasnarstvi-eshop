@@ -52,6 +52,9 @@ export function getImageUrl(imagePath: string | undefined | null): string {
     return `https://${imagePath.replace(/^https?:\/\//, '')}`
   }
   
+  // DEBUG: Log what we're processing
+  console.log('getImageUrl processing:', imagePath);
+  
   // Special handling for image filenames that appear to be product images
   // If it matches typical product image patterns, return placeholder instead of broken local path
   if (/^[0-9]+_[A-Z0-9-]+_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i.test(imagePath)) {
