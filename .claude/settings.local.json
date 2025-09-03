@@ -77,7 +77,8 @@
       "WebFetch(domain:dbnfkzctensbpktgbsgn.supabase.co)",
       "Bash(PORT=3010 npm run dev)",
       "WebFetch(domain:)",
-      "Bash(PORT=3015 npm run dev)"
+      "Bash(PORT=3015 npm run dev)",
+      "Read(C:\\Users\\hynex\\Downloads/**)"
     ],
     "deny": [],
     "additionalDirectories": [

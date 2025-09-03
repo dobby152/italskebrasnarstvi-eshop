@@ -4,19 +4,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
 import {
-  Home,
   ShoppingCart,
   Package,
   Users,
   BarChart3,
-  Percent,
-  Smartphone,
-  Store,
   TrendingUp,
   TrendingDown,
   Download,
 } from "lucide-react"
-import Link from "next/link"
+import { useStats } from "../hooks/useStats"
+import { useAnalytics } from "../hooks/useAnalytics"
+import { useState } from "react"
 import {
   LineChart,
   Line,
@@ -32,86 +30,29 @@ import {
   Tooltip,
 } from "recharts"
 
-const sidebarItems = [
-  { icon: Home, label: "Domů", href: "/" },
-  { icon: ShoppingCart, label: "Objednávky", badge: "46", href: "/objednavky" },
-  { icon: Package, label: "Produkty", href: "/produkty" },
-  { icon: Users, label: "Zákazníci", href: "/zakaznici" },
-  { icon: BarChart3, label: "Analytika", active: true, href: "/analytika" },
-  { icon: Percent, label: "Slevy", href: "/slevy" },
-  { icon: Smartphone, label: "Aplikace", href: "/aplikace" },
-]
-
-const salesChannels = [{ icon: Store, label: "Online obchod" }]
-
-// Demo data removed - will be replaced with real API data
-const salesData: any[] = []
-
-// Demo data removed - will be replaced with real API data
-const topProductsData: any[] = []
-
-// Demo data removed - will be replaced with real API data
-const trafficSourcesData: any[] = []
-
-// Demo data removed - will be replaced with real API data
-const conversionData: any[] = []
-
 export function AnalyticsPage() {
-  return (
-    <div className="flex h-screen bg-background">
-      {/* Sidebar */}
-      <div className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
-        <div className="p-4">
-          <h1 className="text-xl font-bold text-sidebar-foreground">Shopify</h1>
+  const [dateRange, setDateRange] = useState('30days')
+  const { data: stats, isLoading: statsLoading } = useStats()
+  const { data: analytics, isLoading: analyticsLoading } = useAnalytics({
+    period: dateRange,
+    channel: 'all'
+  })
+
+  const salesData = analytics?.salesChart || []
+  const conversionData = analytics?.conversionChart || []
+
+  if (statsLoading || analyticsLoading) {
+    return (
+      <div className="p-6">
+        <div className="flex items-center justify-center h-64">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
         </div>
-
-        <nav className="flex-1 px-2">
-          <div className="space-y-1">
-            {sidebarItems?.map((item) => (
-              <Link key={item.label} href={item.href}>
-                <div
-                  className={`flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors ${
-                    item.active
-                      ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.label}</span>
-                  </div>
-                  {item.badge && (
-                    <Badge variant="secondary" className="text-xs">
-                      {item.badge}
-                    </Badge>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-8">
-            <h3 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-              Prodejní kanály
-            </h3>
-            <div className="space-y-1">
-              {salesChannels?.map((channel) => (
-                <div
-                  key={channel.label}
-                  className="flex items-center gap-3 px-3 py-2 text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground rounded-md cursor-pointer transition-colors"
-                >
-                  <channel.icon className="h-4 w-4" />
-                  <span>{channel.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </nav>
       </div>
+    )
+  }
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-6">
+  return (
+    <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -119,11 +60,15 @@ export function AnalyticsPage() {
               <p className="text-muted-foreground">Sledujte výkonnost vašeho obchodu a trendy</p>
             </div>
             <div className="flex items-center gap-3">
-              <select className="px-3 py-2 border border-border rounded-md text-sm bg-background">
-                <option>Posledních 30 dní</option>
-                <option>Posledních 7 dní</option>
-                <option>Tento měsíc</option>
-                <option>Minulý měsíc</option>
+              <select 
+                value={dateRange} 
+                onChange={(e) => setDateRange(e.target.value)}
+                className="px-3 py-2 border border-border rounded-md text-sm bg-background"
+              >
+                <option value="30days">Posledních 30 dní</option>
+                <option value="7days">Posledních 7 dní</option>
+                <option value="today">Dnes</option>
+                <option value="yesterday">Včera</option>
               </select>
               <Button variant="outline" className="flex items-center gap-2 bg-transparent">
                 <Download className="h-4 w-4" />
@@ -138,12 +83,16 @@ export function AnalyticsPage() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-card-foreground">$32,847</div>
+                    <div className="text-2xl font-bold text-card-foreground">
+                      {stats?.totalRevenue ? `${stats.totalRevenue.toLocaleString('cs-CZ')} Kč` : '0 Kč'}
+                    </div>
                     <div className="text-sm text-muted-foreground">Celkové tržby</div>
                   </div>
-                  <div className="flex items-center gap-1 text-green-600">
-                    <TrendingUp className="h-4 w-4" />
-                    <span className="text-sm font-medium">+12.5%</span>
+                  <div className={`flex items-center gap-1 ${stats?.revenueGrowth && stats.revenueGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {stats?.revenueGrowth && stats.revenueGrowth >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                    <span className="text-sm font-medium">
+                      {stats?.revenueGrowth ? `${stats.revenueGrowth > 0 ? '+' : ''}${stats.revenueGrowth.toFixed(1)}%` : '0%'}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -153,12 +102,12 @@ export function AnalyticsPage() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-card-foreground">1,247</div>
+                    <div className="text-2xl font-bold text-card-foreground">{stats?.totalOrders || 0}</div>
                     <div className="text-sm text-muted-foreground">Objednávky</div>
                   </div>
                   <div className="flex items-center gap-1 text-green-600">
                     <TrendingUp className="h-4 w-4" />
-                    <span className="text-sm font-medium">+8.2%</span>
+                    <span className="text-sm font-medium">+{stats?.ordersGrowth || 0}</span>
                   </div>
                 </div>
               </CardContent>
@@ -168,12 +117,14 @@ export function AnalyticsPage() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-card-foreground">18,450</div>
+                    <div className="text-2xl font-bold text-card-foreground">{analytics?.totalVisitors || 0}</div>
                     <div className="text-sm text-muted-foreground">Návštěvníci</div>
                   </div>
-                  <div className="flex items-center gap-1 text-red-600">
-                    <TrendingDown className="h-4 w-4" />
-                    <span className="text-sm font-medium">-3.1%</span>
+                  <div className={`flex items-center gap-1 ${analytics?.visitorsGrowth && analytics.visitorsGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {analytics?.visitorsGrowth && analytics.visitorsGrowth >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                    <span className="text-sm font-medium">
+                      {analytics?.visitorsGrowth ? `${analytics.visitorsGrowth > 0 ? '+' : ''}${analytics.visitorsGrowth.toFixed(1)}%` : '0%'}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -183,12 +134,16 @@ export function AnalyticsPage() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-card-foreground">3.4%</div>
+                    <div className="text-2xl font-bold text-card-foreground">
+                      {analytics?.conversionRate ? `${analytics.conversionRate.toFixed(1)}%` : '0%'}
+                    </div>
                     <div className="text-sm text-muted-foreground">Konverzní poměr</div>
                   </div>
-                  <div className="flex items-center gap-1 text-green-600">
-                    <TrendingUp className="h-4 w-4" />
-                    <span className="text-sm font-medium">+0.8%</span>
+                  <div className={`flex items-center gap-1 ${analytics?.conversionGrowth && analytics.conversionGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {analytics?.conversionGrowth && analytics.conversionGrowth >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                    <span className="text-sm font-medium">
+                      {analytics?.conversionGrowth ? `${analytics.conversionGrowth > 0 ? '+' : ''}${analytics.conversionGrowth.toFixed(1)}%` : '0%'}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -265,35 +220,28 @@ export function AnalyticsPage() {
                 <CardTitle className="text-lg font-semibold">Nejprodávanější produkty</CardTitle>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={250}>
-                  <PieChart>
-                    <Pie
-                      data={topProductsData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={100}
-                      paddingAngle={5}
-                      dataKey="value"
-                    >
-                      {topProductsData?.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-                <div className="space-y-2 mt-4">
-                  {topProductsData?.map((product, index) => (
-                    <div key={index} className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: product.color }} />
-                        <span className="text-muted-foreground">{product.name}</span>
+                {analytics?.topProducts && analytics.topProducts.length > 0 ? (
+                  <div className="space-y-4">
+                    {analytics.topProducts.map((product, index) => (
+                      <div key={index} className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <span className="text-sm font-bold text-blue-600">#{index + 1}</span>
+                          </div>
+                          <div>
+                            <div className="font-medium text-sm">{product.name}</div>
+                            <div className="text-xs text-muted-foreground">{product.sales} prodejů</div>
+                          </div>
+                        </div>
+                        <div className="font-medium">{product.revenue} Kč</div>
                       </div>
-                      <span className="font-medium text-card-foreground">{product.value}%</span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground">
+                    Žádná data o nejprodávanějších produktech
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -302,22 +250,30 @@ export function AnalyticsPage() {
               <CardHeader>
                 <CardTitle className="text-lg font-semibold">Zdroje návštěvnosti</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                {trafficSourcesData?.map((source, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">{source.source}</span>
-                      <span className="font-medium text-card-foreground">{source.visitors}</span>
-                    </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                      <div
-                        className="bg-chart-1 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${source.percentage}%` }}
-                      />
-                    </div>
-                    <div className="text-xs text-muted-foreground text-right">{source.percentage}%</div>
+              <CardContent>
+                {analytics?.trafficSources && analytics.trafficSources.length > 0 ? (
+                  <div className="space-y-4">
+                    {analytics.trafficSources.map((source, index) => (
+                      <div key={index} className="space-y-2">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-muted-foreground">{source.source}</span>
+                          <span className="font-medium text-card-foreground">{source.visitors}</span>
+                        </div>
+                        <div className="w-full bg-muted rounded-full h-2">
+                          <div
+                            className="bg-chart-1 h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${source.percentage}%` }}
+                          />
+                        </div>
+                        <div className="text-xs text-muted-foreground text-right">{source.percentage}%</div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground">
+                    Žádná data o zdrojích návštěvnosti
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -326,52 +282,39 @@ export function AnalyticsPage() {
               <CardHeader>
                 <CardTitle className="text-lg font-semibold">Nedávná aktivita</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                    <ShoppingCart className="h-4 w-4 text-green-600" />
+              <CardContent>
+                {analytics?.recentActivity && analytics.recentActivity.length > 0 ? (
+                  <div className="space-y-4">
+                    {analytics.recentActivity.map((activity, index) => (
+                      <div key={index} className="flex items-center gap-3">
+                        <div className={`w-8 h-8 ${activity.type === 'order' ? 'bg-green-100' : activity.type === 'customer' ? 'bg-blue-100' : 'bg-yellow-100'} rounded-full flex items-center justify-center`}>
+                          {activity.type === 'order' ? (
+                            <ShoppingCart className="h-4 w-4 text-green-600" />
+                          ) : activity.type === 'customer' ? (
+                            <Users className="h-4 w-4 text-blue-600" />
+                          ) : (
+                            <Package className="h-4 w-4 text-yellow-600" />
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-sm font-medium text-card-foreground">{activity.description}</div>
+                          <div className="text-xs text-muted-foreground">{activity.time}</div>
+                        </div>
+                        {activity.amount && (
+                          <div className="text-sm font-medium text-card-foreground">{activity.amount}</div>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-card-foreground">Nová objednávka #1247</div>
-                    <div className="text-xs text-muted-foreground">před 5 minutami</div>
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground">
+                    Žádná nedávná aktivita
                   </div>
-                  <div className="text-sm font-medium text-card-foreground">$89.99</div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Users className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-card-foreground">Nový zákazník se registroval</div>
-                    <div className="text-xs text-muted-foreground">před 12 minutami</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                    <Package className="h-4 w-4 text-yellow-600" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-card-foreground">Produkt má nízký stav</div>
-                    <div className="text-xs text-muted-foreground">před 1 hodinou</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                    <BarChart3 className="h-4 w-4 text-purple-600" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-card-foreground">Týdenní zpráva je připravena</div>
-                    <div className="text-xs text-muted-foreground">před 2 hodinami</div>
-                  </div>
-                </div>
+                )}
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
-    </div>
   )
 }

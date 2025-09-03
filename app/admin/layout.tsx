@@ -25,7 +25,6 @@ const navigationItems = [
   { href: "/admin/zakaznici", label: "Zákazníci", icon: Users },
   { href: "/admin/analytika", label: "Analytika", icon: BarChart3 },
   { href: "/admin/slevy", label: "Slevy", icon: Percent },
-  { href: "/admin/aplikace", label: "Aplikace", icon: Puzzle },
 ]
 
 export default function AdminLayout({
