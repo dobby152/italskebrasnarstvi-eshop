@@ -36,7 +36,7 @@ export function getImageUrl(imagePath: string | undefined | null): string {
     return '/placeholder.svg'
   }
   
-  // If it's already a full URL, return as is
+  // If it's already a full URL (http/https), return as is
   if (imagePath.startsWith('http')) {
     return imagePath
   }
@@ -46,7 +46,13 @@ export function getImageUrl(imagePath: string | undefined | null): string {
     return imagePath
   }
   
-  // If it's just the filename, add the /images/ prefix
+  // If it's just the filename without protocol, assume it's a Supabase URL missing protocol
+  // Most images are now stored on Supabase
+  if (imagePath.includes('supabase.co')) {
+    return `https://${imagePath.replace(/^https?:\/\//, '')}`
+  }
+  
+  // If it's just the filename, add the /images/ prefix (local images)
   return `/images/${imagePath.replace(/^\/+/, '')}`
 }
 
