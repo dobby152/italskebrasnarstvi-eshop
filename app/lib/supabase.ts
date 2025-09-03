@@ -12,13 +12,5 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     persistSession: false,
     autoRefreshToken: false,
     detectSessionInUrl: false
-  },
-  global: {
-    fetch: (url, options = {}) => {
-      return fetch(url, {
-        ...options,
-        timeout: 30000, // 30 second timeout
-      })
-    }
   }
 })
