@@ -64,8 +64,8 @@ export default function Header() {
             <span className="text-gray-400 text-lg font-normal">.cz</span>
           </Link>
 
-          {/* Desktop navigation - CENTERED */}
-          <div className="hidden lg:flex items-center space-x-2 absolute left-1/2 transform -translate-x-1/2">
+          {/* Desktop navigation */}
+          <div className="hidden lg:flex items-center space-x-2">
             {productCategories.map((category) => (
               <Link 
                 key={category.id}
@@ -78,7 +78,10 @@ export default function Header() {
             <Link href="/produkty" className="text-xs font-bold text-gray-700 hover:text-black transition-colors whitespace-nowrap px-1">
               VŠECHNY PRODUKTY
             </Link>
+          </div>
 
+          {/* Right side icons */}
+          <div className="hidden lg:flex items-center space-x-2">
             {/* Search */}
             {!searchOpen ? (
               <Button

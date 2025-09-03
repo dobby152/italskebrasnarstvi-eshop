@@ -1,0 +1,4725 @@
+{
+  "duplicateSKUs": [],
+  "similarNames": [
+    {
+      "normalizedName": "pánská peněženka",
+      "type": "exact_match",
+      "count": 5,
+      "products": [
+        {
+          "id": 5267,
+          "name": "Pánská peněženka",
+          "sku": "OM5285OM5-R",
+          "price": 1395,
+          "collection": "OM5",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5268,
+          "name": "Pánská peněženka",
+          "sku": "OM5285OM5-BLU",
+          "price": 1395,
+          "collection": "OM5",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5269,
+          "name": "Pánská peněženka",
+          "sku": "OM5285OM5-N",
+          "price": 1395,
+          "collection": "OM5",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5270,
+          "name": "Pánská peněženka",
+          "sku": "OM5285OM5-VE",
+          "price": 1395,
+          "collection": "OM5",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5504,
+          "name": "Pánská peněženka",
+          "sku": "CA3084UB00-BLU",
+          "price": 4095,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "závěsný sáček pro notebook a ipad® – praktický a stylový doplněk pro každodenní použití",
+      "type": "exact_match",
+      "count": 5,
+      "products": [
+        {
+          "id": 5277,
+          "name": "Závěsný sáček pro notebook a iPad® – praktický a stylový doplněk pro každodenní použití",
+          "sku": "CA4762B3-TM",
+          "price": 12195,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5278,
+          "name": "Závěsný sáček pro notebook a iPad® – praktický a stylový doplněk pro každodenní použití",
+          "sku": "CA4762B3-CU",
+          "price": 10895,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5279,
+          "name": "Závěsný sáček pro notebook a iPad® – praktický a stylový doplněk pro každodenní použití",
+          "sku": "CA4762B3-BLU4",
+          "price": 12195,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5280,
+          "name": "Závěsný sáček pro notebook a iPad® – praktický a stylový doplněk pro každodenní použití",
+          "sku": "CA4762B3-N",
+          "price": 10995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5281,
+          "name": "Závěsný sáček pro notebook a iPad® – praktický a stylový doplněk pro každodenní použití",
+          "sku": "CA4762B3-AR",
+          "price": 10995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "výrobní taška pro muže s odděleným oddílem na notebook a ipad®",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5282,
+          "name": "Výrobní taška pro muže s odděleným oddílem na notebook a iPad®",
+          "sku": "CA4762B2-BLU2",
+          "price": 10480,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5283,
+          "name": "Výrobní taška pro muže s odděleným oddílem na notebook a iPad®",
+          "sku": "CA4762B2-N",
+          "price": 12195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5284,
+          "name": "Výrobní taška pro muže s odděleným oddílem na notebook a iPad®",
+          "sku": "CA4762B2-MO",
+          "price": 10895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "námořní bundy pro muže z kvalitní kůže s praktickou kapsou pro connequ",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5286,
+          "name": "Námořní bundy pro muže z kvalitní kůže s praktickou kapsou pro CONNEQU",
+          "sku": "CA2174B2-MO",
+          "price": 4945,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5287,
+          "name": "Námořní bundy pro muže z kvalitní kůže s praktickou kapsou pro CONNEQU",
+          "sku": "CA2174B2-N",
+          "price": 4945,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "marsupio uomo - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5290,
+          "name": "Marsupio uomo - N",
+          "sku": "CA2174B3-N",
+          "price": 5995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5293,
+          "name": "Marsupio uomo - N",
+          "sku": "CA2174UB00-N",
+          "price": 5995,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "kabinetní koloběžka pro notebook a ipad® pro 12,9\"",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5299,
+          "name": "Kabinetní koloběžka pro notebook a iPad® Pro 12,9\"",
+          "sku": "BV5004B2-MO",
+          "price": 24595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5300,
+          "name": "Kabinetní koloběžka pro notebook a iPad® Pro 12,9\"",
+          "sku": "BV5004B2-N",
+          "price": 25595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "pochette uomo a tre scomparti - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5306,
+          "name": "Pochette uomo a tre scomparti - N",
+          "sku": "AC2141B3-N",
+          "price": 4695,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5309,
+          "name": "Pochette uomo a tre scomparti - N",
+          "sku": "AC2141MOS-N",
+          "price": 4695,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portafoglio compatto uomo automatico - n",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5314,
+          "name": "Portafoglio compatto uomo automatico - N",
+          "sku": "PP5585MOSR-N",
+          "price": 2295,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5316,
+          "name": "Portafoglio compatto uomo automatico - N",
+          "sku": "PP5585B3R-N",
+          "price": 1795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5657,
+          "name": "Portafoglio compatto uomo automatico - N",
+          "sku": "PP5585B2BLR-N",
+          "price": 1795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "praktická a elegantní kůže taška na notebook a ipad® pro 12,9\"",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5318,
+          "name": "Praktická a elegantní kůže taška na notebook a iPad® Pro 12,9\"",
+          "sku": "CA3335B2-BLU2",
+          "price": 8730,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5319,
+          "name": "Praktická a elegantní kůže taška na notebook a iPad® Pro 12,9\"",
+          "sku": "CA3335B2-MO",
+          "price": 8995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5320,
+          "name": "Praktická a elegantní kůže taška na notebook a iPad® Pro 12,9\"",
+          "sku": "CA3335B2-N",
+          "price": 8795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "**praktická aktovka s oddílem pro notebook a ipad® pro 12,9\"**",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5321,
+          "name": "**Praktická aktovka s oddílem pro notebook a iPad® Pro 12,9\"**",
+          "sku": "CA1068B2-MO",
+          "price": 16455,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5322,
+          "name": "**Praktická aktovka s oddílem pro notebook a iPad® Pro 12,9\"**",
+          "sku": "CA1068B2-BLU2",
+          "price": 15780,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5323,
+          "name": "**Praktická aktovka s oddílem pro notebook a iPad® Pro 12,9\"**",
+          "sku": "CA1068B2-N",
+          "price": 18295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "záložní taška pro muže - dokonale kombinuje praktičnost a styl",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5324,
+          "name": "Záložní taška pro muže - dokonale kombinuje praktičnost a styl",
+          "sku": "CA4550UB00BM-GRN",
+          "price": 12495,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5325,
+          "name": "Záložní taška pro muže - dokonale kombinuje praktičnost a styl",
+          "sku": "CA4550UB00BM-NGR",
+          "price": 12495,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5326,
+          "name": "Záložní taška pro muže - dokonale kombinuje praktičnost a styl",
+          "sku": "CA4550UB00BM-N",
+          "price": 12295,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "a stylový batoh na notebook a ipad® s antikradlickým kabelem – perfektní kombinace bezpečnosti a ...",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5330,
+          "name": "a stylový batoh na notebook a iPad® s antikradlickým kabelem – perfektní kombinace bezpečnosti a ...",
+          "sku": "CA4818B2V-N",
+          "price": 10395,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5331,
+          "name": "a stylový batoh na notebook a iPad® s antikradlickým kabelem – perfektní kombinace bezpečnosti a ...",
+          "sku": "CA4818B2V-BLU",
+          "price": 10395,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5332,
+          "name": "a stylový batoh na notebook a iPad® s antikradlickým kabelem – perfektní kombinace bezpečnosti a ...",
+          "sku": "CA4818B2V-MO",
+          "price": 10395,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "zavazadlo na notebook a ipad® – praktický a stylový společník pro každý den",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5334,
+          "name": "Zavazadlo na notebook a iPad® – praktický a stylový společník pro každý den",
+          "sku": "CA4174P16-CHEVN",
+          "price": 7356.56,
+          "collection": "P16",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5335,
+          "name": "Zavazadlo na notebook a iPad® – praktický a stylový společník pro každý den",
+          "sku": "CA4174P16-CHEVBLU",
+          "price": 7595,
+          "collection": "P16",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "základní mužský batoh s odolným krytem na notebook a ipad®, vyrobený z kvalitního tkaného materiá...",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5336,
+          "name": "Základní mužský batoh s odolným krytem na notebook a iPad®, vyrobený z kvalitního tkaného materiá...",
+          "sku": "CA4818BR2-BLU",
+          "price": 9295,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5337,
+          "name": "Základní mužský batoh s odolným krytem na notebook a iPad®, vyrobený z kvalitního tkaného materiá...",
+          "sku": "CA4818BR2-N",
+          "price": 9295,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "a stylový záložní kabelka s odděleným oddílem na notebook a praktickou kapesou pro lahvičku či de...",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5338,
+          "name": "a stylový záložní kabelka s odděleným oddílem na notebook a praktickou kapesou pro lahvičku či de...",
+          "sku": "CA5381B2V-MO",
+          "price": 12595,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5339,
+          "name": "a stylový záložní kabelka s odděleným oddílem na notebook a praktickou kapesou pro lahvičku či de...",
+          "sku": "CA5381B2V-N",
+          "price": 14295,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "malý batoh na notebook 14\"",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5340,
+          "name": "Malý batoh na notebook 14\"",
+          "sku": "CA3214UB00-GRN",
+          "price": 9226.88,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5341,
+          "name": "Malý batoh na notebook 14\"",
+          "sku": "CA3214UB00-N",
+          "price": 9226.88,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5342,
+          "name": "Malý batoh na notebook 14\"",
+          "sku": "CA3214UB00-NGR",
+          "price": 8995,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "univerzální mužský batoh určený pro rychlé kontrolování s odděleným oddílem pro notebook a ipad®",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5350,
+          "name": "Univerzální mužský batoh určený pro rychlé kontrolování s odděleným oddílem pro notebook a iPad®",
+          "sku": "CA4532BR2-BLU",
+          "price": 7980,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5351,
+          "name": "Univerzální mužský batoh určený pro rychlé kontrolování s odděleným oddílem pro notebook a iPad®",
+          "sku": "CA4532BR2-N",
+          "price": 8295,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "výjimečná a osobitá nášivková kabelka na notebook a ipad® – dokonale kombinující praktičnost a styl",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5354,
+          "name": "Výjimečná a osobitá nášivková kabelka na notebook a iPad® – dokonale kombinující praktičnost a styl",
+          "sku": "CA3339UB00-GRN",
+          "price": 11595,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5355,
+          "name": "Výjimečná a osobitá nášivková kabelka na notebook a iPad® – dokonale kombinující praktičnost a styl",
+          "sku": "CA3339UB00-N",
+          "price": 9850,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portacarte uomo automatico - n",
+      "type": "exact_match",
+      "count": 4,
+      "products": [
+        {
+          "id": 5361,
+          "name": "Portacarte uomo automatico - N",
+          "sku": "PP4825B3R-N",
+          "price": 1795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5363,
+          "name": "Portacarte uomo automatico - N",
+          "sku": "PP5649B3R-N",
+          "price": 2095,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5368,
+          "name": "Portacarte uomo automatico - N",
+          "sku": "PP5649MOSR-N",
+          "price": 2495,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5670,
+          "name": "Portacarte uomo automatico - N",
+          "sku": "PP4825B2BLR-N",
+          "price": 1295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portacarte uomo automatico - tm",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5362,
+          "name": "Portacarte uomo automatico - TM",
+          "sku": "PP4825B3R-TM",
+          "price": 1795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5364,
+          "name": "Portacarte uomo automatico - TM",
+          "sku": "PP5649B3R-TM",
+          "price": 1495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "záložní taška pro muže s rychlou kontrolou - ideální pro notebook a ipad®",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5374,
+          "name": "Záložní taška pro muže s rychlou kontrolou - ideální pro notebook a iPad®",
+          "sku": "CA4532UB00-N",
+          "price": 10995,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5375,
+          "name": "Záložní taška pro muže s rychlou kontrolou - ideální pro notebook a iPad®",
+          "sku": "CA4532UB00-NGR",
+          "price": 11195,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "praktická a stylová taška na cestování s možností personalizace, ideální pro notebook a ipad",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5380,
+          "name": "Praktická a stylová taška na cestování s možností personalizace, ideální pro notebook a iPad",
+          "sku": "BV4342B2-MO",
+          "price": 18195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5381,
+          "name": "Praktická a stylová taška na cestování s možností personalizace, ideální pro notebook a iPad",
+          "sku": "BV4342B2-N",
+          "price": 16195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "tenká kabelková kufřík na počítač a ipad® z kvalitní kůže",
+      "type": "exact_match",
+      "count": 5,
+      "products": [
+        {
+          "id": 5387,
+          "name": "Tenká kabelková kufřík na počítač a iPad® z kvalitní kůže",
+          "sku": "CA4021B3-BLU4",
+          "price": 8705,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5388,
+          "name": "Tenká kabelková kufřík na počítač a iPad® z kvalitní kůže",
+          "sku": "CA4021B3-CU",
+          "price": 8295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5389,
+          "name": "Tenká kabelková kufřík na počítač a iPad® z kvalitní kůže",
+          "sku": "CA4021B3-N",
+          "price": 8795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5390,
+          "name": "Tenká kabelková kufřík na počítač a iPad® z kvalitní kůže",
+          "sku": "CA4021B3-TM",
+          "price": 8795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5391,
+          "name": "Tenká kabelková kufřík na počítač a iPad® z kvalitní kůže",
+          "sku": "CA4021B3-AR",
+          "price": 7356.56,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "pěkný, prostorný a praktický kufřík na notebook z kůže",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5394,
+          "name": "Pěkný, prostorný a praktický kufřík na notebook z kůže",
+          "sku": "CA3111B2-MO",
+          "price": 13495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5395,
+          "name": "Pěkný, prostorný a praktický kufřík na notebook z kůže",
+          "sku": "CA3111B2-N",
+          "price": 13495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "coprizaino impermeabile - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5399,
+          "name": "Coprizaino impermeabile - N",
+          "sku": "AC5565NN-N-M",
+          "price": 695,
+          "collection": "NN",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5400,
+          "name": "Coprizaino impermeabile - N",
+          "sku": "AC5565NN-N-L",
+          "price": 695,
+          "collection": "NN",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "borsello uomo porta ipad® - n",
+      "type": "exact_match",
+      "count": 6,
+      "products": [
+        {
+          "id": 5405,
+          "name": "Borsello uomo porta iPad® - N",
+          "sku": "CA1816B2-N",
+          "price": 5495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5419,
+          "name": "Borsello uomo porta iPad® - N",
+          "sku": "CA1816MOS-N",
+          "price": 5495,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5421,
+          "name": "Borsello uomo porta iPad® - N",
+          "sku": "CA1816BR2-N",
+          "price": 4595,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5674,
+          "name": "Borsello uomo porta iPad® - N",
+          "sku": "CA1816W129-N",
+          "price": 2995,
+          "collection": "W129",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5802,
+          "name": "Borsello uomo porta iPad® - N",
+          "sku": "CA1816S135-N",
+          "price": 5095,
+          "collection": "S135",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5805,
+          "name": "Borsello uomo porta iPad® - N",
+          "sku": "CA1816S136-N",
+          "price": 3595,
+          "collection": "S136",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "borsello uomo a tracolla uomo porta ipad® - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5409,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - N",
+          "sku": "CA1816UB00-N",
+          "price": 4795,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5416,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - N",
+          "sku": "CA1816B3-N",
+          "price": 5495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "borsello uomo a tracolla uomo porta ipad® - tm",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5412,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - TM",
+          "sku": "CA1816AP-TM",
+          "price": 4695,
+          "collection": "AP",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5413,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - TM",
+          "sku": "CA1816B3-TM",
+          "price": 5495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "borsello uomo porta ipad® - blu",
+      "type": "exact_match",
+      "count": 4,
+      "products": [
+        {
+          "id": 5418,
+          "name": "Borsello uomo porta iPad® - BLU",
+          "sku": "CA1816MOS-BLU",
+          "price": 5495,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5675,
+          "name": "Borsello uomo porta iPad® - BLU",
+          "sku": "CA1816W129-BLU",
+          "price": 3095,
+          "collection": "W129",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5801,
+          "name": "Borsello uomo porta iPad® - BLU",
+          "sku": "CA1816S135-BLU",
+          "price": 5095,
+          "collection": "S135",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5804,
+          "name": "Borsello uomo porta iPad® - BLU",
+          "sku": "CA1816S136-BLU",
+          "price": 3595,
+          "collection": "S136",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "a ekologický pouzdro na ipad® mini z recyklovaného materiálu – ideální ochrana pro váš tablet",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5424,
+          "name": "a ekologický pouzdro na iPad® mini z recyklovaného materiálu – ideální ochrana pro váš tablet",
+          "sku": "CA3084BR2-N",
+          "price": 2995,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5425,
+          "name": "a ekologický pouzdro na iPad® mini z recyklovaného materiálu – ideální ochrana pro váš tablet",
+          "sku": "CA3084BR2-VE2",
+          "price": 3295,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "**praktická kufříková taška na práci s oddílem pro notebook a ipad®**",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5432,
+          "name": "**Praktická kufříková taška na práci s oddílem pro notebook a iPad®**",
+          "sku": "CA3339BR2-BLU",
+          "price": 7995,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5433,
+          "name": "**Praktická kufříková taška na práci s oddílem pro notebook a iPad®**",
+          "sku": "CA3339BR2-N",
+          "price": 8295,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "pochette da polso - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5437,
+          "name": "Pochette da polso - N",
+          "sku": "AC2648B2-N",
+          "price": 4195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5438,
+          "name": "Pochette da polso - N",
+          "sku": "AC2648MO-N",
+          "price": 4195,
+          "collection": "MO",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "zaino monospalla uomo porta ipad® - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5469,
+          "name": "Zaino monospalla uomo porta iPad® - N",
+          "sku": "CA4827B2-N",
+          "price": 5395,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5472,
+          "name": "Zaino monospalla uomo porta iPad® - N",
+          "sku": "CA4827B3-N",
+          "price": 6595,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "borsello uomo - n",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5483,
+          "name": "Borsello uomo - N",
+          "sku": "CA3084B2-N",
+          "price": 5295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5510,
+          "name": "Borsello uomo - N",
+          "sku": "CA3084B3-N",
+          "price": 5295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5514,
+          "name": "Borsello uomo - N",
+          "sku": "CA3084MOS-N",
+          "price": 5295,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "mužská taška na notebook a ipad® z kvalitní kůže",
+      "type": "exact_match",
+      "count": 5,
+      "products": [
+        {
+          "id": 5489,
+          "name": "Mužská taška na notebook a iPad® z kvalitní kůže",
+          "sku": "CA4818UB00-GRN",
+          "price": 9995,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5490,
+          "name": "Mužská taška na notebook a iPad® z kvalitní kůže",
+          "sku": "CA4818UB00-NGR",
+          "price": 9995,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5491,
+          "name": "Mužská taška na notebook a iPad® z kvalitní kůže",
+          "sku": "CA4818UB00-BLU",
+          "price": 9727,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5492,
+          "name": "Mužská taška na notebook a iPad® z kvalitní kůže",
+          "sku": "CA4818UB00-N",
+          "price": 9727,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5493,
+          "name": "Mužská taška na notebook a iPad® z kvalitní kůže",
+          "sku": "CA4818UB00-BLGR",
+          "price": 9995,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "překvapivě stylový a praktický klíčenka z kvalitní kůže s šesti odolnými háčky",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5525,
+          "name": "Překvapivě stylový a praktický klíčenka z kvalitní kůže s šesti odolnými háčky",
+          "sku": "PC1396B2-MO",
+          "price": 1790,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5526,
+          "name": "Překvapivě stylový a praktický klíčenka z kvalitní kůže s šesti odolnými háčky",
+          "sku": "PC1396B2-AR",
+          "price": 1790,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "tenká kožená taška na notebook a ipad®",
+      "type": "exact_match",
+      "count": 5,
+      "products": [
+        {
+          "id": 5528,
+          "name": "Tenká kožená taška na notebook a iPad®",
+          "sku": "CA4021B2-R",
+          "price": 7295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5529,
+          "name": "Tenká kožená taška na notebook a iPad®",
+          "sku": "CA4021B2-BLU2",
+          "price": 7455,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5530,
+          "name": "Tenká kožená taška na notebook a iPad®",
+          "sku": "CA4021B2-MO",
+          "price": 12195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5531,
+          "name": "Tenká kožená taška na notebook a iPad®",
+          "sku": "CA4021B2-N",
+          "price": 8295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5542,
+          "name": "Tenká kožená taška na notebook a iPad®",
+          "sku": "CA4598B3-N",
+          "price": 10595,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "neléhavá a stylová taška na notebook a ipad® pro 12,9\" s možností personalizace",
+      "type": "exact_match",
+      "count": 4,
+      "products": [
+        {
+          "id": 5532,
+          "name": "Neléhavá a stylová taška na notebook a iPad® Pro 12,9\" s možností personalizace",
+          "sku": "CA2849B2-BLU2",
+          "price": 12720,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5533,
+          "name": "Neléhavá a stylová taška na notebook a iPad® Pro 12,9\" s možností personalizace",
+          "sku": "CA2849B2-MO",
+          "price": 12955,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5534,
+          "name": "Neléhavá a stylová taška na notebook a iPad® Pro 12,9\" s možností personalizace",
+          "sku": "CA2849B2-N",
+          "price": 14395,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5535,
+          "name": "Neléhavá a stylová taška na notebook a iPad® Pro 12,9\" s možností personalizace",
+          "sku": "CA2849B2-R",
+          "price": 12720,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "tenká kufříková taška na notebook a ipad® se zaklapávacím uzávěrem",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5537,
+          "name": "Tenká kufříková taška na notebook a iPad® se zaklapávacím uzávěrem",
+          "sku": "CA6105B2V-N",
+          "price": 10195,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5538,
+          "name": "Tenká kufříková taška na notebook a iPad® se zaklapávacím uzávěrem",
+          "sku": "CA6105B2V-MO",
+          "price": 10195,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "námořní aktovka na notebook a ipad® z luxusní kůže",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5539,
+          "name": "Námořní aktovka na notebook a iPad® z luxusní kůže",
+          "sku": "CA2849B3-TM",
+          "price": 14395,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5540,
+          "name": "Námořní aktovka na notebook a iPad® z luxusní kůže",
+          "sku": "CA2849B3-CU",
+          "price": 14395,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5541,
+          "name": "Námořní aktovka na notebook a iPad® z luxusní kůže",
+          "sku": "CA2849B3-N",
+          "price": 14395,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "kůže, stylový design – ideální pořadač pro notebook a ipad®",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5553,
+          "name": "kůže, stylový design – ideální pořadač pro notebook a iPad®",
+          "sku": "CA4027B3-N",
+          "price": 10995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5554,
+          "name": "kůže, stylový design – ideální pořadač pro notebook a iPad®",
+          "sku": "CA4027B3-CU",
+          "price": 10995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "malý kožený batoh s oddělenou sekcí pro notebook a ipad®",
+      "type": "exact_match",
+      "count": 4,
+      "products": [
+        {
+          "id": 5555,
+          "name": "Malý kožený batoh s oddělenou sekcí pro notebook a iPad®",
+          "sku": "CA3214B2-R",
+          "price": 10195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5556,
+          "name": "Malý kožený batoh s oddělenou sekcí pro notebook a iPad®",
+          "sku": "CA3214B2-MO",
+          "price": 10195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5557,
+          "name": "Malý kožený batoh s oddělenou sekcí pro notebook a iPad®",
+          "sku": "CA3214B2-N",
+          "price": 10195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5558,
+          "name": "Malý kožený batoh s oddělenou sekcí pro notebook a iPad®",
+          "sku": "CA3214B2-BLU2",
+          "price": 8595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "malý kožený batoh na notebook a ipad®",
+      "type": "exact_match",
+      "count": 6,
+      "products": [
+        {
+          "id": 5559,
+          "name": "Malý kožený batoh na notebook a iPad®",
+          "sku": "CA3214B3-CU",
+          "price": 10195,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5560,
+          "name": "Malý kožený batoh na notebook a iPad®",
+          "sku": "CA3214B3-TM",
+          "price": 10195,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5561,
+          "name": "Malý kožený batoh na notebook a iPad®",
+          "sku": "CA3214B3-BLU4",
+          "price": 10195,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5562,
+          "name": "Malý kožený batoh na notebook a iPad®",
+          "sku": "CA3214B3-N",
+          "price": 9550,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5563,
+          "name": "Malý kožený batoh na notebook a iPad®",
+          "sku": "CA3214B3-R2",
+          "price": 9095,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5564,
+          "name": "Malý kožený batoh na notebook a iPad®",
+          "sku": "CA3214B3-AR",
+          "price": 10195,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "beauty case uomo - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5578,
+          "name": "Beauty case uomo - N",
+          "sku": "BY3851B2-N",
+          "price": 3995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5581,
+          "name": "Beauty case uomo - N",
+          "sku": "BY3851B3-N",
+          "price": 3995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "beauty case uomo in pelle a due scomparti - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5588,
+          "name": "Beauty case uomo in pelle a due scomparti - N",
+          "sku": "BY5011B2-N",
+          "price": 4195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5589,
+          "name": "Beauty case uomo in pelle a due scomparti - N",
+          "sku": "BY5011MOS-N",
+          "price": 4395,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "taška na notebook a ipad® pro 12,9\" z kvalitní kůže",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5590,
+          "name": "Taška na notebook a iPad® Pro 12,9\" z kvalitní kůže",
+          "sku": "CA3339B3-CU",
+          "price": 12995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5591,
+          "name": "Taška na notebook a iPad® Pro 12,9\" z kvalitní kůže",
+          "sku": "CA3339B3-N",
+          "price": 12995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5592,
+          "name": "Taška na notebook a iPad® Pro 12,9\" z kvalitní kůže",
+          "sku": "CA3339B3-VEVE",
+          "price": 12995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "pilotní kufřík z kůže určený pro notebook a ipad® pro 12,9",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5601,
+          "name": "Pilotní kufřík z kůže určený pro notebook a iPad® Pro 12,9",
+          "sku": "BV4729B2-MO",
+          "price": 16460,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5602,
+          "name": "Pilotní kufřík z kůže určený pro notebook a iPad® Pro 12,9",
+          "sku": "BV4729B2-BLU2",
+          "price": 16460,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5603,
+          "name": "Pilotní kufřík z kůže určený pro notebook a iPad® Pro 12,9",
+          "sku": "BV4729B2-N",
+          "price": 16460,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "trolley pilot kvalitní kožená taška na notebook a ipad® pro 12,9“",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5604,
+          "name": "Trolley Pilot Kvalitní kožená taška na notebook a iPad® Pro 12,9“",
+          "sku": "BV5014B2-MO",
+          "price": 25595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5605,
+          "name": "Trolley Pilot Kvalitní kožená taška na notebook a iPad® Pro 12,9“",
+          "sku": "BV5014B2-N",
+          "price": 20395,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "kompaktní peněženka",
+      "type": "exact_match",
+      "count": 5,
+      "products": [
+        {
+          "id": 5630,
+          "name": "Kompaktní peněženka",
+          "sku": "PD1515B2R-R",
+          "price": 3995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5631,
+          "name": "Kompaktní peněženka",
+          "sku": "PD1515B2R-N",
+          "price": 4795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5632,
+          "name": "Kompaktní peněženka",
+          "sku": "PD1515B2R-MO",
+          "price": 3865.31,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5633,
+          "name": "Kompaktní peněženka",
+          "sku": "PD1515B2R-BI2",
+          "price": 3686,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5634,
+          "name": "Kompaktní peněženka",
+          "sku": "PD1515B2R-G5",
+          "price": 3500,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portamonete con porta documenti e carte di credito - blu",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5642,
+          "name": "Portamonete con porta documenti e carte di credito - BLU",
+          "sku": "PP4822MOSR-BLU",
+          "price": 2495,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5725,
+          "name": "Portamonete con porta documenti e carte di credito - BLU",
+          "sku": "PP4822B2VR-BLU",
+          "price": 2495,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portamonete con porta documenti e carte di credito - n",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5643,
+          "name": "Portamonete con porta documenti e carte di credito - N",
+          "sku": "PP4822MOSR-N",
+          "price": 1995,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5647,
+          "name": "Portamonete con porta documenti e carte di credito - N",
+          "sku": "PP4822B2R-N",
+          "price": 1595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5727,
+          "name": "Portamonete con porta documenti e carte di credito - N",
+          "sku": "PP4822B2VR-N",
+          "price": 2495,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portafogli portacarte uomo - n",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5645,
+          "name": "Portafogli portacarte uomo - N",
+          "sku": "PU1243B3R-N",
+          "price": 2295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5714,
+          "name": "Portafogli portacarte uomo - N",
+          "sku": "PU1243B2R-N",
+          "price": 2194.5,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portamonete con porta documenti e carte di credito - mo",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5649,
+          "name": "Portamonete con porta documenti e carte di credito - MO",
+          "sku": "PP4822B2R-MO",
+          "price": 1895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5726,
+          "name": "Portamonete con porta documenti e carte di credito - MO",
+          "sku": "PP4822B2VR-MO",
+          "price": 2495,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "zavazadla na notebook a ipad® s usb portem a",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5661,
+          "name": "Zavazadla na notebook a iPad® s USB portem a",
+          "sku": "CA6239W129BM-TM",
+          "price": 5595,
+          "collection": "W129",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5662,
+          "name": "Zavazadla na notebook a iPad® s USB portem a",
+          "sku": "CA6239W129BM-N",
+          "price": 5595,
+          "collection": "W129",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5663,
+          "name": "Zavazadla na notebook a iPad® s USB portem a",
+          "sku": "CA6239W129BM-BLU",
+          "price": 5595,
+          "collection": "W129",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "portafogli uomo con portamonete - blu2",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5689,
+          "name": "Portafogli uomo con portamonete - BLU2",
+          "sku": "PU4188B2R-BLU2",
+          "price": 2895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5695,
+          "name": "Portafogli uomo con portamonete - BLU2",
+          "sku": "PU257B2R-BLU2",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "mužský peněženka s odděleným oddílem pro dokumenty a kapesou na mince",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5699,
+          "name": "mužský peněženka s odděleným oddílem pro dokumenty a kapesou na mince",
+          "sku": "PU1392B2R-R",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5700,
+          "name": "mužský peněženka s odděleným oddílem pro dokumenty a kapesou na mince",
+          "sku": "PU1392B2R-N",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5701,
+          "name": "mužský peněženka s odděleným oddílem pro dokumenty a kapesou na mince",
+          "sku": "PU1392B2R-CU5",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "elegante peněženka pro pána s odděleným oddílem na dokumenty a kapsou na mince",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5702,
+          "name": "Elegante peněženka pro pána s odděleným oddílem na dokumenty a kapsou na mince",
+          "sku": "PU1392MOSR-N",
+          "price": 3295,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5703,
+          "name": "Elegante peněženka pro pána s odděleným oddílem na dokumenty a kapsou na mince",
+          "sku": "PU1392MOSR-TM",
+          "price": 3095,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "záložní kapesník pro notebook a ipad® pro 12,9\" – váš spolehlivý společník na každou cestu!",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5730,
+          "name": "Záložní kapesník pro notebook a iPad® Pro 12,9\" – váš spolehlivý společník na každou cestu!",
+          "sku": "CA5999S125-VEAR",
+          "price": 5095,
+          "collection": "S125",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5731,
+          "name": "Záložní kapesník pro notebook a iPad® Pro 12,9\" – váš spolehlivý společník na každou cestu!",
+          "sku": "CA5999S125-N",
+          "price": 5095,
+          "collection": "S125",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "mužský batoh na počítač a ipad® s",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5736,
+          "name": "Mužský batoh na počítač a iPad® s",
+          "sku": "CA6501B3-TM",
+          "price": 10295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5737,
+          "name": "Mužský batoh na počítač a iPad® s",
+          "sku": "CA6501B3-N",
+          "price": 11495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5738,
+          "name": "Mužský batoh na počítač a iPad® s",
+          "sku": "CA6501B3-CU",
+          "price": 11495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "záhon pro muže s počítačem a ipad® pro 12,9\" – stylový, odolný a prostorný návštevníček pro moder...",
+      "type": "exact_match",
+      "count": 4,
+      "products": [
+        {
+          "id": 5739,
+          "name": "Záhon pro muže s počítačem a iPad® Pro 12,9\" – stylový, odolný a prostorný návštevníček pro moder...",
+          "sku": "CA6503B3-CU",
+          "price": 10895,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5740,
+          "name": "Záhon pro muže s počítačem a iPad® Pro 12,9\" – stylový, odolný a prostorný návštevníček pro moder...",
+          "sku": "CA6503B3-TM",
+          "price": 10895,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5741,
+          "name": "Záhon pro muže s počítačem a iPad® Pro 12,9\" – stylový, odolný a prostorný návštevníček pro moder...",
+          "sku": "CA6503B3-N",
+          "price": 10895,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5742,
+          "name": "Záhon pro muže s počítačem a iPad® Pro 12,9\" – stylový, odolný a prostorný návštevníček pro moder...",
+          "sku": "CA6503B3-VEVE",
+          "price": 10895,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "záložní batoh na notebook a ipad® s možností personalizace a odolnou ochranou",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5749,
+          "name": "Záložní batoh na notebook a iPad® s možností personalizace a odolnou ochranou",
+          "sku": "CA6592B2BM-N",
+          "price": 12895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5750,
+          "name": "Záložní batoh na notebook a iPad® s možností personalizace a odolnou ochranou",
+          "sku": "CA6592B2BM-G",
+          "price": 12895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5751,
+          "name": "Záložní batoh na notebook a iPad® s možností personalizace a odolnou ochranou",
+          "sku": "CA6592B2BM-MO",
+          "price": 12895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "zakladní taška na notebook a ipad® s možností personalizace s ochranou proti dešti",
+      "type": "exact_match",
+      "count": 4,
+      "products": [
+        {
+          "id": 5752,
+          "name": "Zakladní taška na notebook a iPad® s možností personalizace s ochranou proti dešti",
+          "sku": "CA6593B2-G",
+          "price": 12395,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5753,
+          "name": "Zakladní taška na notebook a iPad® s možností personalizace s ochranou proti dešti",
+          "sku": "CA6593B2-CU4",
+          "price": 12395,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5754,
+          "name": "Zakladní taška na notebook a iPad® s možností personalizace s ochranou proti dešti",
+          "sku": "CA6593B2-MO",
+          "price": 12395,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5755,
+          "name": "Zakladní taška na notebook a iPad® s možností personalizace s ochranou proti dešti",
+          "sku": "CA6593B2-N",
+          "price": 12395,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "nákladná taška na notebook s možností personalizace a ochrannými prvky",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5756,
+          "name": "Nákladná taška na notebook s možností personalizace a ochrannými prvky",
+          "sku": "CA6590B2-BLU2",
+          "price": 11695,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5757,
+          "name": "Nákladná taška na notebook s možností personalizace a ochrannými prvky",
+          "sku": "CA6590B2-N",
+          "price": 11695,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "ultra tenký kabinový kufřík piquadro x ducati – styl, praktičnost a kvalita v jednom",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5778,
+          "name": "Ultra tenký kabinový kufřík Piquadro x Ducati – styl, praktičnost a kvalita v jednom",
+          "sku": "BV4425POPD-R",
+          "price": 8595,
+          "collection": "POPD",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5779,
+          "name": "Ultra tenký kabinový kufřík Piquadro x Ducati – styl, praktičnost a kvalita v jednom",
+          "sku": "BV4425POPD-N",
+          "price": 8595,
+          "collection": "POPD",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "a stylový držák na kreditní karty vyrobený z kvalitního kovu",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5784,
+          "name": "a stylový držák na kreditní karty vyrobený z kvalitního kovu",
+          "sku": "PP5649S137R-BLU",
+          "price": 1795,
+          "collection": "S137",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5785,
+          "name": "a stylový držák na kreditní karty vyrobený z kvalitního kovu",
+          "sku": "PP5649S137R-N",
+          "price": 1795,
+          "collection": "S137",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5786,
+          "name": "a stylový držák na kreditní karty vyrobený z kvalitního kovu",
+          "sku": "PP5649S137R-VE",
+          "price": 1795,
+          "collection": "S137",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "batažník na notebook a ipad® pro",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5793,
+          "name": "Batažník na notebook a iPad® Pro",
+          "sku": "CA4021S135-N",
+          "price": 7795,
+          "collection": "S135",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5794,
+          "name": "Batažník na notebook a iPad® Pro",
+          "sku": "CA4021S135-BE",
+          "price": 7795,
+          "collection": "S135",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "taška na noclehy pro ženy z recyklovaného materiálu – praktická a ekologická volba",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5796,
+          "name": "Taška na noclehy pro ženy z recyklovaného materiálu – praktická a ekologická volba",
+          "sku": "BV6722W92T-BE",
+          "price": 4195,
+          "collection": "W92T",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5797,
+          "name": "Taška na noclehy pro ženy z recyklovaného materiálu – praktická a ekologická volba",
+          "sku": "BV6722W92T-N",
+          "price": 4195,
+          "collection": "W92T",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "zanikavý a stylový batoh na notebook a ipad® pro 12,9\" – dokonalá kombinace praktičnosti a chic d...",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5814,
+          "name": "Zanikavý a stylový batoh na notebook a iPad® Pro 12,9\" – dokonalá kombinace praktičnosti a chic d...",
+          "sku": "CA6609S135-N",
+          "price": 7695,
+          "collection": "S135",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5815,
+          "name": "Zanikavý a stylový batoh na notebook a iPad® Pro 12,9\" – dokonalá kombinace praktičnosti a chic d...",
+          "sku": "CA6609S135-BE",
+          "price": 7695,
+          "collection": "S135",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "záznamník pro muže pro notebook a ipad® pro 12,9\" s",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5816,
+          "name": "Záznamník pro muže pro notebook a iPad® Pro 12,9\" s",
+          "sku": "CA6619S136-VE",
+          "price": 5995,
+          "collection": "S136",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5817,
+          "name": "Záznamník pro muže pro notebook a iPad® Pro 12,9\" s",
+          "sku": "CA6619S136-G",
+          "price": 5995,
+          "collection": "S136",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5818,
+          "name": "Záznamník pro muže pro notebook a iPad® Pro 12,9\" s",
+          "sku": "CA6619S136-N",
+          "price": 5995,
+          "collection": "S136",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "bota personalizovatelná, ideální pro notebook a ipad® pro 12,9\" – vaše perfektní společnice pro p...",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5845,
+          "name": "Bota personalizovatelná, ideální pro notebook a iPad® Pro 12,9\" – vaše perfektní společnice pro p...",
+          "sku": "CA6026S134-N",
+          "price": 10395,
+          "collection": "S134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5846,
+          "name": "Bota personalizovatelná, ideální pro notebook a iPad® Pro 12,9\" – vaše perfektní společnice pro p...",
+          "sku": "CA6026S134-M",
+          "price": 10395,
+          "collection": "S134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "elegantní dámská peněženka",
+      "type": "exact_match",
+      "count": 2,
+      "products": [
+        {
+          "id": 5873,
+          "name": "Elegantní dámská peněženka",
+          "sku": "PD6661B2R-R",
+          "price": 3595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5874,
+          "name": "Elegantní dámská peněženka",
+          "sku": "PD6661B2R-RO2",
+          "price": 3595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "normalizedName": "brašna na notebook 15,6\"",
+      "type": "exact_match",
+      "count": 3,
+      "products": [
+        {
+          "id": 5879,
+          "name": "Brašna na notebook 15,6\"",
+          "sku": "CA6025S134-M",
+          "price": 9595,
+          "collection": "S134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5880,
+          "name": "Brašna na notebook 15,6\"",
+          "sku": "CA6025S134-N",
+          "price": 9595,
+          "collection": "S134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5881,
+          "name": "Brašna na notebook 15,6\"",
+          "sku": "CA6025S134-BLU",
+          "price": 9595,
+          "collection": "S134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9347826086956522,
+      "count": 2,
+      "products": [
+        {
+          "id": 5271,
+          "name": "Ombrello automatico open/close antivento - N",
+          "sku": "OM5288OM6-N",
+          "price": 1395,
+          "collection": "OM6",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5272,
+          "name": "Ombrello automatico open/close antivento - BLU",
+          "sku": "OM5288OM6-BLU",
+          "price": 1395,
+          "collection": "OM6",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9555555555555556,
+      "count": 2,
+      "products": [
+        {
+          "id": 5273,
+          "name": "Ombrello automatico open/close antivento - VE",
+          "sku": "OM5288OM6-VE",
+          "price": 1395,
+          "collection": "OM6",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5274,
+          "name": "Ombrello automatico open/close antivento - R",
+          "sku": "OM5288OM6-R",
+          "price": 1395,
+          "collection": "OM6",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.85,
+      "count": 2,
+      "products": [
+        {
+          "id": 5288,
+          "name": "Marsupio uomo - BLU4",
+          "sku": "CA2174B3-BLU4",
+          "price": 5995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5289,
+          "name": "Marsupio uomo - CU",
+          "sku": "CA2174B3-CU",
+          "price": 199,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9090909090909091,
+      "count": 2,
+      "products": [
+        {
+          "id": 5296,
+          "name": "Nesený kočárek pro notebook a iPad® s - BLU2",
+          "sku": "BV2960B2-BLU2",
+          "price": 25595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5297,
+          "name": "Nesený kočárek pro notebook a iPad® s - MO",
+          "sku": "BV2960B2-MO",
+          "price": 25595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8181818181818182,
+      "count": 2,
+      "products": [
+        {
+          "id": 5303,
+          "name": "Borsa tracolla donna modello camera case - N",
+          "sku": "BD4870W92-N",
+          "price": 5995,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5869,
+          "name": "Borsa tracolla donna modello Moon Bag - N",
+          "sku": "CA6733S135-N",
+          "price": 4895,
+          "collection": "S135",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9166666666666666,
+      "count": 2,
+      "products": [
+        {
+          "id": 5304,
+          "name": "Pochette uomo a tre scomparti - CU",
+          "sku": "AC2141B3-CU",
+          "price": 4695,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5305,
+          "name": "Pochette uomo a tre scomparti - BLU4",
+          "sku": "AC2141B3-BLU4",
+          "price": 4695,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9142857142857143,
+      "count": 2,
+      "products": [
+        {
+          "id": 5307,
+          "name": "Pochette uomo a tre scomparti - TM",
+          "sku": "AC2141B3-TM",
+          "price": 4695,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5308,
+          "name": "Pochette uomo a tre scomparti - BLU",
+          "sku": "AC2141MOS-BLU",
+          "price": 4695,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9622641509433962,
+      "count": 2,
+      "products": [
+        {
+          "id": 5310,
+          "name": "Astuccio a tre scomparti con polsiera rimovibile - MO",
+          "sku": "AC2141B2-MO",
+          "price": 4695,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5311,
+          "name": "Astuccio a tre scomparti con polsiera rimovibile - N",
+          "sku": "AC2141B2-N",
+          "price": 4695,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9523809523809523,
+      "count": 2,
+      "products": [
+        {
+          "id": 5313,
+          "name": "Portafoglio compatto uomo automatico - BLU",
+          "sku": "PP5585MOSR-BLU",
+          "price": 1695,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5315,
+          "name": "Portafoglio compatto uomo automatico - CU",
+          "sku": "PP5585B3R-CU",
+          "price": 1795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9512195121951219,
+      "count": 2,
+      "products": [
+        {
+          "id": 5317,
+          "name": "Portafoglio compatto uomo automatico - TM",
+          "sku": "PP5585B3R-TM",
+          "price": 1795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5655,
+          "name": "Portafoglio compatto uomo automatico - R",
+          "sku": "PP5585B2BLR-R",
+          "price": 1795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9534883720930233,
+      "count": 2,
+      "products": [
+        {
+          "id": 5344,
+          "name": "Zaino porta computer e porta iPad® con - N",
+          "sku": "CA5575B2V-N",
+          "price": 9095,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5345,
+          "name": "Zaino porta computer e porta iPad® con - MO",
+          "sku": "CA5575B2V-MO",
+          "price": 9595,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8085106382978723,
+      "count": 2,
+      "products": [
+        {
+          "id": 5346,
+          "name": "Zaino porta computer e porta iPad® con - BLU",
+          "sku": "CA5575B2V-BLU",
+          "price": 9595,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5568,
+          "name": "Zainetto porta computer e porta iPad® - CHEVBLU",
+          "sku": "CA3869P16-CHEVBLU",
+          "price": 5985,
+          "collection": "P16",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9565217391304348,
+      "count": 2,
+      "products": [
+        {
+          "id": 5356,
+          "name": "Porta carte di credito con sliding system - MO",
+          "sku": "PP4825B2R-MO",
+          "price": 1195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5357,
+          "name": "Porta carte di credito con sliding system - N",
+          "sku": "PP4825B2R-N",
+          "price": 1195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9090909090909091,
+      "count": 2,
+      "products": [
+        {
+          "id": 5359,
+          "name": "Portacarte uomo automatico - BLU4",
+          "sku": "PP4825B3R-BLU4",
+          "price": 1795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5360,
+          "name": "Portacarte uomo automatico - CU",
+          "sku": "PP4825B3R-CU",
+          "price": 1795,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8529411764705882,
+      "count": 2,
+      "products": [
+        {
+          "id": 5365,
+          "name": "Portacarte uomo automatico - BLUTM",
+          "sku": "PP5649B3R-BLUTM",
+          "price": 2095,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5366,
+          "name": "Portacarte uomo automatico - VEVE",
+          "sku": "PP5649B3R-VEVE",
+          "price": 2095,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9696969696969697,
+      "count": 2,
+      "products": [
+        {
+          "id": 5367,
+          "name": "Portacarte uomo automatico - BLU",
+          "sku": "PP5649MOSR-BLU",
+          "price": 2495,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5669,
+          "name": "Portacarte uomo automatico - BLU2",
+          "sku": "PP4825B2BLR-BLU2",
+          "price": 1795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9574468085106383,
+      "count": 2,
+      "products": [
+        {
+          "id": 5369,
+          "name": "Mužská peněženka z kůže pro kreditní karty - N",
+          "sku": "PP1518B3R-N",
+          "price": 2495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5370,
+          "name": "Mužská peněženka z kůže pro kreditní karty - TM",
+          "sku": "PP1518B3R-TM",
+          "price": 2495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9459459459459459,
+      "count": 2,
+      "products": [
+        {
+          "id": 5371,
+          "name": "Crossbody kabelka s dvěma oddíly - MO",
+          "sku": "CA5086B2-MO",
+          "price": 6295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5372,
+          "name": "Crossbody kabelka s dvěma oddíly - N",
+          "sku": "CA5086B2-N",
+          "price": 6595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9,
+      "count": 2,
+      "products": [
+        {
+          "id": 5376,
+          "name": "Porta carte di credito doppio con - BLU2",
+          "sku": "PP5472B2R-BLU2",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5377,
+          "name": "Porta carte di credito doppio con - MO",
+          "sku": "PP5472B2R-MO",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.972972972972973,
+      "count": 2,
+      "products": [
+        {
+          "id": 5378,
+          "name": "Porta carte di credito doppio con - N",
+          "sku": "PP5472B2R-N",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5379,
+          "name": "Porta carte di credito doppio con - R",
+          "sku": "PP5472B2R-R",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9354838709677419,
+      "count": 2,
+      "products": [
+        {
+          "id": 5397,
+          "name": "Borsa porta abiti in pelle - N",
+          "sku": "PA4344MOS-N",
+          "price": 16195,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5543,
+          "name": "Borsa porta abiti in pelle - MO",
+          "sku": "PA1617B2-MO",
+          "price": 17095,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.875,
+      "count": 2,
+      "products": [
+        {
+          "id": 5403,
+          "name": "Borsello uomo porta iPad® - BLU2",
+          "sku": "CA1816B2-BLU2",
+          "price": 5495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5404,
+          "name": "Borsello uomo porta iPad® - MO",
+          "sku": "CA1816B2-MO",
+          "price": 4965,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9032258064516129,
+      "count": 2,
+      "products": [
+        {
+          "id": 5406,
+          "name": "Borsello uomo porta iPad® - R",
+          "sku": "CA1816B2-R",
+          "price": 4485,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5420,
+          "name": "Borsello uomo porta iPad® - VE2",
+          "sku": "CA1816BR2-VE2",
+          "price": 3995,
+          "collection": "BR2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9574468085106383,
+      "count": 2,
+      "products": [
+        {
+          "id": 5407,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - GRN",
+          "sku": "CA1816UB00-GRN",
+          "price": 5695,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5408,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - NGR",
+          "sku": "CA1816UB00-NGR",
+          "price": 4895,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9166666666666666,
+      "count": 2,
+      "products": [
+        {
+          "id": 5410,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - BLGR",
+          "sku": "CA1816UB00-BLGR",
+          "price": 4614,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5414,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - CU",
+          "sku": "CA1816B3-CU",
+          "price": 5495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9166666666666666,
+      "count": 2,
+      "products": [
+        {
+          "id": 5415,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - BLU4",
+          "sku": "CA1816B3-BLU4",
+          "price": 5495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5417,
+          "name": "Borsello uomo a tracolla uomo porta iPad® - AR",
+          "sku": "CA1816B3-AR",
+          "price": 5495,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8431372549019608,
+      "count": 2,
+      "products": [
+        {
+          "id": 5423,
+          "name": "Mužská kabelka na iPad® mini z kvalitní kůže - N",
+          "sku": "AC5592MOS-N",
+          "price": 4195,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5544,
+          "name": "Mužská peněženka na iPad® mini z kvalitní kůže - MO",
+          "sku": "AC5099B2-MO",
+          "price": 3695,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8666666666666667,
+      "count": 2,
+      "products": [
+        {
+          "id": 5428,
+          "name": "Portachiavi casa grande - BLU2",
+          "sku": "PC1397B2-BLU2",
+          "price": 2380,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5429,
+          "name": "Portachiavi casa grande - MO",
+          "sku": "PC1397B2-MO",
+          "price": 2380,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9811320754716981,
+      "count": 2,
+      "products": [
+        {
+          "id": 5434,
+          "name": "Busta organizza-spazio per il bagaglio, misura S - GR",
+          "sku": "AC5652CY-GR",
+          "price": 395,
+          "collection": "CY",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5484,
+          "name": "Busta organizza-spazio per il bagaglio, misura M - GR",
+          "sku": "AC5653CY-GR",
+          "price": 395,
+          "collection": "CY",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8333333333333334,
+      "count": 2,
+      "products": [
+        {
+          "id": 5435,
+          "name": "Pochette da polso - BLU2",
+          "sku": "AC2648B2-BLU2",
+          "price": 4195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5436,
+          "name": "Pochette da polso - MO",
+          "sku": "AC2648B2-MO",
+          "price": 4195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9130434782608695,
+      "count": 2,
+      "products": [
+        {
+          "id": 5440,
+          "name": "Peněženka s pružinou na bankovky z kůže - BLU2",
+          "sku": "PU1666B2-BLU2",
+          "price": 2695,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5441,
+          "name": "Peněženka s pružinou na bankovky z kůže - N",
+          "sku": "PU1666B2-N",
+          "price": 2695,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.803921568627451,
+      "count": 2,
+      "products": [
+        {
+          "id": 5442,
+          "name": "Cintura uomo in pelle con fibbia ad ardiglione - NB",
+          "sku": "CU3049C11-NB",
+          "price": 3295,
+          "collection": "C11",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5446,
+          "name": "Cintura uomo con fibbia ad ardiglione - N",
+          "sku": "CU5270C81-N",
+          "price": 2195,
+          "collection": "C81",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9183673469387755,
+      "count": 2,
+      "products": [
+        {
+          "id": 5443,
+          "name": "Mužská páska s kulatou kroužkovou zásuvkou - BLU2",
+          "sku": "CU5258B2-BLU2",
+          "price": 2495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5444,
+          "name": "Mužská páska s kulatou kroužkovou zásuvkou - MO",
+          "sku": "CU5258B2-MO",
+          "price": 2495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8888888888888888,
+      "count": 2,
+      "products": [
+        {
+          "id": 5448,
+          "name": "Pochette uomo - N",
+          "sku": "AC2648MOSR-N",
+          "price": 4695,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5467,
+          "name": "Pochette uomo - MO",
+          "sku": "AC3944B2-MO",
+          "price": 4595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9230769230769231,
+      "count": 2,
+      "products": [
+        {
+          "id": 5449,
+          "name": "Pochette uomo con protezione RFID - BLU",
+          "sku": "AC6156MOSR-BLU",
+          "price": 4395,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5450,
+          "name": "Pochette uomo con protezione RFID - N",
+          "sku": "AC6156MOSR-N",
+          "price": 5295,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9487179487179487,
+      "count": 2,
+      "products": [
+        {
+          "id": 5452,
+          "name": "Portafogli uomo verticale in pelle - TM",
+          "sku": "PU1740B3R-TM",
+          "price": 4295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5453,
+          "name": "Portafogli uomo verticale in pelle - CU",
+          "sku": "PU1740B3R-CU",
+          "price": 4295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9746835443037974,
+      "count": 2,
+      "products": [
+        {
+          "id": 5455,
+          "name": "**Eleganční mužský peněženka s odděleným oddílem pro dokumenty a mincemi** - N",
+          "sku": "PU1392B3R-N",
+          "price": 3695,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5456,
+          "name": "**Eleganční mužský peněženka s odděleným oddílem pro dokumenty a mincemi** - TM",
+          "sku": "PU1392B3R-TM",
+          "price": 3295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8214285714285714,
+      "count": 2,
+      "products": [
+        {
+          "id": 5461,
+          "name": "Portafogli uomo sottile - MO",
+          "sku": "PU1241B2R-MO",
+          "price": 110,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5708,
+          "name": "Portacarte uomo sottile - MO",
+          "sku": "PP2762B2R-MO",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8888888888888888,
+      "count": 2,
+      "products": [
+        {
+          "id": 5463,
+          "name": "Pochette uomo a due scomparti - MO",
+          "sku": "AC4221B2-MO",
+          "price": 4295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5464,
+          "name": "Pochette uomo a due scomparti - BLU2",
+          "sku": "AC4221B2-BLU2",
+          "price": 4295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9473684210526315,
+      "count": 2,
+      "products": [
+        {
+          "id": 5468,
+          "name": "Zaino monospalla uomo porta iPad® - MO",
+          "sku": "CA4827B2-MO",
+          "price": 6095,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5471,
+          "name": "Zaino monospalla uomo porta iPad® - CU",
+          "sku": "CA4827B3-CU",
+          "price": 6595,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9,
+      "count": 2,
+      "products": [
+        {
+          "id": 5473,
+          "name": "Zaino monospalla uomo porta iPad® - BLU4",
+          "sku": "CA4827B3-BLU4",
+          "price": 5395,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5474,
+          "name": "Zaino monospalla uomo porta iPad® - VE3",
+          "sku": "CA4827B3-VE3",
+          "price": 5695,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.85,
+      "count": 2,
+      "products": [
+        {
+          "id": 5481,
+          "name": "Borsello uomo - BLU2",
+          "sku": "CA3084B2-BLU2",
+          "price": 5295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5512,
+          "name": "Borsello uomo - R2",
+          "sku": "CA3084B3-R2",
+          "price": 4995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8888888888888888,
+      "count": 2,
+      "products": [
+        {
+          "id": 5482,
+          "name": "Borsello uomo - MO",
+          "sku": "CA3084B2-MO",
+          "price": 5295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5511,
+          "name": "Borsello uomo - TM",
+          "sku": "CA3084B3-TM",
+          "price": 5295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9347826086956522,
+      "count": 2,
+      "products": [
+        {
+          "id": 5494,
+          "name": "Tracolla crossbody modello personal case - AR",
+          "sku": "CA6172PQLS2-AR",
+          "price": 3395,
+          "collection": "PQLS2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5840,
+          "name": "Tracolla crossbody modello personal case - BLU",
+          "sku": "CA6564MOS-BLU",
+          "price": 5995,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9629629629629629,
+      "count": 2,
+      "products": [
+        {
+          "id": 5499,
+          "name": "Tenká kožená peněženka na kreditní karty pro muže - N",
+          "sku": "PP2762MOSR-N",
+          "price": 2295,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5500,
+          "name": "Tenká kožená peněženka na kreditní karty pro muže - TM",
+          "sku": "PP2762MOSR-TM",
+          "price": 1895,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9090909090909091,
+      "count": 2,
+      "products": [
+        {
+          "id": 5503,
+          "name": "Mužská peněženka - GRN",
+          "sku": "CA3084UB00-GRN",
+          "price": 4495,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5506,
+          "name": "Mužská peněženka - NGR",
+          "sku": "CA3084UB00-NGR",
+          "price": 4095,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8260869565217391,
+      "count": 2,
+      "products": [
+        {
+          "id": 5505,
+          "name": "Pánská peněženka - N",
+          "sku": "CA3084UB00-N",
+          "price": 4115,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5507,
+          "name": "Pánská peněženka - BLGR",
+          "sku": "CA3084UB00-BLGR",
+          "price": 4115.4,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8695652173913043,
+      "count": 2,
+      "products": [
+        {
+          "id": 5508,
+          "name": "Pánská peněženka - CU",
+          "sku": "CA3084B3-CU",
+          "price": 5295,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5509,
+          "name": "Pánská peněženka - BLU4",
+          "sku": "CA3084B3-BLU4",
+          "price": 5095,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8421052631578947,
+      "count": 2,
+      "products": [
+        {
+          "id": 5513,
+          "name": "Borsello uomo - AR",
+          "sku": "CA3084B3-AR",
+          "price": 4365,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5515,
+          "name": "Borsello uomo - BLU",
+          "sku": "CA3084MOS-BLU",
+          "price": 5295,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9375,
+      "count": 2,
+      "products": [
+        {
+          "id": 5516,
+          "name": "Kompaktní peněženka pro muže s odděleným oddílem na mince - BLU2",
+          "sku": "PU5957B2R-BLU2",
+          "price": 99,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5517,
+          "name": "Kompaktní peněženka pro muže s odděleným oddílem na mince - N",
+          "sku": "PU5957B2R-N",
+          "price": 3195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.925,
+      "count": 2,
+      "products": [
+        {
+          "id": 5518,
+          "name": "Cintura uomo reversibile in pelle - NBLU",
+          "sku": "CU5928MOS-NBLU",
+          "price": 2995,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5519,
+          "name": "Cintura uomo reversibile in pelle - NM",
+          "sku": "CU5928MOS-NM",
+          "price": 2995,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9074074074074074,
+      "count": 2,
+      "products": [
+        {
+          "id": 5521,
+          "name": "Cintura uomo in pelle con fibbia ad ardiglione - NBLU2",
+          "sku": "CU4877B3-NBLU2",
+          "price": 3395,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5522,
+          "name": "Cintura uomo in pelle con fibbia ad ardiglione - TMN",
+          "sku": "CU4877B3-TMN",
+          "price": 3395,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.98,
+      "count": 2,
+      "products": [
+        {
+          "id": 5523,
+          "name": "Shopping bag con compartimento porta iPad®mini - R",
+          "sku": "BD3336B2-R",
+          "price": 7795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5524,
+          "name": "Shopping bag con compartimento porta iPad®mini - N",
+          "sku": "BD3336B2-N",
+          "price": 7795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9411764705882353,
+      "count": 2,
+      "products": [
+        {
+          "id": 5545,
+          "name": "Pochette uomo porta iPad®mini - N",
+          "sku": "AC5099B3-N",
+          "price": 3615.94,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5546,
+          "name": "Pochette uomo porta iPad®mini - TM",
+          "sku": "AC5099B3-TM",
+          "price": 4195,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9491525423728814,
+      "count": 2,
+      "products": [
+        {
+          "id": 5549,
+          "name": "Portablocco sottile formato A4 con chiusura a zip - CHEVBLU",
+          "sku": "PB2830P16-CHEVBLU",
+          "price": 4595,
+          "collection": "P16",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5550,
+          "name": "Portablocco sottile formato A4 con chiusura a zip - CHEVN",
+          "sku": "PB2830P16-CHEVN",
+          "price": 4595,
+          "collection": "P16",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9423076923076923,
+      "count": 2,
+      "products": [
+        {
+          "id": 5565,
+          "name": "Malý kožený zpětný batoh na notebook a iPad® s - N",
+          "sku": "CA3214MOS-N",
+          "price": 10195,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5566,
+          "name": "Malý kožený zpětný batoh na notebook a iPad® s - VE3",
+          "sku": "CA3214MOS-VE3",
+          "price": 9295,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.967741935483871,
+      "count": 2,
+      "products": [
+        {
+          "id": 5571,
+          "name": "Portafogli da donna piccolo - N",
+          "sku": "PD5216B2R-N",
+          "price": 3295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5572,
+          "name": "Portafogli da donna piccolo - R",
+          "sku": "PD5216B2R-R",
+          "price": 3995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8518518518518519,
+      "count": 2,
+      "products": [
+        {
+          "id": 5574,
+          "name": "Portamonete quadrato - BLU2",
+          "sku": "PU2634B2-BLU2",
+          "price": 1895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5575,
+          "name": "Portamonete quadrato - MO",
+          "sku": "PU2634B2-MO",
+          "price": 1895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8260869565217391,
+      "count": 2,
+      "products": [
+        {
+          "id": 5577,
+          "name": "Beauty case uomo - BLU2",
+          "sku": "BY3851B2-BLU2",
+          "price": 3995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5579,
+          "name": "Beauty case uomo - R",
+          "sku": "BY3851B2-R",
+          "price": 3995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9047619047619048,
+      "count": 2,
+      "products": [
+        {
+          "id": 5580,
+          "name": "Beauty case uomo - CU",
+          "sku": "BY3851B3-CU",
+          "price": 3595,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5582,
+          "name": "Beauty case uomo - TM",
+          "sku": "BY3851B3-TM",
+          "price": 3995,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9090909090909091,
+      "count": 2,
+      "products": [
+        {
+          "id": 5584,
+          "name": "Beauty case uomo - GRN",
+          "sku": "BY3880UB00-GRN",
+          "price": 4195,
+          "collection": "UB00",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5853,
+          "name": "Beauty case uomo - AR",
+          "sku": "BY6652S137-AR",
+          "price": 2395,
+          "collection": "S137",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9166666666666666,
+      "count": 2,
+      "products": [
+        {
+          "id": 5586,
+          "name": "Beauty case uomo in pelle a due scomparti - BLU2",
+          "sku": "BY5011B2-BLU2",
+          "price": 4295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5587,
+          "name": "Beauty case uomo in pelle a due scomparti - MO",
+          "sku": "BY5011B2-MO",
+          "price": 4295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9491525423728814,
+      "count": 2,
+      "products": [
+        {
+          "id": 5593,
+          "name": "Kvalitní mužský klíčenka z pravé kůže s dvěma kroužky - CU5",
+          "sku": "PC3755B2-CU5",
+          "price": 1295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5594,
+          "name": "Kvalitní mužský klíčenka z pravé kůže s dvěma kroužky - G9",
+          "sku": "PC3755B2-G9",
+          "price": 1295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9298245614035088,
+      "count": 2,
+      "products": [
+        {
+          "id": 5598,
+          "name": "Portafoglio uomo verticale con porta monete, porta - BLU2",
+          "sku": "PU1740B2-BLU2",
+          "price": 4295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5599,
+          "name": "Portafoglio uomo verticale con porta monete, porta - MO",
+          "sku": "PU1740B2-MO",
+          "price": 4295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9482758620689655,
+      "count": 2,
+      "products": [
+        {
+          "id": 5607,
+          "name": "Deštník odolný proti větru z recyklovaného materiálu - BLU",
+          "sku": "OM5284OM5-BLU",
+          "price": 1095,
+          "collection": "OM5",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5608,
+          "name": "Deštník odolný proti větru z recyklovaného materiálu - N",
+          "sku": "OM5284OM5-N",
+          "price": 1195,
+          "collection": "OM5",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9666666666666667,
+      "count": 2,
+      "products": [
+        {
+          "id": 5609,
+          "name": "Deštník odolný proti větru - N",
+          "sku": "OM5289OM6-N",
+          "price": 1195,
+          "collection": "OM6",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5610,
+          "name": "Deštník odolný proti větru - R",
+          "sku": "OM5289OM6-R",
+          "price": 1295,
+          "collection": "OM6",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9111111111111111,
+      "count": 2,
+      "products": [
+        {
+          "id": 5612,
+          "name": "Dámská kabelková peněženka s klíčenkou - TO",
+          "sku": "PP5910W92R-TO",
+          "price": 2095,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5613,
+          "name": "Dámská kabelková peněženka s klíčenkou - VEVE",
+          "sku": "PP5910W92R-VEVE",
+          "price": 2095,
+          "collection": "W92",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9111111111111111,
+      "count": 2,
+      "products": [
+        {
+          "id": 5614,
+          "name": "Dámská kabelková peněženka s klíčenkou - R3",
+          "sku": "PP5910W92R-R3",
+          "price": 1995,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5615,
+          "name": "Dámská kabelková peněženka s klíčenkou - VIVI",
+          "sku": "PP5910W92R-VIVI",
+          "price": 2095,
+          "collection": "W92",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.972972972972973,
+      "count": 2,
+      "products": [
+        {
+          "id": 5617,
+          "name": "Záložní kabel USB-C na iPad® s rychlým nabíjením a datovou transferem - N",
+          "sku": "CA5566W92-N",
+          "price": 7795,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5618,
+          "name": "Záložní kabel USB-C na iPad® s rychlým nabíjením a datovou transferem - AR",
+          "sku": "CA5566W92-AR",
+          "price": 8595,
+          "collection": "W92",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9605263157894737,
+      "count": 2,
+      "products": [
+        {
+          "id": 5619,
+          "name": "Záložní kabel USB-C na iPad® s rychlým nabíjením a datovou transferem - VEVE",
+          "sku": "CA5566W92-VEVE",
+          "price": 8295,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5620,
+          "name": "Záložní kabel USB-C na iPad® s rychlým nabíjením a datovou transferem - VI",
+          "sku": "CA5566W92-VI",
+          "price": 8295,
+          "collection": "W92",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9743589743589743,
+      "count": 2,
+      "products": [
+        {
+          "id": 5625,
+          "name": "Portafogli da donna con portamonete - R",
+          "sku": "PD1354B2R-R",
+          "price": 4995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5626,
+          "name": "Portafogli da donna con portamonete - N",
+          "sku": "PD1354B2R-N",
+          "price": 3995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.825,
+      "count": 2,
+      "products": [
+        {
+          "id": 5627,
+          "name": "Portafogli da donna con portamonete - MO",
+          "sku": "PD1354B2R-MO",
+          "price": 3990,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5696,
+          "name": "Portafogli uomo con portamonete - MO",
+          "sku": "PU257B2R-MO",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.974025974025974,
+      "count": 2,
+      "products": [
+        {
+          "id": 5635,
+          "name": "Velká ženská peněženka s zipem a 4 oddíly pro peníze, karty a dokumenty. - N",
+          "sku": "PD1515W92R-N",
+          "price": 4495,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5636,
+          "name": "Velká ženská peněženka s zipem a 4 oddíly pro peníze, karty a dokumenty. - R3",
+          "sku": "PD1515W92R-R3",
+          "price": 3595,
+          "collection": "W92",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9871794871794872,
+      "count": 2,
+      "products": [
+        {
+          "id": 5637,
+          "name": "Velká ženská peněženka s zipem a 4 oddíly pro peníze, karty a dokumenty. - CU",
+          "sku": "PD1515W92R-CU",
+          "price": 3242,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5638,
+          "name": "Velká ženská peněženka s zipem a 4 oddíly pro peníze, karty a dokumenty. - CU2",
+          "sku": "PD1515W92R-CU2",
+          "price": 4495,
+          "collection": "W92",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9230769230769231,
+      "count": 2,
+      "products": [
+        {
+          "id": 5640,
+          "name": "Porta monete con carte di credito - BLU",
+          "sku": "PU1243B2VR-BLU",
+          "price": 1980,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5641,
+          "name": "Porta monete con carte di credito - MO",
+          "sku": "PU1243B2VR-MO",
+          "price": 2195,
+          "collection": "B2V",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9354838709677419,
+      "count": 2,
+      "products": [
+        {
+          "id": 5644,
+          "name": "Portafogli portacarte uomo - CU",
+          "sku": "PU1243B3R-CU",
+          "price": 2595,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5646,
+          "name": "Portafogli portacarte uomo - TM",
+          "sku": "PU1243B3R-TM",
+          "price": 2595,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9298245614035088,
+      "count": 2,
+      "products": [
+        {
+          "id": 5648,
+          "name": "Portamonete con porta documenti e carte di credito - BLU2",
+          "sku": "PP4822B2R-BLU2",
+          "price": 1895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5650,
+          "name": "Portamonete con porta documenti e carte di credito - R",
+          "sku": "PP4822B2R-R",
+          "price": 1995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9491525423728814,
+      "count": 2,
+      "products": [
+        {
+          "id": 5651,
+          "name": "Bustina portamonete, documenti e carte di credito - CHEVBLU",
+          "sku": "PU1243P16-CHEVBLU",
+          "price": 982,
+          "collection": "P16",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5652,
+          "name": "Bustina portamonete, documenti e carte di credito - CHEVN",
+          "sku": "PU1243P16-CHEVN",
+          "price": 1295,
+          "collection": "P16",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9473684210526315,
+      "count": 2,
+      "products": [
+        {
+          "id": 5653,
+          "name": "Záložní táta roll-top pro PC a iPad® s prsní šňůrou - BLU",
+          "sku": "CA6291C2OW-BLU",
+          "price": 6795,
+          "collection": "C2OW",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5654,
+          "name": "Záložní táta roll-top pro PC a iPad® s prsní šňůrou - N",
+          "sku": "CA6291C2OW-N",
+          "price": 6795,
+          "collection": "C2OW",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9285714285714286,
+      "count": 2,
+      "products": [
+        {
+          "id": 5656,
+          "name": "Portafoglio compatto uomo automatico - MO",
+          "sku": "PP5585B2BLR-MO",
+          "price": 1795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5658,
+          "name": "Portafoglio compatto uomo automatico - CU4",
+          "sku": "PP5585B2BLR-CU4",
+          "price": 1895,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9069767441860465,
+      "count": 2,
+      "products": [
+        {
+          "id": 5659,
+          "name": "Portafoglio compatto uomo automatico - G",
+          "sku": "PP5585B2BLR-G",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5660,
+          "name": "Portafoglio compatto uomo automatico - BLU2",
+          "sku": "PP5585B2BLR-BLU2",
+          "price": 1795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9636363636363636,
+      "count": 2,
+      "products": [
+        {
+          "id": 5664,
+          "name": "Mužský notebookový a iPad® batoh s vnitřní kapesou - N",
+          "sku": "CA6238W129-N",
+          "price": 5095,
+          "collection": "W129",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5665,
+          "name": "Mužský notebookový a iPad® batoh s vnitřní kapesou - TM",
+          "sku": "CA6238W129-TM",
+          "price": 5095,
+          "collection": "W129",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.90625,
+      "count": 2,
+      "products": [
+        {
+          "id": 5671,
+          "name": "Portacarte uomo automatico - R",
+          "sku": "PP4825B2BLR-R",
+          "price": 1795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5672,
+          "name": "Portacarte uomo automatico - CU4",
+          "sku": "PP4825B2BLR-CU4",
+          "price": 1295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9459459459459459,
+      "count": 2,
+      "products": [
+        {
+          "id": 5676,
+          "name": "Portafoglio uomo a due scomparti - CU",
+          "sku": "PU6190B3R-CU",
+          "price": 2895,
+          "collection": "B3",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5677,
+          "name": "Portafoglio uomo a due scomparti - TM",
+          "sku": "PU6190B3R-TM",
+          "price": 2895,
+          "collection": "B3",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9230769230769231,
+      "count": 2,
+      "products": [
+        {
+          "id": 5678,
+          "name": "Portacarte in metallo - MO",
+          "sku": "PP5649B2BLR-MO",
+          "price": 2495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5679,
+          "name": "Portacarte in metallo - R",
+          "sku": "PP5649B2BLR-R",
+          "price": 2495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8571428571428571,
+      "count": 2,
+      "products": [
+        {
+          "id": 5680,
+          "name": "Portacarte in metallo - BLU2",
+          "sku": "PP5649B2BLR-BLU2",
+          "price": 2495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5681,
+          "name": "Portacarte in metallo - N",
+          "sku": "PP5649B2BLR-N",
+          "price": 2495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9361702127659575,
+      "count": 2,
+      "products": [
+        {
+          "id": 5684,
+          "name": "Mužská peněženka na iPad® mini s ochranou - TM",
+          "sku": "CA3084W129-TM",
+          "price": 2595,
+          "collection": "W129",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5685,
+          "name": "Mužská peněženka na iPad® mini s ochranou - VE2",
+          "sku": "CA3084W129-VE2",
+          "price": 2595,
+          "collection": "W129",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.918918918918919,
+      "count": 2,
+      "products": [
+        {
+          "id": 5690,
+          "name": "Portafogli uomo con portamonete - VE6",
+          "sku": "PU4188B2R-VE6",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5694,
+          "name": "Portafogli uomo con portamonete - R",
+          "sku": "PU257B2R-R",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9285714285714286,
+      "count": 2,
+      "products": [
+        {
+          "id": 5692,
+          "name": "Mužská peněženka z kůže s mincovnicí - BLU",
+          "sku": "PU257MOSR-BLU",
+          "price": 2995,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5693,
+          "name": "Mužská peněženka z kůže s mincovnicí - TM",
+          "sku": "PU257MOSR-TM",
+          "price": 3995,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9444444444444444,
+      "count": 2,
+      "products": [
+        {
+          "id": 5697,
+          "name": "Portafogli uomo con portamonete - N",
+          "sku": "PU257B2R-N",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5698,
+          "name": "Portafogli uomo con portamonete - G9",
+          "sku": "PU257B2R-G9",
+          "price": 2995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9411764705882353,
+      "count": 2,
+      "products": [
+        {
+          "id": 5705,
+          "name": "Portafogli uomo con volantino porta documenti - BLU",
+          "sku": "PU4518MOSR-BLU",
+          "price": 2695,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5706,
+          "name": "Portafogli uomo con volantino porta documenti - N",
+          "sku": "PU4518MOSR-N",
+          "price": 2695,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8666666666666667,
+      "count": 2,
+      "products": [
+        {
+          "id": 5709,
+          "name": "Portacarte uomo sottile - BLU2",
+          "sku": "PP2762B2R-BLU2",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5710,
+          "name": "Portacarte uomo sottile - N",
+          "sku": "PP2762B2R-N",
+          "price": 2295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8787878787878788,
+      "count": 2,
+      "products": [
+        {
+          "id": 5712,
+          "name": "Portafogli portacarte uomo - BLU2",
+          "sku": "PU1243B2R-BLU2",
+          "price": 2595,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5713,
+          "name": "Portafogli portacarte uomo - MO",
+          "sku": "PU1243B2R-MO",
+          "price": 2194.5,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.90625,
+      "count": 2,
+      "products": [
+        {
+          "id": 5715,
+          "name": "Portafogli portacarte uomo - R",
+          "sku": "PU1243B2R-R",
+          "price": 2194.5,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5716,
+          "name": "Portafogli portacarte uomo - CU5",
+          "sku": "PU1243B2R-CU5",
+          "price": 2195,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9464285714285714,
+      "count": 2,
+      "products": [
+        {
+          "id": 5728,
+          "name": "Borsello uomo porta iPad®mini in tessuto riciclato - GRN",
+          "sku": "CA3084BR2S-GRN",
+          "price": 3295,
+          "collection": "BR2S",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5729,
+          "name": "Borsello uomo porta iPad®mini in tessuto riciclato - MCU",
+          "sku": "CA3084BR2S-MCU",
+          "price": 3195,
+          "collection": "BR2S",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9375,
+      "count": 2,
+      "products": [
+        {
+          "id": 5734,
+          "name": "Nositelný mužský kožený jedn ramenní batoh - CU4",
+          "sku": "CA6589B2-CU4",
+          "price": 6495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5735,
+          "name": "Nositelný mužský kožený jedn ramenní batoh - N",
+          "sku": "CA6589B2-N",
+          "price": 6495,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8947368421052632,
+      "count": 2,
+      "products": [
+        {
+          "id": 5743,
+          "name": "Trousse per il trucco in pelle - AZBE2",
+          "sku": "BY6543W92-AZBE2",
+          "price": 2595,
+          "collection": "W92",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5744,
+          "name": "Trousse per il trucco in pelle - VIVI2",
+          "sku": "BY6543W92-VIVI2",
+          "price": 2595,
+          "collection": "W92",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9411764705882353,
+      "count": 2,
+      "products": [
+        {
+          "id": 5745,
+          "name": "Tracolla uomo porta iPad®mini - N",
+          "sku": "CA6588B2-N",
+          "price": 5995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5746,
+          "name": "Tracolla uomo porta iPad®mini - MO",
+          "sku": "CA6588B2-MO",
+          "price": 5995,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.96875,
+      "count": 2,
+      "products": [
+        {
+          "id": 5747,
+          "name": "Základní taška na notebook a iPad® s možností personalizace - N",
+          "sku": "CA6591B2-N",
+          "price": 10295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5748,
+          "name": "Základní taška na notebook a iPad® s možností personalizace - MO",
+          "sku": "CA6591B2-MO",
+          "price": 10295,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9583333333333334,
+      "count": 2,
+      "products": [
+        {
+          "id": 5760,
+          "name": "Zainetto donna in pelle con porta iPad®mini - AR",
+          "sku": "CA6454W134-AR",
+          "price": 7695,
+          "collection": "W134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5761,
+          "name": "Zainetto donna in pelle con porta iPad®mini - N",
+          "sku": "CA6454W134-N",
+          "price": 8395,
+          "collection": "W134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9423076923076923,
+      "count": 2,
+      "products": [
+        {
+          "id": 5764,
+          "name": "Jedno ramenová taška pro iPad® mini s ochranou - N",
+          "sku": "CA6466C2OW-N",
+          "price": 3495,
+          "collection": "C2OW",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5765,
+          "name": "Jedno ramenová taška pro iPad® mini s ochranou - BLU",
+          "sku": "CA6466C2OW-BLU",
+          "price": 3495,
+          "collection": "C2OW",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9591836734693877,
+      "count": 2,
+      "products": [
+        {
+          "id": 5766,
+          "name": "Peněženka na mince, doklady a platební karty - N",
+          "sku": "PP5910W134R-N",
+          "price": 2095,
+          "collection": "W134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5767,
+          "name": "Peněženka na mince, doklady a platební karty - BE",
+          "sku": "PP5910W134R-BE",
+          "price": 2095,
+          "collection": "W134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9736842105263158,
+      "count": 2,
+      "products": [
+        {
+          "id": 5773,
+          "name": "Velký damský peněženkový kožený přízračný peněženka s 4 oddíly a zipem. - N",
+          "sku": "PD1515W134R-N",
+          "price": 3795,
+          "collection": "W134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5774,
+          "name": "Velký damský peněženkový kožený přízračný peněženka s 4 oddíly a zipem. - BO",
+          "sku": "PD1515W134R-BO",
+          "price": 3795,
+          "collection": "W134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9824561403508771,
+      "count": 2,
+      "products": [
+        {
+          "id": 5776,
+          "name": "Portmonek s magnetickým držákem a nabíjecím trackerem - N",
+          "sku": "AC6717B2R-N",
+          "price": 2095,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5777,
+          "name": "Portmonek s magnetickým držákem a nabíjecím trackerem - R",
+          "sku": "AC6717B2R-R",
+          "price": 2095,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9545454545454546,
+      "count": 2,
+      "products": [
+        {
+          "id": 5787,
+          "name": "Automatický mužský penceř z kovu a kůže - VE",
+          "sku": "PP5649S138R-VE",
+          "price": 1795,
+          "collection": "S138",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5788,
+          "name": "Automatický mužský penceř z kovu a kůže - AR",
+          "sku": "PP5649S138R-AR",
+          "price": 1795,
+          "collection": "S138",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9285714285714286,
+      "count": 2,
+      "products": [
+        {
+          "id": 5798,
+          "name": "Borsello uomo a tracolla porta iPad® - BLU",
+          "sku": "CA1816S134-BLU",
+          "price": 5195,
+          "collection": "S134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5799,
+          "name": "Borsello uomo a tracolla porta iPad® - M",
+          "sku": "CA1816S134-M",
+          "price": 5195,
+          "collection": "S134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8478260869565217,
+      "count": 2,
+      "products": [
+        {
+          "id": 5800,
+          "name": "Borsello uomo a tracolla porta iPad® - N",
+          "sku": "CA1816S134-N",
+          "price": 5195,
+          "collection": "S134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5834,
+          "name": "Borsello uomo a tracolla porta iPad®mini - BLU",
+          "sku": "CA3084S135-BLU",
+          "price": 4695,
+          "collection": "S135",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.8181818181818182,
+      "count": 2,
+      "products": [
+        {
+          "id": 5803,
+          "name": "Borsello uomo porta iPad® - VE",
+          "sku": "CA1816S136-VE",
+          "price": 3595,
+          "collection": "S136",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5807,
+          "name": "Borsello uomo porta iPad®mini - N",
+          "sku": "CA6303MOS-N",
+          "price": 5095,
+          "collection": "MOS",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9361702127659575,
+      "count": 2,
+      "products": [
+        {
+          "id": 5808,
+          "name": "Mužský peněženkový pouzdro pro iPad® mini - BLU",
+          "sku": "CA6615S135-BLU",
+          "price": 4695,
+          "collection": "S135",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5809,
+          "name": "Mužský peněženkový pouzdro pro iPad® mini - N",
+          "sku": "CA6615S135-N",
+          "price": 4695,
+          "collection": "S135",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9636363636363636,
+      "count": 2,
+      "products": [
+        {
+          "id": 5810,
+          "name": "Borsello uomo porta iPad®mini in tessuto riciclato - N",
+          "sku": "CA3084S136-N",
+          "price": 3095,
+          "collection": "S136",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5811,
+          "name": "Borsello uomo porta iPad®mini in tessuto riciclato - VE",
+          "sku": "CA3084S136-VE",
+          "price": 3095,
+          "collection": "S136",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9629629629629629,
+      "count": 2,
+      "products": [
+        {
+          "id": 5826,
+          "name": "Marsupio uomo crossover - N",
+          "sku": "CA2174S134-N",
+          "price": 5095,
+          "collection": "S134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5827,
+          "name": "Marsupio uomo crossover - M",
+          "sku": "CA2174S134-M",
+          "price": 5095,
+          "collection": "S134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9642857142857143,
+      "count": 2,
+      "products": [
+        {
+          "id": 5832,
+          "name": "Borsello uomo a tracolla - N",
+          "sku": "CA3084S134-N",
+          "price": 4695,
+          "collection": "S134",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5833,
+          "name": "Borsello uomo a tracolla - M",
+          "sku": "CA3084S134-M",
+          "price": 4695,
+          "collection": "S134",
+          "brand": "Piquadro"
+        }
+      ]
+    },
+    {
+      "type": "similar_names",
+      "similarity": 0.9473684210526315,
+      "count": 2,
+      "products": [
+        {
+          "id": 5848,
+          "name": "Základní damská taška na iPad® mini z kvalitní kůže - N",
+          "sku": "CA6677B2-N",
+          "price": 7795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        },
+        {
+          "id": 5849,
+          "name": "Základní damská taška na iPad® mini z kvalitní kůže - RO2",
+          "sku": "CA6677B2-RO2",
+          "price": 7795,
+          "collection": "B2",
+          "brand": "Piquadro"
+        }
+      ]
+    }
+  ],
+  "dataInconsistencies": [],
+  "stats": {
+    "totalProducts": 617,
+    "productsWithSKU": 617,
+    "productsWithoutSKU": 0,
+    "duplicateSKUGroups": 0,
+    "similarNameGroups": 185,
+    "dataInconsistencies": 0
+  }
+}

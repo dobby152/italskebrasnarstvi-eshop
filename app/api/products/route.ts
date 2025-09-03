@@ -119,10 +119,20 @@ export async function GET(request: NextRequest) {
         }
       }
 
+      // If no images found, try to generate default image from product name/SKU
+      if (images.length === 0 && product.sku) {
+        // Try to generate image from SKU pattern
+        const folderName = product.sku.toLowerCase().replace(/[^a-z0-9]/g, '-')
+        const defaultImageUrl = getSupabaseImageUrl(folderName)
+        if (defaultImageUrl !== '/placeholder.svg') {
+          images = [defaultImageUrl]
+        }
+      }
+
       return {
         ...product,
         images,
-        image_url: images[0] || null,
+        image_url: images[0] || '/placeholder.svg',
         brand: product.normalized_brand || null,
         collection: product.normalized_collection || null,
         tags: [],

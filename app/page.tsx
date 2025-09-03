@@ -201,7 +201,7 @@ export default function HomePage() {
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Pro muže</h4>
-                  <p className="text-gray-600 text-sm mb-4">Aktovky, business tašky, pánské batohy a peněženky</p>
+                  <p className="text-gray-600 text-sm mb-4">Business aktovky, notebook brašny a stylové tašky pro práci</p>
                   <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
                     Prohlédnout →
                   </div>
@@ -225,7 +225,7 @@ export default function HomePage() {
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Pro ženy</h4>
-                  <p className="text-gray-600 text-sm mb-4">Elegantní kabelky, shopper tašky a dámské peněženky</p>
+                  <p className="text-gray-600 text-sm mb-4">Elegantní kabelky, shopper tašky a stylové crossbody tašky</p>
                   <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
                     Prohlédnout →
                   </div>
@@ -249,7 +249,7 @@ export default function HomePage() {
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Pro profesionály</h4>
-                  <p className="text-gray-600 text-sm mb-4">Kožené peněženky, cardholders a business doplňky</p>
+                  <p className="text-gray-600 text-sm mb-4">Prémiové kožené peněženky, cardholders a business doplňky</p>
                   <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
                     Prohlédnout →
                   </div>
@@ -273,7 +273,7 @@ export default function HomePage() {
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Pro cestovatele</h4>
-                  <p className="text-gray-600 text-sm mb-4">Kufry, cestovní tašky a cestovní batohy</p>
+                  <p className="text-gray-600 text-sm mb-4">Luxusní kufry, cestovní tašky a praktické cestovní batohy</p>
                   <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
                     Prohlédnout →
                   </div>

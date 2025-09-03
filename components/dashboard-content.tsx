@@ -258,96 +258,64 @@ export default function DashboardContent() {
             </Button>
           </div>
           
-          <Card className="bg-white border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group">
-            <CardContent className="p-5">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                    <Package className="h-5 w-5 text-orange-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">6 objednávek k vyřízení</p>
-                    <p className="text-sm text-gray-500">Nové objednávky čekají na zpracování</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Badge className="bg-orange-100 text-orange-800 text-xs px-2 py-1">URGENTNÍ</Badge>
-                  <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group">
-            <CardContent className="p-5">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                    <CreditCard className="h-5 w-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">50+ plateb k zachycení</p>
-                    <p className="text-sm text-gray-500">Platby čekají na potvrzení</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Badge className="bg-blue-100 text-blue-800 text-xs px-2 py-1">NOVÉ</Badge>
-                  <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group">
-            <CardContent className="p-5">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-                    <RotateCcw className="h-5 w-5 text-red-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">1 zpětné zúčtování ke kontrole</p>
-                    <p className="text-sm text-gray-500">Vyžaduje okamžitou pozornost</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Badge className="bg-red-100 text-red-800 text-xs px-2 py-1">KRITICKÉ</Badge>
-                  <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Promotional Card */}
-          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white border-0 shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
-                      <span className="text-xs font-bold">💡</span>
+          {stats?.pendingOrders && stats.pendingOrders > 0 && (
+            <Card className="bg-white border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                      <Package className="h-5 w-5 text-orange-600" />
                     </div>
-                    <span className="text-xs font-medium uppercase tracking-wide opacity-90">DOPORUČENÍ</span>
+                    <div>
+                      <p className="font-semibold text-gray-900">{stats.pendingOrders} objednávek k vyřízení</p>
+                      <p className="text-sm text-gray-500">Nové objednávky čekají na zpracování</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold leading-tight">Přepněte na Shopify Payments a nabídněte Apple Pay</h3>
-                  <p className="text-white/90 text-sm leading-relaxed">
-                    Získejte více konverzí s rychlejším a bezpečnějším způsobem placení. Snižte poplatky a zjednodušte správu plateb.
-                  </p>
-                  <div className="flex items-center gap-3 pt-2">
-                    <Button className="bg-white text-green-600 hover:bg-gray-50 font-semibold px-4 py-2">
-                      Nastavit Shopify Payments
-                    </Button>
-                    <Button variant="ghost" className="text-white hover:bg-white/10 text-sm">
-                      Zjistit více
-                    </Button>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-orange-100 text-orange-800 text-xs px-2 py-1">NOVÉ</Badge>
+                    <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
                   </div>
                 </div>
-                <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                  <CreditCard className="h-10 w-10 text-white" />
+              </CardContent>
+            </Card>
+          )}
+
+          {stats?.lowStockProducts && stats.lowStockProducts > 0 && (
+            <Card className="bg-white border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center group-hover:bg-yellow-200 transition-colors">
+                      <Package className="h-5 w-5 text-yellow-600" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">{stats.lowStockProducts} produktů s nízkými zásobami</p>
+                      <p className="text-sm text-gray-500">Produkty vyžadují doplnění zásob</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1">POZOR</Badge>
+                    <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          )}
+
+          {(!stats?.pendingOrders || stats.pendingOrders === 0) && (!stats?.lowStockProducts || stats.lowStockProducts === 0) && (
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-5">
+                <div className="text-center py-8">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Package className="h-6 w-6 text-green-600" />
+                  </div>
+                  <p className="font-semibold text-gray-900 mb-1">Vše je v pořádku!</p>
+                  <p className="text-sm text-gray-500">Žádné urgentní úkoly nevyžadují pozornost</p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
         </div>
 
         {/* Analytics Section */}
