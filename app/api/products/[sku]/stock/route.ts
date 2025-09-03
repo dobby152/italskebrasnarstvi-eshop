@@ -13,6 +13,7 @@ interface InventoryData {
   inventory: {
     [location: string]: StockItem[]
   }
+  parsedAt?: string
 }
 
 let inventoryCache: InventoryData | null = null
