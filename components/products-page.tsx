@@ -403,7 +403,7 @@ export function ProductsPage() {
                         
                         try {
                         const transformedProduct = transformProduct(product)
-                        const status = transformedProduct.availability === 'out_of_stock' ? 'archived' : 'active'
+                        const status = 'active'
                         const displayName = getProductDisplayName(transformedProduct)
                         const displayCollection = getProductDisplayCollection(transformedProduct)
                         const mainImage = transformedProduct.mainImage || transformedProduct.image
@@ -549,7 +549,7 @@ export function ProductsPage() {
                    
                    try {
                      const transformedProduct = transformProduct(product)
-                     const status = transformedProduct.availability === 'out_of_stock' ? 'archived' : 'active'
+                     const status = 'active'
                      const displayName = getProductDisplayName(transformedProduct)
                      const displayCollection = getProductDisplayCollection(transformedProduct)
                      const mainImage = transformedProduct.mainImage || transformedProduct.image

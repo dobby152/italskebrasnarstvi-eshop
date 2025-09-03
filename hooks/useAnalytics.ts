@@ -58,117 +58,27 @@ export function useAnalytics(params: AnalyticsParams = {}) {
 
   useEffect(() => {
     const fetchAnalytics = async () => {
-      try {
-        setIsLoading(true)
-        
-        // Fetch real analytics data from multiple sources
-        const [statsResponse, ordersResponse] = await Promise.all([
-          fetch('/api/dashboard-stats'),
-          fetch('/api/orders')
-        ])
-        
-        if (!statsResponse.ok || !ordersResponse.ok) {
-          throw new Error('Failed to fetch analytics data')
-        }
-        
-        const statsData = await statsResponse.json()
-        const ordersData = await ordersResponse.json()
-        
-        // Calculate analytics from real data
-        const totalRevenue = statsData.totalRevenue || 0
-        const grossSales = totalRevenue
-        const discounts = Math.round(totalRevenue * 0.04) // Estimate 4% discount rate
-        const returns = Math.round(totalRevenue * 0.015) // Estimate 1.5% return rate
-        const netSales = grossSales - discounts - returns
-        
-        // Calculate goal progress (assuming monthly goal of 150,000 Kč)
-        const monthlyGoal = 150000
-        const goalProgress = Math.min(100, Math.round((netSales / monthlyGoal) * 100))
-        
-        // Channel sales breakdown (primarily online for now)
-        const channelSales = {
-          online: Math.round(netSales * 0.85), // 85% online
-          other: Math.round(netSales * 0.12),  // 12% other
-          search: Math.round(netSales * 0.03)  // 3% search
-        }
-        
-        const channelPercentages = {
-          online: 85,
-          other: 12,
-          search: 3
-        }
-        
-        // Generate charts from recent orders
-        const salesChart = generateSalesChart(ordersData.orders || [])
-        const conversionChart = generateConversionChart(ordersData.orders || [])
-        
-        // Calculate visitor metrics (estimated)
-        const totalVisitors = Math.round(netSales / 85) // Avg order value ~85 Kč
-        const visitorsGrowth = Math.random() * 20 - 10 // Random growth -10% to +10%
-        
-        // Calculate conversion metrics
-        const conversionRate = totalVisitors > 0 ? (ordersData.orders?.length || 0) / totalVisitors * 100 : 0
-        const conversionGrowth = Math.random() * 4 - 2 // Random growth -2% to +2%
-        
-        // Top products (from orders data)
-        const topProducts = generateTopProducts(ordersData.orders || [])
-        
-        // Traffic sources (estimated)
-        const trafficSources = [
-          { source: 'Organické vyhledávání', visitors: Math.round(totalVisitors * 0.45), percentage: 45 },
-          { source: 'Přímý přístup', visitors: Math.round(totalVisitors * 0.25), percentage: 25 },
-          { source: 'Sociální sítě', visitors: Math.round(totalVisitors * 0.15), percentage: 15 },
-          { source: 'E-mail marketing', visitors: Math.round(totalVisitors * 0.15), percentage: 15 }
-        ]
-        
-        // Recent activity (from orders data)
-        const recentActivity = generateRecentActivity(ordersData.orders || [])
-        
-        const analyticsData: AnalyticsData = {
-          grossSales,
-          discounts,
-          returns,
-          netSales,
-          goalProgress,
-          channelSales,
-          channelPercentages,
-          salesChart,
-          conversionChart,
-          totalVisitors,
-          visitorsGrowth,
-          conversionRate,
-          conversionGrowth,
-          topProducts,
-          trafficSources,
-          recentActivity
-        }
-        
-        setData(analyticsData)
-      } catch (err) {
-        console.error('Error fetching analytics:', err)
-        setError(err instanceof Error ? err : new Error('Unknown error'))
-        // Set empty data on error
-        setData({
-          grossSales: 0,
-          discounts: 0,
-          returns: 0,
-          netSales: 0,
-          goalProgress: 0,
-          channelSales: { online: 0, other: 0, search: 0 },
-          channelPercentages: { online: 0, other: 0, search: 0 },
-          salesChart: [],
-          conversionChart: [],
-          totalVisitors: 0,
-          visitorsGrowth: 0,
-          conversionRate: 0,
-          conversionGrowth: 0,
-          topProducts: [],
-          trafficSources: [],
-          recentActivity: []
-        })
-      } finally {
-        setIsLoading(false)
-      }
+      setIsLoading(true)
+      // Mock data for demo
+      setData({
+        grossSales: 0,
+        discounts: 0,
+        returns: 0,
+        netSales: 0,
+        goalProgress: 0,
+        channelSales: { online: 0, other: 0, search: 0 },
+        channelPercentages: { online: 0, other: 0, search: 0 },
+        salesChart: [],
+        conversionChart: [],
+        totalVisitors: 0,
+        visitorsGrowth: 0,
+        conversionRate: 0,
+        conversionGrowth: 0,
+        topProducts: [],
+        trafficSources: [],
+        recentActivity: []
+      })
+      setIsLoading(false)
     }
 
     fetchAnalytics()

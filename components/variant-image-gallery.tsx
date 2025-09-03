@@ -9,12 +9,14 @@ import { getImageUrl } from "../app/lib/utils"
 interface VariantImageGalleryProps {
   selectedVariant: ProductVariant | null
   baseImages: string[]
+  baseImageUrl?: string | null
   productName: string
 }
 
 export default function VariantImageGallery({
   selectedVariant,
   baseImages,
+  baseImageUrl,
   productName
 }: VariantImageGalleryProps) {
   const [galleryItems, setGalleryItems] = useState<any[]>([])
@@ -23,26 +25,26 @@ export default function VariantImageGallery({
     let items: any[] = []
     
     try {
+      let allImages: string[] = [];
+
       if (selectedVariant && selectedVariant.images && selectedVariant.images.length > 0) {
-        // Use variant-specific images
-        items = selectedVariant.images
-          .filter((image) => image && image.image_url && typeof image.image_url === 'string') // Filter out invalid images
-          .map((image) => ({
-            original: getImageUrl(image.image_url),
-            thumbnail: getImageUrl(image.image_url),
-            originalAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
-            thumbnailAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
-          }))
-      } else if (baseImages && baseImages.length > 0) {
-        // Fallback to base product images
-        items = baseImages
-          .filter((image) => image && typeof image === 'string' && image.trim() !== '') // Filter out invalid images
+        allImages = selectedVariant.images.map(img => img.image_url).filter(Boolean) as string[];
+      } else {
+        allImages = [...baseImages];
+        if (baseImageUrl && !allImages.includes(baseImageUrl)) {
+          allImages.unshift(baseImageUrl); // Add main image to the start
+        }
+      }
+
+      if (allImages.length > 0) {
+        items = allImages
+          .filter((image) => image && typeof image === 'string' && image.trim() !== '')
           .map((image) => ({
             original: getImageUrl(image),
             thumbnail: getImageUrl(image),
             originalAlt: productName || 'Product Image',
             thumbnailAlt: productName || 'Product Image',
-          }))
+          }));
       }
       
       // If no items found, add a placeholder
@@ -66,7 +68,7 @@ export default function VariantImageGallery({
     }
     
     setGalleryItems(items)
-  }, [selectedVariant, baseImages, productName])
+  }, [selectedVariant, baseImages, baseImageUrl, productName])
 
   if (galleryItems.length === 0) {
     return (

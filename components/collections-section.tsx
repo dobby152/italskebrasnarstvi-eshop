@@ -23,6 +23,27 @@ export default function CollectionsSection() {
       description: "Elegantní tašky pro moderní ženy",
       image: "/1_BD3336W92-AZBE2_1.jpg",
       tags: ["Elegantní", "Praktické", "Laptop 14\""]
+    },
+    {
+      id: 4,
+      name: "Cestovní kufry",
+      description: "Luxusní a odolné kufry na cesty",
+      image: "/1_CA6637W129-BLU_1_2640a8f6-0894-4aa9-92d6-4eb4606330b4.jpg",
+      tags: ["Odolné", "TSA zámek", "4 kolečka"]
+    },
+    {
+      id: 5,
+      name: "Peněženky",
+      description: "Prémiové kožené peněženky a doplňky",
+      image: "/1_BD3336W92-AZBE2_1.jpg",
+      tags: ["Pravá kůže", "RFID", "Dárkové balení"]
+    },
+    {
+      id: 6,
+      name: "Doplňky",
+      description: "Klíčenky, opasky a další stylové doplňky",
+      image: "/1_CA4818AP-GR_1.jpg",
+      tags: ["Kůže", "Ocel", "Minimalistické"]
     }
   ]
 
@@ -47,7 +68,7 @@ export default function CollectionsSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-300"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-xl font-bold mb-1">{collection.name}</h3>
+                  <h3 className="text-xl font-bold mb-1 text-white">{collection.name}</h3>
                   <p className="text-white/90 text-sm mb-3">{collection.description}</p>
                   <div className="flex flex-wrap gap-1">
                     {collection.tags?.map((tag, tagIndex) => (

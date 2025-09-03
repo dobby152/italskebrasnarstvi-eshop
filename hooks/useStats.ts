@@ -20,19 +20,21 @@ export function useStats() {
 
   useEffect(() => {
     const fetchStats = async () => {
-      try {
-        setIsLoading(true)
-        const response = await fetch('http://localhost:3001/api/dashboard-stats')
-        if (!response.ok) {
-          throw new Error('Failed to fetch stats')
-        }
-        const data = await response.json()
-        setData(data)
-      } catch (err) {
-        setError(err instanceof Error ? err : new Error('Unknown error'))
-      } finally {
-        setIsLoading(false)
-      }
+      setIsLoading(true)
+      // Mock data for demo
+      setData({
+        totalRevenue: 0,
+        totalOrders: 0,
+        totalCustomers: 0,
+        totalProducts: 0,
+        revenueGrowth: 0,
+        ordersGrowth: 0,
+        customersGrowth: 0,
+        productsGrowth: 0,
+        pendingOrders: 0,
+        lowStockProducts: 0,
+      })
+      setIsLoading(false)
     }
 
     fetchStats()

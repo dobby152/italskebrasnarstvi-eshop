@@ -259,6 +259,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
             <VariantImageGallery
               selectedVariant={selectedVariant}
               baseImages={selectedSmartVariant?.images || product.images || []}
+              baseImageUrl={product.image_url}
               productName={getProductDisplayName(product)}
             />
           )}
