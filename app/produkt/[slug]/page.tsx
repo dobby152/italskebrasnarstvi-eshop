@@ -258,7 +258,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
           ) : (
             <VariantImageGallery
               selectedVariant={selectedVariant}
-              baseImages={product.images || []}
+              baseImages={selectedSmartVariant?.images || product.images || []}
               productName={getProductDisplayName(product)}
             />
           )}
@@ -336,8 +336,8 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className={`text-sm font-semibold ${product.availability === 'in_stock' ? "text-green-600" : "text-red-600"}`}>
-                    {product.availability === 'in_stock' ? `Skladem` : "Není skladem"}
+                  <div className={`text-sm font-semibold text-green-600`}>
+                    Skladem
                   </div>
                   <div className="text-xs text-gray-500 mt-1">Doprava zdarma nad 2.500 Kč</div>
                 </div>
@@ -365,7 +365,6 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                 </div>
                 <Button
                   className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 px-6 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-                  disabled={product.availability !== 'in_stock'}
                   onClick={handleAddToCart}
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
@@ -476,10 +475,8 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                     )}
                     <div className="flex justify-between py-3 border-b border-gray-200">
                       <span className="font-medium text-gray-700">Dostupnost:</span>
-                      <span className={`font-semibold ${
-                        product.availability === 'in_stock' ? 'text-green-600' : 'text-red-600'
-                      }`}>
-                        {product.availability === 'in_stock' ? 'Skladem' : 'Není skladem'}
+                      <span className={`font-semibold text-green-600`}>
+                        Skladem
                       </span>
                     </div>
                     {product.features && (

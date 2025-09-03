@@ -28,30 +28,18 @@ export default function StockDisplay({ sku }: StockDisplayProps) {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchStock = async () => {
-      if (!sku) return
-      
-      try {
-        setLoading(true)
-        setError(null)
-        
-        const response = await fetch(`/api/products/${sku}/stock`)
-        
-        if (response.ok) {
-          const data = await response.json()
-          setStockData(data)
-        } else {
-          setError('Nepodařilo se načíst skladové zásoby')
-        }
-      } catch (err) {
-        console.error('Error fetching stock data:', err)
-        setError('Chyba při načítání skladových zásob')
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchStock()
+    if (!sku) return
+    
+    setLoading(true)
+    // MOCK DATA - always in stock
+    setStockData({
+      sku: sku,
+      locations: [],
+      totalStock: 99,
+      available: true,
+      lastUpdated: new Date().toISOString(),
+    });
+    setLoading(false);
   }, [sku])
 
   if (loading) {
@@ -133,7 +121,7 @@ export default function StockDisplay({ sku }: StockDisplayProps) {
           </div>
 
           {/* Location breakdown */}
-          {stockData.locations.length > 0 && (
+          {/* {stockData.locations.length > 0 && (
             <div className="space-y-2">
               <div className="text-xs text-gray-600 font-medium">Dostupnost podle skladů:</div>
               {stockData.locations.map((location, index) => (
@@ -148,7 +136,7 @@ export default function StockDisplay({ sku }: StockDisplayProps) {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
 
           {/* Last updated */}
           {stockData.lastUpdated && (
