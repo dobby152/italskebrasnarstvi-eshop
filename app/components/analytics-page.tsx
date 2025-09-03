@@ -38,7 +38,7 @@ export function AnalyticsPage() {
     channel: 'all'
   })
 
-  const salesData = analytics?.salesChart || []
+  const salesData = (analytics as any)?.salesChart || []
   const conversionData = (analytics as any)?.conversionChart || []
 
   if (statsLoading || analyticsLoading) {
