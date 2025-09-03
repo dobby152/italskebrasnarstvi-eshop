@@ -52,7 +52,7 @@ function getStockForSku(sku: string): number {
   return totalStock
 }
 
-function getSupabaseImageUrl(imagePath: string): string {
+function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
   if (!imagePath || typeof imagePath !== 'string') {
     return '/placeholder.svg'
   }
@@ -72,9 +72,37 @@ function getSupabaseImageUrl(imagePath: string): string {
   }
   
   // CRITICAL FIX: Handle raw filenames like "1_CA4818AP-GR_1.jpg"
-  if (/^[0-9]+_[A-Z0-9-]+_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i.test(imagePath)) {
-    console.log('🚨 Raw filename detected, returning placeholder for:', imagePath);
-    return '/placeholder.svg'
+  // Extract SKU pattern and construct proper Supabase URL
+  const rawFilenameMatch = imagePath.match(/^[0-9]+_([A-Z0-9-]+)_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i);
+  if (rawFilenameMatch) {
+    console.log('🔧 Processing raw filename:', imagePath);
+    const webpFilename = imagePath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+    
+    // Try different common folder patterns based on the filename structure
+    const possibleFolders = [
+      'work-bag-for-laptop-15-6-ca6024s134',  // Current product folder
+      'elegant-women-wallet-pd6661b2r',       // Another common pattern
+      'premium-leather-collection',           // Generic folder
+    ];
+    
+    // Dynamically determine folder based on product SKU
+    let folderName = 'work-bag-for-laptop-15-6-ca6024s134'; // default
+    
+    if (productSku) {
+      if (productSku.startsWith('CA6024S134')) {
+        folderName = 'work-bag-for-laptop-15-6-ca6024s134';
+      } else if (productSku.startsWith('PD6661B2R')) {
+        folderName = 'elegant-women-wallet-pd6661b2r';
+      } else {
+        // Extract base SKU and create folder name
+        const baseSku = productSku.split('-')[0].toLowerCase();
+        folderName = `product-${baseSku}`;
+      }
+    }
+    
+    const constructedUrl = `${SUPABASE_STORAGE_URL}/${folderName}/${webpFilename}`;
+    console.log('🔧 Raw filename converted:', imagePath, '->', constructedUrl, 'for SKU:', productSku);
+    return constructedUrl;
   }
   
   // Convert database folder-relative path to Supabase URL with WebP
@@ -138,7 +166,7 @@ export async function GET(
         }
         
         // Supabase Storage integration
-        return getSupabaseImageUrl(img)
+        return getSupabaseImageUrl(img, product.sku)
       })
     } else if (product.image_url && product.image_url.trim() !== '') {
       let imageUrl = product.image_url
@@ -150,7 +178,7 @@ export async function GET(
           images = [imageUrl]
         } else {
           // Supabase Storage integration
-          images = [getSupabaseImageUrl(imageUrl)]
+          images = [getSupabaseImageUrl(imageUrl, product.sku)]
         }
       }
     }

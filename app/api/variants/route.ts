@@ -21,10 +21,16 @@ function getSupabaseImageUrl(imagePath: string): string {
     return imagePath
   }
   
-  // CRITICAL FIX: Handle raw filenames like "1_CA4818AP-GR_1.jpg"
-  if (/^[0-9]+_[A-Z0-9-]+_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i.test(imagePath)) {
-    console.log('🚨 Raw filename detected, returning placeholder for:', imagePath);
-    return '/placeholder.svg'
+  // CRITICAL FIX: Handle raw filenames like "1_CA4818AP-GR_1.jpg"  
+  const rawFilenameMatch = imagePath.match(/^[0-9]+_([A-Z0-9-]+)_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i);
+  if (rawFilenameMatch) {
+    console.log('🔧 Processing raw filename in variants:', imagePath);
+    const webpFilename = imagePath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+    
+    // Use common folder pattern for variants
+    const constructedUrl = `${SUPABASE_STORAGE_URL}/work-bag-for-laptop-15-6-ca6024s134/${webpFilename}`;
+    console.log('🔧 Raw filename converted in variants:', imagePath, '->', constructedUrl);
+    return constructedUrl;
   }
   
   if (imagePath.includes('/') && !imagePath.startsWith('/')) {
