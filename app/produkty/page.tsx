@@ -473,10 +473,9 @@ export default function ProduktyPage() {
                         </div>
                         <Button
                           className="bg-black hover:bg-gray-800 text-white px-6 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-                          disabled={product.availability !== 'in_stock'}
                         >
                           <ShoppingCart className="h-4 w-4 mr-2" />
-                          {product.availability === 'in_stock' ? "Koupit" : "Není skladem"}
+                          Koupit
                         </Button>
                       </div>
                     </div>

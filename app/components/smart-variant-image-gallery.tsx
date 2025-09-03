@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import { ProductVariant } from "../lib/smart-variants"
+import { getImageUrl } from '../../lib/utils'
 
 interface SmartVariantImageGalleryProps {
   selectedVariant: ProductVariant | null
@@ -108,8 +109,8 @@ export default function SmartVariantImageGallery({
         items = imagesToUse
           .filter((image) => image && typeof image === 'string' && image.trim() !== '')
           .map((image, index) => ({
-            original: image,
-            thumbnail: image,
+            original: getImageUrl(image),
+            thumbnail: getImageUrl(image),
             originalAlt: `${productName} - ${selectedVariant?.colorName || 'Variant'} ${index + 1}`,
             thumbnailAlt: `${productName} - ${selectedVariant?.colorName || 'Variant'} ${index + 1}`,
           }))
