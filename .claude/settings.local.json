@@ -78,7 +78,8 @@
       "Bash(PORT=3010 npm run dev)",
       "WebFetch(domain:)",
       "Bash(PORT=3015 npm run dev)",
-      "Read(C:\\Users\\hynex\\Downloads/**)"
+      "Read(C:\\Users\\hynex\\Downloads/**)",
+      "Bash(move \"C:\\Users\\hynex\\Desktop\\italskebrasnarstvi eshop\\app\\api\\products\\[sku]\\stock\\route.ts\" \"C:\\Users\\hynex\\Desktop\\italskebrasnarstvi eshop\\app\\api\\stock\\[sku]\\route.ts\")"
     ],
     "deny": [],
     "additionalDirectories": [
