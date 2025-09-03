@@ -21,18 +21,8 @@ function getSupabaseImageUrl(imagePath: string): string {
     return imagePath
   }
   
-  // CRITICAL FIX: Handle raw filenames like "1_CA4818AP-GR_1.jpg"  
-  const rawFilenameMatch = imagePath.match(/^[0-9]+_([A-Z0-9-]+)_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i);
-  if (rawFilenameMatch) {
-    console.log('🔧 Processing raw filename in variants:', imagePath);
-    const webpFilename = imagePath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-    
-    // Use common folder pattern for variants
-    const constructedUrl = `${SUPABASE_STORAGE_URL}/work-bag-for-laptop-15-6-ca6024s134/${webpFilename}`;
-    console.log('🔧 Raw filename converted in variants:', imagePath, '->', constructedUrl);
-    return constructedUrl;
-  }
-  
+  // Convert database folder-relative path to Supabase URL with WebP
+  // Database: "folder-name/image.jpg" → Supabase: "folder-name/image.webp"
   if (imagePath.includes('/') && !imagePath.startsWith('/')) {
     const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp')
     const finalUrl = `${SUPABASE_STORAGE_URL}/${webpPath}`;
@@ -40,6 +30,8 @@ function getSupabaseImageUrl(imagePath: string): string {
     return finalUrl
   }
   
+  // If it's just a folder name, construct path to first image
+  // Pattern: folder-name → folder-name/1_FOLDER_NAME_1.webp
   const folderName = imagePath
   const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.webp`
   const finalUrl = `${SUPABASE_STORAGE_URL}/${folderName}/${imageFileName}`;

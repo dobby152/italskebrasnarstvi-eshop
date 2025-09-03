@@ -71,41 +71,8 @@ function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
     return imagePath
   }
   
-  // CRITICAL FIX: Handle raw filenames like "1_CA4818AP-GR_1.jpg"
-  // Extract SKU pattern and construct proper Supabase URL
-  const rawFilenameMatch = imagePath.match(/^[0-9]+_([A-Z0-9-]+)_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i);
-  if (rawFilenameMatch) {
-    console.log('🔧 Processing raw filename:', imagePath);
-    const webpFilename = imagePath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-    
-    // Try different common folder patterns based on the filename structure
-    const possibleFolders = [
-      'work-bag-for-laptop-15-6-ca6024s134',  // Current product folder
-      'elegant-women-wallet-pd6661b2r',       // Another common pattern
-      'premium-leather-collection',           // Generic folder
-    ];
-    
-    // Dynamically determine folder based on product SKU
-    let folderName = 'work-bag-for-laptop-15-6-ca6024s134'; // default
-    
-    if (productSku) {
-      if (productSku.startsWith('CA6024S134')) {
-        folderName = 'work-bag-for-laptop-15-6-ca6024s134';
-      } else if (productSku.startsWith('PD6661B2R')) {
-        folderName = 'elegant-women-wallet-pd6661b2r';
-      } else {
-        // Extract base SKU and create folder name
-        const baseSku = productSku.split('-')[0].toLowerCase();
-        folderName = `product-${baseSku}`;
-      }
-    }
-    
-    const constructedUrl = `${SUPABASE_STORAGE_URL}/${folderName}/${webpFilename}`;
-    console.log('🔧 Raw filename converted:', imagePath, '->', constructedUrl, 'for SKU:', productSku);
-    return constructedUrl;
-  }
-  
   // Convert database folder-relative path to Supabase URL with WebP
+  // Database: "folder-name/image.jpg" → Supabase: "folder-name/image.webp"
   if (imagePath.includes('/') && !imagePath.startsWith('/')) {
     const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp')
     const finalUrl = `${SUPABASE_STORAGE_URL}/${webpPath}`;
@@ -114,6 +81,7 @@ function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
   }
   
   // If it's just a folder name, construct path to first image
+  // Pattern: folder-name → folder-name/1_FOLDER_NAME_1.webp
   const folderName = imagePath
   const imageFileName = `1_${folderName.toUpperCase().replace(/-/g, '_')}_1.webp`
   const finalUrl = `${SUPABASE_STORAGE_URL}/${folderName}/${imageFileName}`;
