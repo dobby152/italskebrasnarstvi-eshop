@@ -36,16 +36,16 @@ export default function Header() {
 
           {/* Simplified menu */}
           <div className="hidden lg:flex items-center space-x-8">
-            <Link href="/produkty" className="text-gray-700 hover:text-black transition-colors font-medium">
+            <Link href="/produkty" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
               PRODUKTY
             </Link>
-            <Link href="/kolekce" className="text-gray-700 hover:text-black transition-colors font-medium">
+            <Link href="/kolekce" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
               KOLEKCE  
             </Link>
-            <Link href="/o-nas" className="text-gray-700 hover:text-black transition-colors font-medium">
+            <Link href="/o-nas" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
               O NÁS
             </Link>
-            <Link href="/kontakt" className="text-gray-700 hover:text-black transition-colors font-medium">
+            <Link href="/kontakt" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
               KONTAKT
             </Link>
           </div>
@@ -140,28 +140,28 @@ export default function Header() {
             <div className="space-y-4">
               <Link
                 href="/produkty"
-                className="block text-gray-700 hover:text-black transition-colors font-medium"
+                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 PRODUKTY
               </Link>
               <Link
                 href="/kolekce"
-                className="block text-gray-700 hover:text-black transition-colors font-medium"
+                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 KOLEKCE
               </Link>
               <Link
                 href="/o-nas"
-                className="block text-gray-700 hover:text-black transition-colors font-medium"
+                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 O NÁS
               </Link>
               <Link
                 href="/kontakt"
-                className="block text-gray-700 hover:text-black transition-colors font-medium"
+                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 KONTAKT

@@ -29,13 +29,20 @@ export default function VariantImageGallery({
       if (selectedVariant && selectedVariant.images && selectedVariant.images.length > 0) {
         console.log('VariantImageGallery: Using selectedVariant images:', selectedVariant.images);
         items = selectedVariant.images
-          .filter((image) => image && image.image_url && typeof image.image_url === 'string')
-          .map((image) => ({
-            original: getImageUrl(image.image_url),
-            thumbnail: getImageUrl(image.image_url),
-            originalAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
-            thumbnailAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
-          }))
+          .filter((image) => {
+            // Handle both string URLs and image objects
+            if (typeof image === 'string') return image.trim() !== '';
+            return image && image.image_url && typeof image.image_url === 'string';
+          })
+          .map((image) => {
+            const imageUrl = typeof image === 'string' ? image : image.image_url;
+            return {
+              original: getImageUrl(imageUrl),
+              thumbnail: getImageUrl(imageUrl),
+              originalAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
+              thumbnailAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
+            };
+          })
       } else if (baseImages && baseImages.length > 0) {
         console.log('VariantImageGallery: Falling back to baseImages:', baseImages);
         items = baseImages
