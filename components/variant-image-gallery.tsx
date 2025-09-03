@@ -23,68 +23,72 @@ export default function VariantImageGallery({
   useEffect(() => {
     let items: any[] = []
     
-    console.log('VariantImageGallery: Props received:', { selectedVariant, baseImages, productName });
+    console.log('🖼️ VariantImageGallery: Processing images');
+    console.log('🔍 selectedVariant:', selectedVariant);
+    console.log('🔍 baseImages:', baseImages);
     
+    // RADICALLY SIMPLIFIED: Just use whatever images we get without any transformation
     try {
-      if (selectedVariant && (selectedVariant as any).images && (selectedVariant as any).images.length > 0) {
-        console.log('VariantImageGallery: Using selectedVariant images:', (selectedVariant as any).images);
-        items = (selectedVariant as any).images
-          .filter((image: any) => {
-            // Handle both string URLs and image objects
-            if (typeof image === 'string') return image.trim() !== '';
-            return image && image.image_url && typeof image.image_url === 'string';
-          })
-          .map((image: any) => {
-            const imageUrl = typeof image === 'string' ? image : image.image_url;
-            // CRITICAL FIX: Don't double-transform URLs that are already processed by API
-            const finalUrl = imageUrl && imageUrl.startsWith('http') ? imageUrl : getImageUrl(imageUrl);
-            console.log('VariantImageGallery: Raw imageUrl:', imageUrl, '-> Final URL:', finalUrl);
+      // Priority 1: selectedVariant images (already processed by API)
+      if (selectedVariant && (selectedVariant as any).images && Array.isArray((selectedVariant as any).images)) {
+        const variantImages = (selectedVariant as any).images;
+        console.log('✅ Using selectedVariant images (raw):', variantImages);
+        
+        items = variantImages
+          .filter((img: any) => img && (typeof img === 'string' || img.image_url))
+          .map((img: any) => {
+            const url = typeof img === 'string' ? img : img.image_url;
+            console.log('🔗 Direct URL use:', url);
             return {
-              original: finalUrl,
-              thumbnail: finalUrl,
-              originalAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
-              thumbnailAlt: `${productName} - ${selectedVariant.name || 'Variant'}`,
+              original: url,
+              thumbnail: url,
+              originalAlt: productName,
+              thumbnailAlt: productName,
             };
-          })
-      } else if (baseImages && baseImages.length > 0) {
-        console.log('VariantImageGallery: Falling back to baseImages:', baseImages);
-        items = baseImages
-          .filter((image) => image && typeof image === 'string' && image.trim() !== '')
-          .map((image) => {
-            // CRITICAL FIX: Don't double-transform URLs that are already processed by API
-            const finalUrl = image && image.startsWith('http') ? image : getImageUrl(image);
-            console.log('VariantImageGallery: Base image:', image, '-> Final URL:', finalUrl);
-            return {
-              original: finalUrl,
-              thumbnail: finalUrl,
-              originalAlt: productName || 'Product Image',
-              thumbnailAlt: productName || 'Product Image',
-            };
-          })
+          });
       }
       
-      console.log('VariantImageGallery: Final items before setting state:', items);
+      // Priority 2: baseImages (already processed by API)  
+      if (items.length === 0 && baseImages && Array.isArray(baseImages)) {
+        console.log('✅ Using baseImages (raw):', baseImages);
+        
+        items = baseImages
+          .filter((img: string) => img && typeof img === 'string')
+          .map((img: string) => {
+            console.log('🔗 Direct URL use:', img);
+            return {
+              original: img,
+              thumbnail: img,
+              originalAlt: productName,
+              thumbnailAlt: productName,
+            };
+          });
+      }
       
+      // Fallback: placeholder
       if (items.length === 0) {
-        console.log('VariantImageGallery: No items found, using placeholder.');
+        console.log('❌ No images found, using placeholder');
         items = [{
           original: '/placeholder.svg',
           thumbnail: '/placeholder.svg',
-          originalAlt: productName || 'No Image Available',
-          thumbnailAlt: productName || 'No Image Available',
-        }]
+          originalAlt: 'No Image Available',
+          thumbnailAlt: 'No Image Available',
+        }];
       }
+      
+      console.log('🎯 Final gallery items:', items);
+      
     } catch (error) {
-      console.error('Error processing images:', error)
+      console.error('💥 Error processing images:', error);
       items = [{
         original: '/placeholder.svg',
         thumbnail: '/placeholder.svg',
-        originalAlt: productName || 'Error Loading Image',
-        thumbnailAlt: productName || 'Error Loading Image',
-      }]
+        originalAlt: 'Error Loading Image',
+        thumbnailAlt: 'Error Loading Image',
+      }];
     }
     
-    setGalleryItems(items)
+    setGalleryItems(items);
   }, [selectedVariant, baseImages, productName])
 
   if (galleryItems.length === 0) {
