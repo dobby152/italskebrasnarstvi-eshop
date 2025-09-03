@@ -17,6 +17,7 @@ export default function VariantImageGallery({
   baseImages,
   productName
 }: VariantImageGalleryProps) {
+  console.log('VariantImageGallery: Component Rendered'); // ADD THIS LINE
   const [galleryItems, setGalleryItems] = useState<any[]>([])
 
   useEffect(() => {
