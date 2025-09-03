@@ -19,6 +19,8 @@ interface Product {
   availability?: string
   brand?: string
   collection?: string
+  colors?: string[]
+  colorVariants?: { colorName: string; hexColor: string; colorCode: string }[]
 }
 
 interface ProductGridProps {
@@ -111,6 +113,25 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
                 <Badge variant="secondary" className="text-xs mb-2">
                   {product.brand}
                 </Badge>
+              )}
+              
+              {/* Color variants */}
+              {product.colorVariants && product.colorVariants.length > 0 && (
+                <div className="mb-3">
+                  <div className="flex gap-1 flex-wrap">
+                    {product.colorVariants.slice(0, 6).map((color, index) => (
+                      <div
+                        key={index}
+                        className="w-4 h-4 rounded-full border border-gray-200 flex-shrink-0"
+                        style={{ backgroundColor: color.hexColor }}
+                        title={color.colorName}
+                      />
+                    ))}
+                    {product.colorVariants.length > 6 && (
+                      <span className="text-xs text-gray-500 ml-1">+{product.colorVariants.length - 6}</span>
+                    )}
+                  </div>
+                </div>
               )}
               
               <div className="flex items-center justify-between">

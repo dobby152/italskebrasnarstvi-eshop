@@ -26,16 +26,16 @@ export default function VariantImageGallery({
     console.log('VariantImageGallery: Props received:', { selectedVariant, baseImages, productName });
     
     try {
-      if (selectedVariant && selectedVariant.images && selectedVariant.images.length > 0) {
-        console.log('VariantImageGallery: Using selectedVariant images:', selectedVariant.images);
-        items = selectedVariant.images
-          .filter((image) => {
+      if (selectedVariant && (selectedVariant as any).images && (selectedVariant as any).images.length > 0) {
+        console.log('VariantImageGallery: Using selectedVariant images:', (selectedVariant as any).images);
+        items = (selectedVariant as any).images
+          .filter((image: any) => {
             // Handle both string URLs and image objects
-            if (typeof image === 'string') return (image as string).trim() !== '';
-            return image && (image as any).image_url && typeof (image as any).image_url === 'string';
+            if (typeof image === 'string') return image.trim() !== '';
+            return image && image.image_url && typeof image.image_url === 'string';
           })
-          .map((image) => {
-            const imageUrl = typeof image === 'string' ? image : (image as any).image_url;
+          .map((image: any) => {
+            const imageUrl = typeof image === 'string' ? image : image.image_url;
             return {
               original: getImageUrl(imageUrl),
               thumbnail: getImageUrl(imageUrl),
