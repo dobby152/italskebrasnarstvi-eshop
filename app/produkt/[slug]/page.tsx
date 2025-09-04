@@ -252,9 +252,10 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
       <div className="container mx-auto px-6 py-12">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Product Images */}
-          <VariantImageGallery
-            selectedVariant={selectedVariant}
-            baseImages={selectedSmartVariant?.images || product.images || (product.image_url ? [product.image_url] : [])}
+          <SmartVariantImageGallery
+            selectedVariant={selectedSmartVariant}
+            allVariants={smartVariants}
+            baseImages={product.images || (product.image_url ? [product.image_url] : [])}
             productName={getProductDisplayName(product)}
           />
 
