@@ -42,13 +42,13 @@ export function getImageUrl(imagePath: string | undefined | null): string {
     return '/placeholder.svg'
   }
   
-  // If it's already a full URL, return as is
+  // If it's already a full URL (including Supabase), return as is
   if (imagePath.startsWith('http')) {
     return imagePath
   }
   
-  // If it already starts with /images/, return as is
-  if (imagePath.startsWith('/images/')) {
+  // If it already starts with / (local paths), return as is
+  if (imagePath.startsWith('/')) {
     return imagePath
   }
   
