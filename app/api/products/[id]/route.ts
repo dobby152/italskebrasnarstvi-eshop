@@ -71,7 +71,17 @@ function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
     return imagePath
   }
   
-  // INTELLIGENT MAPPING: Handle raw filenames with discovered patterns
+  // CRITICAL FIX: Database contains folder/filename.jpg paths - convert directly to Supabase URLs
+  // Database: "womens-shoulder-bag-for-ipad-r-mini-bd6657w92/1_BD6657W92-AZBE2_1.jpg"
+  // Convert: JPG→WebP and build full Supabase URL
+  if (imagePath.includes('/') && !imagePath.startsWith('/')) {
+    const webpPath = imagePath.replace(/\.(jpg|jpeg|png)$/i, '.webp')
+    const finalUrl = `${SUPABASE_STORAGE_URL}/${webpPath}`;
+    console.log('🔗 DIRECT DB path converted:', imagePath, '->', finalUrl);
+    return finalUrl
+  }
+  
+  // INTELLIGENT MAPPING: Handle raw filenames with discovered patterns (backup logic)
   const rawFilenamePattern = /^(\d+)_([A-Z0-9-]+)_(\d+)\.(jpg|jpeg|png|webp)$/i;
   const rawMatch = imagePath.match(rawFilenamePattern);
   
@@ -112,15 +122,6 @@ function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
       console.log('🚀 Smart mapping:', imagePath, '->', finalUrl);
       return finalUrl;
     }
-  }
-  
-  // Convert database folder-relative path to Supabase URL with WebP
-  // Database: "folder-name/image.jpg" → Supabase: "folder-name/image.webp"
-  if (imagePath.includes('/') && !imagePath.startsWith('/')) {
-    const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp')
-    const finalUrl = `${SUPABASE_STORAGE_URL}/${webpPath}`;
-    console.log('🔗 Folder path converted:', imagePath, '->', finalUrl);
-    return finalUrl
   }
   
   // If it's just a folder name, construct path to first image
