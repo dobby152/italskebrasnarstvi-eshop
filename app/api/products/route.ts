@@ -1,69 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/app/lib/supabase'
-import fs from 'fs'
-import path from 'path'
 
 const SUPABASE_STORAGE_URL = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
 
-// Cache for inventory data
-let inventoryCache: any = null
-let cacheTime: number = 0
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
-
-function getInventoryData(): any {
-  const now = Date.now()
-  
-  if (inventoryCache && (now - cacheTime) < CACHE_DURATION) {
-    return inventoryCache
-  }
-  
-  try {
-    const inventoryPath = path.join(process.cwd(), 'inventory-parsed.json')
-    const inventoryContent = fs.readFileSync(inventoryPath, 'utf-8')
-    inventoryCache = JSON.parse(inventoryContent)
-    cacheTime = now
-    return inventoryCache
-  } catch (error) {
-    console.error('Error loading inventory data:', error)
-    return null
-  }
-}
-
-function getStockForSku(sku: string): number {
-  if (!sku) return 0
-  
-  const inventoryData = getInventoryData()
-  if (!inventoryData) return 0
-  
-  let totalStock = 0
-  
-  // Sum stock from all locations
-  Object.keys(inventoryData.inventory).forEach(location => {
-    const items = inventoryData.inventory[location]
-    items.forEach((item: any) => {
-      if (item.productId === sku || 
-          item.productId.includes(sku) || 
-          sku.includes(item.productId)) {
-        totalStock += item.stock
-      }
-    })
-  })
-  
-  return totalStock
-}
-
 function getSupabaseImageUrl(imagePath: string): string {
-  if (!imagePath || typeof imagePath !== 'string') {
-    return '/placeholder.svg'
-  }
+  if (!imagePath) return '/placeholder-product.jpg'
   
   // If it's already a full URL, return as is
   if (imagePath.startsWith('http')) {
-    return imagePath
-  }
-  
-  // If it's already a direct path, return as is
-  if (imagePath.startsWith('/images/') || imagePath.startsWith('/placeholder')) {
     return imagePath
   }
   
@@ -88,123 +32,176 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '12')
-    const sortBy = searchParams.get('sortBy') || 'id'
-    const sortOrder = searchParams.get('sortOrder') || 'asc'
+    const sortBy = searchParams.get('sortBy') || 'availability'
+    const sortOrder = searchParams.get('sortOrder') || 'desc'
 
     console.log('Query params:', { page, limit, sortBy, sortOrder });
 
-    // Map sortBy to valid column names
-    const validSorts: Record<string, string> = {
-      'id': 'id',
-      'name': 'name', 
-      'price': 'price',
-      'created_at': 'created_at'
-    }
-    const actualSortBy = validSorts[sortBy] || 'id'
-
-    console.log('Using sort column:', actualSortBy);
-    
-    // Query with pagination
-    console.log('Querying with pagination...');
+    // Query products with inventory data joined
+    console.log('Querying products with inventory...');
     const offset = (page - 1) * limit
     
-    const { data: products, error, count } = await supabase
+    // Get all products first, then join with inventory manually
+    const { data: products, error: productsError, count } = await supabase
       .from('products')
-      .select('id, name, price, image_url, images, description, sku, normalized_brand, normalized_collection', { count: 'exact' })
-      .order(actualSortBy, { ascending: sortOrder === 'asc' })
-      .range(offset, offset + limit - 1)
-
-    if (error) {
-      console.error('Supabase query error:', error)
+      .select(`
+        id, 
+        name, 
+        price, 
+        image_url, 
+        images, 
+        description, 
+        sku, 
+        normalized_brand, 
+        normalized_collection
+      `, { count: 'exact' })
+      .limit(1000) // Get more records to sort by availability
+    
+    if (productsError) {
+      console.error('Products query error:', productsError)
       return NextResponse.json({ 
-        error: error.message, 
-        details: error.details,
-        hint: error.hint,
-        code: error.code 
+        error: 'Failed to fetch products',
+        details: productsError 
       }, { status: 500 })
     }
 
-    console.log(`Found ${products?.length || 0} products, processing images...`);
+    // Get all inventory data
+    const { data: inventoryData, error: inventoryError } = await supabase
+      .from('inventory')
+      .select('sku, outlet_stock, chodov_stock, total_stock')
+    
+    if (inventoryError) {
+      console.error('Inventory query error:', inventoryError)
+      // Continue without inventory data
+    }
 
-    // Transform products with image processing and real stock data
-    const transformedProducts = (products || []).map((product: any) => {
-      let images = []
-      
-      if (product.images && Array.isArray(product.images) && product.images.length > 0) {
-        images = product.images.map((img: string) => {
-          if (img.startsWith('http')) {
-            return img
-          }
-          // Direct path to images - no processing needed
-          if (img.startsWith('/images/')) {
-            return img
-          }
-          
-          // Supabase Storage integration
-          return getSupabaseImageUrl(img)
-        })
-      } else if (product.image_url && product.image_url.trim() !== '') {
-        let imageUrl = product.image_url
-        
-        if (imageUrl.startsWith('http')) {
-          images = [imageUrl]
-        } else {
-          // Direct path to images - no processing needed
-          if (imageUrl.startsWith('/images/')) {
-            images = [imageUrl]
-          } else {
-            // Supabase Storage integration  
-            images = [getSupabaseImageUrl(imageUrl)]
-          }
-        }
-      }
+    // Create inventory lookup map with both SKU formats for compatibility
+    const inventoryMap = new Map<string, any>()
+    if (inventoryData) {
+      inventoryData.forEach(inv => {
+        // Store with original SKU (with /)
+        inventoryMap.set(inv.sku, inv)
+        // Also store with hyphen format for product matching
+        const hyphenSku = inv.sku.replace(/\//g, '-')
+        inventoryMap.set(hyphenSku, inv)
+      })
+    }
 
-      // If no images found, try to generate default image from product name/SKU
-      if (images.length === 0 && product.sku) {
-        // Try to generate image from SKU pattern
-        const folderName = product.sku.toLowerCase().replace(/[^a-z0-9]/g, '-')
-        const defaultImageUrl = getSupabaseImageUrl(folderName)
-        if (defaultImageUrl !== '/placeholder.svg') {
-          images = [defaultImageUrl]
+    if (!products) {
+      return NextResponse.json({
+        products: [],
+        pagination: {
+          currentPage: page,
+          totalPages: 0,
+          totalProducts: 0,
+          hasNextPage: false,
+          hasPrevPage: false
         }
-      }
+      })
+    }
+
+    console.log(`Found ${products.length} products, processing with inventory...`);
+
+    // Process products and add stock information
+    const processedProducts = products.map(product => {
+      const inventory = inventoryMap.get(product.sku)
+      const totalStock = inventory?.total_stock || 0
+      const outletStock = inventory?.outlet_stock || 0
+      const chodovStock = inventory?.chodov_stock || 0
 
       return {
-        ...product,
-        images,
-        image_url: images[0] || '/placeholder.svg',
-        brand: product.normalized_brand || null,
-        collection: product.normalized_collection || null,
-        tags: [],
-        hasVariants: false,
-        // Get real stock from inventory data
-        stock: getStockForSku(product.sku),
-        // Set availability based on real stock
-        availability: getStockForSku(product.sku) > 0 ? 'in_stock' : 'out_of_stock'
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        description: product.description,
+        sku: product.sku,
+        normalized_brand: product.normalized_brand,
+        normalized_collection: product.normalized_collection,
+        image_url: getSupabaseImageUrl(product.image_url),
+        images: product.images ? product.images.map((img: string) => getSupabaseImageUrl(img)) : [],
+        // Stock information
+        totalStock,
+        outletStock,
+        chodovStock,
+        available: totalStock > 0,
+        // Sorting priority: available products first, then by stock level
+        sortPriority: totalStock > 0 ? totalStock + 1000 : 0
       }
     })
 
-    console.log(`Transformed ${transformedProducts?.length || 0} products with API image URLs`);
+    // Sort products by availability (available first, then by stock amount)
+    let sortedProducts = [...processedProducts]
+    
+    if (sortBy === 'availability') {
+      // Always show available products first, regardless of sortOrder
+      // Within each group (available/unavailable), sort by total stock
+      sortedProducts.sort((a, b) => {
+        // Primary sort: available products first
+        if (a.available && !b.available) return -1
+        if (!a.available && b.available) return 1
+        
+        // Secondary sort: within same availability, sort by stock level
+        if (sortOrder === 'desc') {
+          return b.totalStock - a.totalStock
+        } else {
+          return a.totalStock - b.totalStock
+        }
+      })
+    } else {
+      // For other sorting options, still prioritize availability but allow custom sorting
+      const validSorts: Record<string, keyof typeof processedProducts[0]> = {
+        'id': 'id',
+        'name': 'name', 
+        'price': 'price',
+      }
+      
+      const actualSortBy = validSorts[sortBy] || 'id'
+      
+      sortedProducts.sort((a, b) => {
+        // Always show available products first
+        if (a.available && !b.available) return -1
+        if (!a.available && b.available) return 1
+        
+        // Within same availability group, sort by the requested field
+        const aVal = a[actualSortBy]
+        const bVal = b[actualSortBy]
+        
+        if (typeof aVal === 'string' && typeof bVal === 'string') {
+          return sortOrder === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal)
+        } else if (typeof aVal === 'number' && typeof bVal === 'number') {
+          return sortOrder === 'asc' ? aVal - bVal : bVal - aVal
+        }
+        return 0
+      })
+    }
+
+    // Apply pagination after sorting
+    const startIndex = offset
+    const endIndex = offset + limit
+    const paginatedProducts = sortedProducts.slice(startIndex, endIndex)
+
+    const totalProducts = sortedProducts.length
+    const totalPages = Math.ceil(totalProducts / limit)
+
+    console.log(`Returning ${paginatedProducts.length} products for page ${page}`);
+    console.log(`Stock info - Available: ${sortedProducts.filter(p => p.available).length}, Out of stock: ${sortedProducts.filter(p => !p.available).length}`);
 
     return NextResponse.json({
-      products: transformedProducts || [],
+      products: paginatedProducts,
       pagination: {
-        total: count || 0,
-        page,
-        limit,
-        totalPages: Math.ceil((count || 0) / limit)
+        currentPage: page,
+        totalPages,
+        totalProducts,
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1
       }
     })
 
   } catch (error) {
-    console.error('API Route Error:', error)
-    return NextResponse.json(
-      { 
-        error: 'Internal server error', 
-        details: error instanceof Error ? error.message : 'Unknown error',
-        stack: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.stack : undefined) : undefined
-      }, 
-      { status: 500 }
-    )
+    console.error('Error in products API:', error)
+    return NextResponse.json({ 
+      error: 'Internal server error',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 })
   }
 }
