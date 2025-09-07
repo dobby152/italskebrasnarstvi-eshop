@@ -20,8 +20,10 @@ import {
   ChevronDown,
   Globe,
   Camera,
-  MoreHorizontal
+  MoreHorizontal,
+  Bell
 } from "lucide-react"
+import Link from "next/link"
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 import { useStats } from "../app/hooks/useStats"
 import { useAnalytics } from "../app/hooks/useAnalytics"
@@ -301,6 +303,29 @@ export default function DashboardContent() {
               </CardContent>
             </Card>
           )}
+
+          {/* Supplier Orders Notification */}
+          <Link href="/admin/supplier-orders">
+            <Card className="bg-white border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group border-l-4 border-orange-400">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                      <Bell className="h-5 w-5 text-orange-600" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Objednávky dodavatelů</p>
+                      <p className="text-sm text-gray-500">Správa nedostupných produktů a komunikace s dodavateli</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-orange-100 text-orange-800 text-xs px-2 py-1">NOVÉ</Badge>
+                    <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
 
           {(!stats?.pendingOrders || stats.pendingOrders === 0) && (!stats?.lowStockProducts || stats.lowStockProducts === 0) && (
             <Card className="bg-white border-0 shadow-sm">

@@ -83,7 +83,13 @@
       "Bash(PORT=3020 npm run dev)",
       "Bash(PORT=3022 npm run dev)",
       "WebFetch(domain:github.com)",
-      "Bash(PORT=3023 npm run dev)"
+      "Bash(PORT=3023 npm run dev)",
+      "WebFetch(domain:italskebrasnarstvi-eshop-8v5j3ake4-frantiseks-projects-0ba688b4.vercel.app)",
+      "Bash(set SUPABASE_ACCESS_TOKEN=sbp_cf4e143d271355c377eb2469e2756a4dde4ba076)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__apply_migration",
+      "mcp__supabase__execute_sql",
+      "Read(//c/Users/hynex/Downloads/**)"
     ],
     "deny": [],
     "additionalDirectories": [

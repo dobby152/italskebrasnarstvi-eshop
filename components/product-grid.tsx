@@ -6,7 +6,9 @@ import Image from 'next/image'
 import { Card, CardContent } from '../app/components/ui/card'
 import { Badge } from '../app/components/ui/badge'
 import { Button } from '../app/components/ui/button'
-import { ShoppingCart, Heart } from 'lucide-react'
+import { ShoppingCart, Heart, AlertCircle } from 'lucide-react'
+import { useColorVariantsAvailability } from '../app/hooks/useStock'
+import { ColorVariantGrid } from './color-variant-grid'
 
 interface Product {
   id: number
@@ -20,7 +22,15 @@ interface Product {
   brand?: string
   collection?: string
   colors?: string[]
-  colorVariants?: { colorName: string; hexColor: string; colorCode: string }[]
+  colorVariants?: { colorName: string; hexColor: string; colorCode: string; sku?: string }[]
+  // Collection information
+  collection_name?: string
+  collection_code?: string
+  // Stock information from new API
+  totalStock?: number
+  outletStock?: number
+  chodovStock?: number
+  available?: boolean
 }
 
 interface ProductGridProps {
@@ -109,28 +119,46 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
                 </h3>
               </Link>
               
-              {product.brand && (
-                <Badge variant="secondary" className="text-xs mb-2">
-                  {product.brand}
-                </Badge>
-              )}
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                {product.collection_name && (
+                  <Badge variant="outline" className="text-xs">
+                    {product.collection_name}
+                  </Badge>
+                )}
+                {product.brand && (
+                  <Badge variant="secondary" className="text-xs">
+                    {product.brand}
+                  </Badge>
+                )}
+                {/* Stock availability badge */}
+                {product.available !== undefined && (
+                  <Badge 
+                    variant={
+                      product.available 
+                        ? product.totalStock && product.totalStock <= 3 ? "outline" : "default"
+                        : "destructive"
+                    }
+                    className="text-xs"
+                  >
+                    {!product.available 
+                      ? "Vyprodáno" 
+                      : product.totalStock && product.totalStock <= 3 
+                        ? "Málo skladem"
+                        : "Skladem"
+                    }
+                  </Badge>
+                )}
+              </div>
               
-              {/* Color variants */}
+              {/* Color variants with availability */}
               {product.colorVariants && product.colorVariants.length > 0 && (
                 <div className="mb-3">
-                  <div className="flex gap-1 flex-wrap">
-                    {product.colorVariants.slice(0, 6).map((color, index) => (
-                      <div
-                        key={index}
-                        className="w-4 h-4 rounded-full border border-gray-200 flex-shrink-0"
-                        style={{ backgroundColor: color.hexColor }}
-                        title={color.colorName}
-                      />
-                    ))}
-                    {product.colorVariants.length > 6 && (
-                      <span className="text-xs text-gray-500 ml-1">+{product.colorVariants.length - 6}</span>
-                    )}
-                  </div>
+                  <ColorVariantGrid
+                    variants={product.colorVariants}
+                    maxVisible={6}
+                    showLabels={false}
+                    size="sm"
+                  />
                 </div>
               )}
               

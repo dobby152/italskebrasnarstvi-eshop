@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/app/lib/supabase'
+import { extractBaseSku, extractVariantCode, getColorInfo } from '@/app/lib/smart-variants'
 
 const SUPABASE_STORAGE_URL = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
 
@@ -42,7 +43,9 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * limit
     
     // Get all products first, then join with inventory manually
-    const { data: products, error: productsError, count } = await supabase
+    const collectionFilter = searchParams.get('collection')
+    
+    let query = supabase
       .from('products')
       .select(`
         id, 
@@ -53,9 +56,18 @@ export async function GET(request: NextRequest) {
         description, 
         sku, 
         normalized_brand, 
-        normalized_collection
+        normalized_collection,
+        collection_name,
+        collection_code
       `, { count: 'exact' })
       .limit(1000) // Get more records to sort by availability
+    
+    // Add collection filter if provided
+    if (collectionFilter) {
+      query = query.eq('collection_code', collectionFilter)
+    }
+    
+    const { data: products, error: productsError, count } = await query
     
     if (productsError) {
       console.error('Products query error:', productsError)
@@ -102,12 +114,37 @@ export async function GET(request: NextRequest) {
 
     console.log(`Found ${products.length} products, processing with inventory...`);
 
+    // Create a map of base SKUs to variants for generating color variants
+    const baseSkuMap = new Map<string, any[]>()
+    products.forEach(product => {
+      const baseSku = extractBaseSku(product.sku)
+      if (!baseSkuMap.has(baseSku)) {
+        baseSkuMap.set(baseSku, [])
+      }
+      baseSkuMap.get(baseSku)!.push(product)
+    })
+
     // Process products and add stock information
     const processedProducts = products.map(product => {
       const inventory = inventoryMap.get(product.sku)
       const totalStock = inventory?.total_stock || 0
       const outletStock = inventory?.outlet_stock || 0
       const chodovStock = inventory?.chodov_stock || 0
+
+      // Generate color variants for this product
+      const baseSku = extractBaseSku(product.sku)
+      const relatedProducts = baseSkuMap.get(baseSku) || []
+      const colorVariants = relatedProducts.map(relatedProduct => {
+        const variantCode = extractVariantCode(relatedProduct.sku)
+        const colorInfo = getColorInfo(variantCode)
+        
+        return {
+          colorName: colorInfo.name,
+          hexColor: colorInfo.hex,
+          colorCode: variantCode,
+          sku: relatedProduct.sku
+        }
+      })
 
       return {
         id: product.id,
@@ -119,11 +156,16 @@ export async function GET(request: NextRequest) {
         normalized_collection: product.normalized_collection,
         image_url: getSupabaseImageUrl(product.image_url),
         images: product.images ? product.images.map((img: string) => getSupabaseImageUrl(img)) : [],
+        // Collection information
+        collection_name: product.collection_name,
+        collection_code: product.collection_code,
         // Stock information
         totalStock,
         outletStock,
         chodovStock,
         available: totalStock > 0,
+        // Color variants
+        colorVariants: colorVariants.length > 1 ? colorVariants : [],
         // Sorting priority: available products first, then by stock level
         sortPriority: totalStock > 0 ? totalStock + 1000 : 0
       }

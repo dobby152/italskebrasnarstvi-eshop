@@ -83,9 +83,9 @@ export default function StockDisplay({ sku }: StockDisplayProps) {
         iconClass: 'text-blue-600',
         textClass: 'text-blue-800'
       }
-    }
+    } as const
     
-    return colorClasses[color] || colorClasses.red
+    return colorClasses[color as keyof typeof colorClasses] || colorClasses.red
   }
 
   const classes = getColorClasses(stockStatus.color)
