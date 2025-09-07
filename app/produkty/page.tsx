@@ -229,7 +229,12 @@ export default function ProduktyPage() {
                           onChange={() => toggleFilter("categories", collection.id)}
                           className="mr-4 w-5 h-5 text-black focus:ring-black border-gray-300 rounded"
                         />
-                        <span className="text-lg text-gray-700 group-hover:text-black transition-colors font-medium">{collection.name}</span>
+                        <span className="text-lg text-gray-700 group-hover:text-black transition-colors font-medium">
+                          {collection.name}
+                          {collection.count && (
+                            <span className="ml-2 text-sm text-gray-500">({collection.count})</span>
+                          )}
+                        </span>
                       </label>
                     ))
                   ) : (
