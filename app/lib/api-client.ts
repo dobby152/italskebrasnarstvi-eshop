@@ -36,6 +36,7 @@ export interface Collection {
   name: string
   originalName: string
   dbId: number
+  count?: number
 }
 
 export interface Brand {
@@ -116,7 +117,20 @@ class ApiClient {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      return await response.json()
+      const data = await response.json()
+      
+      // Transform the API response to match Collection interface
+      if (data.collections && Array.isArray(data.collections)) {
+        return data.collections.map((col: any) => ({
+          id: col.code,
+          name: col.name,
+          originalName: col.name,
+          dbId: 0,
+          count: col.count
+        }))
+      }
+      
+      return []
     } catch (error) {
       console.error('Error fetching collections:', error)
       throw error
