@@ -267,7 +267,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
 
             {/* Brand and Title */}
             <div>
-              <p className="text-lg text-gray-600 font-medium mb-2">{product.brand || 'Bez značky'}</p>
+              <p className="text-lg text-gray-600 font-medium mb-2">Piquadro</p>
               <h1 className="text-4xl font-black text-gray-900 leading-tight mb-4">{getProductDisplayName(product)}</h1>
               <p className="text-xl text-gray-700 leading-relaxed">{getProductDisplayDescription(product)}</p>
             </div>
@@ -332,15 +332,12 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className={`text-sm font-semibold text-green-600`}>
-                    Skladem
-                  </div>
                   <div className="text-xs text-gray-500 mt-1">Doprava zdarma nad 2.500 Kč</div>
                 </div>
               </div>
 
               {/* Stock Display */}
-              <StockDisplay sku={product.sku || ''} />
+              <StockDisplay sku={selectedSmartVariant?.sku || product.sku || ''} />
 
               {/* Quantity and Add to Cart */}
               <div className="flex gap-4 mb-6">
@@ -457,7 +454,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                     </div>
                     <div className="flex justify-between py-3 border-b border-gray-200">
                       <span className="font-medium text-gray-700">Značka:</span>
-                      <span className="text-gray-900 font-semibold">{product.brand || 'Bez značky'}</span>
+                      <span className="text-gray-900 font-semibold">Piquadro</span>
                     </div>
                     <div className="flex justify-between py-3 border-b border-gray-200">
                       <span className="font-medium text-gray-700">Kolekce:</span>
@@ -471,8 +468,8 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
                     )}
                     <div className="flex justify-between py-3 border-b border-gray-200">
                       <span className="font-medium text-gray-700">Dostupnost:</span>
-                      <span className={`font-semibold text-green-600`}>
-                        Skladem
+                      <span className="text-gray-900 font-semibold">
+                        Sledujte skladové zásoby níže
                       </span>
                     </div>
                     {product.features && (
