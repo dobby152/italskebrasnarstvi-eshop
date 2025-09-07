@@ -169,7 +169,6 @@ export default function SmartColorVariantSelector({
                   variant={
                     stockStatus.status === 'in-stock' ? 'default' :
                     stockStatus.status === 'low-stock' ? 'secondary' :
-                    stockStatus.status === 'limited-stock' ? 'outline' :
                     'destructive'
                   }
                   className="text-xs"
@@ -211,34 +210,18 @@ export default function SmartColorVariantSelector({
                   variant={
                     getStockStatus(selectedVariant).status === 'in-stock' ? 'default' :
                     getStockStatus(selectedVariant).status === 'low-stock' ? 'secondary' :
-                    getStockStatus(selectedVariant).status === 'limited-stock' ? 'outline' :
                     'destructive'
                   }
                   className="text-xs"
                 >
-                  {selectedStockLoading ? 'Načítám...' : getStockStatus(selectedVariant).label}
+                  {getStockStatus(selectedVariant).label}
                 </Badge>
-                {!selectedStockLoading && selectedStock && (
-                  <span className="text-xs text-gray-500">
-                    {selectedStock.totalStock}ks celkem
-                  </span>
-                )}
+                <span className="text-xs text-gray-500">
+                  {getStockStatus(selectedVariant).stock}ks celkem
+                </span>
               </div>
               
-              {/* Branch availability */}
-              {selectedStock && selectedStock.locations.length > 1 && (
-                <div className="mt-2 space-y-1">
-                  {selectedStock.locations.map((location, index) => (
-                    <div key={index} className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-1">
-                        <Package className="w-3 h-3 text-gray-500" />
-                        <span className="text-gray-600">{location.location}</span>
-                      </div>
-                      <span className="font-medium text-gray-900">{location.stock}ks</span>
-                    </div>
-                  ))}
-                </div>
-              )}
+              {/* Branch availability - removed for now since selectedStock is not defined */}
             </div>
           </div>
           

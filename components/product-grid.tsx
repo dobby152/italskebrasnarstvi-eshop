@@ -7,8 +7,8 @@ import { Card, CardContent } from '../app/components/ui/card'
 import { Badge } from '../app/components/ui/badge'
 import { Button } from '../app/components/ui/button'
 import { ShoppingCart, Heart, AlertCircle } from 'lucide-react'
-import { useColorVariantsAvailability } from '../app/hooks/useStock'
 import { ColorVariantGrid } from './color-variant-grid'
+import OutOfStockOrderButton from '../app/components/out-of-stock-order-button'
 
 interface Product {
   id: number
@@ -167,9 +167,19 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
                   {product.price.toLocaleString('cs-CZ')} Kč
                 </span>
                 
-                <Button size="sm" variant="outline">
-                  <ShoppingCart className="h-4 w-4" />
-                </Button>
+                {product.available ? (
+                  <Button size="sm" variant="outline">
+                    <ShoppingCart className="h-4 w-4" />
+                  </Button>
+                ) : (
+                  <OutOfStockOrderButton
+                    productSku={product.sku}
+                    productName={product.name}
+                    price={product.price}
+                    size="sm"
+                    className="text-xs"
+                  />
+                )}
               </div>
             </div>
           </CardContent>

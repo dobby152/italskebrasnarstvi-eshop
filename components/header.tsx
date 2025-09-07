@@ -34,18 +34,18 @@ export default function Header() {
             <span className="text-gray-400 text-sm font-normal">.cz</span>
           </Link>
 
-          {/* Simplified menu */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <Link href="/produkty" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
+          {/* Main menu */}
+          <div className="hidden lg:flex items-center space-x-10">
+            <Link href="/produkty" className="text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase">
               PRODUKTY
             </Link>
-            <Link href="/kolekce" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
+            <Link href="/kolekce" className="text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase">
               KOLEKCE  
             </Link>
-            <Link href="/o-nas" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
+            <Link href="/o-nas" className="text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase">
               O NÁS
             </Link>
-            <Link href="/kontakt" className="text-gray-700 hover:text-black transition-colors font-medium text-lg">
+            <Link href="/kontakt" className="text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase">
               KONTAKT
             </Link>
           </div>
@@ -137,31 +137,31 @@ export default function Header() {
         {/* Mobile menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 py-4">
-            <div className="space-y-4">
+            <div className="space-y-6">
               <Link
                 href="/produkty"
-                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
+                className="block text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 PRODUKTY
               </Link>
               <Link
                 href="/kolekce"
-                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
+                className="block text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 KOLEKCE
               </Link>
               <Link
                 href="/o-nas"
-                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
+                className="block text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 O NÁS
               </Link>
               <Link
                 href="/kontakt"
-                className="block text-gray-700 hover:text-black transition-colors font-medium text-lg"
+                className="block text-gray-800 hover:text-black transition-colors font-bold text-xl tracking-wide uppercase"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 KONTAKT

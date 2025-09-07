@@ -67,6 +67,35 @@ export async function GET(request: NextRequest) {
       query = query.eq('collection_code', collectionFilter)
     }
     
+    // Add search filter if provided
+    const searchFilter = searchParams.get('search')
+    if (searchFilter) {
+      query = query.or(`sku.ilike.%${searchFilter}%,name.ilike.%${searchFilter}%`)
+    }
+
+    // Add brand filter
+    const brandFilter = searchParams.get('brand')
+    if (brandFilter) {
+      query = query.eq('normalized_brand', brandFilter)
+    }
+
+    // Add category filter (multiple)
+    const categoriesFilter = searchParams.get('categories')
+    if (categoriesFilter) {
+      const categories = categoriesFilter.split(',')
+      query = query.in('collection_code', categories)
+    }
+
+    // Add price filter
+    const minPrice = searchParams.get('minPrice')
+    const maxPrice = searchParams.get('maxPrice')
+    if (minPrice) {
+      query = query.gte('price', parseInt(minPrice))
+    }
+    if (maxPrice) {
+      query = query.lte('price', parseInt(maxPrice))
+    }
+    
     const { data: products, error: productsError, count } = await query
     
     if (productsError) {
@@ -153,6 +182,7 @@ export async function GET(request: NextRequest) {
         description: product.description,
         sku: product.sku,
         normalized_brand: product.normalized_brand,
+        brand: product.normalized_brand || 'Piquadro',
         normalized_collection: product.normalized_collection,
         image_url: getSupabaseImageUrl(product.image_url),
         images: product.images ? product.images.map((img: string) => getSupabaseImageUrl(img)) : [],
@@ -171,8 +201,14 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    // Filter products by availability if requested
+    const inStockOnly = searchParams.get('inStockOnly') === 'true'
+    let filteredProducts = inStockOnly 
+      ? processedProducts.filter(p => p.available)
+      : processedProducts
+
     // Sort products by availability (available first, then by stock amount)
-    let sortedProducts = [...processedProducts]
+    let sortedProducts = [...filteredProducts]
     
     if (sortBy === 'availability') {
       // Always show available products first, regardless of sortOrder

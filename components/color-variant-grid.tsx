@@ -1,7 +1,8 @@
 "use client"
 
+import { useState, useEffect } from 'react'
 import { AlertCircle, CheckCircle } from 'lucide-react'
-import { useColorVariantsAvailability } from '../app/hooks/useStock'
+import { simpleStockService } from '../app/lib/simple-stock-service'
 
 interface ColorVariant {
   colorName: string
@@ -23,14 +24,50 @@ export function ColorVariantGrid({
   showLabels = false,
   size = 'sm'
 }: ColorVariantGridProps) {
-  const { 
-    getColorAvailability, 
-    loading, 
-    availableCount, 
-    unavailableCount 
-  } = useColorVariantsAvailability(variants)
+  const [stockData, setStockData] = useState<Map<string, { available: boolean, lowStock: boolean }>>(new Map())
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadStockData = async () => {
+      if (!variants || variants.length === 0) {
+        setLoading(false)
+        return
+      }
+
+      const stockMap = new Map()
+      
+      for (const variant of variants) {
+        if (variant.sku) {
+          try {
+            const stock = await simpleStockService.getProductStock(variant.sku)
+            stockMap.set(variant.colorCode, {
+              available: stock.available,
+              lowStock: stock.status === 'low-stock'
+            })
+          } catch (error) {
+            stockMap.set(variant.colorCode, {
+              available: false,
+              lowStock: false
+            })
+          }
+        }
+      }
+      
+      setStockData(stockMap)
+      setLoading(false)
+    }
+
+    loadStockData()
+  }, [variants])
 
   if (!variants || variants.length === 0) return null
+
+  const getColorAvailability = (colorCode: string) => {
+    return stockData.get(colorCode) || { available: true, lowStock: false }
+  }
+
+  const availableCount = Array.from(stockData.values()).filter(s => s.available).length
+  const unavailableCount = Array.from(stockData.values()).filter(s => !s.available).length
 
   const sizeClasses = {
     sm: 'w-4 h-4',
