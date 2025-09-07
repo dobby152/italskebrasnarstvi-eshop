@@ -5,7 +5,7 @@ import { extractBaseSku, extractVariantCode, getColorInfo } from '@/app/lib/smar
 const SUPABASE_STORAGE_URL = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
 
 function getSupabaseImageUrl(imagePath: string): string {
-  if (!imagePath) return '/placeholder-product.jpg'
+  if (!imagePath) return '/placeholder.svg'
   
   // If it's already a full URL, return as is
   if (imagePath.startsWith('http')) {
@@ -175,6 +175,9 @@ export async function GET(request: NextRequest) {
         }
       })
 
+      // Use first image from images array if image_url is null
+      const primaryImage = product.image_url || (product.images && product.images.length > 0 ? product.images[0] : null)
+      
       return {
         id: product.id,
         name: product.name,
@@ -184,7 +187,7 @@ export async function GET(request: NextRequest) {
         normalized_brand: product.normalized_brand,
         brand: product.normalized_brand || 'Piquadro',
         normalized_collection: product.normalized_collection,
-        image_url: getSupabaseImageUrl(product.image_url),
+        image_url: getSupabaseImageUrl(primaryImage),
         images: product.images ? product.images.map((img: string) => getSupabaseImageUrl(img)) : [],
         // Collection information
         collection_name: product.collection_name,
