@@ -5,8 +5,7 @@ import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
 import { formatPrice } from "../lib/utils"
 import { ProductVariant } from "../lib/smart-variants"
-import { useVariantsStock, useProductStock } from "../hooks/useStock"
-import { stockService } from "../lib/stock-service"
+import { simpleStockService } from "../lib/simple-stock-service"
 import { AlertCircle, Package, Truck } from "lucide-react"
 import OutOfStockOrderButton from "./out-of-stock-order-button"
 
@@ -25,12 +24,7 @@ export default function SmartColorVariantSelector({
     variants.find(v => v.sku === selectedSku) || variants[0] || null
   )
 
-  // Get real-time stock data for all variants
-  const variantSkus = variants.map(v => v.sku)
-  const { variants: stockVariants, loading: stockLoading } = useVariantsStock(variantSkus)
-  
-  // Get detailed stock for selected variant
-  const { stock: selectedStock, loading: selectedStockLoading } = useProductStock(selectedVariant?.sku)
+  const [stockLoading, setStockLoading] = useState(false)
 
   const handleVariantSelect = (variant: ProductVariant) => {
     setSelectedVariant(variant)
@@ -51,36 +45,17 @@ export default function SmartColorVariantSelector({
     return null
   }
 
-  // Get real stock status using the stock service
+  // Simple stock status based on variant data
   const getStockStatus = (variant: ProductVariant) => {
-    const stockVariant = stockVariants.find(s => s.sku === variant.sku)
+    const stock = variant.stock || 0
     
-    if (stockVariant) {
-      const productStock = {
-        sku: stockVariant.sku,
-        totalStock: stockVariant.stock,
-        locations: [],
-        available: stockVariant.available,
-        lowStock: stockVariant.stock <= 3,
-        lastUpdated: new Date()
-      }
-      const stockInfo = stockService.getStockStatus(productStock)
-      return {
-        status: stockInfo.status,
-        label: stockInfo.text,
-        available: stockVariant.available,
-        stock: stockVariant.stock
-      }
-    }
-    
-    // Fallback to variant data
-    if (variant.availability === 'out_of_stock' || variant.stock <= 0) {
+    if (stock <= 0) {
       return { status: 'out-of-stock' as const, label: 'Vyprodáno', available: false, stock: 0 }
+    } else if (stock <= 3) {
+      return { status: 'low-stock' as const, label: 'Málo skladem', available: true, stock }
+    } else {
+      return { status: 'in-stock' as const, label: 'Skladem', available: true, stock }
     }
-    if (variant.stock <= 3) {
-      return { status: 'low-stock' as const, label: 'Málo skladem', available: true, stock: variant.stock }
-    }
-    return { status: 'in-stock' as const, label: 'Skladem', available: true, stock: variant.stock }
   }
 
   return (
