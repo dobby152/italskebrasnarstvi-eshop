@@ -55,11 +55,13 @@ export function getImageUrl(imagePath: string | undefined | null): string {
   // DEBUG: Log what we're processing
   console.log('getImageUrl processing:', imagePath);
   
-  // Special handling for image filenames that appear to be product images
-  // If it matches typical product image patterns, return placeholder instead of broken local path
-  if (/^[0-9]+_[A-Z0-9-]+_[A-Z0-9-]+\.(jpg|jpeg|png|webp)$/i.test(imagePath)) {
-    console.warn('Product image filename detected but no proper URL found:', imagePath)
-    return '/placeholder.svg'
+  // Handle Supabase storage paths that don't start with http
+  // Check if this looks like a Supabase storage path (folder/filename pattern)
+  if (imagePath.includes('/') && !imagePath.startsWith('/') && !imagePath.startsWith('http')) {
+    const supabaseBaseUrl = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
+    // Convert .jpg/.jpeg to .webp for Supabase storage
+    const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp')
+    return `${supabaseBaseUrl}/${webpPath}`
   }
   
   // If it's just the filename, add the /images/ prefix (local images)

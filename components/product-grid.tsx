@@ -116,7 +116,7 @@ export function ProductGrid({
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       {products?.map((product) => (
         <Card key={product.id} className="group hover:shadow-lg transition-shadow">
           <CardContent className="p-0">
@@ -169,7 +169,7 @@ export function ProductGrid({
                     className="text-xs"
                   >
                     {!product.available 
-                      ? "Vyprodáno" 
+                      ? "Na objednávku" 
                       : product.totalStock && product.totalStock <= 3 
                         ? "Málo skladem"
                         : "Skladem"
@@ -196,8 +196,9 @@ export function ProductGrid({
                 </span>
                 
                 {product.available ? (
-                  <Button size="sm" variant="outline">
-                    <ShoppingCart className="h-4 w-4" />
+                  <Button size="default" variant="outline" className="px-6 py-2">
+                    <ShoppingCart className="h-5 w-5 mr-2" />
+                    Přidat
                   </Button>
                 ) : (
                   <OutOfStockOrderButton
