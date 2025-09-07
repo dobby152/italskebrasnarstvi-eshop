@@ -34,24 +34,25 @@ export function ColorVariantGrid({
         return
       }
 
+      // Use a simplified approach - assume all variants with SKU are available for now
+      // This is much faster than calling API for each variant
       const stockMap = new Map()
       
-      for (const variant of variants) {
+      variants.forEach(variant => {
         if (variant.sku) {
-          try {
-            const stock = await simpleStockService.getProductStock(variant.sku)
-            stockMap.set(variant.colorCode, {
-              available: stock.available,
-              lowStock: stock.status === 'low-stock'
-            })
-          } catch (error) {
-            stockMap.set(variant.colorCode, {
-              available: false,
-              lowStock: false
-            })
-          }
+          // For performance, we'll assume variants are available
+          // The real availability will be shown on product detail pages
+          stockMap.set(variant.colorCode, {
+            available: true,
+            lowStock: false
+          })
+        } else {
+          stockMap.set(variant.colorCode, {
+            available: false,
+            lowStock: false
+          })
         }
-      }
+      })
       
       setStockData(stockMap)
       setLoading(false)

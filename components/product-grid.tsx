@@ -39,14 +39,32 @@ interface ProductGridProps {
   limit?: number
   sortBy?: string
   sortOrder?: string
+  // Filter props
+  categories?: string
+  brand?: string
+  minPrice?: string
+  maxPrice?: string
+  inStockOnly?: string
 }
 
-export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrder }: ProductGridProps) {
+export function ProductGrid({ 
+  category, 
+  searchQuery, 
+  limit = 12, 
+  sortBy, 
+  sortOrder,
+  categories,
+  brand,
+  minPrice,
+  maxPrice,
+  inStockOnly
+}: ProductGridProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true)
       try {
         const params = new URLSearchParams()
         if (category) params.append('collection', category)
@@ -54,12 +72,22 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
         if (limit) params.append('limit', limit.toString())
         if (sortBy) params.append('sortBy', sortBy)
         if (sortOrder) params.append('sortOrder', sortOrder)
+        
+        // Add filter params
+        if (categories) params.append('categories', categories)
+        if (brand) params.append('brand', brand)
+        if (minPrice) params.append('minPrice', minPrice)
+        if (maxPrice) params.append('maxPrice', maxPrice)
+        if (inStockOnly) params.append('inStockOnly', inStockOnly)
 
+        console.log('Fetching products with params:', params.toString())
+        
         const response = await fetch(`/api/products?${params}`)
         const data = await response.json()
         
         if (data.products) {
           setProducts(data.products)
+          console.log('Loaded products:', data.products.length)
         }
       } catch (error) {
         console.error('Error fetching products:', error)
@@ -69,7 +97,7 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
     }
 
     fetchProducts()
-  }, [category, searchQuery, limit, sortBy, sortOrder])
+  }, [category, searchQuery, limit, sortBy, sortOrder, categories, brand, minPrice, maxPrice, inStockOnly])
 
   if (loading) {
     return (
