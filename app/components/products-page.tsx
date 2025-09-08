@@ -104,7 +104,7 @@ const ProductCard = ({ product, onStatusChange }: { product: any, onStatusChange
                   Upravit
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  onClick={() => onStatusChange?.(product.id, status === 'active' ? 'archived' : 'active')}
+                  onClick={() => onStatusChange?.(product.id.toString(), status === 'active' ? 'archived' : 'active')}
                 >
                   {status === 'active' ? (
                     <>
@@ -735,7 +735,7 @@ export function ProductsPage() {
                                  Zobrazit detail
                                </DropdownMenuItem>
                                <DropdownMenuItem 
-                                 onClick={() => handleStatusChange(product.id, status === 'active' ? 'archived' : 'active')}
+                                 onClick={() => handleStatusChange(product.id.toString(), status === 'active' ? 'archived' : 'active')}
                                >
                                  {status === 'active' ? (
                                    <>
