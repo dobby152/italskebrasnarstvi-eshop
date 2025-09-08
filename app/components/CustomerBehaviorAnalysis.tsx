@@ -34,9 +34,12 @@ const CustomerBehaviorAnalysis = () => {
 
     // Function to send data to analytics service
     const sendToAnalytics = (data: { event: string; element?: string; form?: string }) => {
-      window.ga('send', 'event', data.event, data.element || data.form);
-      // Implement actual analytics service call here
-      window.ga('send', 'event', data.event, data.element || data.form);
+      // Type-safe analytics call
+      if (typeof window !== 'undefined' && (window as any).ga) {
+        (window as any).ga('send', 'event', data.event, data.element || data.form);
+      }
+      // Log for debugging
+      console.log('Analytics event:', data);
     };
 
     // Example: Track page views
