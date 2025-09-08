@@ -29,9 +29,9 @@ export async function GET(request: NextRequest) {
         lowStockAlerts = inventory.filter(item => (item.total_stock || 0) < 5).length
       }
     } else {
-      chodovStock = stockData.chodov_total || 0
-      outletStock = stockData.outlet_total || 0
-      lowStockAlerts = stockData.low_stock_count || 0
+      chodovStock = (stockData as any).chodov_total || 0
+      outletStock = (stockData as any).outlet_total || 0
+      lowStockAlerts = (stockData as any).low_stock_count || 0
     }
 
     const totalValue = (chodovStock + outletStock) * 2500
