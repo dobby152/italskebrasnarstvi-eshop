@@ -93,7 +93,9 @@ export const transformProduct = (product: any) => {
 
 // New functions
 const sendToAnalytics = (data: { event: string; element?: string; form?: string }) => {
-  window.ga('send', 'event', data.event, data.element || data.form);
+  if (typeof window !== 'undefined' && (window as any).ga) {
+    (window as any).ga('send', 'event', data.event, data.element || data.form);
+  }
   // Implement actual analytics service call here
 };
 
