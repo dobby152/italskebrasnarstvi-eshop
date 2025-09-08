@@ -91,7 +91,8 @@
       "mcp__supabase__execute_sql",
       "Read(//c/Users/hynex/Downloads/**)",
       "Bash(PORT=3030 npm run dev)",
-      "Bash(PORT=3035 npm run dev)"
+      "Bash(PORT=3035 npm run dev)",
+      "mcp__supabase__list_projects"
     ],
     "deny": [],
     "additionalDirectories": [

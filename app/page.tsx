@@ -188,7 +188,7 @@ export default function HomePage() {
             <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
               <div className="relative h-96">
                 <img 
-                  src="/black%20square.webp" 
+                  src="/black-square.webp" 
                   alt="Black Square kolekce" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -204,7 +204,7 @@ export default function HomePage() {
             <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
               <div className="relative h-96">
                 <img 
-                  src="/blue%20square.webp" 
+                  src="/blue-square.webp" 
                   alt="Blue Square kolekce" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
