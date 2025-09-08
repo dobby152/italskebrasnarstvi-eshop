@@ -4,6 +4,7 @@ import { Button } from "./ui/button"
 import { Search, User, Heart, ShoppingCart, Menu, X } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { useCart } from "../context/cart-context"
 import { useAuth } from "../contexts/auth-context"
 import { getAvailableCategories } from "../lib/product-categories"
@@ -59,7 +60,14 @@ export default function Header() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <img src="/logo.avif" alt="italskeBrasnarstvi.cz" className="h-12" />
+            <Image 
+              src="/logo.avif" 
+              alt="italskeBrasnarstvi.cz" 
+              width={192}
+              height={48}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop navigation */}
