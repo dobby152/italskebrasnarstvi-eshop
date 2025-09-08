@@ -42,6 +42,7 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table'
 import { Progress } from '../../components/ui/progress'
 import { useWarehouseStats, useLowStockProducts, useStockMovements, useOCRProcessing } from '../../hooks/useWarehouse'
+import { useTransfers, useAnalytics, TransferRequest } from '../../hooks/useTransfers'
 
 const WarehousePage = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -59,6 +60,8 @@ const WarehousePage = () => {
   const { products: lowStockProducts, loading: lowStockLoading, refetch: refetchLowStock } = useLowStockProducts()
   const { movements, loading: movementsLoading, createMovement } = useStockMovements()
   const { processing: ocrProcessing, results: ocrResults, processFile, confirmInvoice, clearResults } = useOCRProcessing()
+  const { transfers, loading: transfersLoading, createTransfer } = useTransfers()
+  const { analytics, loading: analyticsLoading } = useAnalytics(30)
 
   const handleFileUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -146,7 +149,7 @@ const WarehousePage = () => {
                     {statsLoading ? (
                       <div className="h-8 w-16 bg-gray-200 rounded animate-pulse" />
                     ) : statsError ? (
-                      'N/A'
+                      '0'
                     ) : (
                       stats?.totalProducts || 0
                     )}
@@ -168,7 +171,7 @@ const WarehousePage = () => {
                     {statsLoading ? (
                       <div className="h-8 w-20 bg-gray-200 rounded animate-pulse" />
                     ) : statsError ? (
-                      'N/A'
+                      '0K Kč'
                     ) : (
                       `${((stats?.totalValue || 0) / 1000).toFixed(0)}K Kč`
                     )}
@@ -190,7 +193,7 @@ const WarehousePage = () => {
                     {statsLoading ? (
                       <div className="h-8 w-12 bg-gray-200 rounded animate-pulse" />
                     ) : statsError ? (
-                      'N/A'
+                      '0'
                     ) : (
                       stats?.lowStockAlerts || 0
                     )}
@@ -212,7 +215,7 @@ const WarehousePage = () => {
                     {statsLoading ? (
                       <div className="h-8 w-16 bg-gray-200 rounded animate-pulse" />
                     ) : statsError ? (
-                      'N/A'
+                      '0'
                     ) : (
                       stats?.recentMovements || 0
                     )}
@@ -529,31 +532,122 @@ const WarehousePage = () => {
           </div>
         </div>
 
-        {/* Recent Invoices */}
+        {/* Product Analytics */}
         <Card className="mt-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5" />
-              Nedávné faktury
+              <BarChart3 className="h-5 w-5 text-purple-600" />
+              Analytika produktů (30 dní)
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Číslo faktury</TableHead>
-                  <TableHead>Dodavatel</TableHead>
-                  <TableHead>Datum</TableHead>
-                  <TableHead>Stav</TableHead>
-                  <TableHead>Položky</TableHead>
-                  <TableHead>Hodnota</TableHead>
-                  <TableHead>Zpracováno</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {/* No invoices available yet */}
-              </TableBody>
-            </Table>
+            {analyticsLoading ? (
+              <div className="text-center py-4">
+                <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2" />
+                <p className="text-sm text-gray-600">Načítání analytiky...</p>
+              </div>
+            ) : analytics.topProducts.length > 0 ? (
+              <div className="space-y-4">
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-red-600">{analytics.summary?.hotProducts || 0}</div>
+                    <div className="text-gray-600">Populární</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-orange-600">{analytics.summary?.slowProducts || 0}</div>
+                    <div className="text-gray-600">Pomalé</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-red-600">{analytics.summary?.criticalStock || 0}</div>
+                    <div className="text-gray-600">Kritické</div>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="font-medium text-gray-900">Top produkty</h4>
+                  {analytics.topProducts.slice(0, 5).map((product, index) => (
+                    <div key={product.sku} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-mono text-gray-500">#{index + 1}</span>
+                        <div>
+                          <div className="font-medium">{product.name}</div>
+                          <div className="text-xs text-gray-500">SKU: {product.sku}</div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="flex items-center gap-1">
+                          <Badge variant={
+                            product.popularity.category === 'hot' ? 'destructive' :
+                            product.popularity.category === 'popular' ? 'default' : 'secondary'
+                          }>
+                            {product.popularity.category === 'hot' ? '🔥' : 
+                             product.popularity.category === 'popular' ? '📈' : '📊'}
+                          </Badge>
+                          <span className="text-sm font-bold">{product.popularity.score.toFixed(1)}</span>
+                        </div>
+                        <div className="text-xs text-gray-500">{product.currentStock} ks</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <BarChart3 className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                <p>Žádná analytická data k dispozici</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Transfer Management */}
+        <Card className="mt-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Package className="h-5 w-5 text-green-600" />
+              Převody mezi pobočkami
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Z pobočky
+                  </label>
+                  <Select value={selectedLocation} onValueChange={(value: 'chodov' | 'outlet') => setSelectedLocation(value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Vyberte pobočku" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="chodov">Chodov</SelectItem>
+                      <SelectItem value="outlet">Outlet</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Na pobočku
+                  </label>
+                  <Select value={selectedLocation === 'chodov' ? 'outlet' : 'chodov'} disabled>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={selectedLocation === 'chodov' ? 'outlet' : 'chodov'}>
+                        {selectedLocation === 'chodov' ? 'Outlet' : 'Chodov'}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              
+              <div className="text-center py-4 text-gray-500">
+                <Package className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                <p>Funkce převodů s Zasilat.cz API je připravena</p>
+                <p className="text-xs">Automatické vytváření zásilek mezi pobočkami</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>

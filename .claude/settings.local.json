@@ -92,7 +92,8 @@
       "Read(//c/Users/hynex/Downloads/**)",
       "Bash(PORT=3030 npm run dev)",
       "Bash(PORT=3035 npm run dev)",
-      "mcp__supabase__list_projects"
+      "mcp__supabase__list_projects",
+      "WebFetch(domain:www.zaslat.cz)"
     ],
     "deny": [],
     "additionalDirectories": [
