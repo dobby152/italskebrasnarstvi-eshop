@@ -133,6 +133,56 @@ function getSupabaseImageUrl(imagePath: string, productSku?: string): string {
   return finalUrl
 }
 
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params
+    const body = await request.json()
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Product ID is required' },
+        { status: 400 }
+      )
+    }
+
+    // Update product in Supabase
+    const { data: product, error } = await supabase
+      .from('products')
+      .update(body)
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) {
+      console.error('Error updating product:', error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    if (!product) {
+      return NextResponse.json(
+        { error: 'Product not found' },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({ 
+      product,
+      success: true,
+      message: 'Product updated successfully' 
+    })
+
+  } catch (error) {
+    console.error('Product update error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

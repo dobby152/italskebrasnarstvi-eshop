@@ -15,13 +15,15 @@ import {
   TrendingUp,
   Percent,
   Puzzle,
-  Menu
+  Menu,
+  Bell
 } from "lucide-react"
 
 const navigationItems = [
   { href: "/admin", label: "Domů", icon: Home },
   { href: "/admin/produkty", label: "Produkty", icon: Package },
   { href: "/admin/objednavky", label: "Objednávky", icon: ShoppingCart },
+  { href: "/admin/supplier-orders", label: "Objednávky na objednání", icon: Bell },
   { href: "/admin/zakaznici", label: "Zákazníci", icon: Users },
   { href: "/admin/analytika", label: "Analytika", icon: BarChart3 },
   { href: "/admin/slevy", label: "Slevy", icon: Percent },

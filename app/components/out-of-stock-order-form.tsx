@@ -125,15 +125,14 @@ export default function OutOfStockOrderForm({
   }
 
   return (
-    <Card className="max-w-md mx-auto">
-      <CardHeader className="pb-4">
-        <div className="flex items-center gap-3 mb-2">
-          <AlertCircle className="w-5 h-5 text-orange-500" />
-          <Badge variant="secondary" className="bg-orange-100 text-orange-700">
-            Není skladem
+    <div className="w-full">
+      <div className="mb-6">
+        <div className="flex items-center gap-3 mb-3">
+          <Badge variant="destructive" className="bg-red-100 text-red-800 border-red-200">
+            <AlertCircle className="w-4 h-4 mr-1" />
+            Produkt není skladem
           </Badge>
         </div>
-        <CardTitle className="text-lg">Objednat nedostupný produkt</CardTitle>
         <div className="bg-gray-50 rounded-lg p-3 mt-2">
           <div className="flex items-center gap-2 mb-1">
             <Package className="w-4 h-4 text-gray-500" />
@@ -149,9 +148,7 @@ export default function OutOfStockOrderForm({
             </p>
           )}
         </div>
-      </CardHeader>
-
-      <CardContent>
+      </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-3">
@@ -268,7 +265,6 @@ export default function OutOfStockOrderForm({
             )}
           </div>
         </form>
-      </CardContent>
-    </Card>
+    </div>
   )
 }

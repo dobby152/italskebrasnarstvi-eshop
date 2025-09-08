@@ -5,13 +5,17 @@ import { Card, CardContent } from './ui/card'
 import { Badge } from './ui/badge'
 import { simpleStockService, SimpleStock } from '../lib/simple-stock-service'
 import { Package, MapPin } from 'lucide-react'
+import OutOfStockOrderButton from './out-of-stock-order-button'
 
 interface SimpleStockDisplayProps {
   sku: string
   showLocations?: boolean
+  productName?: string
+  productPrice?: number
+  colorVariant?: string
 }
 
-export default function SimpleStockDisplay({ sku, showLocations = true }: SimpleStockDisplayProps) {
+export default function SimpleStockDisplay({ sku, showLocations = true, productName, productPrice, colorVariant }: SimpleStockDisplayProps) {
   const [stock, setStock] = useState<SimpleStock | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -121,10 +125,21 @@ export default function SimpleStockDisplay({ sku, showLocations = true }: Simple
             </div>
           )}
 
-          {/* Out of stock message */}
+          {/* Out of stock order button */}
           {stock.totalStock === 0 && (
-            <div className="text-xs text-gray-600 pt-2 border-t border-current border-opacity-20">
-              Aktuálně není skladem. Kontaktujte nás pro informace o dostupnosti.
+            <div className="pt-3 border-t border-current border-opacity-20">
+              <div className="text-xs text-gray-600 mb-3">
+                Produkt není aktuálně skladem. Můžete se nechat informovat o dostupnosti.
+              </div>
+              <OutOfStockOrderButton
+                productSku={sku}
+                productName={productName || 'Neznámý produkt'}
+                price={productPrice}
+                colorVariant={colorVariant}
+                size="sm"
+                variant="outline"
+                className="w-full"
+              />
             </div>
           )}
         </div>

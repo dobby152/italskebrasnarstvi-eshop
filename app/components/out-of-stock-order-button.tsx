@@ -51,11 +51,11 @@ export default function OutOfStockOrderButton({
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto bg-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-orange-500" />
-              Produkt není skladem
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <AlertCircle className="w-6 h-6 text-orange-500" />
+              Informovat o dostupnosti produktu
             </DialogTitle>
           </DialogHeader>
           

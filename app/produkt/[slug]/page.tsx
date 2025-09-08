@@ -337,7 +337,12 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
               </div>
 
               {/* Stock Display */}
-              <SimpleStockDisplay sku={selectedSmartVariant?.sku || product.sku || ''} />
+              <SimpleStockDisplay 
+                sku={selectedSmartVariant?.sku || product.sku || ''}
+                productName={getProductDisplayName(product)}
+                productPrice={displayPrice}
+                colorVariant={selectedSmartVariant?.colorName}
+              />
 
               {/* Quantity and Add to Cart */}
               <div className="flex gap-4 mb-6">

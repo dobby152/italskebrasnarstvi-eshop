@@ -21,6 +21,8 @@ import {
   Package,
   Grid3X3,
   List,
+  ToggleLeft,
+  ToggleRight,
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -56,8 +58,8 @@ const getStatusBadge = (status: string) => {
   }
 }
 
-// Product Card Component
-const ProductCard = ({ product }: { product: any }) => {
+// Product Card Component  
+const ProductCard = ({ product, onStatusChange }: { product: any, onStatusChange?: (productId: string, newStatus: string) => void }) => {
   const transformedProduct = transformProduct(product)
   const status = transformedProduct.availability === 'out_of_stock' ? 'archived' : 'active'
   const displayName = getProductDisplayName(transformedProduct)
@@ -100,6 +102,21 @@ const ProductCard = ({ product }: { product: any }) => {
                 <DropdownMenuItem>
                   <Edit className="mr-2 h-4 w-4" />
                   Upravit
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => onStatusChange?.(product.id, status === 'active' ? 'archived' : 'active')}
+                >
+                  {status === 'active' ? (
+                    <>
+                      <ToggleLeft className="mr-2 h-4 w-4" />
+                      Označit jako nedostupné
+                    </>
+                  ) : (
+                    <>
+                      <ToggleRight className="mr-2 h-4 w-4" />
+                      Označit jako dostupné
+                    </>
+                  )}
                 </DropdownMenuItem>
                 <DropdownMenuItem className="text-red-600">
                   <Trash2 className="mr-2 h-4 w-4" />
@@ -189,6 +206,32 @@ export function ProductsPage() {
   
   
   const { stats, loading: statsLoading } = useProductStats()
+  
+  // Status update handler
+  const handleStatusChange = async (productId: string, newStatus: string) => {
+    try {
+      const response = await fetch(`/api/products/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          status: newStatus,
+          availability: newStatus === 'archived' ? 'out_of_stock' : 'in_stock'
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to update product status')
+      }
+
+      // Refresh the products list
+      window.location.reload()
+    } catch (error) {
+      console.error('Error updating product status:', error)
+      alert('Chyba při aktualizaci statusu produktu')
+    }
+  }
   
   // Debug logging
   useEffect(() => {
@@ -690,6 +733,21 @@ export function ProductsPage() {
                                <DropdownMenuItem>
                                  <Eye className="mr-2 h-4 w-4" />
                                  Zobrazit detail
+                               </DropdownMenuItem>
+                               <DropdownMenuItem 
+                                 onClick={() => handleStatusChange(product.id, status === 'active' ? 'archived' : 'active')}
+                               >
+                                 {status === 'active' ? (
+                                   <>
+                                     <ToggleLeft className="mr-2 h-4 w-4" />
+                                     Označit jako nedostupné
+                                   </>
+                                 ) : (
+                                   <>
+                                     <ToggleRight className="mr-2 h-4 w-4" />
+                                     Označit jako dostupné
+                                   </>
+                                 )}
                                </DropdownMenuItem>
                                <DropdownMenuItem className="text-red-600">
                                  <Trash2 className="mr-2 h-4 w-4" />
