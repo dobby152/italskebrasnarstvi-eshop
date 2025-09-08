@@ -3,9 +3,13 @@ import { useState, useEffect } from 'react'
 export interface Transfer {
   id: number
   sku: string
+  product_name: string
   movement_type: 'in' | 'out'
   quantity: number
-  location: 'chodov' | 'outlet'
+  from_location: 'chodov' | 'outlet'
+  to_location: 'chodov' | 'outlet'
+  status: 'pending' | 'completed' | 'rejected'
+  notes: string
   reason: string
   created_at: string
   user_id: string
