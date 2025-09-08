@@ -27,7 +27,10 @@ import {
   RefreshCw,
   BarChart3,
   PieChart,
-  Activity
+  Activity,
+  Plus,
+  Minus,
+  History
 } from "lucide-react"
 import {
   Select,
@@ -38,94 +41,82 @@ import {
 } from '../../components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table'
 import { Progress } from '../../components/ui/progress'
-
-// Mock data for demonstration
-const warehouseStats = {
-  totalProducts: 1247,
-  totalValue: 2847650,
-  lowStockAlerts: 23,
-  recentMovements: 156,
-  totalLocations: {
-    chodov: 847,
-    outlet: 400
-  }
-}
-
-const recentInvoices = [
-  {
-    id: 1,
-    invoiceNumber: 'FAK-2024-001',
-    supplier: 'PIQUADRO Italia',
-    date: '2024-01-15',
-    status: 'processed',
-    items: 45,
-    totalValue: 125600,
-    processedAt: '2024-01-16 09:15'
-  },
-  {
-    id: 2,
-    invoiceNumber: 'FAK-2024-002',
-    supplier: 'PIQUADRO Italia',
-    date: '2024-01-20',
-    status: 'pending',
-    items: 32,
-    totalValue: 89400,
-    processedAt: null
-  }
-]
-
-const lowStockProducts = [
-  { sku: 'BD3336W92-AZBE2', name: 'Pánská aktovka Blue Square', currentStock: 2, minStock: 5, location: 'Chodov' },
-  { sku: 'CA4818AP-GR', name: 'Dámská kabelka Circle', currentStock: 1, minStock: 3, location: 'Outlet' },
-  { sku: 'CA6637W129-BLU', name: 'Peněženka Black Square', currentStock: 0, minStock: 10, location: 'Oba' }
-]
+import { useWarehouseStats, useLowStockProducts, useStockMovements, useOCRProcessing } from '../../hooks/useWarehouse'
 
 const WarehousePage = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [ocrProcessing, setOcrProcessing] = useState(false)
-  const [ocrResults, setOcrResults] = useState<any>(null)
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedLocation, setSelectedLocation] = useState('all')
+  const [selectedLocation, setSelectedLocation] = useState<'chodov' | 'outlet'>('chodov')
+  const [manualMovement, setManualMovement] = useState({
+    sku: '',
+    quantity: 1,
+    type: 'in' as 'in' | 'out',
+    reason: ''
+  })
+
+  // Real data hooks
+  const { stats, loading: statsLoading, error: statsError, refetch: refetchStats } = useWarehouseStats()
+  const { products: lowStockProducts, loading: lowStockLoading, refetch: refetchLowStock } = useLowStockProducts()
+  const { movements, loading: movementsLoading, createMovement } = useStockMovements()
+  const { processing: ocrProcessing, results: ocrResults, processFile, confirmInvoice, clearResults } = useOCRProcessing()
 
   const handleFileUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
       setSelectedFile(file)
-      setOcrResults(null)
+      clearResults()
     }
-  }, [])
+  }, [clearResults])
 
   const processInvoiceOCR = async () => {
     if (!selectedFile) return
     
-    setOcrProcessing(true)
-    
-    // Simulate OCR processing with Tesseract
-    setTimeout(() => {
-      // Mock OCR results
-      const mockResults = {
-        invoiceNumber: 'FAK-2024-003',
-        supplier: 'PIQUADRO Italia S.r.l.',
-        date: '2024-01-25',
-        items: [
-          { sku: 'BD3336W92-N', description: 'Briefcase Blue Square', quantity: 5, unitPrice: 4200 },
-          { sku: 'CA4818AP-TM', description: 'Lady bag Circle', quantity: 3, unitPrice: 3800 },
-          { sku: 'CA6637W129-BLU', description: 'Wallet Black Square', quantity: 10, unitPrice: 1200 }
-        ],
-        total: 52600,
-        confidence: 0.94
-      }
-      
-      setOcrResults(mockResults)
-      setOcrProcessing(false)
-    }, 3000)
+    try {
+      await processFile(selectedFile)
+    } catch (error) {
+      console.error('OCR processing failed:', error)
+      alert('Chyba při zpracování OCR: ' + (error as Error).message)
+    }
   }
 
-  const confirmStockUpdate = () => {
-    // Here we would update the stock levels based on OCR results
-    alert('Skladové zásoby byly aktualizovány!')
-    setOcrResults(null)
-    setSelectedFile(null)
+  const confirmStockUpdate = async () => {
+    if (!ocrResults) return
+
+    try {
+      const result = await confirmInvoice(ocrResults.invoiceNumber, ocrResults.items, selectedLocation)
+      alert(`Úspěšně zpracováno ${result.results.totalProcessed} kusů produktů!`)
+      setSelectedFile(null)
+      refetchStats()
+      refetchLowStock()
+    } catch (error) {
+      console.error('Failed to confirm invoice:', error)
+      alert('Chyba při potvrzení faktury: ' + (error as Error).message)
+    }
+  }
+
+  const handleManualMovement = async () => {
+    if (!manualMovement.sku || !manualMovement.quantity) {
+      alert('Prosím vyplňte SKU a množství')
+      return
+    }
+
+    try {
+      await createMovement({
+        sku: manualMovement.sku,
+        movement_type: manualMovement.type,
+        quantity: manualMovement.quantity,
+        location: selectedLocation,
+        reason: manualMovement.reason || 'Ruční úprava'
+      })
+      
+      setManualMovement({ sku: '', quantity: 1, type: 'in', reason: '' })
+      alert('Pohyb skladu byl úspěšně zaznamenán!')
+      refetchStats()
+      refetchLowStock()
+    } catch (error) {
+      console.error('Failed to create movement:', error)
+      alert('Chyba při vytváření pohybu: ' + (error as Error).message)
+    }
   }
 
   return (
@@ -151,7 +142,15 @@ const WarehousePage = () => {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-gray-600">Celkem produktů</p>
-                  <p className="text-2xl font-bold text-gray-900">{warehouseStats.totalProducts}</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {statsLoading ? (
+                      <div className="h-8 w-16 bg-gray-200 rounded animate-pulse" />
+                    ) : statsError ? (
+                      'N/A'
+                    ) : (
+                      stats?.totalProducts || 0
+                    )}
+                  </p>
                 </div>
                 <div className="p-2 bg-blue-50 rounded-lg">
                   <Package className="h-6 w-6 text-blue-600" />
@@ -166,7 +165,13 @@ const WarehousePage = () => {
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-gray-600">Hodnota skladu</p>
                   <p className="text-2xl font-bold text-green-600">
-                    {(warehouseStats.totalValue / 1000).toFixed(0)}K Kč
+                    {statsLoading ? (
+                      <div className="h-8 w-20 bg-gray-200 rounded animate-pulse" />
+                    ) : statsError ? (
+                      'N/A'
+                    ) : (
+                      `${((stats?.totalValue || 0) / 1000).toFixed(0)}K Kč`
+                    )}
                   </p>
                 </div>
                 <div className="p-2 bg-green-50 rounded-lg">
@@ -181,7 +186,15 @@ const WarehousePage = () => {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-gray-600">Upozornění</p>
-                  <p className="text-2xl font-bold text-yellow-600">{warehouseStats.lowStockAlerts}</p>
+                  <p className="text-2xl font-bold text-yellow-600">
+                    {statsLoading ? (
+                      <div className="h-8 w-12 bg-gray-200 rounded animate-pulse" />
+                    ) : statsError ? (
+                      'N/A'
+                    ) : (
+                      stats?.lowStockAlerts || 0
+                    )}
+                  </p>
                 </div>
                 <div className="p-2 bg-yellow-50 rounded-lg">
                   <AlertTriangle className="h-6 w-6 text-yellow-600" />
@@ -195,12 +208,33 @@ const WarehousePage = () => {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-gray-600">Pohyby (7 dní)</p>
-                  <p className="text-2xl font-bold text-purple-600">{warehouseStats.recentMovements}</p>
+                  <p className="text-2xl font-bold text-purple-600">
+                    {statsLoading ? (
+                      <div className="h-8 w-16 bg-gray-200 rounded animate-pulse" />
+                    ) : statsError ? (
+                      'N/A'
+                    ) : (
+                      stats?.recentMovements || 0
+                    )}
+                  </p>
                 </div>
                 <div className="p-2 bg-purple-50 rounded-lg">
                   <Activity className="h-6 w-6 text-purple-600" />
                 </div>
               </div>
+              {!statsLoading && (
+                <div className="mt-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={refetchStats}
+                    className="text-xs p-1 h-auto"
+                  >
+                    <RefreshCw className="h-3 w-3 mr-1" />
+                    Aktualizovat
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -208,7 +242,98 @@ const WarehousePage = () => {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* OCR Invoice Processing */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-6">
+            {/* Location Selection */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Warehouse className="h-5 w-5" />
+                  Nastavení skladu
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-4">
+                  <label className="text-sm font-medium">Aktivní lokace:</label>
+                  <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="chodov">Chodov</SelectItem>
+                      <SelectItem value="outlet">Outlet</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Manual Stock Movement */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <History className="h-5 w-5" />
+                  Ruční pohyby skladu
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">SKU produktu</label>
+                    <Input
+                      placeholder="např. BD3336W92-AZBE2"
+                      value={manualMovement.sku}
+                      onChange={(e) => setManualMovement(prev => ({ ...prev, sku: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Množství</label>
+                    <Input
+                      type="number"
+                      min="1"
+                      value={manualMovement.quantity}
+                      onChange={(e) => setManualMovement(prev => ({ ...prev, quantity: parseInt(e.target.value) || 1 }))}
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Typ pohybu</label>
+                    <Select 
+                      value={manualMovement.type} 
+                      onValueChange={(value: 'in' | 'out') => setManualMovement(prev => ({ ...prev, type: value }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="in">Příjem (IN)</SelectItem>
+                        <SelectItem value="out">Výdej (OUT)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Důvod</label>
+                    <Input
+                      placeholder="např. Oprava inventury"
+                      value={manualMovement.reason}
+                      onChange={(e) => setManualMovement(prev => ({ ...prev, reason: e.target.value }))}
+                    />
+                  </div>
+                </div>
+
+                <Button 
+                  onClick={handleManualMovement}
+                  className="w-full"
+                  disabled={!manualMovement.sku || !manualMovement.quantity}
+                >
+                  <div className="flex items-center gap-2">
+                    {manualMovement.type === 'in' ? <Plus className="h-4 w-4" /> : <Minus className="h-4 w-4" />}
+                    {manualMovement.type === 'in' ? 'Přidat do skladu' : 'Odebrat ze skladu'}
+                  </div>
+                </Button>
+              </CardContent>
+            </Card>
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
