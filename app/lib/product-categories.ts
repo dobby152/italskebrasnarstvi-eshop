@@ -9,7 +9,7 @@ export interface ProductCategory {
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     id: 'taskyKabelky',
-    name: 'Tašky kabelky',
+    name: 'Tašky a kabelky',
     keywords: [
       'taška', 'kabelka', 'crossbody', 'crossover', 'messenger', 
       'nákupní', 'shopping', 'přes rameno', 'camera case', 'moon bag'
@@ -17,7 +17,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     id: 'brasnyObaly',
-    name: 'Brašny obaly',
+    name: 'Brašny a obaly',
     keywords: [
       'brašna', 'obal', 'notebook', 'laptop', 'ipad', 'tablet',
       'pracovní', 'business', 'computer', 'macbook'

@@ -9,6 +9,7 @@ import { Button } from '../app/components/ui/button'
 import { ShoppingCart, Heart, AlertCircle } from 'lucide-react'
 import { ColorVariantGrid } from './color-variant-grid'
 import OutOfStockOrderButton from '../app/components/out-of-stock-order-button'
+import { Pagination } from './pagination'
 
 interface Product {
   id: number
@@ -63,6 +64,14 @@ export function ProductGrid({
 }: ProductGridProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    totalProducts: 0,
+    hasNextPage: false,
+    hasPrevPage: false
+  })
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -74,6 +83,7 @@ export function ProductGrid({
         if (limit) params.append('limit', limit.toString())
         if (sortBy) params.append('sortBy', sortBy)
         if (sortOrder) params.append('sortOrder', sortOrder)
+        params.append('page', currentPage.toString())
         
         // Add filter params
         if (categories) params.append('categories', categories)
@@ -91,6 +101,13 @@ export function ProductGrid({
           setProducts(data.products)
           console.log('Loaded products:', data.products.length)
         }
+        
+        if (data.pagination) {
+          console.log('Setting pagination:', data.pagination)
+          setPagination(data.pagination)
+        } else {
+          console.log('No pagination data received')
+        }
       } catch (error) {
         console.error('Error fetching products:', error)
       } finally {
@@ -99,7 +116,12 @@ export function ProductGrid({
     }
 
     fetchProducts()
-  }, [category, searchQuery, limit, sortBy, sortOrder, categories, brand, minPrice, maxPrice, inStockOnly])
+  }, [category, searchQuery, limit, sortBy, sortOrder, categories, brand, minPrice, maxPrice, inStockOnly, currentPage])
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   if (loading) {
     return (
@@ -118,8 +140,9 @@ export function ProductGrid({
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      {products?.map((product) => (
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {products?.map((product) => (
         <Card key={product.id} className="group hover:shadow-lg transition-shadow">
           <CardContent className="p-0">
             <div className="relative">
@@ -215,7 +238,14 @@ export function ProductGrid({
             </div>
           </CardContent>
         </Card>
-      ))}
+        ))}
+      </div>
+      
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   )
 }
