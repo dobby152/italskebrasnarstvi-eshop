@@ -110,7 +110,7 @@ export default function StockDisplay({ sku }: StockDisplayProps) {
           {/* Branch locations with real data */}
           {stock.locations && stock.locations.length > 0 && (
             <div className="space-y-2">
-              <div className="text-xs text-gray-600 font-medium">Dostupnost v prodejnách:</div>
+              <div className="text-xs text-gray-600 font-medium">Dostupnost v partnerských prodejnách:</div>
               {stock.locations.map((location, index) => (
                 <div key={index} className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">

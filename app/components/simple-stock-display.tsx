@@ -102,12 +102,12 @@ export default function SimpleStockDisplay({ sku, showLocations = true, productN
             <div className="space-y-2 pt-2 border-t border-current border-opacity-20">
               <div className="text-sm font-medium text-gray-700 flex items-center gap-1">
                 <MapPin className="h-3 w-3" />
-                Dostupnost v prodejnách:
+                Dostupnost v partnerských prodejnách:
               </div>
               <div className="grid grid-cols-1 gap-1 text-sm">
                 {stock.chodovStock > 0 && (
                   <div className="flex justify-between">
-                    <span className="text-gray-600">PIQUADRO Westfield Chodov:</span>
+                    <span className="text-gray-600">Partnerskdá prodejna - PIQUADRO Westfield Chodov:</span>
                     <Badge variant="secondary" className="text-xs">
                       {stock.chodovStock} ks
                     </Badge>
@@ -115,7 +115,7 @@ export default function SimpleStockDisplay({ sku, showLocations = true, productN
                 )}
                 {stock.outletStock > 0 && (
                   <div className="flex justify-between">
-                    <span className="text-gray-600">PIQUADRO Premium Outlet:</span>
+                    <span className="text-gray-600">Partnerskdá prodejna - PIQUADRO Premium Outlet:</span>
                     <Badge variant="secondary" className="text-xs">
                       {stock.outletStock} ks
                     </Badge>

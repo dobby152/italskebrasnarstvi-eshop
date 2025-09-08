@@ -36,14 +36,14 @@ export const STOCK_THRESHOLDS = {
 export const BRANCHES = {
   CHODOV: { 
     id: 'chodov', 
-    name: 'PIQUADRO Westfield Chodov', 
+    name: 'Partnerská prodejna - PIQUADRO Westfield Chodov', 
     priority: 1,
     address: 'Roztylská 2321/19, Praha 11-Chodov 148 00, Česko',
     hours: 'Po — Ne: 9.00 — 21.00 hod.'
   },
   OUTLET: { 
     id: 'outlet', 
-    name: 'PIQUADRO Premium Outlet Prague', 
+    name: 'Partnerská prodejna - PIQUADRO Premium Outlet Prague', 
     priority: 2,
     address: 'Ke Kopanině 421, Tuchoměřice 252 67, Česko',
     hours: 'Po — Ne: 10.00 — 20.00 hod.'
@@ -55,8 +55,8 @@ export const STOCK_MESSAGES = {
   IN_STOCK: 'Skladem',
   LOW_STOCK: 'Poslední kusy',
   OUT_OF_STOCK: 'Není skladem',
-  AVAILABLE_AT_CHODOV: 'K dispozici v PIQUADRO Westfield Chodov',
-  AVAILABLE_AT_OUTLET: 'K dispozici v PIQUADRO Premium Outlet Prague',
+  AVAILABLE_AT_CHODOV: 'K dispozici v partnerské prodejně - PIQUADRO Westfield Chodov',
+  AVAILABLE_AT_OUTLET: 'K dispozici v partnerské prodejně - PIQUADRO Premium Outlet Prague',
   CONTACT_FOR_AVAILABILITY: 'Kontaktujte nás pro dostupnost'
 } as const
 
@@ -260,7 +260,7 @@ class StockService {
         return {
           status: 'available-at-branch',
           text: hasMultipleBranches ? 
-            'K dispozici v našich prodejnách' : 
+            'K dispozici v partnerských prodejnách' : 
             primaryLocation.location === BRANCHES.CHODOV.name ? 
               STOCK_MESSAGES.AVAILABLE_AT_CHODOV : 
               STOCK_MESSAGES.AVAILABLE_AT_OUTLET,

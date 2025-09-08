@@ -366,7 +366,7 @@ function CheckoutContent() {
                           <RadioGroupItem value="pickup" id="pickup" />
                           <div className="flex-1">
                             <Label htmlFor="pickup" className="font-medium cursor-pointer">
-                              Osobní odběr v prodejně
+                              Osobní odběr v partnerské prodejně
                             </Label>
                             <p className="text-sm text-gray-600">Praha - Westfield Chodov</p>
                           </div>
@@ -594,7 +594,7 @@ function CheckoutContent() {
                           ? "Standardní doručení (2-3 dny)"
                           : formData.shippingMethod === "express"
                             ? "Expresní doručení (1-2 dny)"
-                            : "Osobní odběr v prodejně"}
+                            : "Osobní odběr v partnerské prodejně"}
                       </p>
                       {formData.shippingMethod !== "pickup" && (
                         <div className="text-gray-600">
