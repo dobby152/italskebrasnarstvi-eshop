@@ -11,53 +11,29 @@ async function ensureStockMovementsTable() {
 
 export async function GET(request: NextRequest) {
   try {
-    await ensureStockMovementsTable()
-
-    // Get recent stock movements
+    // Direct query to stock_movements without complex joins
     const { data: movements, error } = await supabase
       .from('stock_movements')
-      .select(`
-        *,
-        products!inner(
-          name,
-          name_cz
-        )
-      `)
+      .select('id, sku, movement_type, quantity, location, reason, created_at, user_id')
       .order('created_at', { ascending: false })
       .limit(50)
 
     if (error) {
       console.error('Stock movements error:', error)
-      // If table doesn't exist, return mock data
-      return NextResponse.json([
-        {
-          id: 1,
-          sku: 'BD3336W92-AZBE2',
-          product_name: 'Pánská aktovka Blue Square',
-          movement_type: 'in',
-          quantity: 5,
-          location: 'chodov',
-          reason: 'Příjem zboží - FAK-2024-001',
-          created_at: new Date().toISOString(),
-          user_id: 'system'
-        },
-        {
-          id: 2,
-          sku: 'CA4818AP-GR',
-          product_name: 'Dámská kabelka Circle',
-          movement_type: 'out',
-          quantity: 2,
-          location: 'outlet',
-          reason: 'Prodej - objednávka #1234',
-          created_at: new Date(Date.now() - 3600000).toISOString(),
-          user_id: 'system'
-        }
-      ])
+      // Return empty array if no movements exist yet
+      return NextResponse.json([])
     }
 
     const formattedMovements = movements?.map(movement => ({
-      ...movement,
-      product_name: movement.products?.name_cz || movement.products?.name || 'Neznámý produkt'
+      id: movement.id,
+      sku: movement.sku,
+      product_name: `Produkt ${movement.sku}`, // Simple name until we fix SKU relationship
+      movement_type: movement.movement_type,
+      quantity: movement.quantity,
+      location: movement.location,
+      reason: movement.reason || 'Skladový pohyb',
+      created_at: movement.created_at,
+      user_id: movement.user_id || 'system'
     })) || []
 
     return NextResponse.json(formattedMovements)

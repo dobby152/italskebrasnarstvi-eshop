@@ -3,63 +3,44 @@ import { supabase } from '../../../lib/supabase'
 
 export async function GET(request: NextRequest) {
   try {
-    // Get products with low stock from inventory
+    // Direct query to inventory for low stock products
     const { data: inventory, error: inventoryError } = await supabase
       .from('inventory')
-      .select(`
-        sku,
-        chodov_stock,
-        outlet_stock,
-        products!inner(
-          name,
-          name_cz,
-          description,
-          description_cz
-        )
-      `)
+      .select('sku, chodov_stock, outlet_stock, total_stock')
+      .lt('total_stock', 10) // Products with less than 10 total stock
+      .order('total_stock', { ascending: true })
 
     if (inventoryError) {
       console.error('Inventory error:', inventoryError)
       throw inventoryError
     }
 
-    // Filter and format low stock products
-    const lowStockProducts = inventory
-      ?.filter(item => {
-        const totalStock = (item.chodov_stock || 0) + (item.outlet_stock || 0)
-        return totalStock < 10 // Consider less than 10 as low stock
-      })
-      .map(item => {
-        const chodovStock = item.chodov_stock || 0
-        const outletStock = item.outlet_stock || 0
-        const totalStock = chodovStock + outletStock
-        
-        let location = 'Nedostupné'
-        if (chodovStock > 0 && outletStock > 0) {
-          location = 'Chodov & Outlet'
-        } else if (chodovStock > 0) {
-          location = 'Chodov'
-        } else if (outletStock > 0) {
-          location = 'Outlet'
-        }
+    // Format low stock products
+    const lowStockProducts = inventory?.map(item => {
+      const chodovStock = item.chodov_stock || 0
+      const outletStock = item.outlet_stock || 0
+      const totalStock = item.total_stock || 0
 
-        return {
-          sku: item.sku,
-          name: (item.products as any)?.name_cz || (item.products as any)?.name || 'Neznámý produkt',
-          currentStock: totalStock,
-          chodovStock,
-          outletStock,
-          minStock: totalStock === 0 ? 5 : Math.max(5, totalStock + 3), // Dynamic min stock
-          location,
-          priority: totalStock === 0 ? 'critical' : totalStock < 3 ? 'high' : 'medium'
-        }
-      })
-      .sort((a, b) => {
-        // Sort by priority: critical -> high -> medium
-        const priorityOrder = { critical: 3, high: 2, medium: 1 }
-        return priorityOrder[b.priority as keyof typeof priorityOrder] - 
-               priorityOrder[a.priority as keyof typeof priorityOrder]
-      }) || []
+      let location = 'Žádná pobočka'
+      if (chodovStock > 0 && outletStock === 0) {
+        location = 'Pouze Chodov'
+      } else if (chodovStock === 0 && outletStock > 0) {
+        location = 'Pouze Outlet'
+      } else if (chodovStock > 0 && outletStock > 0) {
+        location = 'Obě pobočky'
+      }
+
+      return {
+        sku: item.sku,
+        name: `Produkt ${item.sku}`, // Simple name until we fix SKU relationship
+        currentStock: totalStock,
+        chodovStock,
+        outletStock,
+        minStock: 5, // Standard minimum stock
+        location,
+        priority: totalStock === 0 ? 'critical' : totalStock < 3 ? 'high' : 'medium'
+      }
+    }) || []
 
     return NextResponse.json(lowStockProducts)
 
