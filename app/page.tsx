@@ -127,8 +127,8 @@ export default function HomePage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Oficiální české zastoupení</strong></h3>
-                <p className="text-sm md:text-base text-gray-600"><strong>Servis v češtině přímo u nás.</strong></p>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Oficiální české zastoupení</h3>
+                <p className="text-sm md:text-base text-gray-800 font-semibold">Servis v češtině přímo u nás.</p>
               </div>
             </div>
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
@@ -139,9 +139,9 @@ export default function HomePage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Garance nejlepší ceny</strong></h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  <strong>Najdete levněji? Dorovnáme a dáme 5% slevu navíc!</strong>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Garance nejlepší ceny</h3>
+                <p className="text-sm md:text-base text-gray-800 font-semibold">
+                  Najdete levněji? Dorovnáme a dáme 5% slevu navíc!
                 </p>
               </div>
             </div>
@@ -152,9 +152,9 @@ export default function HomePage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Doprava zdarma</strong></h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  <strong>Nad 2.500 Kč zdarma po celé ČR.</strong>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Doprava zdarma</h3>
+                <p className="text-sm md:text-base text-gray-800 font-semibold">
+                  Nad 2.500 Kč zdarma po celé ČR.
                 </p>
               </div>
             </div>
@@ -165,9 +165,9 @@ export default function HomePage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Záruka kvality</strong></h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  <strong>2 roky záruka na všechny produkty.</strong>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Záruka kvality</h3>
+                <p className="text-sm md:text-base text-gray-800 font-semibold">
+                  2 roky záruka na všechny produkty.
                 </p>
               </div>
             </div>
