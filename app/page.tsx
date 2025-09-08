@@ -15,7 +15,6 @@ import Link from "next/link"
 import ProductSection from "./components/product-section"
 
 const SustainabilitySection = lazy(() => import("./components/sustainability-section"))
-const CollectionsSection = lazy(() => import("./components/collections-section"))
 const BrandStorySection = lazy(() => import("./components/brand-story-section"))
 
 export default function HomePage() {
@@ -189,7 +188,7 @@ export default function HomePage() {
             <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
               <div className="relative h-96">
                 <img 
-                  src="/black square.webp" 
+                  src="/black%20square.webp" 
                   alt="Black Square kolekce" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -205,7 +204,7 @@ export default function HomePage() {
             <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
               <div className="relative h-96">
                 <img 
-                  src="/blue square.webp" 
+                  src="/blue%20square.webp" 
                   alt="Blue Square kolekce" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -265,15 +264,6 @@ export default function HomePage() {
         <SustainabilitySection expanded={sustainabilityExpanded} setExpanded={setSustainabilityExpanded} />
       </Suspense>
 
-      <Suspense
-        fallback={
-          <div className="py-16 bg-gray-50 flex justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-          </div>
-        }
-      >
-        <CollectionsSection />
-      </Suspense>
 
       <Suspense
         fallback={
