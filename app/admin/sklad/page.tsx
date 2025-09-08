@@ -551,7 +551,29 @@ const WarehousePage = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {recentInvoices.map((invoice) => (
+                {/* Mock recent invoices - could be replaced with real API call */}
+                {[
+                  {
+                    id: 1,
+                    invoiceNumber: 'FAK-2024-001',
+                    supplier: 'PIQUADRO Italia',
+                    date: '2024-01-15',
+                    status: 'processed',
+                    items: 45,
+                    totalValue: 125600,
+                    processedAt: '2024-01-16 09:15'
+                  },
+                  {
+                    id: 2,
+                    invoiceNumber: 'FAK-2024-002',
+                    supplier: 'PIQUADRO Italia',
+                    date: '2024-01-20',
+                    status: 'pending',
+                    items: 32,
+                    totalValue: 89400,
+                    processedAt: null
+                  }
+                ].map((invoice) => (
                   <TableRow key={invoice.id}>
                     <TableCell className="font-mono">{invoice.invoiceNumber}</TableCell>
                     <TableCell>{invoice.supplier}</TableCell>
