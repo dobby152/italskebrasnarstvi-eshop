@@ -31,6 +31,8 @@ interface Product {
   outletStock?: number
   chodovStock?: number
   available?: boolean
+  // SEO slug
+  slug?: string
 }
 
 interface ProductGridProps {
