@@ -13,7 +13,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const results = {
+    const results: {
+      processed: any[]
+      errors: string[]
+      totalProcessed: number
+    } = {
       processed: [],
       errors: [],
       totalProcessed: 0
