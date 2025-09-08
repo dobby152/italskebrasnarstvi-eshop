@@ -174,109 +174,77 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Kategorie podle Piquadro */}
-      <section className="py-20 bg-gray-50">
+      {/* Naše kolekce podle Piquadro */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Objevte naše kategorie</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Naše kolekce</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Od business aktovek po cestovní kufry - najděte perfektní doplněk pro každou příležitost
+              Objevte ikonické kolekce Piquadro - od sportovně elegantní po business luxus
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Pánské */}
-            <Link href="/produkty?productType=brasnyObaly" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                    alt="Pánské aktovky a brašny" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/40"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl font-bold text-white">BRAŠNY & OBALY</h3>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-gray-900 mb-2">Pro muže</h4>
-                  <p className="text-gray-600 text-sm mb-4">Business aktovky, notebook brašny a stylové tašky pro práci</p>
-                  <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
-                    Prohlédnout →
-                  </div>
+            {/* Black Square Kolekce */}
+            <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
+              <div className="relative h-96">
+                <img 
+                  src="/black square.webp" 
+                  alt="Black Square kolekce" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="text-3xl font-bold text-white mb-2">BLACK SQUARE</h3>
+                  <p className="text-white/90 text-sm">Elegantní business styl</p>
                 </div>
               </div>
             </Link>
 
-            {/* Dámské */}
-            <Link href="/produkty?productType=taskyKabelky" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1564422170194-896b89110ef8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                    alt="Dámské kabelky a tašky" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/40"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl font-bold text-white">TAŠKY & KABELKY</h3>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-gray-900 mb-2">Pro ženy</h4>
-                  <p className="text-gray-600 text-sm mb-4">Elegantní kabelky, shopper tašky a stylové crossbody tašky</p>
-                  <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
-                    Prohlédnout →
-                  </div>
+            {/* Blue Square Kolekce */}
+            <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
+              <div className="relative h-96">
+                <img 
+                  src="/blue square.webp" 
+                  alt="Blue Square kolekce" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="text-3xl font-bold text-white mb-2">BLUE SQUARE</h3>
+                  <p className="text-white/90 text-sm">Sportovně elegantní design</p>
                 </div>
               </div>
             </Link>
 
-            {/* Business */}
-            <Link href="/produkty?productType=penezenkybusiness" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1627123424574-724758594e93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80" 
-                    alt="Kožené peněženky" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/40"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl font-bold text-white">PENĚŽENKY</h3>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-gray-900 mb-2">Pro profesionály</h4>
-                  <p className="text-gray-600 text-sm mb-4">Prémiové kožené peněženky, cardholders a business doplňky</p>
-                  <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
-                    Prohlédnout →
-                  </div>
+            {/* Modus Kolekce */}
+            <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
+              <div className="relative h-96">
+                <img 
+                  src="/modus.webp" 
+                  alt="Modus kolekce" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="text-3xl font-bold text-white mb-2">MODUS</h3>
+                  <p className="text-white/90 text-sm">Technologie a styl v harmonii</p>
                 </div>
               </div>
             </Link>
 
-            {/* Cestování */}
-            <Link href="/produkty?productType=cestovani" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                <div className="h-64 relative overflow-hidden">
-                  <img 
-                    src="/zeny.webp" 
-                    alt="Cestovní kufry a tašky" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/40"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl font-bold text-white">CESTOVÁNÍ</h3>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-gray-900 mb-2">Pro cestovatele</h4>
-                  <p className="text-gray-600 text-sm mb-4">Luxusní kufry, cestovní tašky a praktické cestovní batohy</p>
-                  <div className="text-black font-medium group-hover:text-gray-600 transition-colors">
-                    Prohlédnout →
-                  </div>
+            {/* Circle Kolekce */}
+            <Link href="/produkty" className="group relative overflow-hidden rounded-lg">
+              <div className="relative h-96">
+                <img 
+                  src="/circle.webp" 
+                  alt="Circle kolekce" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="text-3xl font-bold text-white mb-2">CIRCLE</h3>
+                  <p className="text-white/90 text-sm">Luxusní business styl</p>
                 </div>
               </div>
             </Link>
