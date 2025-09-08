@@ -285,7 +285,7 @@ const OCRPage = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3 max-h-80 overflow-y-auto">
-                {results.detectedProducts?.map((product: any, index) => (
+                {results.detectedProducts?.map((product: any, index: number) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <p className="font-medium text-gray-900">{product.name}</p>
