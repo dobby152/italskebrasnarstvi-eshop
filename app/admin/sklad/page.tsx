@@ -453,7 +453,7 @@ const WarehousePage = () => {
                           <span className="text-lg font-bold">Celkem: {ocrResults.total.toLocaleString()} Kč</span>
                         </div>
                         <div className="flex gap-2">
-                          <Button variant="outline" onClick={() => setOcrResults(null)}>
+                          <Button variant="outline" onClick={clearResults}>
                             Zrušit
                           </Button>
                           <Button onClick={confirmStockUpdate} className="bg-green-600 hover:bg-green-700">
