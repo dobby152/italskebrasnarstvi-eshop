@@ -481,20 +481,20 @@ const WarehousePage = () => {
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span>Chodov</span>
-                    <span>{warehouseStats.totalLocations.chodov} ks</span>
+                    <span>{stats?.totalLocations.chodov || 0} ks</span>
                   </div>
                   <Progress 
-                    value={(warehouseStats.totalLocations.chodov / warehouseStats.totalProducts) * 100} 
+                    value={stats && stats.totalProducts > 0 ? (stats.totalLocations.chodov / stats.totalProducts) * 100 : 0} 
                     className="h-2"
                   />
                 </div>
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span>Outlet</span>
-                    <span>{warehouseStats.totalLocations.outlet} ks</span>
+                    <span>{stats?.totalLocations.outlet || 0} ks</span>
                   </div>
                   <Progress 
-                    value={(warehouseStats.totalLocations.outlet / warehouseStats.totalProducts) * 100} 
+                    value={stats && stats.totalProducts > 0 ? (stats.totalLocations.outlet / stats.totalProducts) * 100 : 0} 
                     className="h-2 bg-blue-100"
                   />
                 </div>
