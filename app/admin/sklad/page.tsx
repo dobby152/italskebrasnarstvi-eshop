@@ -254,7 +254,7 @@ const WarehousePage = () => {
               <CardContent>
                 <div className="flex items-center gap-4">
                   <label className="text-sm font-medium">Aktivní lokace:</label>
-                  <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                  <Select value={selectedLocation} onValueChange={(value: 'chodov' | 'outlet') => setSelectedLocation(value)}>
                     <SelectTrigger className="w-48">
                       <SelectValue />
                     </SelectTrigger>
