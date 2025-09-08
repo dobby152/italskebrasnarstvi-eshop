@@ -16,12 +16,14 @@ import {
   Percent,
   Puzzle,
   Menu,
-  Bell
+  Bell,
+  Warehouse
 } from "lucide-react"
 
 const navigationItems = [
   { href: "/admin", label: "Domů", icon: Home },
   { href: "/admin/produkty", label: "Produkty", icon: Package },
+  { href: "/admin/sklad", label: "Sklad", icon: Warehouse },
   { href: "/admin/objednavky", label: "Objednávky", icon: ShoppingCart },
   { href: "/admin/supplier-orders", label: "Objednávky na objednání", icon: Bell },
   { href: "/admin/zakaznici", label: "Zákazníci", icon: Users },

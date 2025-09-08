@@ -59,24 +59,24 @@ export default function Header() {
         {/* Main navigation */}
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="text-xl font-normal tracking-tight">
+          <Link href="/" className="text-2xl font-normal tracking-tight">
             <span className="text-black font-normal">italske</span>
             <span className="text-black font-bold">Brasnarstvi</span>
             <span className="text-black font-normal">.cz</span>
           </Link>
 
           {/* Desktop navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center space-x-4">
             {productCategories.map((category) => (
               <Link 
                 key={category.id}
                 href={`/produkty?productType=${category.id}`} 
-                className="text-xs font-bold text-gray-700 hover:text-black transition-colors uppercase whitespace-nowrap px-1"
+                className="text-sm font-bold text-gray-700 hover:text-black transition-colors uppercase whitespace-nowrap px-2 py-1"
               >
                 {category.name.toUpperCase()}
               </Link>
             ))}
-            <Link href="/produkty" className="text-xs font-bold text-gray-700 hover:text-black transition-colors whitespace-nowrap px-1">
+            <Link href="/produkty" className="text-sm font-bold text-gray-700 hover:text-black transition-colors whitespace-nowrap px-2 py-1">
               VŠECHNY PRODUKTY
             </Link>
           </div>
