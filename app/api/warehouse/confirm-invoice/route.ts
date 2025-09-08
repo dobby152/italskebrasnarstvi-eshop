@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
 
       } catch (itemError) {
         console.error(`Error processing item ${item.sku}:`, itemError)
-        results.errors.push(`Error processing ${item.sku}: ${itemError.message}`)
+        results.errors.push(`Error processing ${item.sku}: ${itemError instanceof Error ? itemError.message : String(itemError)}`)
       }
     }
 
