@@ -58,7 +58,7 @@ const WarehousePage = () => {
 
   // Real data hooks
   const { stats, loading: statsLoading, error: statsError, refetch: refetchStats } = useWarehouseStats()
-  const { products: lowStockProducts, loading: lowStockLoading, pagination, goToPage } = useLowStockProducts(currentPage, 20)
+  const { products: lowStockProducts, loading: lowStockLoading, pagination, goToPage, refetch: refetchLowStock } = useLowStockProducts(currentPage, 20)
   const { movements, loading: movementsLoading, createMovement } = useStockMovements()
   const { processing: ocrProcessing, results: ocrResults, processFile, confirmInvoice, clearResults } = useOCRProcessing()
   const { transfers, loading: transfersLoading, createTransfer } = useTransfers()
