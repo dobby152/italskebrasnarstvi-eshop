@@ -116,6 +116,74 @@ export function useLowStockProducts(page: number = 1, limit: number = 20) {
   return { products, loading, error, pagination, refetch: fetchLowStock, goToPage }
 }
 
+export function useInventory(
+  page: number = 1, 
+  limit: number = 25,
+  search: string = '',
+  location: string = 'all',
+  stockFilter: string = 'all',
+  sortBy: string = 'name',
+  sortOrder: 'asc' | 'desc' = 'asc'
+) {
+  const [products, setProducts] = useState<LowStockProduct[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    totalCount: 0,
+    hasNextPage: false,
+    hasPreviousPage: false
+  })
+
+  const fetchInventory = async (currentPage: number = page) => {
+    try {
+      setLoading(true)
+      const params = new URLSearchParams({
+        page: currentPage.toString(),
+        limit: limit.toString(),
+        search,
+        location,
+        stockFilter,
+        sortBy,
+        sortOrder
+      })
+      
+      const response = await fetch(`/api/warehouse/inventory?${params}`)
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch inventory: ${response.statusText}`)
+      }
+      
+      const data = await response.json()
+      setProducts(data.products || [])
+      setPagination(data.pagination || {
+        currentPage: 1,
+        totalPages: 1,
+        totalCount: 0,
+        hasNextPage: false,
+        hasPreviousPage: false
+      })
+      setError(null)
+    } catch (err) {
+      console.error('Error fetching inventory:', err)
+      setError(err instanceof Error ? err.message : 'Failed to fetch inventory')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const goToPage = (newPage: number) => {
+    fetchInventory(newPage)
+  }
+
+  useEffect(() => {
+    fetchInventory(page)
+  }, [page, limit, search, location, stockFilter, sortBy, sortOrder])
+
+  return { products, loading, error, pagination, refetch: fetchInventory, goToPage }
+}
+
 export function useStockMovements() {
   const [movements, setMovements] = useState<StockMovement[]>([])
   const [loading, setLoading] = useState(true)

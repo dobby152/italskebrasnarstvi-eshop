@@ -5,7 +5,7 @@ import { getZasilatAPI } from '../../../lib/zasilat'
 export async function GET(request: NextRequest) {
   try {
     // Get stock movements that are transfers between locations
-    const { data: transfers, error } = await supabase
+    const { data: stockMovements, error } = await supabase
       .from('stock_movements')
       .select('*')
       .ilike('reason', '%převod%')
@@ -17,9 +17,32 @@ export async function GET(request: NextRequest) {
       throw error
     }
 
+    // Transform stock movements to match Transfer interface
+    const transfers = (stockMovements || []).map((movement: any) => {
+      // Extract locations from reason if possible (format: "Převod chodov → outlet")
+      const reasonMatch = movement.reason.match(/Převod (\w+) → (\w+)/)
+      const fromLocation = reasonMatch ? reasonMatch[1] : movement.location
+      const toLocation = reasonMatch ? reasonMatch[2] : (movement.location === 'chodov' ? 'outlet' : 'chodov')
+      
+      return {
+        id: movement.id,
+        sku: movement.sku,
+        product_name: movement.product_name || `Produkt ${movement.sku}`,
+        movement_type: movement.movement_type,
+        quantity: movement.quantity,
+        from_location: fromLocation,
+        to_location: toLocation,
+        status: 'completed', // All existing movements are completed
+        notes: movement.reason.split(':').slice(1).join(':').trim() || '',
+        reason: movement.reason,
+        created_at: movement.created_at,
+        user_id: movement.user_id || 'system'
+      }
+    })
+
     return NextResponse.json({
       success: true,
-      transfers: transfers || []
+      transfers
     })
 
   } catch (error) {

@@ -18,7 +18,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from "lucide-react"
-import { useLowStockProducts } from '../../../hooks/useWarehouse'
+import { useInventory } from '../../../hooks/useWarehouse'
 
 const InventoryPage = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -28,7 +28,15 @@ const InventoryPage = () => {
   const [sortBy, setSortBy] = useState<string>('name')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
-  const { products, loading, pagination, goToPage } = useLowStockProducts(currentPage, 25)
+  const { products, loading, pagination, goToPage } = useInventory(
+    currentPage, 
+    25,
+    searchTerm,
+    locationFilter,
+    stockFilter,
+    sortBy,
+    sortOrder
+  )
 
   const handleSort = (column: string) => {
     if (sortBy === column) {
