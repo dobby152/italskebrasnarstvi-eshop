@@ -10,11 +10,7 @@ interface PaginationProps {
 }
 
 export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  console.log('Pagination component:', { currentPage, totalPages })
-  if (totalPages <= 1) {
-    console.log('Pagination hidden - totalPages <= 1')
-    return null
-  }
+  if (totalPages <= 1) return null
 
   const getVisiblePages = () => {
     const pages = []

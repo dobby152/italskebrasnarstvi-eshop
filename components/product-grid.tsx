@@ -103,10 +103,7 @@ export function ProductGrid({
         }
         
         if (data.pagination) {
-          console.log('Setting pagination:', data.pagination)
           setPagination(data.pagination)
-        } else {
-          console.log('No pagination data received')
         }
       } catch (error) {
         console.error('Error fetching products:', error)

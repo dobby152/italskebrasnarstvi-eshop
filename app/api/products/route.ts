@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
         collection_name,
         collection_code
       `, { count: 'exact' })
-      .limit(1000) // Get more records to sort by availability
+      .limit(Math.max(limit * 3, 100)) // Get enough records for deduplication, but not all
     
     // Add collection filter if provided
     if (collectionFilter) {
@@ -168,7 +168,8 @@ export async function GET(request: NextRequest) {
       baseSkuMap.get(baseSku)!.push(product)
     })
 
-    // Process products and add stock information
+    // Group products by base SKU to avoid duplicates
+    const groupedProducts = new Map<string, any>()
     const processedProducts = products.map(product => {
       const inventory = inventoryMap.get(product.sku)
       const totalStock = inventory?.total_stock || 0
@@ -221,11 +222,61 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    // Improved deduplication by base SKU with better variant handling
+    const uniqueProducts: any[] = []
+    const seenBaseSku = new Set<string>()
+    
+    processedProducts.forEach(product => {
+      const baseSku = extractBaseSku(product.sku)
+      
+      if (!seenBaseSku.has(baseSku)) {
+        seenBaseSku.add(baseSku)
+        
+        // Find all variants of this base SKU
+        const allVariants = processedProducts.filter(p => extractBaseSku(p.sku) === baseSku)
+        console.log(`Deduplicating ${baseSku}: found ${allVariants.length} variants`)
+        
+        // Calculate combined stats for all variants
+        const totalStockAllVariants = allVariants.reduce((sum, variant) => sum + (variant.totalStock || 0), 0)
+        const anyVariantAvailable = allVariants.some(variant => variant.available)
+        
+        // Choose the best representative variant (highest stock, then shortest/cleanest name)
+        const bestVariant = allVariants.reduce((best, current) => {
+          // Primary: prefer variants with stock
+          if ((current.totalStock || 0) > (best.totalStock || 0)) return current
+          if ((current.totalStock || 0) < (best.totalStock || 0)) return best
+          
+          // Secondary: prefer shorter, cleaner names (less likely to have color suffix)
+          if (current.name.length < best.name.length) return current
+          if (current.name.length > best.name.length) return best
+          
+          // Tertiary: prefer the first one alphabetically
+          return current.name.localeCompare(best.name) < 0 ? current : best
+        })
+        
+        // Create clean product name by removing color suffixes from name
+        const cleanName = bestVariant.name
+          .replace(/\s*-\s*[A-Z0-9]+\d*$/i, '') // Remove " - XX" suffix
+          .replace(/\s*\([^)]*\)$/i, '') // Remove "(color)" suffix
+          .trim()
+        
+        uniqueProducts.push({
+          ...bestVariant,
+          name: cleanName, // Use clean name without color suffix
+          totalStock: totalStockAllVariants,
+          available: anyVariantAvailable,
+          sortPriority: anyVariantAvailable ? totalStockAllVariants + 1000 : 0,
+          variantCount: allVariants.length, // Add count of available variants
+          allVariantSkus: allVariants.map(v => v.sku) // Keep reference to all variants
+        })
+      }
+    })
+
     // Filter products by availability if requested
     const inStockOnly = searchParams.get('inStockOnly') === 'true'
     let filteredProducts = inStockOnly 
-      ? processedProducts.filter(p => p.available)
-      : processedProducts
+      ? uniqueProducts.filter(p => p.available)
+      : uniqueProducts
 
     // Sort products by availability (available first, then by stock amount)
     let sortedProducts = [...filteredProducts]
