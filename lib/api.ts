@@ -77,8 +77,9 @@ export const transformProduct = (product: any) => {
 
 // New functions
 const sendToAnalytics = (data: { event: string; element?: string; form?: string }) => {
-  window.ga('send', 'event', data.event, data.element || data.form);
-  // Implement actual analytics service call here
+  if (typeof window.ga === 'function') {
+    window.ga('send', 'event', data.event, data.element || data.form || '');
+  }
 };
 
 export const trackClick = (elementId: string) => {
