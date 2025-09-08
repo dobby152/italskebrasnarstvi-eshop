@@ -279,9 +279,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-2xl font-black mb-4">
-                italskeBrasnarstvi<span className="text-gray-400">.cz</span>
-              </h3>
+              <img src="/italskeBrasnarstvi.cz.avif" alt="italskeBrasnarstvi.cz" className="w-48" />
               <p className="text-white mb-6">
                 Oficiální český distributor značky Piquadro. <span className="font-semibold">Italské řemeslné umění s moderním designem.</span>
               </p>
