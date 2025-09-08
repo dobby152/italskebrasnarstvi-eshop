@@ -48,6 +48,7 @@ const WarehousePage = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedLocation, setSelectedLocation] = useState<'chodov' | 'outlet'>('chodov')
+  const [currentPage, setCurrentPage] = useState(1)
   const [manualMovement, setManualMovement] = useState({
     sku: '',
     quantity: 1,
@@ -57,7 +58,7 @@ const WarehousePage = () => {
 
   // Real data hooks
   const { stats, loading: statsLoading, error: statsError, refetch: refetchStats } = useWarehouseStats()
-  const { products: lowStockProducts, loading: lowStockLoading, refetch: refetchLowStock } = useLowStockProducts()
+  const { products: lowStockProducts, loading: lowStockLoading, pagination, goToPage } = useLowStockProducts(currentPage, 20)
   const { movements, loading: movementsLoading, createMovement } = useStockMovements()
   const { processing: ocrProcessing, results: ocrResults, processFile, confirmInvoice, clearResults } = useOCRProcessing()
   const { transfers, loading: transfersLoading, createTransfer } = useTransfers()
@@ -173,7 +174,7 @@ const WarehousePage = () => {
                     ) : statsError ? (
                       '0K Kč'
                     ) : (
-                      `${((stats?.totalValue || 0) / 1000).toFixed(0)}K Kč`
+                      `${((stats?.totalValue || 0) / 1000000).toFixed(1)}M Kč`
                     )}
                   </p>
                 </div>
@@ -507,25 +508,80 @@ const WarehousePage = () => {
             {/* Low Stock Alerts */}
             <Card className="mt-4">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-red-600">
-                  <AlertTriangle className="h-5 w-5" />
-                  Nízké zásoby
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-red-600">
+                    <AlertTriangle className="h-5 w-5" />
+                    Nízké zásoby
+                  </div>
+                  {pagination && (
+                    <div className="text-sm text-gray-600">
+                      {pagination.totalCount} produktů
+                    </div>
+                  )}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {lowStockProducts.map((product, index) => (
-                    <div key={index} className="flex items-center justify-between p-2 bg-red-50 rounded">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium truncate">{product.name}</p>
-                        <p className="text-xs text-gray-600">{product.sku} • {product.location}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm font-bold text-red-600">{product.currentStock} ks</p>
-                        <p className="text-xs text-gray-500">min: {product.minStock}</p>
-                      </div>
+                  {lowStockLoading ? (
+                    <div className="text-center py-4">
+                      <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2" />
+                      <p className="text-sm text-gray-600">Načítání...</p>
                     </div>
-                  ))}
+                  ) : lowStockProducts.length > 0 ? (
+                    <>
+                      {lowStockProducts.map((product, index) => (
+                        <div key={index} className="flex items-center justify-between p-2 bg-red-50 rounded">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium truncate">{product.name}</p>
+                            <p className="text-xs text-gray-600">{product.sku} • {product.location}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-sm font-bold text-red-600">{product.currentStock} ks</p>
+                            <p className="text-xs text-gray-500">min: {product.minStock}</p>
+                          </div>
+                        </div>
+                      ))}
+                      
+                      {/* Pagination Controls */}
+                      {pagination && pagination.totalPages > 1 && (
+                        <div className="flex items-center justify-between pt-4 border-t">
+                          <div className="text-sm text-gray-600">
+                            Strana {pagination.currentPage} z {pagination.totalPages}
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              disabled={!pagination.hasPreviousPage}
+                              onClick={() => {
+                                const newPage = pagination.currentPage - 1
+                                setCurrentPage(newPage)
+                                goToPage(newPage)
+                              }}
+                            >
+                              Předchozí
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              disabled={!pagination.hasNextPage}
+                              onClick={() => {
+                                const newPage = pagination.currentPage + 1
+                                setCurrentPage(newPage)
+                                goToPage(newPage)
+                              }}
+                            >
+                              Další
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="text-center py-4 text-gray-500">
+                      Žádné produkty s nízkými zásobami
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

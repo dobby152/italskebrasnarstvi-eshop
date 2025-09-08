@@ -66,22 +66,36 @@ export function useWarehouseStats() {
   return { stats, loading, error, refetch: fetchStats }
 }
 
-export function useLowStockProducts() {
+export function useLowStockProducts(page: number = 1, limit: number = 20) {
   const [products, setProducts] = useState<LowStockProduct[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    totalCount: 0,
+    hasNextPage: false,
+    hasPreviousPage: false
+  })
 
-  const fetchLowStock = async () => {
+  const fetchLowStock = async (currentPage: number = page) => {
     try {
       setLoading(true)
-      const response = await fetch('/api/warehouse/low-stock')
+      const response = await fetch(`/api/warehouse/low-stock?page=${currentPage}&limit=${limit}`)
       
       if (!response.ok) {
         throw new Error(`Failed to fetch low stock products: ${response.statusText}`)
       }
       
       const data = await response.json()
-      setProducts(data)
+      setProducts(data.products || [])
+      setPagination(data.pagination || {
+        currentPage: 1,
+        totalPages: 1,
+        totalCount: 0,
+        hasNextPage: false,
+        hasPreviousPage: false
+      })
       setError(null)
     } catch (err) {
       console.error('Error fetching low stock products:', err)
@@ -91,11 +105,15 @@ export function useLowStockProducts() {
     }
   }
 
-  useEffect(() => {
-    fetchLowStock()
-  }, [])
+  const goToPage = (newPage: number) => {
+    fetchLowStock(newPage)
+  }
 
-  return { products, loading, error, refetch: fetchLowStock }
+  useEffect(() => {
+    fetchLowStock(page)
+  }, [page, limit])
+
+  return { products, loading, error, pagination, refetch: fetchLowStock, goToPage }
 }
 
 export function useStockMovements() {
