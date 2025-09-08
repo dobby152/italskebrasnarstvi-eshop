@@ -149,7 +149,7 @@ export async function GET(request: NextRequest) {
           lastActivity: activity.lastActivity
         },
         stockStatus,
-        recommendations: []
+        recommendations: [] as string[]
       }
     }) || []
 
