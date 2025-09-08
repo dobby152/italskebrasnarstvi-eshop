@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 
         return {
           sku: item.sku,
-          name: item.products?.name_cz || item.products?.name || 'Neznámý produkt',
+          name: (item.products as any)?.name_cz || (item.products as any)?.name || 'Neznámý produkt',
           currentStock: totalStock,
           chodovStock,
           outletStock,
