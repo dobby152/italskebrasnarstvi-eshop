@@ -55,7 +55,7 @@ export default function SimpleStockDisplay({ sku, showLocations = true, productN
         <CardContent className="p-4">
           <div className="flex items-center gap-2">
             <Package className="h-4 w-4 text-gray-500" />
-            <span className="text-gray-600 text-sm">Informace o dostupnosti nejsou k dispozici</span>
+            <span className="text-gray-600 text-sm">Objednávka na vyžádání</span>
           </div>
         </CardContent>
       </Card>
@@ -129,7 +129,7 @@ export default function SimpleStockDisplay({ sku, showLocations = true, productN
           {stock.totalStock === 0 && (
             <div className="pt-3 border-t border-current border-opacity-20">
               <div className="text-xs text-gray-600 mb-3">
-                Produkt není aktuálně skladem. Můžete se nechat informovat o dostupnosti.
+                <strong>Objednávka je závazná.</strong> Zboží dodáme do 14 dnů.
               </div>
               <OutOfStockOrderButton
                 productSku={sku}

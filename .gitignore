@@ -51,7 +51,7 @@ images/
 *.jpeg
 *.png
 *.gif
-*.webp
+
 
 # Video files (commented out to allow videos)
 # *.mp4

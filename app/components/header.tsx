@@ -58,10 +58,8 @@ export default function Header() {
         {/* Main navigation */}
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-black tracking-tight">
-            <span className="text-gray-900">italske</span>
-            <span className="text-black">Brasnarstvi</span>
-            <span className="text-gray-400 text-lg font-normal">.cz</span>
+          <Link href="/" className="flex items-center">
+            <img src="/logo.avif" alt="italskeBrasnarstvi.cz" className="h-12" />
           </Link>
 
           {/* Desktop navigation */}

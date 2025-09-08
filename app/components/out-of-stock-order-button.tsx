@@ -47,7 +47,7 @@ export default function OutOfStockOrderButton({
         className={`flex items-center gap-2 border-orange-300 text-orange-700 hover:bg-orange-50 ${className}`}
       >
         <Bell className="w-4 h-4" />
-        Informovat o dostupnosti
+        Objednat zboží
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -55,7 +55,7 @@ export default function OutOfStockOrderButton({
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-xl">
               <AlertCircle className="w-6 h-6 text-orange-500" />
-              Informovat o dostupnosti produktu
+              Objednat produkt na vyžádání
             </DialogTitle>
           </DialogHeader>
           

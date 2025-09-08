@@ -103,7 +103,7 @@ export default function OutOfStockOrderForm({
           <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
           <h3 className="text-xl font-bold text-green-800 mb-2">Objednávka odeslána!</h3>
           <p className="text-green-700 mb-4">
-            Děkujeme za zájem o náš produkt. Brzy vás budeme kontaktovat s informacemi o dostupnosti.
+            Děkujeme za objednávku. Zboží vám dodáme do 14 dnů a brzy vás budeme kontaktovat.
           </p>
           <div className="bg-white rounded-lg p-4 mb-4">
             <p className="text-sm text-gray-600">
@@ -128,9 +128,9 @@ export default function OutOfStockOrderForm({
     <div className="w-full">
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-3">
-          <Badge variant="destructive" className="bg-red-100 text-red-800 border-red-200">
+          <Badge variant="destructive" className="bg-orange-100 text-orange-800 border-orange-200">
             <AlertCircle className="w-4 h-4 mr-1" />
-            Produkt není skladem
+            Objednávka na vyžádání
           </Badge>
         </div>
         <div className="bg-gray-50 rounded-lg p-3 mt-2">
@@ -239,9 +239,8 @@ export default function OutOfStockOrderForm({
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-xs text-blue-700">
-              <strong>Informace:</strong> Po odeslání formuláře vás budeme kontaktovat 
-              s informacemi o dostupnosti a orientačním termínu dodání. 
-              Objednávka je nezávazná.
+              <strong>Důležité:</strong> Objednávka je závazná. Po odeslání formuláře vás budeme kontaktovat 
+              s informacemi o platbě a dodání do 14 dnů.
             </p>
           </div>
 

@@ -12,7 +12,7 @@ import dynamicImport from 'next/dynamic'
 const Header = dynamicImport(() => import("./components/header"), { ssr: false })
 import { Star } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+
 import ProductSection from "./components/product-section"
 
 const SustainabilitySection = lazy(() => import("./components/sustainability-section"))
