@@ -127,20 +127,21 @@ export default function HomePage() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Oficiální české zastoupení</h3>
-                <p className="text-sm md:text-base text-gray-600">Reklamace a zákaznický servis řešíte snadno v češtině přímo u nás.</p>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Oficiální české zastoupení</strong></h3>
+                <p className="text-sm md:text-base text-gray-600"><strong>Servis v češtině přímo u nás.</strong></p>
               </div>
             </div>
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4 text-center md:text-left">
-              <div className="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m15 12l3 3l6-6" />
                 </svg>
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Garance nejlepší ceny</strong></h3>
                 <p className="text-sm md:text-base text-gray-600">
-                  <strong>Našli jste identický produkt jinde levněji? Cenu dorovnáme a dáme navíc 5% slevu!</strong>
+                  <strong>Najdete levněji? Dorovnáme a dáme 5% slevu navíc!</strong>
                 </p>
               </div>
             </div>
@@ -153,7 +154,7 @@ export default function HomePage() {
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Doprava zdarma</strong></h3>
                 <p className="text-sm md:text-base text-gray-600">
-                  <strong>Při objednávce nad 2.500 Kč doručíme zdarma po celé ČR.</strong>
+                  <strong>Nad 2.500 Kč zdarma po celé ČR.</strong>
                 </p>
               </div>
             </div>
@@ -166,7 +167,7 @@ export default function HomePage() {
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2"><strong>Záruka kvality</strong></h3>
                 <p className="text-sm md:text-base text-gray-600">
-                  <strong>2 roky záruka na všechny produkty Piquadro.</strong>
+                  <strong>2 roky záruka na všechny produkty.</strong>
                 </p>
               </div>
             </div>
