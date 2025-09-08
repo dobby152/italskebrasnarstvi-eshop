@@ -1,5 +1,17 @@
 import { useEffect } from 'react';
-import { trackClick, trackForm } from "../app/lib/api"; // Assuming trackClick and trackForm are utility functions for tracking
+
+declare global {
+  interface Window {
+    ga: (
+      command: string,
+      hitType: string,
+      eventCategory: string,
+      eventAction: string,
+      eventLabel?: string,
+      eventValue?: number
+    ) => void;
+  }
+}
 
 const CustomerBehaviorAnalysis = () => {
   useEffect(() => {
@@ -34,9 +46,9 @@ const CustomerBehaviorAnalysis = () => {
 
     // Function to send data to analytics service
     const sendToAnalytics = (data: { event: string; element?: string; form?: string }) => {
-      window.ga('send', 'event', data.event, data.element || data.form);
-      // Implement actual analytics service call here
-      window.ga('send', 'event', data.event, data.element || data.form);
+      if (typeof window.ga === 'function') {
+        window.ga('send', 'event', data.event, data.element || data.form || '');
+      }
     };
 
     // Example: Track page views
