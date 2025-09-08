@@ -149,7 +149,7 @@ export function OrderDetailPage({ orderId }: OrderDetailProps) {
   const fetchOrderDetail = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`http://localhost:3001/api/orders/${orderId}`)
+      const response = await fetch(`/api/orders/${orderId}`)
       if (!response.ok) {
         throw new Error('Failed to fetch order details')
       }
