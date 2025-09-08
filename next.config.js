@@ -5,6 +5,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'dbnfkzctensbpktgbsgn.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.piquadro.com',
       }
     ]
   },

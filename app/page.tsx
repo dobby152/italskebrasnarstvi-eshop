@@ -12,6 +12,7 @@ import dynamicImport from 'next/dynamic'
 const Header = dynamicImport(() => import("./components/header"), { ssr: false })
 import { Star } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import ProductSection from "./components/product-section"
 
 const SustainabilitySection = lazy(() => import("./components/sustainability-section"))
@@ -279,7 +280,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <img src="/italskeBrasnarstvi.cz.avif" alt="italskeBrasnarstvi.cz" className="w-48" />
+              <img src="/logo.avif" alt="italskeBrasnarstvi.cz" className="w-48" />
               <p className="text-white mb-6">
                 Oficiální český distributor značky Piquadro. <span className="font-semibold">Italské řemeslné umění s moderním designem.</span>
               </p>
