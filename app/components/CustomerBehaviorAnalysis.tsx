@@ -36,7 +36,7 @@ const CustomerBehaviorAnalysis = () => {
     const sendToAnalytics = (data: { event: string; element?: string; form?: string }) => {
       // Type-safe analytics call
       if (typeof window !== 'undefined' && (window as any).ga) {
-        (window as any).ga('send', 'event', data.event, data.element || data.form);
+        (window as any).ga('send', 'event', data.event, data.element || data.form || '');
       }
       // Log for debugging
       console.log('Analytics event:', data);
