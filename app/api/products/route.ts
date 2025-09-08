@@ -2,6 +2,21 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/app/lib/supabase'
 import { extractBaseSku, extractVariantCode, getColorInfo } from '@/app/lib/smart-variants'
 
+// Create SEO-friendly slug from product name and ID
+function createSEOSlug(name: string, id: number): string {
+  const slug = name
+    .toLowerCase()
+    .normalize('NFD') // Normalize unicode characters
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
+    .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
+    .trim()
+  
+  return `${slug}-${id}`
+}
+
 const SUPABASE_STORAGE_URL = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
 
 function getSupabaseImageUrl(imagePath: string): string {
@@ -189,6 +204,8 @@ export async function GET(request: NextRequest) {
         normalized_collection: product.normalized_collection,
         image_url: getSupabaseImageUrl(primaryImage),
         images: product.images ? product.images.map((img: string) => getSupabaseImageUrl(img)) : [],
+        // Add SEO-friendly slug
+        slug: createSEOSlug(product.name, product.id),
         // Collection information
         collection_name: product.collection_name,
         collection_code: product.collection_code,
