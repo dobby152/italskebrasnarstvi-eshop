@@ -57,7 +57,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const results = {
+    const results: {
+      processed: any[]
+      errors: string[]
+      shipment: any
+      totalTransferred: number
+    } = {
       processed: [],
       errors: [],
       shipment: null,
