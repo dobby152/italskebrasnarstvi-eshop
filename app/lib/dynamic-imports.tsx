@@ -1,6 +1,6 @@
 "use client"
 
-import { DashboardContent } from '../components/dashboard-content'
+import DashboardContent from '../components/dashboard-content'
 
 // Simple loading component
 const LoadingSpinner = () => (
