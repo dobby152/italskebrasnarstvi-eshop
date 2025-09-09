@@ -13,7 +13,7 @@ interface ProductVariantSelectorProps {
   basePrice: number
 }
 
-export default function ProductVariantSelector({
+export function ProductVariantSelector({
   variants,
   selectedVariantId,
   onVariantChange,
@@ -254,3 +254,5 @@ export default function ProductVariantSelector({
     </div>
   )
 }
+
+export default ProductVariantSelector

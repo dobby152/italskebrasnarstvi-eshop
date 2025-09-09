@@ -15,7 +15,7 @@ import { ProductVariantSelector } from '@/app/components/product-variant-selecto
 import { ProductRecommendations } from '@/app/components/product-recommendations'
 
 interface ProductPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 interface Product {
@@ -64,7 +64,8 @@ async function getProduct(slug: string): Promise<Product | null> {
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = await getProduct(params.slug)
+  const { slug } = await params
+  const product = await getProduct(slug)
   
   if (!product) {
     return {
@@ -73,7 +74,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     }
   }
 
-  const canonicalUrl = getCanonicalUrl(`/produkty/${params.slug}`)
+  const canonicalUrl = getCanonicalUrl(`/produkty/${slug}`)
   const mainImage = product.image_url || (product.images?.[0])
 
   return generateProductMetadata({
@@ -107,7 +108,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await getProduct(params.slug)
+  const { slug } = await params
+  const product = await getProduct(slug)
 
   if (!product) {
     notFound()
@@ -134,7 +136,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     { name: 'Domů', url: SEO_CONFIG.siteUrl },
     { name: 'Produkty', url: `${SEO_CONFIG.siteUrl}/produkty` },
     { name: product.collection_name, url: `${SEO_CONFIG.siteUrl}/kategorie/${generateSlug(product.collection_name)}` },
-    { name: product.name, url: `${SEO_CONFIG.siteUrl}/produkty/${params.slug}` }
+    { name: product.name, url: `${SEO_CONFIG.siteUrl}/produkty/${slug}` }
   ])
 
   return (
@@ -237,7 +239,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
 
               {/* Product Variants */}
-              <ProductVariantSelector baseSku={product.sku} />
+              {/* ProductVariantSelector temporarily disabled - needs proper variant data */}
 
               {/* Add to Cart */}
               <div className="flex gap-4">
