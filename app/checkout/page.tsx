@@ -800,10 +800,9 @@ function CheckoutContent() {
 }
 
 // Create client-only wrapper for checkout
-const ClientOnlyCheckout = dynamicImport(() => Promise.resolve(CheckoutContent), { 
-  ssr: false,
-  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání...</div></div>
-})
+function ClientOnlyCheckout() {
+  return <CheckoutContent />
+}
 
 export default function CheckoutPage() {
   const [isClient, setIsClient] = useState(false)
