@@ -24,10 +24,17 @@ import {
   Bell
 } from "lucide-react"
 import Link from "next/link"
-import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 import { useStats } from "../app/hooks/useStats"
 import { useAnalytics } from "../app/hooks/useAnalytics"
 import { useState } from "react"
+import dynamic from 'next/dynamic'
+
+const BarChart = dynamic(() => import('recharts').then(mod => ({ default: mod.BarChart })), { ssr: false })
+const Bar = dynamic(() => import('recharts').then(mod => ({ default: mod.Bar })), { ssr: false })
+const ResponsiveContainer = dynamic(() => import('recharts').then(mod => ({ default: mod.ResponsiveContainer })), { ssr: false })
+const XAxis = dynamic(() => import('recharts').then(mod => ({ default: mod.XAxis })), { ssr: false })
+const YAxis = dynamic(() => import('recharts').then(mod => ({ default: mod.YAxis })), { ssr: false })
+const Tooltip = dynamic(() => import('recharts').then(mod => ({ default: mod.Tooltip })), { ssr: false })
 
 export default function DashboardContent() {
   const [dateRange, setDateRange] = useState('today')

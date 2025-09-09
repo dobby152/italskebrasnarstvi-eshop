@@ -40,29 +40,7 @@ const nextConfig = {
   },
 
   // Webpack optimizations
-  webpack: (config, { isServer, webpack }) => {
-    // Fix for "self is not defined" error
-    if (isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-      };
-      
-      // Add polyfill for browser globals
-      config.plugins.push(
-        new webpack.DefinePlugin({
-          'self': 'globalThis',
-          'window': 'globalThis',
-        })
-      );
-      
-      // Mark recharts as external for server-side rendering
-      config.externals = config.externals || [];
-      config.externals.push('recharts');
-    }
-    
+  webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,

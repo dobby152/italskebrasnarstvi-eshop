@@ -17,8 +17,12 @@ import {
   RotateCcw,
   Apple,
 } from "lucide-react"
-import { BarChart, Bar, ResponsiveContainer } from "recharts"
 import Link from "next/link"
+import dynamic from 'next/dynamic'
+
+const BarChart = dynamic(() => import('recharts').then(mod => ({ default: mod.BarChart })), { ssr: false })
+const Bar = dynamic(() => import('recharts').then(mod => ({ default: mod.Bar })), { ssr: false })
+const ResponsiveContainer = dynamic(() => import('recharts').then(mod => ({ default: mod.ResponsiveContainer })), { ssr: false })
 
 // Demo data removed - will be replaced with real API data
 const chartData: any[] = []

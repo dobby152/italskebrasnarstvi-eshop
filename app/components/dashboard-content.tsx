@@ -23,11 +23,17 @@ import {
   MoreHorizontal,
   Brain
 } from "lucide-react"
-import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 import { useStats } from "../hooks/useStats"
 import { useAnalytics } from "../hooks/useAnalytics"
 import { useState } from "react"
 import dynamic from 'next/dynamic'
+
+const BarChart = dynamic(() => import('recharts').then(mod => ({ default: mod.BarChart })), { ssr: false })
+const Bar = dynamic(() => import('recharts').then(mod => ({ default: mod.Bar })), { ssr: false })
+const ResponsiveContainer = dynamic(() => import('recharts').then(mod => ({ default: mod.ResponsiveContainer })), { ssr: false })
+const XAxis = dynamic(() => import('recharts').then(mod => ({ default: mod.XAxis })), { ssr: false })
+const YAxis = dynamic(() => import('recharts').then(mod => ({ default: mod.YAxis })), { ssr: false })
+const Tooltip = dynamic(() => import('recharts').then(mod => ({ default: mod.Tooltip })), { ssr: false })
 
 // Dynamic import for UX Management Dashboard
 const UXManagementDashboard = dynamic(
