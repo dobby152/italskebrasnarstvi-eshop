@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     
     const offset = (page - 1) * limit
 
-    // Build the query with JOIN to get product names
+    // Build the query with LEFT JOIN to get product names (fallback if no match)
     let query = supabase
       .from('inventory')
       .select(`
@@ -23,12 +23,12 @@ export async function GET(request: NextRequest) {
         chodov_stock, 
         total_stock,
         updated_at,
-        products!inner(name)
+        products(name)
       `, { count: 'exact' })
 
-    // Apply search filter
+    // Apply search filter (mainly by SKU since products.name may be null)
     if (search) {
-      query = query.or(`sku.ilike.%${search}%,products.name.ilike.%${search}%`)
+      query = query.ilike('sku', `%${search}%`)
     }
 
     // Apply location filter
@@ -55,12 +55,13 @@ export async function GET(request: NextRequest) {
 
     // Apply sorting
     const ascending = sortOrder === 'asc'
-    if (sortBy === 'name') {
-      query = query.order('name', { ascending, referencedTable: 'products' })
-    } else if (sortBy === 'sku') {
+    if (sortBy === 'sku') {
       query = query.order('sku', { ascending })
     } else if (sortBy === 'stock') {
       query = query.order('total_stock', { ascending })
+    } else {
+      // Default sort by SKU if name sorting is requested (since JOIN may not work)
+      query = query.order('sku', { ascending })
     }
 
     // Apply pagination
