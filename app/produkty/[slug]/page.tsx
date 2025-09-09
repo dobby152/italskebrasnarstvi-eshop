@@ -268,7 +268,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
 
               {/* Product Variants */}
-              {false && (
+              {false && product && (
                 <ProductVariantSelector 
                   variants={[]}
                   onVariantChange={() => {}}
