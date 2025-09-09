@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Minimal configuration for maximum Vercel compatibility
+  // Emergency configuration to fix chunk loading
+  swcMinify: false,
+  compress: false,
+  
   images: {
     remotePatterns: [
       {
@@ -10,23 +13,9 @@ const nextConfig = {
     ]
   },
   
-  // Security headers only
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY'
-          },
-        ]
-      }
-    ]
+  // Disable all optimizations
+  compiler: {
+    removeConsole: false,
   },
 
   poweredByHeader: false,
