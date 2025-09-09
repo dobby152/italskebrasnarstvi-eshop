@@ -1,24 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Emergency configuration to fix chunk loading
-  swcMinify: false,
-  compress: false,
-  
+  // Next.js 14 stable configuration
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'dbnfkzctensbpktgbsgn.supabase.co',
-      }
-    ]
+    domains: ['dbnfkzctensbpktgbsgn.supabase.co']
   },
   
-  // Disable all optimizations
-  compiler: {
-    removeConsole: false,
-  },
-
   poweredByHeader: false,
+  reactStrictMode: true,
 }
 
 module.exports = nextConfig
