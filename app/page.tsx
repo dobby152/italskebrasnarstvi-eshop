@@ -8,6 +8,7 @@ import { Button } from "./components/ui/button"
 import { useState, lazy, Suspense, useEffect } from "react"
 import dynamicImport from 'next/dynamic'
 import Image from 'next/image'
+import { ClientWebVitals } from "./components/client-web-vitals"
 
 // Dynamically import Header to prevent SSR issues
 const Header = dynamicImport(() => import("./components/header"), { ssr: false })
@@ -24,6 +25,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <ClientWebVitals />
       <Header />
 
       <section className="relative h-[80vh] min-h-[600px] bg-gradient-to-r from-gray-900 to-black overflow-hidden">

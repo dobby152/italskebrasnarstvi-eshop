@@ -4,7 +4,6 @@ import "./globals.css";
 import { CartProvider } from "./context/cart-context";
 import { AuthProvider } from "./contexts/auth-context";
 import { StructuredData } from "./components/seo/structured-data";
-import { WebVitals } from "./components/seo/web-vitals";
 import { generateOrganizationJsonLd, SEO_CONFIG } from "./lib/seo";
 
 const inter = Inter({ 
@@ -95,7 +94,6 @@ export default function RootLayout({
     <html lang="cs">
       <body className={inter.className}>
         <StructuredData data={generateOrganizationJsonLd()} />
-        <WebVitals />
         <AuthProvider>
           <CartProvider>
             {children}
