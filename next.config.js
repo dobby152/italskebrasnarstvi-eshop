@@ -50,12 +50,17 @@ const nextConfig = {
         tls: false,
       };
       
-      // Define global variables to prevent "self is not defined" errors
+      // Add polyfill for browser globals
       config.plugins.push(
-        new webpack.DefinePlugin({
-          'global.self': 'global',
+        new webpack.ProvidePlugin({
+          'self': 'global',
+          'window': 'global',
         })
       );
+      
+      // Mark recharts as external for server-side rendering
+      config.externals = config.externals || [];
+      config.externals.push('recharts');
     }
     
     if (!isServer) {
