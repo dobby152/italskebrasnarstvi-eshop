@@ -267,14 +267,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
               </div>
 
-              {/* Product Variants */}
-              {false && product && (
-                <ProductVariantSelector 
-                  variants={[]}
-                  onVariantChange={() => {}}
-                  basePrice={product.price}
-                />
-              )}
+              {/* Product Variants - temporarily disabled */}
 
               {/* Add to Cart */}
               <div className="flex gap-4">
