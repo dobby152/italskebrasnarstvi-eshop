@@ -4,9 +4,7 @@ import "./globals.css";
 import { CartProvider } from "./context/cart-context";
 import { AuthProvider } from "./contexts/auth-context";
 import { StructuredData } from "./components/seo/structured-data";
-import dynamic from 'next/dynamic';
-
-const WebVitals = dynamic(() => import("./components/seo/web-vitals").then(mod => ({ default: mod.WebVitals })), { ssr: false });
+import { WebVitals } from "./components/seo/web-vitals";
 import { generateOrganizationJsonLd, SEO_CONFIG } from "./lib/seo";
 
 const inter = Inter({ 
