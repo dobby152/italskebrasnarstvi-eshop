@@ -47,8 +47,8 @@ export function CartAbandonmentPrevention({
   const [isVisible, setIsVisible] = useState(true)
   
   const startTime = useRef(Date.now())
-  const mouseLeaveTimeout = useRef<NodeJS.Timeout>()
-  const timeWarningTimeout = useRef<NodeJS.Timeout>()
+  const mouseLeaveTimeout = useRef<NodeJS.Timeout | null>(null)
+  const timeWarningTimeout = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     // Track time on page
