@@ -32,7 +32,7 @@ export function AdvancedSearch({ onSearch, placeholder = "Hledat produkty...", c
   
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const debounceRef = useRef<NodeJS.Timeout>()
+  const debounceRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     // Load recent searches from localStorage
