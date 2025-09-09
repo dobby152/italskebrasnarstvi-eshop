@@ -52,9 +52,9 @@ const nextConfig = {
       
       // Add polyfill for browser globals
       config.plugins.push(
-        new webpack.ProvidePlugin({
-          'self': 'global',
-          'window': 'global',
+        new webpack.DefinePlugin({
+          'self': 'globalThis',
+          'window': 'globalThis',
         })
       );
       
