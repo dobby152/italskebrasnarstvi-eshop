@@ -88,12 +88,13 @@ export function usePerformanceMonitor() {
       // Monitor layout shifts
       const layoutShiftObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (entry.hadRecentInput) continue
+          const layoutShiftEntry = entry as any
+          if (layoutShiftEntry.hadRecentInput) continue
           
-          if ((entry as any).value > 0.1) {
+          if (layoutShiftEntry.value > 0.1) {
             console.warn('Large layout shift detected:', {
-              value: (entry as any).value,
-              sources: (entry as any).sources
+              value: layoutShiftEntry.value,
+              sources: layoutShiftEntry.sources
             })
           }
         }
