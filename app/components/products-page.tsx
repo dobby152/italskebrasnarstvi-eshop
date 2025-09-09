@@ -887,6 +887,7 @@ export function ProductsPage() {
                totalPages={totalPages || 1}
                onPageChange={setCurrentPage}
              />
+           </div>
           )}
         </div>
       </div>
