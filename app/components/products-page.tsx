@@ -292,7 +292,6 @@ export function ProductsPage() {
     search: searchTerm,
     autoFetch: true
   })
-
   const { stats, loading: statsLoading } = useProductStats()
   
   // Status update handler
