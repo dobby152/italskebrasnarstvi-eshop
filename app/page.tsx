@@ -13,9 +13,8 @@ import { Star } from "lucide-react"
 import Link from "next/link"
 
 import ProductSection from "./components/product-section"
-
-const SustainabilitySection = lazy(() => import("./components/sustainability-section"))
-const BrandStorySection = lazy(() => import("./components/brand-story-section"))
+import SustainabilitySection from "./components/sustainability-section"
+import BrandStorySection from "./components/brand-story-section"
 
 export default function HomePage() {
   const [sustainabilityExpanded, setSustainabilityExpanded] = useState(false)
@@ -256,26 +255,9 @@ export default function HomePage() {
       <ProductSection />
 
 
-      <Suspense
-        fallback={
-          <div className="py-16 bg-white flex justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-          </div>
-        }
-      >
-        <SustainabilitySection expanded={sustainabilityExpanded} setExpanded={setSustainabilityExpanded} />
-      </Suspense>
+      <SustainabilitySection expanded={sustainabilityExpanded} setExpanded={setSustainabilityExpanded} />
 
-
-      <Suspense
-        fallback={
-          <div className="py-16 bg-white flex justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-          </div>
-        }
-      >
-        <BrandStorySection />
-      </Suspense>
+      <BrandStorySection />
 
       <footer className="bg-black text-white py-12">
         <div className="container mx-auto px-6">
