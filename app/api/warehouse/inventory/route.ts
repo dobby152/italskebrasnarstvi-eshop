@@ -14,14 +14,21 @@ export async function GET(request: NextRequest) {
     
     const offset = (page - 1) * limit
 
-    // Build the query
+    // Build the query with JOIN to get product names
     let query = supabase
       .from('inventory')
-      .select('*', { count: 'exact' })
+      .select(`
+        sku,
+        outlet_stock,
+        chodov_stock, 
+        total_stock,
+        updated_at,
+        products!inner(name)
+      `, { count: 'exact' })
 
     // Apply search filter
     if (search) {
-      query = query.or(`sku.ilike.%${search}%,name.ilike.%${search}%`)
+      query = query.or(`sku.ilike.%${search}%,products.name.ilike.%${search}%`)
     }
 
     // Apply location filter
@@ -49,7 +56,7 @@ export async function GET(request: NextRequest) {
     // Apply sorting
     const ascending = sortOrder === 'asc'
     if (sortBy === 'name') {
-      query = query.order('name', { ascending })
+      query = query.order('name', { ascending, referencedTable: 'products' })
     } else if (sortBy === 'sku') {
       query = query.order('sku', { ascending })
     } else if (sortBy === 'stock') {
@@ -71,7 +78,7 @@ export async function GET(request: NextRequest) {
       const currentStock = item.total_stock || 0
       const chodovStock = item.chodov_stock || 0
       const outletStock = item.outlet_stock || 0
-      const minStock = item.min_stock || 5
+      const minStock = 10 // Default minimum stock level since we don't have it in DB
       
       // Determine priority
       let priority: 'critical' | 'high' | 'medium' = 'medium'
@@ -91,7 +98,7 @@ export async function GET(request: NextRequest) {
 
       return {
         sku: item.sku,
-        name: item.name || `Produkt ${item.sku}`,
+        name: item.products?.name || `Produkt ${item.sku}`,
         currentStock,
         chodovStock,
         outletStock,
@@ -131,7 +138,7 @@ export async function GET(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json()
-    const { sku, chodov_stock, outlet_stock, min_stock } = body
+    const { sku, chodov_stock, outlet_stock } = body
 
     if (!sku) {
       return NextResponse.json(
@@ -140,16 +147,12 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    // Update inventory
-    const total_stock = (chodov_stock || 0) + (outlet_stock || 0)
-    
+    // Update inventory (total_stock is computed automatically)
     const { data, error } = await supabase
       .from('inventory')
       .update({
         chodov_stock,
         outlet_stock,
-        total_stock,
-        min_stock,
         updated_at: new Date().toISOString()
       })
       .eq('sku', sku)
