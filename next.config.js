@@ -1,14 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Performance optimizations
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-  
-  // Image optimization
+  // Minimal configuration for maximum Vercel compatibility
   images: {
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,27 +9,8 @@ const nextConfig = {
       }
     ]
   },
-
-  // Disable experimental features that might cause chunk issues
-  experimental: {
-    // optimizePackageImports disabled for better compatibility
-  },
-
-  // Minimal webpack configuration for Vercel compatibility
-  webpack: (config, { isServer }) => {
-    // Only essential configurations
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-      };
-    }
-
-    return config;
-  },
-
+  
+  // Security headers only
   async headers() {
     return [
       {
@@ -50,38 +24,12 @@ const nextConfig = {
             key: 'X-Frame-Options',
             value: 'DENY'
           },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
-          },
         ]
-      },
-      {
-        source: '/_next/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=60, stale-while-revalidate=300',
-          },
-        ],
-      },
+      }
     ]
   },
 
   poweredByHeader: false,
-  compress: true,
-  
-  // Remove output standalone for better compatibility
-  // output: 'standalone',
 }
 
 module.exports = nextConfig
