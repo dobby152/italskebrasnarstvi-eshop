@@ -306,8 +306,9 @@ function generateRecoveryOffer(cartValue: number, itemCount: number, exitIntent:
         created_for: 'cart_abandonment',
         created_at: new Date().toISOString()
       })
-      .then(() => console.log(`Created discount code: ${discountCode}`))
-      .catch(err => console.error('Failed to create discount code:', err))
+
+  // Log discount code creation
+  console.log(`Created discount code: ${discountCode}`)
   }
 
   return offer

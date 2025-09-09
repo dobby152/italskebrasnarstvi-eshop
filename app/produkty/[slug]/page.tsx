@@ -14,6 +14,7 @@ import Header from '@/app/components/header'
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 interface Product {
