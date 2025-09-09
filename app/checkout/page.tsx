@@ -16,8 +16,6 @@ import Link from "next/link"
 import { useCart } from "../context/cart-context"
 import { Badge } from "../components/ui/badge"
 
-// Disable static generation for checkout page since it requires client-side cart data
-export const dynamic = 'force-dynamic'
 
 // Client-only checkout content
 function CheckoutContent() {

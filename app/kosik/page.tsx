@@ -9,8 +9,7 @@ import { formatPrice, getImageUrl } from "../lib/utils"
 import Link from "next/link"
 import Header from "../components/header"
 
-// Disable static generation for cart page since it requires client-side cart data
-export const dynamic = 'force-dynamic'
+// Cart page
 
 // Client-only cart content
 function CartContent() {

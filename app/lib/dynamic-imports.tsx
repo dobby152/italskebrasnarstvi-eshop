@@ -1,6 +1,6 @@
 "use client"
 
-import dynamic from 'next/dynamic'
+import { DashboardContent } from '../components/dashboard-content'
 
 // Simple loading component
 const LoadingSpinner = () => (
@@ -9,11 +9,5 @@ const LoadingSpinner = () => (
   </div>
 )
 
-// Heavy components that should be dynamically imported
-export const DynamicDashboardContent = dynamic(
-  () => import('../components/dashboard-content'),
-  { 
-    loading: LoadingSpinner,
-    ssr: false 
-  }
-)
+// Direct export instead of dynamic import
+export const DynamicDashboardContent = DashboardContent

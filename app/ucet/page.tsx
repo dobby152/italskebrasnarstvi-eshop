@@ -1,7 +1,5 @@
 "use client"
 
-// Disable static generation for account page since it uses auth context
-export const dynamic = 'force-dynamic'
 
 import { Button } from "../components/ui/button"
 import { Card } from "../components/ui/card"
