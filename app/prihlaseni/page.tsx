@@ -8,13 +8,10 @@ import { Card } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
-import dynamicImport from 'next/dynamic'
 import Link from "next/link"
-
-// Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("../components/header"), { ssr: false })
+import Header from "../components/header"
 import { useAuth } from "../contexts/auth-context"
 
 // Client-only login content
@@ -302,22 +299,6 @@ function LoginContent() {
   )
 }
 
-// Create client-only wrapper for login
-const ClientOnlyLogin = dynamicImport(() => Promise.resolve(LoginContent), { 
-  ssr: false,
-  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání přihlášení...</div></div>
-})
-
 export default function LoginPage() {
-  const [isClient, setIsClient] = useState(false)
-  
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-  
-  if (!isClient) {
-    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání přihlášení...</div></div>
-  }
-  
-  return <ClientOnlyLogin />
+  return <LoginContent />
 }

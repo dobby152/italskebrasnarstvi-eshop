@@ -1,16 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React from "react"
 import { useCart } from "../context/cart-context"
 import { Button } from "../components/ui/button"
 import { Card } from "../components/ui/card"
 import { Minus, Plus, X, ShoppingCart } from "lucide-react"
 import { formatPrice, getImageUrl } from "../lib/utils"
 import Link from "next/link"
-import dynamicImport from 'next/dynamic'
-
-// Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("../components/header"), { ssr: false })
+import Header from "../components/header"
 
 // Disable static generation for cart page since it requires client-side cart data
 export const dynamic = 'force-dynamic'
@@ -162,22 +159,6 @@ function CartContent() {
   )
 }
 
-// Create client-only wrapper for cart
-const ClientOnlyCart = dynamicImport(() => Promise.resolve(CartContent), { 
-  ssr: false,
-  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání košíku...</div></div>
-})
-
 export default function CartPage() {
-  const [isClient, setIsClient] = useState(false)
-  
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-  
-  if (!isClient) {
-    return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání košíku...</div></div>
-  }
-  
-  return <ClientOnlyCart />
+  return <CartContent />
 }

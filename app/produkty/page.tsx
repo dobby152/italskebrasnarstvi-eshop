@@ -5,24 +5,10 @@ export const dynamic = 'force-dynamic'
 import { useState, useCallback } from "react"
 import { Input } from "../components/ui/input"
 import { Search, X } from "lucide-react"
-import dynamicImport from 'next/dynamic'
 import Link from "next/link"
-
-// Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("../components/header"), { ssr: false })
+import Header from "../components/header"
 import ProductFiltersSidebar from "../../components/product-filters-sidebar"
-
-// Dynamic import for heavy ProductGrid component
-const ProductGrid = dynamicImport(() => import("../../components/product-grid").then(mod => ({ default: mod.ProductGrid })), {
-  ssr: false,
-  loading: () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="bg-gray-100 h-96 rounded-lg animate-pulse" />
-      ))}
-    </div>
-  )
-})
+import { ProductGrid } from "../../components/product-grid"
 
 export default function ProduktyPage() {
   const [filterParams, setFilterParams] = useState<string>("")
