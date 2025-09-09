@@ -44,7 +44,6 @@ import { Separator } from './ui/separator'
 import { useProducts, useProductStats } from '../hooks/useProducts'
 import { formatPrice, getImageUrl, getProductDisplayName, getProductDisplayCollection, transformProduct, Product } from '../lib/api'
 import { ProductEditDialog } from './product-edit-dialog'
-import { InventoryManagement } from './inventory-management'
 
 // Helper function to get status badge
 const getStatusBadge = (status: string) => {
@@ -283,7 +282,7 @@ export function ProductsPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list')
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState<'products' | 'inventory'>('products')
+  // Removed inventory tab - using dedicated warehouse system
 
   // Use real API data with pagination
   const itemsPerPage = 20
@@ -420,38 +419,9 @@ export function ProductsPage() {
             </div>
           </div>
           
-          {/* Tabs */}
-          <div className="border-t mt-6 pt-4">
-            <div className="flex space-x-6">
-              <button
-                onClick={() => setActiveTab('products')}
-                className={`flex items-center gap-2 pb-2 border-b-2 font-medium transition-colors ${
-                  activeTab === 'products'
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                <Package className="h-4 w-4" />
-                Produkty
-              </button>
-              <button
-                onClick={() => setActiveTab('inventory')}
-                className={`flex items-center gap-2 pb-2 border-b-2 font-medium transition-colors ${
-                  activeTab === 'inventory'
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                <TrendingUp className="h-4 w-4" />
-                Skladové zásoby
-              </button>
-            </div>
-          </div>
         </div>
 
-        {/* Products Tab Content */}
-        {activeTab === 'products' && (
-          <>
+        {/* Products Content */}
             {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <Card className="border-l-4 border-l-blue-500">
@@ -920,13 +890,6 @@ export function ProductsPage() {
              />
           )}
         </div>
-          </>
-        )}
-
-        {/* Inventory Management Tab */}
-        {activeTab === 'inventory' && (
-          <InventoryManagement />
-        )}
       </div>
       
       {/* Product Edit Dialog */}
