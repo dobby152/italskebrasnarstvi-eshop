@@ -67,30 +67,19 @@ const nextConfig = {
       };
     }
 
-    // Fixed splitChunks configuration - only apply to client-side
+    // Simplified splitChunks configuration
     if (!isServer) {
       config.optimization = {
         ...config.optimization,
         splitChunks: {
           chunks: 'all',
           cacheGroups: {
+            default: false,
+            vendors: false,
             vendor: {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
               chunks: 'all',
-              priority: 10,
-            },
-            radix: {
-              test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-              name: 'radix-ui',
-              chunks: 'all',
-              priority: 20,
-            },
-            supabase: {
-              test: /[\\/]node_modules[\\/]@supabase[\\/]/,
-              name: 'supabase',
-              chunks: 'all',
-              priority: 20,
             },
           },
         },
@@ -117,11 +106,16 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block'
           },
+        ]
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
-        ]
+        ],
       },
       {
         source: '/api/(.*)',
@@ -138,8 +132,8 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   
-  // Enable static optimization
-  output: 'standalone',
+  // Remove output standalone for better compatibility
+  // output: 'standalone',
 }
 
 module.exports = nextConfig
