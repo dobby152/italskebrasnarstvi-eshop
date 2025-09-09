@@ -322,6 +322,8 @@ export function ProductsPage() {
   
   // Debug logging
   useEffect(() => {
+    // Debug stats when they change
+    console.log('Stats updated:', stats)
   }, [stats])
 
   // Update search when searchTerm changes
