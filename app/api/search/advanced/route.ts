@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
         break
       default:
         // Relevance sorting - products with availability first
-        searchQuery = searchQuery.order('availability', { ascending: false, nullsLast: true })
+        searchQuery = searchQuery.order('availability', { ascending: false })
         searchQuery = searchQuery.order('name', { ascending: true })
     }
 
