@@ -5,13 +5,10 @@ export const dynamic = 'force-dynamic'
 
 import React from "react"
 import { Button } from "./components/ui/button"
-import { useState, lazy, Suspense, useEffect } from "react"
-import dynamicImport from 'next/dynamic'
+import { useState, useEffect } from "react"
 import Image from 'next/image'
 import { ClientWebVitals } from "./components/client-web-vitals"
-
-// Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("./components/header"), { ssr: false })
+import Header from "./components/header"
 import { Star } from "lucide-react"
 import Link from "next/link"
 

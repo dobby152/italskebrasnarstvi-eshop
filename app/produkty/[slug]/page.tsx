@@ -7,10 +7,7 @@ import { Button } from "../../components/ui/button"
 import { Card } from "../../components/ui/card"
 import { Heart, ShoppingCart, Star, Minus, Plus, Shield, Truck, RotateCcw, Check } from "lucide-react"
 import { useState, useEffect, use, useRef } from "react"
-import dynamicImport from 'next/dynamic'
-
-// Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("../../components/header"), { ssr: false })
+import Header from "../../components/header"
 import Link from "next/link"
 import { useProduct } from "../../hooks/useProducts"
 import { formatPrice, getImageUrl, getProductDisplayName, getProductDisplayCollection, getProductDisplayDescription } from "../../lib/utils"
@@ -520,12 +517,6 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
   )
 }
 
-// Create client-only wrapper for product
-const ClientOnlyProduct = dynamicImport(() => Promise.resolve(ProductDetailContent), { 
-  ssr: false,
-  loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání produktu...</div></div>
-})
-
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const [isClient, setIsClient] = useState(false)
   
@@ -537,5 +528,5 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
     return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání produktu...</div></div>
   }
   
-  return <ClientOnlyProduct params={params} />
+  return <ProductDetailContent params={params} />
 }

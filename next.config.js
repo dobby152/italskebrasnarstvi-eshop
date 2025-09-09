@@ -1,27 +1,39 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ultra minimal config to fix chunk loading issues
+  // Absolutely minimal config - nuclear option
   images: {
     domains: ['dbnfkzctensbpktgbsgn.supabase.co']
   },
-  // Disable all optimizations that might cause MIME type issues
+  // Turn off everything that might cause issues
   swcMinify: false,
   compress: false,
   poweredByHeader: false,
   reactStrictMode: false,
-  // Disable webpack optimizations that cause chunking issues
+  // Nuclear webpack config - force single bundle
   webpack: (config, { isServer, dev }) => {
-    // Disable code splitting to prevent chunk loading errors
     if (!isServer && !dev) {
-      config.optimization.splitChunks = false
+      // Completely disable code splitting
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          bundle: {
+            name: 'bundle',
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
       config.optimization.runtimeChunk = false
+      config.optimization.minimize = false
     }
     return config
   },
-  // Disable experimental features
+  // Completely disable experimental features
   experimental: {},
-  // Force output to be standalone
-  output: 'standalone',
+  // Remove problematic output mode
+  // output: 'export', // Try static export instead
 }
 
 module.exports = nextConfig
