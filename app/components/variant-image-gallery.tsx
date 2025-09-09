@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 // @ts-ignore - react-image-gallery doesn't have types
-import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
+// import ImageGallery from 'react-image-gallery';
+// import 'react-image-gallery/styles/css/image-gallery.css';
 import { ProductVariant } from "../lib/types/variants"
 import { getImageUrl } from "../lib/utils"
 
@@ -80,11 +80,12 @@ export default function VariantImageGallery({
   }
 
   return (
-    <ImageGallery
-      items={galleryItems}
-      showPlayButton={false}
-      showFullscreenButton={true}
-      slideDuration={300}
-    />
+    <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+      <img
+        src={galleryItems[0]?.original || '/placeholder.svg'}
+        alt={galleryItems[0]?.originalAlt || 'Product image'}
+        className="w-full h-full object-cover"
+      />
+    </div>
   )
 }
