@@ -1,17 +1,32 @@
 "use client"
 
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { Input } from "../components/ui/input"
 import { Search, X } from "lucide-react"
 import Link from "next/link"
 import Header from "../components/header"
 import ProductFiltersSidebar from "../../components/product-filters-sidebar"
 import { ProductGrid } from "../../components/product-grid"
+import { getCategoryName } from "../lib/product-categories"
 
 export default function ProduktyPage() {
+  const searchParams = useSearchParams()
   const [filterParams, setFilterParams] = useState<string>("")
   const [searchQuery, setSearchQuery] = useState("")
+  const [initialProductType, setInitialProductType] = useState<string | null>(null)
+
+  // Handle URL parameters on component mount
+  useEffect(() => {
+    const productType = searchParams?.get('productType')
+    if (productType) {
+      setInitialProductType(productType)
+      const params = new URLSearchParams()
+      params.append('categories', productType)
+      setFilterParams(params.toString())
+    }
+  }, [searchParams])
 
   const handleFiltersChange = useCallback((filters: any) => {
     const params = new URLSearchParams()
@@ -65,8 +80,15 @@ export default function ProduktyPage() {
             <span className="text-black font-medium">Produkty</span>
           </nav>
 
-          <h1 className="text-4xl font-black text-gray-900 mb-4">Všechny produkty</h1>
-          <p className="text-xl text-gray-600">Objevte naši kompletní kolekci italských kožených výrobků</p>
+          <h1 className="text-4xl font-black text-gray-900 mb-4">
+            {initialProductType ? getCategoryName(initialProductType) : "Všechny produkty"}
+          </h1>
+          <p className="text-xl text-gray-600">
+            {initialProductType 
+              ? `Produkty v kategorii ${getCategoryName(initialProductType).toLowerCase()}` 
+              : "Objevte naši kompletní kolekci italských kožených výrobků"
+            }
+          </p>
 
           {/* Search Bar */}
           <div className="mt-8 max-w-md">
@@ -95,7 +117,10 @@ export default function ProduktyPage() {
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Sidebar Filters */}
           <div className="lg:w-1/4">
-            <ProductFiltersSidebar onFiltersChange={handleFiltersChange} />
+            <ProductFiltersSidebar 
+              onFiltersChange={handleFiltersChange} 
+              initialCategory={initialProductType}
+            />
           </div>
 
           {/* Products Grid */}

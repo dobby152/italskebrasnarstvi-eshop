@@ -1,7 +1,5 @@
 "use client"
 
-// Disable static generation for product page since it uses useCart hook
-export const dynamic = 'force-dynamic'
 
 import { Button } from "../../components/ui/button"
 import { Card } from "../../components/ui/card"

@@ -29,9 +29,10 @@ interface FilterData {
 
 interface ProductFiltersProps {
   onFiltersChange?: (filters: any) => void
+  initialCategory?: string | null
 }
 
-export default function ProductFiltersSidebar({ onFiltersChange }: ProductFiltersProps) {
+export default function ProductFiltersSidebar({ onFiltersChange, initialCategory }: ProductFiltersProps) {
   const [sections, setSections] = useState<Record<string, boolean>>({
     category: true,
     availability: true,
@@ -65,6 +66,16 @@ export default function ProductFiltersSidebar({ onFiltersChange }: ProductFilter
   })
 
   const [loading, setLoading] = useState(true)
+
+  // Set initial category if provided
+  useEffect(() => {
+    if (initialCategory) {
+      setFilters(prev => ({
+        ...prev,
+        categories: [initialCategory]
+      }))
+    }
+  }, [initialCategory])
 
   // Load filter options from API
   useEffect(() => {
