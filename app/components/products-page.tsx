@@ -374,6 +374,7 @@ export function ProductsPage() {
   const handleProductUpdated = (updatedProduct: Product) => {
     // Refresh the products list - would need to implement refresh logic
     // TODO: Implement actual product refresh logic
+    console.log('Product updated:', updatedProduct)
   }
 
   const handleCloseEditDialog = () => {
