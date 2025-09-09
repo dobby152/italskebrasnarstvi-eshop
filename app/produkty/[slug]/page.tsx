@@ -11,8 +11,6 @@ import {
 } from '@/app/lib/seo'
 import { StructuredData } from '@/app/components/seo/structured-data'
 import Header from '@/app/components/header'
-import { ProductVariantSelector } from '@/app/components/product-variant-selector'
-import { ProductRecommendations } from '@/app/components/product-recommendations'
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>
@@ -289,11 +287,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           {/* Related Products */}
           <section>
-            <ProductRecommendations 
-              type="similar"
-              productId={product.id.toString()}
-              limit={4}
-            />
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">Doporučené produkty</h2>
+            <div className="text-gray-600">
+              Podobné produkty budou zobrazeny zde.
+            </div>
           </section>
         </main>
       </div>
