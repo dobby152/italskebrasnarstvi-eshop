@@ -866,7 +866,7 @@ export function ProductsPage() {
                        </CardContent>
                      </Card>
                    )
-                   } catch (productError) {
+                 } catch (productError) {
                      console.error('Error rendering product card:', product?.id, productError)
                      return (
                        <Card key={`error-${product?.id || Math.random()}`} className="overflow-hidden">

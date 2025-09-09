@@ -228,15 +228,43 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
 
               {/* Availability */}
-              <div className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded-full ${
-                  product.availability > 0 ? 'bg-green-500' : 'bg-red-500'
-                }`}></div>
-                <span className={`font-medium ${
-                  product.availability > 0 ? 'text-green-700' : 'text-red-700'
-                }`}>
-                  {product.availability > 0 ? 'Skladem' : 'Vyprodáno'}
-                </span>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${
+                    product.availability > 0 ? 'bg-green-500' : 'bg-red-500'
+                  }`}></div>
+                  <span className={`font-medium ${
+                    product.availability > 0 ? 'text-green-700' : 'text-red-700'
+                  }`}>
+                    {product.availability > 0 ? 'Skladem' : 'Vyprodáno'}
+                  </span>
+                </div>
+                
+                {/* Store Availability */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-gray-900 mb-3">Dostupnost v prodejnách</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span className="text-sm text-gray-700">Prodejna Chodov</span>
+                      </div>
+                      <span className="text-sm font-medium text-green-600">Skladem</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span className="text-sm text-gray-700">Outlet Štěrboholy</span>
+                      </div>
+                      <span className="text-sm font-medium text-green-600">Skladem</span>
+                    </div>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <p className="text-xs text-gray-500">
+                      Aktuální dostupnost v prodejnách. Pro rezervaci kontaktujte příslušnou prodejnu.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Product Variants */}
