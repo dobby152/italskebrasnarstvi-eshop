@@ -174,7 +174,7 @@ export function generateProductMetadata(data: ProductSEOData): Metadata {
     ...baseMetadata,
     openGraph: {
       ...baseMetadata.openGraph,
-      type: 'product',
+      type: 'website',
       images: product.images.map(img => ({
         url: img,
         width: 800,
