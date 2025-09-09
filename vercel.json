@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "framework": "nextjs",
   "functions": {
     "app/**/*.{ts,tsx,js,jsx}": {
       "runtime": "nodejs18.x"
@@ -6,7 +8,7 @@
   },
   "headers": [
     {
-      "source": "/_next/static/(.*)",
+      "source": "/_next/static/chunks/(.*)",
       "headers": [
         {
           "key": "Content-Type",
@@ -19,19 +21,22 @@
       ]
     },
     {
-      "source": "/_next/static/chunks/(.*).js",
+      "source": "/_next/static/(.*).js",
       "headers": [
         {
           "key": "Content-Type", 
           "value": "application/javascript; charset=utf-8"
         }
       ]
-    }
-  ],
-  "rewrites": [
+    },
     {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "source": "/(.*).js",
+      "headers": [
+        {
+          "key": "Content-Type", 
+          "value": "application/javascript; charset=utf-8"
+        }
+      ]
     }
   ]
 }

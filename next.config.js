@@ -9,10 +9,19 @@ const nextConfig = {
   compress: false,
   poweredByHeader: false,
   reactStrictMode: false,
-  // Force static export to avoid edge runtime issues
-  trailingSlash: true,
+  // Disable webpack optimizations that cause chunking issues
+  webpack: (config, { isServer, dev }) => {
+    // Disable code splitting to prevent chunk loading errors
+    if (!isServer && !dev) {
+      config.optimization.splitChunks = false
+      config.optimization.runtimeChunk = false
+    }
+    return config
+  },
   // Disable experimental features
   experimental: {},
+  // Force output to be standalone
+  output: 'standalone',
 }
 
 module.exports = nextConfig
