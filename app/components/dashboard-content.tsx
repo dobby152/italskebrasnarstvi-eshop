@@ -20,16 +20,28 @@ import {
   ChevronDown,
   Globe,
   Camera,
-  MoreHorizontal
+  MoreHorizontal,
+  Brain
 } from "lucide-react"
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 import { useStats } from "../hooks/useStats"
 import { useAnalytics } from "../hooks/useAnalytics"
 import { useState } from "react"
+import dynamic from 'next/dynamic'
+
+// Dynamic import for UX Management Dashboard
+const UXManagementDashboard = dynamic(
+  () => import('./ux-management-dashboard').then(mod => ({ default: mod.UXManagementDashboard })),
+  { 
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center p-8"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div></div>
+  }
+)
 
 export default function DashboardContent() {
   const [dateRange, setDateRange] = useState('today')
   const [channel, setChannel] = useState('all')
+  const [showUXDashboard, setShowUXDashboard] = useState(false)
   
   const { data: stats, isLoading: statsLoading, error: statsError } = useStats()
   const { data: analytics, isLoading: analyticsLoading, error: analyticsError } = useAnalytics({
@@ -75,6 +87,14 @@ export default function DashboardContent() {
         </div>
         
         <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
+          <Button
+            onClick={() => setShowUXDashboard(!showUXDashboard)}
+            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+          >
+            <Brain className="h-4 w-4" />
+            UX Management
+          </Button>
+          
           <div className="flex items-center gap-2">
             <Globe className="h-4 w-4 text-gray-500" />
             <Select value={channel} onValueChange={setChannel}>
@@ -481,6 +501,13 @@ export default function DashboardContent() {
           </Card>
         </div>
       </div>
+
+      {/* UX Management Dashboard Modal/Overlay */}
+      {showUXDashboard && (
+        <div className="fixed inset-0 bg-white z-50 overflow-auto">
+          <UXManagementDashboard onClose={() => setShowUXDashboard(false)} />
+        </div>
+      )}
     </div>
   )
 }

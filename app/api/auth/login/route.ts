@@ -3,17 +3,46 @@ import { supabase } from '@/app/lib/supabase'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
+import { validateEmail, sanitizeString, validateRequestSize, getSecurityHeaders } from '@/app/lib/security'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, rememberMe } = await request.json()
+    const body = await request.json()
+    
+    // Validate request size
+    if (!validateRequestSize(body, 1024)) { // 1KB max
+      return NextResponse.json(
+        { error: 'Request too large' },
+        { status: 413, headers: getSecurityHeaders() }
+      )
+    }
+
+    const { email, password, rememberMe } = body
 
     if (!email || !password) {
       return NextResponse.json(
         { error: 'Email and password required' },
-        { status: 400 }
+        { status: 400, headers: getSecurityHeaders() }
+      )
+    }
+
+    // Sanitize and validate input
+    const sanitizedEmail = sanitizeString(email.toLowerCase().trim())
+    const sanitizedPassword = sanitizeString(password)
+
+    if (!validateEmail(sanitizedEmail)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400, headers: getSecurityHeaders() }
+      )
+    }
+
+    if (sanitizedPassword.length < 6 || sanitizedPassword.length > 128) {
+      return NextResponse.json(
+        { error: 'Invalid password length' },
+        { status: 400, headers: getSecurityHeaders() }
       )
     }
 
@@ -21,7 +50,7 @@ export async function POST(request: NextRequest) {
     const { data: user, error } = await supabase
       .from('customers')
       .select('*')
-      .eq('email', email)
+      .eq('email', sanitizedEmail)
       .single()
 
     if (error || !user) {
@@ -40,7 +69,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify password
-    const passwordValid = await bcrypt.compare(password, user.password_hash)
+    const passwordValid = await bcrypt.compare(sanitizedPassword, user.password_hash)
     
     if (!passwordValid) {
       // Increment login attempts

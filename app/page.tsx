@@ -7,6 +7,7 @@ import React from "react"
 import { Button } from "./components/ui/button"
 import { useState, lazy, Suspense, useEffect } from "react"
 import dynamicImport from 'next/dynamic'
+import Image from 'next/image'
 
 // Dynamically import Header to prevent SSR issues
 const Header = dynamicImport(() => import("./components/header"), { ssr: false })
@@ -281,7 +282,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <img src="/logo.avif" alt="italskeBrasnarstvi.cz" className="w-48" />
+              <Image src="/logo.avif" alt="italskeBrasnarstvi.cz" width={192} height={60} className="w-48" priority />
               <p className="text-white mb-6">
                 Oficiální český distributor značky Piquadro. <span className="font-semibold">Italské řemeslné umění s moderním designem.</span>
               </p>
