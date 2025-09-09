@@ -206,7 +206,7 @@ export default function ShoppingCart() {
                         <div>
                           <h3 className="font-semibold text-gray-900 mb-1">
                             <Link 
-                              href={`/produkt/${item.product.id}`}
+                              href={`/produkty/${item.product.id}`}
                               className="hover:text-blue-600"
                             >
                               {item.product.name}

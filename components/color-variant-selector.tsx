@@ -124,7 +124,7 @@ export default function ColorVariantSelector({ product, onVariantChange }: Color
               ) : (
                 // Other variants - clickable color swatches (navigate on click)
                 <Link 
-                  href={`/produkt/${createProductSlug({
+                  href={`/produkty/${createProductSlug({
                     id: variant.id,
                     name: variant.name,
                     sku: variant.sku

@@ -80,7 +80,7 @@ export default function TestProductsPage() {
                     {product.availability === 'in_stock' ? 'Skladem' : 'Není skladem'}
                   </span>
                 </div>
-                <Link href={`/produkt/${product.sku}-${product.id}`}>
+                <Link href={`/produkty/${product.sku}-${product.id}`}>
                   <button className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Detail
                   </button>

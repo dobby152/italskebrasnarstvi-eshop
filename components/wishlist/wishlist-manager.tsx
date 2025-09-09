@@ -298,7 +298,7 @@ export default function WishlistManager() {
                             <div>
                               <h3 className="font-semibold text-gray-900 mb-1">
                                 <Link 
-                                  href={`/produkt/${item.product.id}`}
+                                  href={`/produkty/${item.product.id}`}
                                   className="hover:text-blue-600"
                                 >
                                   {item.product.name}
@@ -386,7 +386,7 @@ export default function WishlistManager() {
                             </Button>
                             
                             <Button variant="outline" size="sm" asChild>
-                              <Link href={`/produkt/${item.product.id}`}>
+                              <Link href={`/produkty/${item.product.id}`}>
                                 <Eye className="h-4 w-4 mr-2" />
                                 Detail
                               </Link>

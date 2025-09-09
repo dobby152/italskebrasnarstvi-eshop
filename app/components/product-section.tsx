@@ -102,7 +102,7 @@ export default function ProductSection() {
                 return (
                   <Link 
                     key={product.id} 
-                    href={`/produkt/${product.id}`}
+                    href={`/produkty/${product.id}`}
                     className="group flex-none w-80 transform transition-all duration-300 hover:-translate-y-2"
                   >
                     <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 h-full">

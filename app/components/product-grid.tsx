@@ -82,7 +82,7 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
         <Card key={product.id} className="group hover:shadow-lg transition-shadow">
           <CardContent className="p-0">
             <div className="relative">
-              <Link href={`/produkt/${product.sku}`}>
+              <Link href={`/produkty/${product.sku}`}>
                 <div className="relative aspect-square overflow-hidden rounded-t-lg">
                   <Image
                     src={product.images?.[0] || product.image_url || '/placeholder.svg'}
@@ -102,7 +102,7 @@ export function ProductGrid({ category, searchQuery, limit = 12, sortBy, sortOrd
             </div>
             
             <div className="p-4">
-              <Link href={`/produkt/${product.sku}`}>
+              <Link href={`/produkty/${product.sku}`}>
                 <h3 className="font-medium text-sm mb-2 line-clamp-2 hover:text-primary transition-colors">
                   {product.name}
                 </h3>

@@ -143,7 +143,7 @@ export function ProductGrid({
         <Card key={product.id} className="group hover:shadow-lg transition-shadow">
           <CardContent className="p-0">
             <div className="relative">
-              <Link href={`/produkt/${product.slug || product.id}`}>
+              <Link href={`/produkty/${product.slug || product.id}`}>
                 <div className="relative aspect-square overflow-hidden rounded-t-lg">
                   <Image
                     src={product.image_url || '/placeholder.svg'}
@@ -163,7 +163,7 @@ export function ProductGrid({
             </div>
             
             <div className="p-4">
-              <Link href={`/produkt/${product.slug || product.id}`}>
+              <Link href={`/produkty/${product.slug || product.id}`}>
                 <h3 className="font-medium text-sm mb-2 line-clamp-2 hover:text-primary transition-colors">
                   {product.name}
                 </h3>

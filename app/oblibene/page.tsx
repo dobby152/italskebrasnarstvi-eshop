@@ -259,7 +259,7 @@ export default function FavoritesPage() {
                         )}
                       </div>
                       <div className="flex gap-2">
-                        <Link href={`/produkt/${createProductSlug(product)}`}>
+                        <Link href={`/produkty/${createProductSlug(product)}`}>
                           <Button variant="outline" className="border-gray-300 hover:border-black bg-transparent">
                             Zobrazit
                           </Button>
