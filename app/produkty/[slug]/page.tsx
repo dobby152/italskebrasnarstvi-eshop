@@ -268,11 +268,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
 
               {/* Product Variants */}
-              <ProductVariantSelector 
-                variants={[]}
-                onVariantChange={() => {}}
-                basePrice={product.price}
-              />
+              {false && (
+                <ProductVariantSelector 
+                  variants={[]}
+                  onVariantChange={() => {}}
+                  basePrice={product.price}
+                />
+              )}
 
               {/* Add to Cart */}
               <div className="flex gap-4">
@@ -322,11 +324,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           {/* Related Products */}
           <section>
-            <ProductRecommendations 
-              type="similar"
-              productId={product.id.toString()}
-              limit={4}
-            />
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">Podobné produkty</h2>
+            <div className="text-gray-600">
+              Podobné produkty se načítají...
+            </div>
           </section>
         </main>
       </div>
