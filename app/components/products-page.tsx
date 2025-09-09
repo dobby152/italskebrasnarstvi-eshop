@@ -375,7 +375,7 @@ export function ProductsPage() {
   const handleProductUpdated = (updatedProduct: Product) => {
     // Refresh the products list - would need to implement refresh logic
     // TODO: Implement actual product refresh logic
-  }
+  };
 
   const handleCloseEditDialog = () => {
     try {
@@ -384,12 +384,12 @@ export function ProductsPage() {
     } catch (error) {
       console.error('Error closing product edit dialog:', error)
     }
-  }
+  };
 
-  const totalProducts = stats?.total || 0
-  const activeProducts = stats?.active || 0
-  const draftProducts = 0 // No draft products in real data
-  const outOfStockProducts = stats?.outOfStock || 0
+  const totalProducts = stats?.total || 0;
+  const activeProducts = stats?.active || 0;
+  const draftProducts = 0; // No draft products in real data
+  const outOfStockProducts = stats?.outOfStock || 0;
 
   return (
     <div className="min-h-screen bg-gray-50/50">
