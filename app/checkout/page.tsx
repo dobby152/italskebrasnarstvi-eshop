@@ -8,10 +8,7 @@ import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group"
 import { Checkbox } from "../components/ui/checkbox"
 import { CreditCard, Truck, User, Phone, Mail, Building, Check, Lock, ArrowLeft, Shield } from "lucide-react"
 import { useState, useEffect } from "react"
-import dynamicImport from 'next/dynamic'
-
-// Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("../components/header"), { ssr: false })
+import Header from "../components/header"
 import Link from "next/link"
 import { useCart } from "../context/cart-context"
 import { Badge } from "../components/ui/badge"
