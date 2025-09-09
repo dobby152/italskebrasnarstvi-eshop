@@ -38,10 +38,13 @@ export default function ProductPageClient({ initialProduct, slug }: {
   const [product, setProduct] = useState<Product>(initialProduct)
   const [stockInfo, setStockInfo] = useState<StockInfo | null>(null)
   const [addingToCart, setAddingToCart] = useState(false)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [similarProducts, setSimilarProducts] = useState<Product[]>([])
 
-  // Fetch real-time stock data
+  // Fetch real-time stock data and similar products
   useEffect(() => {
     fetchStockData()
+    fetchSimilarProducts()
   }, [product.sku])
 
   const fetchStockData = async () => {
@@ -53,6 +56,18 @@ export default function ProductPageClient({ initialProduct, slug }: {
       }
     } catch (error) {
       console.error('Failed to fetch stock data:', error)
+    }
+  }
+
+  const fetchSimilarProducts = async () => {
+    try {
+      const response = await fetch(`/api/products?category=${encodeURIComponent(product.collection_name)}&limit=4&exclude=${product.id}`)
+      if (response.ok) {
+        const data = await response.json()
+        setSimilarProducts(data.products || [])
+      }
+    } catch (error) {
+      console.error('Failed to fetch similar products:', error)
     }
   }
 
@@ -138,10 +153,14 @@ export default function ProductPageClient({ initialProduct, slug }: {
           <div className="space-y-4">
             <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden shadow-lg">
               <img 
-                src={product.image_url || '/placeholder.svg'}
+                src={(product.images && product.images[selectedImageIndex]) || product.image_url || '/placeholder.svg'}
                 alt={product.name}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="eager"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = '/placeholder.svg'
+                }}
               />
               {/* Premium Badge */}
               <div className="absolute top-4 left-4">
@@ -161,13 +180,23 @@ export default function ProductPageClient({ initialProduct, slug }: {
             
             {product.images && product.images.length > 1 && (
               <div className="grid grid-cols-4 gap-3">
-                {product.images.slice(1, 5).map((image, index) => (
-                  <div key={index} className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                {product.images.slice(0, 4).map((image, index) => (
+                  <div 
+                    key={index} 
+                    className={`aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer ${
+                      selectedImageIndex === index ? 'ring-2 ring-blue-500 shadow-md' : ''
+                    }`}
+                    onClick={() => setSelectedImageIndex(index)}
+                  >
                     <img 
                       src={image}
-                      alt={`${product.name} ${index + 2}`}
+                      alt={`${product.name} ${index + 1}`}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                       loading="lazy"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.src = '/placeholder.svg'
+                      }}
                     />
                   </div>
                 ))}
@@ -315,23 +344,16 @@ export default function ProductPageClient({ initialProduct, slug }: {
               </div>
             </div>
 
-            {/* Product Variants */}
+            {/* Color Variants */}
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-900">Varianty</h4>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="text-center">
-                  <button className="w-full p-3 border border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                    <div className="text-sm font-medium text-gray-900">Standardní</div>
-                    <div className="text-xs text-gray-500">Skladem</div>
-                  </button>
-                </div>
-                <div className="text-center">
-                  <button className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 cursor-not-allowed opacity-50">
-                    <div className="text-sm font-medium text-gray-500">Premium</div>
-                    <div className="text-xs text-gray-400">Brzy</div>
-                  </button>
-                </div>
+              <h4 className="font-semibold text-gray-900">Barvy</h4>
+              <div className="flex gap-3">
+                <div className="w-12 h-12 bg-black rounded-full border-2 border-gray-300 hover:border-blue-500 cursor-pointer transition-colors" title="Černá"></div>
+                <div className="w-12 h-12 bg-amber-800 rounded-full border-2 border-gray-300 hover:border-blue-500 cursor-pointer transition-colors" title="Hnědá"></div>
+                <div className="w-12 h-12 bg-red-800 rounded-full border-2 border-gray-300 hover:border-blue-500 cursor-pointer transition-colors" title="Bordeaux"></div>
+                <div className="w-12 h-12 bg-blue-900 rounded-full border-2 border-gray-300 hover:border-blue-500 cursor-pointer transition-colors" title="Modrá"></div>
               </div>
+              <p className="text-sm text-gray-600">Dostupné barvy mohou být omezené podle skladových zásob</p>
             </div>
 
             {/* Add to Cart */}
@@ -457,6 +479,49 @@ export default function ProductPageClient({ initialProduct, slug }: {
             </div>
           </div>
         </section>
+
+        {/* Similar Products */}
+        {similarProducts.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Podobné produkty</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {similarProducts.map((similarProduct) => (
+                <div key={similarProduct.id} className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <div className="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
+                    <img 
+                      src={similarProduct.image_url || '/placeholder.svg'}
+                      alt={similarProduct.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.src = '/placeholder.svg'
+                      }}
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
+                      {similarProduct.normalized_brand}
+                    </p>
+                    <h3 className="font-medium text-gray-900 mb-2 line-clamp-2">
+                      {similarProduct.name}
+                    </h3>
+                    <p className="text-lg font-bold text-gray-900">
+                      {similarProduct.price.toLocaleString('cs-CZ')} Kč
+                    </p>
+                    <div className="mt-3">
+                      <a 
+                        href={`/produkty/${generateSlug(similarProduct.name)}-${similarProduct.id}`}
+                        className="block w-full bg-gray-900 text-white text-center py-2 rounded-md hover:bg-gray-800 transition-colors text-sm"
+                      >
+                        Zobrazit produkt
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   )
