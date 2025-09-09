@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/app/lib/supabase'
 import { extractBaseSku, extractVariantCode, getColorInfo } from '@/app/lib/smart-variants'
+import { categorizeProduct, PRODUCT_CATEGORIES } from '@/app/lib/product-categories'
 
 // Create SEO-friendly slug from product name and ID
 function createSEOSlug(name: string, id: number): string {
@@ -94,12 +95,9 @@ export async function GET(request: NextRequest) {
       query = query.eq('normalized_brand', brandFilter)
     }
 
-    // Add category filter (multiple)
+    // NOTE: Category filter will be applied after fetching products
+    // since categories are based on product name keywords, not collection_code
     const categoriesFilter = searchParams.get('categories')
-    if (categoriesFilter) {
-      const categories = categoriesFilter.split(',')
-      query = query.in('collection_code', categories)
-    }
 
     // Add price filter
     const minPrice = searchParams.get('minPrice')
@@ -272,11 +270,29 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    // Filter products by categories if requested (using keyword-based categories)
+    let filteredProducts = uniqueProducts
+    if (categoriesFilter) {
+      const requestedCategories = categoriesFilter.split(',')
+      console.log('Filtering by categories:', requestedCategories)
+      
+      filteredProducts = filteredProducts.filter(product => {
+        const detectedCategory = categorizeProduct(product.name)
+        const matches = requestedCategories.includes(detectedCategory || '')
+        if (matches) {
+          console.log(`Product "${product.name}" matches category ${detectedCategory}`)
+        }
+        return matches
+      })
+      
+      console.log(`After category filtering: ${filteredProducts.length} products`)
+    }
+
     // Filter products by availability if requested
     const inStockOnly = searchParams.get('inStockOnly') === 'true'
-    let filteredProducts = inStockOnly 
-      ? uniqueProducts.filter(p => p.available)
-      : uniqueProducts
+    if (inStockOnly) {
+      filteredProducts = filteredProducts.filter(p => p.available)
+    }
 
     // Sort products by availability (available first, then by stock amount)
     let sortedProducts = [...filteredProducts]
