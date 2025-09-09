@@ -41,6 +41,14 @@ const nextConfig = {
 
   // Webpack optimizations
   webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Mark recharts as external for server builds
+      config.externals = config.externals || []
+      config.externals.push({
+        'recharts': 'recharts'
+      })
+    }
+    
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
