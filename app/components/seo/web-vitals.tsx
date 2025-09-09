@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 export function WebVitals() {
   useEffect(() => {
     const trackWebVitals = async () => {
-      const { getCLS, getFID, getFCP, getLCP, getTTFB } = await import('web-vitals')
+      const { onCLS, onFID, onFCP, onLCP, onTTFB } = await import('web-vitals')
       
       const sendToAnalytics = (metric: any) => {
         // Send to your analytics service
@@ -34,11 +34,11 @@ export function WebVitals() {
       }
 
       // Track all Core Web Vitals
-      getCLS(sendToAnalytics)
-      getFID(sendToAnalytics)
-      getFCP(sendToAnalytics)
-      getLCP(sendToAnalytics)
-      getTTFB(sendToAnalytics)
+      onCLS(sendToAnalytics)
+      onFID(sendToAnalytics)
+      onFCP(sendToAnalytics)
+      onLCP(sendToAnalytics)
+      onTTFB(sendToAnalytics)
     }
 
     trackWebVitals()
