@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 // Web Vitals tracking component
 export function WebVitals() {
   useEffect(() => {
+    // Only run in browser environment
+    if (typeof window === 'undefined') return
     const trackWebVitals = async () => {
       const { onCLS, onINP, onFCP, onLCP, onTTFB } = await import('web-vitals')
       
