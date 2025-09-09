@@ -40,7 +40,24 @@ const nextConfig = {
   },
 
   // Webpack optimizations
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
+    // Fix for "self is not defined" error
+    if (isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+      
+      // Define global variables to prevent "self is not defined" errors
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'global.self': 'global',
+        })
+      );
+    }
+    
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
