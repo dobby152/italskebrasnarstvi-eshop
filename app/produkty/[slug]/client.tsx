@@ -162,12 +162,6 @@ export default function ProductPageClient({ initialProduct, slug }: {
                   target.src = '/placeholder.svg'
                 }}
               />
-              {/* Premium Badge */}
-              <div className="absolute top-4 left-4">
-                <div className="bg-black/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
-                  ✨ Italská kvalita
-                </div>
-              </div>
               {/* Discount Badge if needed */}
               {product.price < 5000 && (
                 <div className="absolute top-4 right-4">

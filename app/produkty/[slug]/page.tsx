@@ -40,6 +40,19 @@ function extractIdFromSlug(slug: string): number | null {
   return isNaN(id) ? null : id
 }
 
+function getSupabaseImageUrl(imagePath: string): string {
+  if (!imagePath) return '/placeholder.svg'
+  
+  // If it's already a full URL, return as is
+  if (imagePath.startsWith('http')) {
+    return imagePath
+  }
+  
+  // Convert database path to Supabase storage URL
+  const SUPABASE_STORAGE_URL = 'https://dbnfkzctensbpktgbsgn.supabase.co/storage/v1/object/public/product-images'
+  return `${SUPABASE_STORAGE_URL}/${imagePath.replace(/^\/+/, '')}`
+}
+
 async function getProduct(slug: string): Promise<Product | null> {
   const id = extractIdFromSlug(slug)
   if (!id) return null
@@ -57,6 +70,15 @@ async function getProduct(slug: string): Promise<Product | null> {
   if (slug !== expectedSlug) {
     // Redirect to correct URL would be handled by middleware
     return null
+  }
+
+  // Transform image URLs
+  if (product.image_url) {
+    product.image_url = getSupabaseImageUrl(product.image_url)
+  }
+  
+  if (product.images && Array.isArray(product.images)) {
+    product.images = product.images.map((img: string) => getSupabaseImageUrl(img))
   }
 
   return product
