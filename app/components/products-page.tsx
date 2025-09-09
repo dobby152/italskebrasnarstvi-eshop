@@ -23,6 +23,8 @@ import {
   List,
   ToggleLeft,
   ToggleRight,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -184,6 +186,95 @@ const LoadingCard = () => (
   </Card>
 )
 
+// Pagination Component
+const Pagination = ({ 
+  currentPage, 
+  totalPages, 
+  onPageChange 
+}: { 
+  currentPage: number, 
+  totalPages: number, 
+  onPageChange: (page: number) => void 
+}) => {
+  const getVisiblePages = () => {
+    const delta = 2
+    const range = []
+    const rangeWithDots = []
+
+    for (let i = Math.max(2, currentPage - delta); i <= Math.min(totalPages - 1, currentPage + delta); i++) {
+      range.push(i)
+    }
+
+    if (currentPage - delta > 2) {
+      rangeWithDots.push(1, '...')
+    } else {
+      rangeWithDots.push(1)
+    }
+
+    rangeWithDots.push(...range)
+
+    if (currentPage + delta < totalPages - 1) {
+      rangeWithDots.push('...', totalPages)
+    } else if (totalPages > 1) {
+      rangeWithDots.push(totalPages)
+    }
+
+    return rangeWithDots
+  }
+
+  if (totalPages <= 1) return null
+
+  return (
+    <div className="flex items-center justify-center gap-2 mt-6">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage <= 1}
+        className="h-9 px-3"
+      >
+        <ChevronLeft className="h-4 w-4 mr-1" />
+        Předchozí
+      </Button>
+
+      <div className="flex items-center gap-1">
+        {getVisiblePages().map((page, index) => {
+          if (page === '...') {
+            return (
+              <span key={`dots-${index}`} className="px-2 text-gray-400">
+                ...
+              </span>
+            )
+          }
+
+          return (
+            <Button
+              key={page}
+              variant={page === currentPage ? "default" : "outline"}
+              size="sm"
+              onClick={() => onPageChange(page as number)}
+              className="h-9 w-9"
+            >
+              {page}
+            </Button>
+          )
+        })}
+      </div>
+
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage >= totalPages}
+        className="h-9 px-3"
+      >
+        Další
+        <ChevronRight className="h-4 w-4 ml-1" />
+      </Button>
+    </div>
+  )
+}
+
 export function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedStatus, setSelectedStatus] = useState('all')
@@ -194,10 +285,11 @@ export function ProductsPage() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<'products' | 'inventory'>('products')
 
-  // Use real API data with higher limit to show all products
+  // Use real API data with pagination
+  const itemsPerPage = 20
   const { products, loading, error, total, totalPages, setSearch, setPage } = useProducts({
     page: currentPage,
-    limit: 1000, // Increased limit to show all products
+    limit: itemsPerPage,
     search: searchTerm,
     autoFetch: true
   })
@@ -241,10 +333,21 @@ export function ProductsPage() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setSearch(searchTerm)
+      setCurrentPage(1) // Reset to first page when search changes
     }, 300)
 
     return () => clearTimeout(timeoutId)
   }, [searchTerm, setSearch])
+
+  // Reset to first page when status filter changes
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedStatus])
+
+  // Update page when currentPage changes
+  useEffect(() => {
+    setPage(currentPage)
+  }, [currentPage, setPage])
 
   // Filter products based on selected filters
   const filteredProducts = products.filter(product => {
@@ -461,7 +564,12 @@ export function ProductsPage() {
         {/* Products Display */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold">Produkty ({filteredProducts.length})</h2>
+            <h2 className="text-xl font-semibold">Produkty ({total || filteredProducts.length})</h2>
+            {totalPages > 1 && (
+              <div className="text-sm text-gray-500">
+                Stránka {currentPage} z {totalPages}
+              </div>
+            )}
           </div>
           
           {viewMode === 'list' ? (
@@ -638,6 +746,15 @@ export function ProductsPage() {
                   </TableBody>
                 </Table>
               </div>
+              
+              {/* Pagination for List View */}
+              <div className="px-6 pb-4">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages || 1}
+                  onPageChange={setCurrentPage}
+                />
+              </div>
             </Card>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -794,6 +911,13 @@ export function ProductsPage() {
                  }).filter(Boolean)
                )}
              </div>
+             
+             {/* Pagination for Grid View */}
+             <Pagination
+               currentPage={currentPage}
+               totalPages={totalPages || 1}
+               onPageChange={setCurrentPage}
+             />
           )}
         </div>
           </>
