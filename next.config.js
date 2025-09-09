@@ -40,15 +40,25 @@ const nextConfig = {
   },
 
   // Webpack optimizations
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
+    // Server-side configuration
     if (isServer) {
-      // Mark recharts as external for server builds
-      config.externals = config.externals || []
+      // Define browser globals for server-side builds to prevent ReferenceError
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'self': 'globalThis',
+          'window': 'globalThis',
+        })
+      );
+      
+      // Mark browser-only dependencies as external for server builds
+      config.externals = config.externals || [];
       config.externals.push({
         'recharts': 'recharts'
-      })
+      });
     }
     
+    // Client-side configuration
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -58,32 +68,35 @@ const nextConfig = {
       };
     }
 
-    config.optimization = {
-      ...config.optimization,
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-            priority: 10,
-          },
-          radix: {
-            test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-            name: 'radix-ui',
-            chunks: 'all',
-            priority: 20,
-          },
-          supabase: {
-            test: /[\\/]node_modules[\\/]@supabase[\\/]/,
-            name: 'supabase',
-            chunks: 'all',
-            priority: 20,
+    // Fixed splitChunks configuration - only apply to client-side
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+              priority: 10,
+            },
+            radix: {
+              test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
+              name: 'radix-ui',
+              chunks: 'all',
+              priority: 20,
+            },
+            supabase: {
+              test: /[\\/]node_modules[\\/]@supabase[\\/]/,
+              name: 'supabase',
+              chunks: 'all',
+              priority: 20,
+            },
           },
         },
-      },
-    };
+      };
+    }
 
     return config;
   },
