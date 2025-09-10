@@ -20,10 +20,9 @@ import { useCart } from "../../context/cart-context"
 import { ProductVariant } from "../../lib/types/variants"
 
 // Client-only product content
-function ProductDetailContent({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params)
-  console.log('ProductDetailPage: resolvedParams.slug:', resolvedParams.slug)
-  const { product, loading, error } = useProduct(resolvedParams.slug)
+function ProductDetailContent({ slug }: { slug: string }) {
+  console.log('ProductDetailPage: slug:', slug)
+  const { product, loading, error } = useProduct(slug)
   console.log('ProductDetailPage: useProduct result:', { product: !!product, loading, error })
   const { variantGroup, selectedVariant, setSelectedVariant, loading: variantsLoading, error: variantsError, fetchVariantGroup } = useVariants()
   const { addItem } = useCart()
@@ -238,7 +237,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
               </>
             )}
             <span className="text-black font-medium">
-              {product ? getProductDisplayName(product) : resolvedParams.slug}
+              {product ? getProductDisplayName(product) : slug}
             </span>
           </nav>
         </div>
@@ -516,6 +515,7 @@ function ProductDetailContent({ params }: { params: Promise<{ slug: string }> })
 }
 
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = use(params)
   const [isClient, setIsClient] = useState(false)
   
   useEffect(() => {
@@ -526,5 +526,5 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
     return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání produktu...</div></div>
   }
   
-  return <ProductDetailContent params={params} />
+  return <ProductDetailContent slug={resolvedParams.slug} />
 }
