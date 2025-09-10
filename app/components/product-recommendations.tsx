@@ -70,68 +70,38 @@ export function ProductRecommendations({
     return () => clearTimeout(timeoutId)
   }, [type, productId, userId, cartItems, browsingHistory])
 
-  const fetchRecommendations = async (retryCount = 0) => {
+  const fetchRecommendations = async () => {
     setIsLoading(true)
     setError(null)
 
     try {
-      const response = await fetch('/api/recommendations/engine', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type,
-          currentProductId: productId,
-          userId,
-          cartItems,
-          browsingHistory,
-          limit
-        })
-      })
-
+      // Use products API instead of problematic recommendations API
+      const response = await fetch(`/api/products?limit=${limit}&inStockOnly=true`)
+      
       if (response.ok) {
         const data = await response.json()
-        setRecommendations(data.recommendations || [])
-      } else if (response.status === 429 && retryCount < 2) {
-        // Rate limited - retry with exponential backoff
-        const delay = Math.pow(2, retryCount) * 1000 // 1s, 2s, 4s
-        console.log(`Rate limited, retrying in ${delay}ms...`)
-        setTimeout(() => fetchRecommendations(retryCount + 1), delay)
-        return
+        const products = data.products || []
+        
+        // Convert products to recommendation format
+        const recommendations: ProductRecommendation[] = products.map((product: any) => ({
+          id: product.id.toString(),
+          name: product.name,
+          price: product.price,
+          image_url: product.image_url,
+          sku: product.sku,
+          score: 0.8,
+          reason: 'Doporučený produkt',
+          brand: product.brand || 'Piquadro',
+          category: product.collection_name || 'Produkty'
+        }))
+        
+        setRecommendations(recommendations)
       } else {
-        throw new Error(`HTTP ${response.status}: Failed to fetch recommendations`)
+        throw new Error(`HTTP ${response.status}: Failed to fetch products`)
       }
     } catch (error) {
       console.error('Recommendations error:', error)
-      if (retryCount === 0) {
-        // For development - show mock recommendations
-        const mockRecommendations: ProductRecommendation[] = [
-          {
-            id: 'mock-1',
-            name: 'Pánská kožená peněženka',
-            price: 2500,
-            image_url: '/placeholder.svg',
-            sku: 'MOCK-1',
-            score: 0.85,
-            reason: 'Podobný styl',
-            brand: 'Piquadro',
-            category: 'Peněženky'
-          },
-          {
-            id: 'mock-2', 
-            name: 'Dámská kosmetická taška',
-            price: 1800,
-            image_url: '/placeholder.svg',
-            sku: 'MOCK-2',
-            score: 0.75,
-            reason: 'Stejná značka',
-            brand: 'Piquadro',
-            category: 'Tašky'
-          }
-        ]
-        setRecommendations(mockRecommendations)
-      } else {
-        setError('Nepodařilo se načíst doporučení')
-      }
+      setError('Nepodařilo se načíst doporučení')
     }
 
     setIsLoading(false)
