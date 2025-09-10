@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { ProductGrid } from '../../components/product-grid'
+import { ProductGrid } from '../../../components/product-grid'
 import ProductFilters from '../../components/product-filters'
 import { Button } from "../../components/ui/button"
 import { SlidersHorizontal, X } from "lucide-react"
