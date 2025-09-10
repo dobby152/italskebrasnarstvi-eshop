@@ -289,15 +289,12 @@ export default function HomePage() {
               <h4 className="font-bold mb-4 text-white">Kontakt & Newsletter</h4>
               <div className="space-y-3 text-gray-400 text-sm mb-6">
                 <div className="flex items-center">
-                  <span className="mr-2">📞</span>
                   <a href="tel:+420774977971" className="hover:text-white transition-colors">+420 774 977 971</a>
                 </div>
                 <div className="flex items-center">
-                  <span className="mr-2">✉️</span>
                   <a href="mailto:info@italskeBrasnarstvi.cz" className="hover:text-white transition-colors">info@italskeBrasnarstvi.cz</a>
                 </div>
                 <div className="flex items-center">
-                  <span className="mr-2">🕒</span>
                   <span>Po-Pá: 10:00-16:00</span>
                 </div>
               </div>

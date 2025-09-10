@@ -36,10 +36,10 @@ export default function CestovaniPage() {
               Odolné materiály, promyšlené detaily a elegantní design pro každou cestu.
             </p>
             <div className="flex flex-wrap gap-4 text-sm">
-              <span className="px-3 py-1 bg-white/20 rounded-full">✈️ Kabinové zavazadlo</span>
-              <span className="px-3 py-1 bg-white/20 rounded-full">🧳 TSA zámky</span>
-              <span className="px-3 py-1 bg-white/20 rounded-full">💧 Voděodolné</span>
-              <span className="px-3 py-1 bg-white/20 rounded-full">⚡ Rychlý přístup</span>
+              <span className="px-3 py-1 bg-white/20 rounded-full">Kabinové zavazadlo</span>
+              <span className="px-3 py-1 bg-white/20 rounded-full">TSA zámky</span>
+              <span className="px-3 py-1 bg-white/20 rounded-full">Voděodolné</span>
+              <span className="px-3 py-1 bg-white/20 rounded-full">Rychlý přístup</span>
             </div>
           </div>
         </div>

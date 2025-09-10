@@ -6,6 +6,13 @@ import { Badge } from "../app/components/ui/badge"
 import { Slider } from "../app/components/ui/slider"
 import { Checkbox } from "../app/components/ui/checkbox"
 import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../app/components/ui/select"
+import { 
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -171,27 +178,23 @@ export default function ProductFiltersComponent({
             Pohlaví
           </AccordionTrigger>
           <AccordionContent>
-            <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
               {[
                 { value: 'men', label: 'Muži' },
                 { value: 'women', label: 'Ženy' },
                 { value: 'unisex', label: 'Unisex' }
               ].map(option => (
-                <div key={option.value} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`gender-${option.value}`}
-                    checked={filters.gender?.includes(option.value as any) || false}
-                    onCheckedChange={(checked) => 
-                      handleArrayFilterChange('gender', option.value, checked as boolean)
-                    }
-                  />
-                  <label 
-                    htmlFor={`gender-${option.value}`} 
-                    className="text-sm text-gray-700 cursor-pointer"
-                  >
-                    {option.label}
-                  </label>
-                </div>
+                <Button
+                  key={option.value}
+                  variant={filters.gender?.includes(option.value as any) ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => 
+                    handleArrayFilterChange('gender', option.value, !filters.gender?.includes(option.value as any))
+                  }
+                  className="text-sm"
+                >
+                  {option.label}
+                </Button>
               ))}
             </div>
           </AccordionContent>
@@ -203,25 +206,24 @@ export default function ProductFiltersComponent({
             Kategorie
           </AccordionTrigger>
           <AccordionContent>
-            <div className="space-y-3">
-              {allCategories.map(category => (
-                <div key={category.id} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`category-${category.slug}`}
-                    checked={filters.category === category.slug}
-                    onCheckedChange={() => 
-                      handleSingleValueFilterChange('category', category.slug)
-                    }
-                  />
-                  <label 
-                    htmlFor={`category-${category.slug}`} 
-                    className="text-sm text-gray-700 cursor-pointer"
-                  >
+            <Select
+              value={filters.category || ""}
+              onValueChange={(value) => 
+                handleFilterChange('category', value === "" ? undefined : value)
+              }
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Vyberte kategorii" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">Všechny kategorie</SelectItem>
+                {allCategories.map(category => (
+                  <SelectItem key={category.id} value={category.slug}>
                     {category.name}
-                  </label>
-                </div>
-              ))}
-            </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </AccordionContent>
         </AccordionItem>
 
