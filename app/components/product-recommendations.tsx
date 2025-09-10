@@ -62,10 +62,15 @@ export function ProductRecommendations({
   }
 
   useEffect(() => {
-    fetchRecommendations()
+    // Debounce API calls to prevent rate limiting
+    const timeoutId = setTimeout(() => {
+      fetchRecommendations()
+    }, 300)
+
+    return () => clearTimeout(timeoutId)
   }, [type, productId, userId, cartItems, browsingHistory])
 
-  const fetchRecommendations = async () => {
+  const fetchRecommendations = async (retryCount = 0) => {
     setIsLoading(true)
     setError(null)
 
@@ -86,12 +91,23 @@ export function ProductRecommendations({
       if (response.ok) {
         const data = await response.json()
         setRecommendations(data.recommendations || [])
+      } else if (response.status === 429 && retryCount < 2) {
+        // Rate limited - retry with exponential backoff
+        const delay = Math.pow(2, retryCount) * 1000 // 1s, 2s, 4s
+        console.log(`Rate limited, retrying in ${delay}ms...`)
+        setTimeout(() => fetchRecommendations(retryCount + 1), delay)
+        return
       } else {
-        throw new Error('Failed to fetch recommendations')
+        throw new Error(`HTTP ${response.status}: Failed to fetch recommendations`)
       }
     } catch (error) {
       console.error('Recommendations error:', error)
-      setError('Nepodařilo se načíst doporučení')
+      if (retryCount === 0) {
+        // Hide error for better UX - just don't show recommendations
+        setRecommendations([])
+      } else {
+        setError('Nepodařilo se načíst doporučení')
+      }
     }
 
     setIsLoading(false)
@@ -164,7 +180,16 @@ export function ProductRecommendations({
     )
   }
 
-  if (error || recommendations.length === 0) {
+  if (error) {
+    // Show minimal error state
+    return (
+      <div className="text-center py-8 text-gray-500">
+        <p className="text-sm">Podobné produkty momentálně nejsou dostupné</p>
+      </div>
+    )
+  }
+
+  if (recommendations.length === 0) {
     return null // Don't show anything if no recommendations
   }
 

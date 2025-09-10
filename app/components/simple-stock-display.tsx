@@ -24,7 +24,9 @@ export default function SimpleStockDisplay({ sku, showLocations = true }: Simple
     const fetchStock = async () => {
       setLoading(true)
       try {
+        console.log(`🔍 SimpleStockDisplay: Fetching stock for SKU: ${sku}`)
         const stockData = await simpleStockService.getProductStock(sku)
+        console.log(`📦 SimpleStockDisplay: Received stock data:`, stockData)
         setStock(stockData)
       } catch (error) {
         console.error('Error fetching stock:', error)
