@@ -514,15 +514,27 @@ function ProductDetailContent({ slug }: { slug: string }) {
   )
 }
 
-export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params)
+export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
   const [isClient, setIsClient] = useState(false)
+  const [resolvedParams, setResolvedParams] = useState<{ slug: string } | null>(null)
   
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    const resolveParams = async () => {
+      try {
+        // Handle both Promise and object params
+        const result = params instanceof Promise ? await params : params
+        setResolvedParams(result)
+        setIsClient(true)
+      } catch (error) {
+        console.error('Error resolving params:', error)
+        setIsClient(true)
+      }
+    }
+    
+    resolveParams()
+  }, [params])
   
-  if (!isClient) {
+  if (!isClient || !resolvedParams) {
     return <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání produktu...</div></div>
   }
   
