@@ -21,6 +21,7 @@ export default function SmartVariantImageGallery({
   productName
 }: SmartVariantImageGalleryProps) {
   const [galleryItems, setGalleryItems] = useState<any[]>([])
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   /**
    * Filter images by color code from image filenames
@@ -141,6 +142,7 @@ export default function SmartVariantImageGallery({
     }
     
     setGalleryItems(items)
+    setCurrentImageIndex(0) // Reset to first image when variant changes
   }, [selectedVariant, allVariants, baseImages, productName])
 
   if (galleryItems.length === 0) {
@@ -164,14 +166,75 @@ export default function SmartVariantImageGallery({
         </div>
       )}
       
-      {/* Simple image display without ImageGallery */}
-      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+      {/* Main Image Display */}
+      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden relative group">
         <img
-          src={galleryItems[0]?.original || '/placeholder.svg'}
-          alt={galleryItems[0]?.originalAlt || 'Product image'}
-          className="w-full h-full object-cover"
+          src={galleryItems[currentImageIndex]?.original || '/placeholder.svg'}
+          alt={galleryItems[currentImageIndex]?.originalAlt || 'Product image'}
+          className="w-full h-full object-cover cursor-pointer"
+          onClick={() => {
+            if (galleryItems.length > 1) {
+              setCurrentImageIndex((prev) => 
+                prev === galleryItems.length - 1 ? 0 : prev + 1
+              )
+            }
+          }}
         />
+        
+        {/* Navigation arrows for multiple images */}
+        {galleryItems.length > 1 && (
+          <>
+            <button
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+              onClick={() => setCurrentImageIndex(prev => 
+                prev === 0 ? galleryItems.length - 1 : prev - 1
+              )}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+              onClick={() => setCurrentImageIndex(prev => 
+                prev === galleryItems.length - 1 ? 0 : prev + 1
+              )}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            
+            {/* Image counter */}
+            <div className="absolute bottom-2 right-2 bg-black/60 text-white px-2 py-1 rounded-md text-sm">
+              {currentImageIndex + 1} / {galleryItems.length}
+            </div>
+          </>
+        )}
       </div>
+
+      {/* Thumbnail Navigation */}
+      {galleryItems.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto pb-2">
+          {galleryItems.map((item, index) => (
+            <button
+              key={index}
+              className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                index === currentImageIndex 
+                  ? 'border-blue-500 shadow-md' 
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+              onClick={() => setCurrentImageIndex(index)}
+            >
+              <img
+                src={item.thumbnail || '/placeholder.svg'}
+                alt={item.thumbnailAlt}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

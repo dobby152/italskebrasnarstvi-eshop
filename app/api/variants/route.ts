@@ -86,7 +86,7 @@ export async function GET(request: NextRequest) {
           brand: product.normalized_brand || null,
           collection: product.normalized_collection || null,
           availability: (product.stock !== null && product.stock !== undefined && product.stock <= 0) ? 'out_of_stock' : 'in_stock',
-          stock: product.stock || 10
+          stock: product.totalStock || product.stock || 0
         }
       })
 

@@ -131,7 +131,7 @@ export function groupProductsIntoVariants(products: any[]): Map<string, VariantG
       price: product.price || 0,
       images: product.images || [],
       availability: product.availability || 'in_stock',
-      stock: product.stock || 10
+      stock: product.totalStock || product.stock || 0
     };
 
     groups.get(groupKey)!.variants.push(variant);
@@ -201,7 +201,7 @@ export function getVariantsForBaseSku(products: any[], baseSku: string): Product
       price: product.price || 0,
       images: colorSpecificImages,
       availability: product.availability || 'in_stock',
-      stock: product.stock || 10
+      stock: product.totalStock || product.stock || 0
     };
   });
 }

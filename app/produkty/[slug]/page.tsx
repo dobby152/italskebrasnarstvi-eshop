@@ -18,6 +18,7 @@ import SimpleStockDisplay from "../../components/simple-stock-display"
 import { ProductVariant as SmartVariant, extractBaseSku, getVariantsForBaseSku } from "../../lib/smart-variants"
 import { useCart } from "../../context/cart-context"
 import { ProductVariant } from "../../lib/types/variants"
+import { ProductRecommendations } from "../../components/product-recommendations"
 
 // Client-only product content
 function ProductDetailContent({ slug }: { slug: string }) {
@@ -99,7 +100,7 @@ function ProductDetailContent({ slug }: { slug: string }) {
         sku: selectedColorVariant.sku,
         name: selectedColorVariant.name,
         price: selectedColorVariant.price,
-        inventory_quantity: selectedColorVariant.stock || 10,
+        inventory_quantity: selectedColorVariant.stock || 0,
         inventory_policy: 'deny',
         status: 'active',
         availability: selectedColorVariant.availability,
@@ -122,7 +123,7 @@ function ProductDetailContent({ slug }: { slug: string }) {
         sku: product.sku,
         name: getProductDisplayName(product),
         price: product.price,
-        inventory_quantity: product.stock || 10,
+        inventory_quantity: product.stock || 0,
         inventory_policy: 'deny',
         status: 'active',
         availability: product.availability,
@@ -502,13 +503,16 @@ function ProductDetailContent({ slug }: { slug: string }) {
           </div>
         </div>
 
-        {/* Related Products - TODO: Implement when API supports related products */}
-        {/* <div className="mt-20">
-          <h2 className="text-4xl font-black text-gray-900 mb-12 text-center">Podobné produkty</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            Related products will be implemented when API supports this feature
-          </div>
-        </div> */}
+        {/* Related Products */}
+        <div className="mt-20">
+          <ProductRecommendations
+            type="similar"
+            productId={product?.id}
+            limit={4}
+            title="Podobné produkty"
+            className="space-y-6"
+          />
+        </div>
       </div>
     </div>
   )
