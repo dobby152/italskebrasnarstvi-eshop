@@ -25,11 +25,39 @@ export default function SmartColorVariantSelector({
   )
 
   const [stockLoading, setStockLoading] = useState(false)
+  const [variantStocks, setVariantStocks] = useState<Record<string, {stock: number, available: boolean}>>({})
 
   const handleVariantSelect = (variant: ProductVariant) => {
     setSelectedVariant(variant)
     onVariantChange(variant)
   }
+
+  // Load stock data for all variants
+  useEffect(() => {
+    const loadVariantStocks = async () => {
+      if (variants.length === 0) return
+      
+      setStockLoading(true)
+      const stockData: Record<string, {stock: number, available: boolean}> = {}
+      
+      try {
+        for (const variant of variants) {
+          const stockInfo = await simpleStockService.getProductStock(variant.sku)
+          stockData[variant.sku] = {
+            stock: stockInfo.totalStock,
+            available: stockInfo.available
+          }
+        }
+        setVariantStocks(stockData)
+      } catch (error) {
+        console.error('Error loading variant stocks:', error)
+      } finally {
+        setStockLoading(false)
+      }
+    }
+    
+    loadVariantStocks()
+  }, [variants])
 
   useEffect(() => {
     // Update selected variant when variants change
@@ -45,9 +73,14 @@ export default function SmartColorVariantSelector({
     return null
   }
 
-  // Simple stock status based on variant data
+  // Get real stock status from loaded data
   const getStockStatus = (variant: ProductVariant) => {
-    const stock = variant.stock || 0
+    const stockData = variantStocks[variant.sku]
+    if (!stockData) {
+      return { status: 'out-of-stock' as const, label: 'Načítám...', available: false, stock: 0 }
+    }
+    
+    const stock = stockData.stock
     
     if (stock <= 0) {
       return { status: 'out-of-stock' as const, label: 'Vyprodáno', available: false, stock: 0 }

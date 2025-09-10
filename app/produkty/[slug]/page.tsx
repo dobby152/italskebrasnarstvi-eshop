@@ -331,8 +331,7 @@ function ProductDetailContent({ slug }: { slug: string }) {
                 </div>
               </div>
 
-              {/* Stock Display */}
-              <SimpleStockDisplay sku={selectedSmartVariant?.sku || product.sku || ''} />
+              {/* Stock Display is now integrated in SmartColorVariantSelector above */}
 
               {/* Quantity and Add to Cart */}
               <div className="flex gap-4 mb-6 mt-6">
