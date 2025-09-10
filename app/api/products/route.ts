@@ -3,6 +3,9 @@ import { supabase } from '@/app/lib/supabase'
 import { extractBaseSku, extractVariantCode, getColorInfo } from '@/app/lib/smart-variants'
 import { categorizeProduct, PRODUCT_CATEGORIES } from '@/app/lib/product-categories'
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'
+
 // Create SEO-friendly slug from product name and ID
 function createSEOSlug(name: string, id: number): string {
   const slug = name

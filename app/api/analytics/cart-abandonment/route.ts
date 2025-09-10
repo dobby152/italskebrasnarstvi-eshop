@@ -3,6 +3,9 @@ import { supabase } from '@/app/lib/supabase'
 import { createCachedResponse, CACHE_TTL } from '@/app/lib/cache'
 import { getSecurityHeaders } from '@/app/lib/security'
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'
+
 interface CartAbandonmentAnalytics {
   overview: {
     abandonmentRate: number

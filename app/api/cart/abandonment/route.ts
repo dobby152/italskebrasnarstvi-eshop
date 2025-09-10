@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/app/lib/supabase'
 import { sanitizeString, sanitizeNumber, getSecurityHeaders } from '@/app/lib/security'
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'
+
 interface CartAbandonmentData {
   sessionId: string
   userId?: string
