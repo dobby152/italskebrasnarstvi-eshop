@@ -37,6 +37,9 @@ export default function ProduktyPage() {
     if (filters.brands.length > 0) {
       params.append('brand', filters.brands[0])
     }
+    if (filters.gender) {
+      params.append('gender', filters.gender)
+    }
     if (filters.inStock) {
       params.append('inStockOnly', 'true')
     }
@@ -130,6 +133,7 @@ export default function ProduktyPage() {
               limit={12}
               categories={new URLSearchParams(filterParams).get('categories') || undefined}
               brand={new URLSearchParams(filterParams).get('brand') || undefined}
+              gender={new URLSearchParams(filterParams).get('gender') || undefined}
               minPrice={new URLSearchParams(filterParams).get('minPrice') || undefined}
               maxPrice={new URLSearchParams(filterParams).get('maxPrice') || undefined}
               inStockOnly={new URLSearchParams(filterParams).get('inStockOnly') || undefined}

@@ -7,6 +7,7 @@ import { Badge } from './ui/badge'
 import { OptimizedImage } from './ui/optimized-image'
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
+import { getImageUrl } from '../../lib/utils'
 
 interface ProductRecommendation {
   id: string
@@ -70,18 +71,33 @@ export function ProductRecommendations({
       
       if (response.ok) {
         const data = await response.json()
-        const products = data.products || []
+        let products = data.products || []
         
-        // Convert products to recommendation format
-        const recommendations: ProductRecommendation[] = products.map((product: any) => ({
-          id: product.id.toString(),
-          name: product.name,
-          price: product.price,
-          image_url: product.image_url,
-          sku: product.sku,
-          brand: product.brand || 'Piquadro',
-          category: product.collection_name || 'Produkty'
-        }))
+        // Filter out current product if productId is provided
+        if (productId) {
+          products = products.filter((product: any) => product.id.toString() !== productId)
+        }
+        
+        // Convert products to recommendation format with proper image handling
+        const recommendations: ProductRecommendation[] = products.map((product: any) => {
+          // Use primary image with proper fallback
+          let imageUrl = '/placeholder.svg'
+          if (product.images && product.images.length > 0) {
+            imageUrl = getImageUrl(product.images[0])
+          } else if (product.image_url) {
+            imageUrl = getImageUrl(product.image_url)
+          }
+          
+          return {
+            id: product.id.toString(),
+            name: product.name,
+            price: product.price,
+            image_url: imageUrl,
+            sku: product.sku,
+            brand: product.brand || 'Piquadro',
+            category: product.collection_name || 'Produkty'
+          }
+        })
         
         setRecommendations(recommendations)
       } else {

@@ -45,6 +45,7 @@ interface ProductGridProps {
   // Filter props
   categories?: string
   brand?: string
+  gender?: string
   minPrice?: string
   maxPrice?: string
   inStockOnly?: string
@@ -58,6 +59,7 @@ export function ProductGrid({
   sortOrder,
   categories,
   brand,
+  gender,
   minPrice,
   maxPrice,
   inStockOnly
@@ -88,6 +90,7 @@ export function ProductGrid({
         // Add filter params
         if (categories) params.append('categories', categories)
         if (brand) params.append('brand', brand)
+        if (gender) params.append('gender', gender)
         if (minPrice) params.append('minPrice', minPrice)
         if (maxPrice) params.append('maxPrice', maxPrice)
         if (inStockOnly) params.append('inStockOnly', inStockOnly)
@@ -113,7 +116,7 @@ export function ProductGrid({
     }
 
     fetchProducts()
-  }, [category, searchQuery, limit, sortBy, sortOrder, categories, brand, minPrice, maxPrice, inStockOnly, currentPage])
+  }, [category, searchQuery, limit, sortBy, sortOrder, categories, brand, gender, minPrice, maxPrice, inStockOnly, currentPage])
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
@@ -122,7 +125,7 @@ export function ProductGrid({
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {Array.from({ length: 8 }, (_, i) => (
           <Card key={i} className="animate-pulse">
             <CardContent className="p-4">
@@ -146,7 +149,7 @@ export function ProductGrid({
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
         <Card key={product.id} className="group hover:shadow-lg transition-shadow">
           <CardContent className="p-0">
