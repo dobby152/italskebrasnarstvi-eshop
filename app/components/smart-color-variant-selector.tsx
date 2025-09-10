@@ -25,7 +25,7 @@ export default function SmartColorVariantSelector({
   )
 
   const [stockLoading, setStockLoading] = useState(false)
-  const [variantStocks, setVariantStocks] = useState<Record<string, {stock: number, available: boolean}>>({})
+  const [variantStocks, setVariantStocks] = useState<Record<string, {stock: number, available: boolean, chodovStock: number, outletStock: number}>>({})
 
   const handleVariantSelect = (variant: ProductVariant) => {
     setSelectedVariant(variant)
@@ -38,14 +38,16 @@ export default function SmartColorVariantSelector({
       if (variants.length === 0) return
       
       setStockLoading(true)
-      const stockData: Record<string, {stock: number, available: boolean}> = {}
+      const stockData: Record<string, {stock: number, available: boolean, chodovStock: number, outletStock: number}> = {}
       
       try {
         for (const variant of variants) {
           const stockInfo = await simpleStockService.getProductStock(variant.sku)
           stockData[variant.sku] = {
             stock: stockInfo.totalStock,
-            available: stockInfo.available
+            available: stockInfo.available,
+            chodovStock: stockInfo.chodovStock,
+            outletStock: stockInfo.outletStock
           }
         }
         setVariantStocks(stockData)
@@ -254,7 +256,46 @@ export default function SmartColorVariantSelector({
                 </span>
               </div>
               
-              {/* Branch availability - removed for now since selectedStock is not defined */}
+              {/* Branch availability */}
+              {variantStocks[selectedVariant.sku] && getStockStatus(selectedVariant).stock > 0 && (
+                <div className="mt-2 text-xs text-gray-600 space-y-1">
+                  <div className="font-medium text-gray-700 mb-1">Dostupnost v prodejnách:</div>
+                  {variantStocks[selectedVariant.sku].chodovStock > 0 && (
+                    <div className="flex justify-between">
+                      <span>PIQUADRO Westfield Chodov:</span>
+                      <Badge variant="secondary" className="text-xs">
+                        {variantStocks[selectedVariant.sku].chodovStock} ks
+                      </Badge>
+                    </div>
+                  )}
+                  {variantStocks[selectedVariant.sku].outletStock > 0 && (
+                    <div className="flex justify-between">
+                      <span>PIQUADRO Premium Outlet:</span>
+                      <Badge variant="secondary" className="text-xs">
+                        {variantStocks[selectedVariant.sku].outletStock} ks
+                      </Badge>
+                    </div>
+                  )}
+                  
+                  {/* Store Addresses */}
+                  <div className="mt-2 pt-2 border-t border-gray-200 space-y-2">
+                    {variantStocks[selectedVariant.sku].chodovStock > 0 && (
+                      <div>
+                        <div className="font-medium text-gray-700">Partnerská prodejna - PIQUADRO Westfield Chodov</div>
+                        <div>Roztylská 2321/19, Praha 11-Chodov 148 00, Česko</div>
+                        <div>Po — Ne: 9.00 — 21.00 hod.</div>
+                      </div>
+                    )}
+                    {variantStocks[selectedVariant.sku].outletStock > 0 && (
+                      <div>
+                        <div className="font-medium text-gray-700">Partnerská prodejna - PIQUADRO Premium Outlet Prague</div>
+                        <div>Ke Kopanině 421, Tuchoměřice 252 67, Česko</div>
+                        <div>Po — Ne: 10.00 — 20.00 hod.</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           
