@@ -7,6 +7,7 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { User, Package, Heart, Settings, LogOut, Edit, Save, X, Loader2 } from "lucide-react"
 import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
 import Header from "../components/header"
 import { useAuth } from "../contexts/auth-context"
 import { Order } from "../hooks/use-orders"
@@ -566,7 +567,7 @@ function AccountContent() {
 }
 
 // Create client-only wrapper for account
-const ClientOnlyAccount = dynamicImport(() => Promise.resolve(AccountContent), { 
+const ClientOnlyAccount = dynamic(() => Promise.resolve(AccountContent), { 
   ssr: false,
   loading: () => <div className="min-h-screen bg-white flex items-center justify-center"><div className="text-lg">Načítání účtu...</div></div>
 })
