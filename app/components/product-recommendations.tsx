@@ -7,7 +7,8 @@ import { Badge } from './ui/badge'
 import { OptimizedImage } from './ui/optimized-image'
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import { getImageUrl } from '../../lib/utils'
+import { getImageUrl } from '../lib/utils'
+import { AddToCartButton } from './add-to-cart-button'
 
 interface ProductRecommendation {
   id: string
@@ -113,25 +114,6 @@ export function ProductRecommendations({
 
 
 
-  const addToCart = async (productId: string) => {
-    try {
-      const response = await fetch('/api/cart/items', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          productId,
-          quantity: 1
-        })
-      })
-
-      if (response.ok) {
-        // You might want to show a success message or update cart state
-        console.log('Added to cart successfully')
-      }
-    } catch (error) {
-      console.error('Failed to add to cart:', error)
-    }
-  }
 
   if (isLoading) {
     return (
@@ -194,17 +176,6 @@ export function ProductRecommendations({
                 </Link>
                 
 
-                {/* Quick Actions */}
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/90 backdrop-blur-sm hover:bg-white w-8 h-8 p-0"
-                    onClick={() => addToCart(product.id)}
-                  >
-                    <ShoppingCart className="h-4 w-4" />
-                  </Button>
-                </div>
               </div>
 
               {/* Product Info */}
@@ -231,14 +202,19 @@ export function ProductRecommendations({
 
 
                 {/* Action Button */}
-                <Button 
-                  className="w-full mt-3" 
-                  size="sm"
-                  onClick={() => addToCart(product.id)}
-                >
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Do košíku
-                </Button>
+                <AddToCartButton
+                  variant={{
+                    id: product.id,
+                    sku: product.sku,
+                    name: product.name,
+                    price: product.price,
+                    inventory_quantity: 999,
+                    image_url: product.image_url,
+                    attributes: {}
+                  }}
+                  className="w-full mt-3"
+                  quantity={1}
+                />
               </div>
             </CardContent>
           </Card>
