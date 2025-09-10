@@ -79,7 +79,17 @@ export async function GET(request: NextRequest) {
         collection_name,
         collection_code
       `, { count: 'exact' })
-      .limit(Math.max(limit * 3, 100)) // Get enough records for deduplication, but not all
+    
+    // Apply reasonable limit for performance, but allow more products for deduplication
+    const searchFilter = searchParams.get('search')
+    const brandFilter = searchParams.get('brand')
+    const categoriesFilter = searchParams.get('categories')
+    const colorsFilter = searchParams.get('colors')
+    const hasFilters = collectionFilter || searchFilter || brandFilter || categoriesFilter || colorsFilter
+    
+    // Always apply some limit for performance, but increase it significantly when no filters
+    const effectiveLimit = hasFilters ? Math.max(limit * 3, 500) : 2000
+    query = query.limit(effectiveLimit)
     
     // Add collection filter if provided
     if (collectionFilter) {
@@ -87,20 +97,17 @@ export async function GET(request: NextRequest) {
     }
     
     // Add search filter if provided
-    const searchFilter = searchParams.get('search')
     if (searchFilter) {
       query = query.or(`sku.ilike.%${searchFilter}%,name.ilike.%${searchFilter}%`)
     }
 
     // Add brand filter
-    const brandFilter = searchParams.get('brand')
     if (brandFilter) {
       query = query.eq('normalized_brand', brandFilter)
     }
 
     // NOTE: Category filter will be applied after fetching products
     // since categories are based on product name keywords, not collection_code
-    const categoriesFilter = searchParams.get('categories')
 
     // Add price filter
     const minPrice = searchParams.get('minPrice')
@@ -292,7 +299,6 @@ export async function GET(request: NextRequest) {
     }
 
     // Filter products by colors if requested
-    const colorsFilter = searchParams.get('colors')
     if (colorsFilter) {
       const requestedColors = colorsFilter.split(',').map(color => color.trim())
       console.log('Filtering by colors:', requestedColors)
