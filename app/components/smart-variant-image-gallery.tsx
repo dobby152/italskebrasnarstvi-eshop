@@ -35,31 +35,41 @@ export default function SmartVariantImageGallery({
       return images // Return all images for default
     }
 
-    // Try to find images that contain the color code in filename
+    console.log(`🔍 Gallery FilterImagesByColor: Looking for colorCode "${colorCode}" in ${images.length} images`)
+
+    // Try to find images that match the color code in folder path
     const colorFilteredImages = images.filter(image => {
       if (!image || typeof image !== 'string') return false
       
-      // Extract filename from path
-      const filename = image.split('/').pop() || image
+      // Extract folder path to check for color code  
+      // URL format: /images/products/SKU-COLORCODE/filename.jpg
+      const pathParts = image.split('/')
+      const folderName = pathParts[pathParts.length - 2] || '' // Get folder name
       
-      // Check if color code appears in filename
-      // Examples: BD6657W92-AZBE2, CA1234-R, AC5290BM-GR
-      const colorPattern = new RegExp(`[-_]${colorCode.toUpperCase()}[-_.]`, 'i')
-      const hasColor = colorPattern.test(filename)
+      console.log(`📁 Gallery checking folder: ${folderName} for color: ${colorCode}`)
       
-      console.log(`🎨 Image: ${filename}, Color: ${colorCode}, Match: ${hasColor}`)
+      // Check if folder name ends with the color code
+      // Examples: AC6576B2-BLU2, BD6658W92T-R, BY3851B3-CU
+      const patterns = [
+        new RegExp(`-${colorCode.toUpperCase()}$`, 'i'),           // Exact match: SKU-COLOR
+        new RegExp(`-${colorCode.toUpperCase()}\\d*$`, 'i'),       // With number: SKU-COLOR2  
+        new RegExp(`${colorCode.toUpperCase()}$`, 'i'),            // Just color: SKU-COLOR (no dash)
+      ]
+      
+      const hasColor = patterns.some(pattern => pattern.test(folderName))
+      console.log(`🎨 Gallery: ${folderName} matches ${colorCode}: ${hasColor}`)
       
       return hasColor
     })
 
     // If we found color-specific images, use them
     if (colorFilteredImages.length > 0) {
-      console.log(`✅ Found ${colorFilteredImages.length} images for color ${colorCode}`)
+      console.log(`✅ Gallery found ${colorFilteredImages.length} images for color ${colorCode}`)
       return colorFilteredImages
     }
 
     // Fallback: if no color-specific images found, return all images
-    console.log(`⚠️ No images found for color ${colorCode}, using all images`)
+    console.log(`⚠️ Gallery: No images found for color ${colorCode}, using all images`)
     return images
   }
 

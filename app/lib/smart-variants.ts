@@ -161,21 +161,58 @@ export function findVariantGroupBySku(products: any[], targetSku: string): Varia
 export function filterImagesByColor(images: string[], colorCode: string): string[] {
   if (!images || images.length === 0) return [];
   
+  console.log(`🔍 FilterImagesByColor: Looking for colorCode "${colorCode}" in ${images.length} images`)
+  
   const filteredImages = images.filter(imageUrl => {
-    // Extract filename from URL
-    const filename = imageUrl.split('/').pop() || '';
+    // Extract folder path to check for color code
+    // URL format: /images/products/SKU-COLORCODE/filename.jpg
+    const pathParts = imageUrl.split('/')
+    const folderName = pathParts[pathParts.length - 2] || '' // Get folder name
     
-    // Look for color code pattern in filename like CA3214B3-N_ or CA3214B3-CU_
-    const colorPattern = new RegExp(`-${colorCode.toUpperCase()}_`, 'i');
-    return colorPattern.test(filename);
+    console.log(`📁 Checking folder: ${folderName} for color: ${colorCode}`)
+    
+    // Check if folder name ends with the color code
+    // Examples: AC6576B2-BLU2, BD6658W92T-R, BY3851B3-CU
+    const patterns = [
+      new RegExp(`-${colorCode.toUpperCase()}$`, 'i'),           // Exact match: SKU-COLOR
+      new RegExp(`-${colorCode.toUpperCase()}\\d*$`, 'i'),       // With number: SKU-COLOR2
+      new RegExp(`${colorCode.toUpperCase()}$`, 'i'),            // Just color: SKU-COLOR (no dash)
+    ]
+    
+    const matches = patterns.some(pattern => pattern.test(folderName))
+    console.log(`✅ ${folderName} matches ${colorCode}: ${matches}`)
+    
+    return matches
   });
+  
+  console.log(`🎨 Found ${filteredImages.length} images for color ${colorCode}:`, filteredImages)
   
   // If no color-specific images found, return first few images as fallback
   if (filteredImages.length === 0 && images.length > 0) {
+    console.log(`⚠️ No specific images found for ${colorCode}, using fallback`)
     return images.slice(0, 3); // Return first 3 images as fallback
   }
   
   return filteredImages;
+}
+
+/**
+ * Get alternative color code aliases for better image matching
+ */
+function getColorAliases(colorCode: string): string[] {
+  const aliases: Record<string, string[]> = {
+    'N': ['NERO', 'BLACK', 'BLK'],
+    'NERO': ['N', 'BLACK', 'BLK'],
+    'R': ['RED', 'ROSSO'],
+    'BLU': ['BLUE', 'BLU2'],
+    'BLU2': ['BLU', 'BLUE'],
+    'CU': ['CUOIO', 'COGNAC'],
+    'MO': ['MARRONE', 'BROWN'],
+    'GR': ['GREY', 'GRAY'],
+    'VE': ['VERDE', 'GREEN']
+  };
+  
+  return aliases[colorCode.toUpperCase()] || [];
 }
 
 /**
@@ -191,6 +228,21 @@ export function getVariantsForBaseSku(products: any[], baseSku: string): Product
     // Filter images to show only those matching this color variant
     const colorSpecificImages = filterImagesByColor(product.images || [], variantCode);
     
+    // If no specific images found, try to find images by trying common color variations
+    let finalImages = colorSpecificImages;
+    if (finalImages.length === 0 && (product.images || []).length > 0) {
+      // Try alternative color codes (sometimes colors have aliases)
+      const colorAliases = getColorAliases(variantCode);
+      for (const alias of colorAliases) {
+        const aliasImages = filterImagesByColor(product.images || [], alias);
+        if (aliasImages.length > 0) {
+          finalImages = aliasImages;
+          console.log(`🔄 Found images using color alias: ${alias} for ${variantCode}`);
+          break;
+        }
+      }
+    }
+    
     return {
       id: product.id,
       sku: product.sku,
@@ -199,7 +251,7 @@ export function getVariantsForBaseSku(products: any[], baseSku: string): Product
       colorName: colorInfo.name,
       hexColor: colorInfo.hex,
       price: product.price || 0,
-      images: colorSpecificImages,
+      images: finalImages,
       availability: product.availability || 'in_stock',
       stock: product.totalStock || product.stock || 0
     };
