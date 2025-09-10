@@ -104,9 +104,9 @@ export interface CartItem {
 
 export interface CartContextType {
   items: CartItem[]
-  addItem: (variant: ProductVariant, quantity: number) => void
+  addItem: (variant: ProductVariant, quantity: number) => Promise<void>
   removeItem: (id: string) => void
-  updateQuantity: (id: string, quantity: number) => void
+  updateQuantity: (id: string, quantity: number) => Promise<void>
   clearCart: () => void
   totalPrice: number
   totalItems: number

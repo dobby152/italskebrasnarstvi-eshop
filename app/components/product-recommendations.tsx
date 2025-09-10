@@ -53,63 +53,64 @@ export function ProductRecommendations({
   }
 
   useEffect(() => {
+    const fetchRecommendations = async () => {
+      setIsLoading(true)
+      setError(null)
+
+      try {
+        // Use products API instead of problematic recommendations API
+        const response = await fetch(`/api/products?limit=${limit}&inStockOnly=true`)
+        
+        if (response.ok) {
+          const data = await response.json()
+          let products = data.products || []
+          
+          // Filter out current product if productId is provided
+          if (productId) {
+            products = products.filter((product: any) => product.id.toString() !== productId)
+          }
+          
+          // Convert products to recommendation format with proper image handling
+          const recommendations: ProductRecommendation[] = products.map((product: any) => {
+            // Use primary image with proper fallback
+            let imageUrl = '/placeholder.svg'
+            if (product.images && product.images.length > 0) {
+              imageUrl = getImageUrl(product.images[0])
+            } else if (product.image_url) {
+              imageUrl = getImageUrl(product.image_url)
+            }
+            
+            return {
+              id: product.id.toString(),
+              name: product.name,
+              price: product.price,
+              image_url: imageUrl,
+              sku: product.sku,
+              brand: product.brand || 'Piquadro',
+              category: product.collection_name || 'Produkty'
+            }
+          })
+          
+          setRecommendations(recommendations)
+        } else {
+          throw new Error(`HTTP ${response.status}: Failed to fetch products`)
+        }
+      } catch (error) {
+        console.error('Products error:', error)
+        setError('Nepodařilo se načíst produkty')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
     // Debounce API calls to prevent rate limiting
     const timeoutId = setTimeout(() => {
       fetchRecommendations()
     }, 300)
 
     return () => clearTimeout(timeoutId)
-  }, [type, productId, userId, cartItems, browsingHistory])
+  }, [type, productId, limit])
 
-  const fetchRecommendations = async () => {
-    setIsLoading(true)
-    setError(null)
-
-    try {
-      // Use products API instead of problematic recommendations API
-      const response = await fetch(`/api/products?limit=${limit}&inStockOnly=true`)
-      
-      if (response.ok) {
-        const data = await response.json()
-        let products = data.products || []
-        
-        // Filter out current product if productId is provided
-        if (productId) {
-          products = products.filter((product: any) => product.id.toString() !== productId)
-        }
-        
-        // Convert products to recommendation format with proper image handling
-        const recommendations: ProductRecommendation[] = products.map((product: any) => {
-          // Use primary image with proper fallback
-          let imageUrl = '/placeholder.svg'
-          if (product.images && product.images.length > 0) {
-            imageUrl = getImageUrl(product.images[0])
-          } else if (product.image_url) {
-            imageUrl = getImageUrl(product.image_url)
-          }
-          
-          return {
-            id: product.id.toString(),
-            name: product.name,
-            price: product.price,
-            image_url: imageUrl,
-            sku: product.sku,
-            brand: product.brand || 'Piquadro',
-            category: product.collection_name || 'Produkty'
-          }
-        })
-        
-        setRecommendations(recommendations)
-      } else {
-        throw new Error(`HTTP ${response.status}: Failed to fetch products`)
-      }
-    } catch (error) {
-      console.error('Products error:', error)
-      setError('Nepodařilo se načíst produkty')
-    }
-
-    setIsLoading(false)
-  }
 
 
   const addToCart = async (productId: string) => {
