@@ -311,7 +311,7 @@ export async function GET(request: NextRequest) {
         // Check if any of the product's color variants match the requested colors
         const productColors = product.colorVariants.map((variant: any) => variant.colorName)
         const hasMatchingColor = requestedColors.some(requestedColor => 
-          productColors.some(productColor => 
+          productColors.some((productColor: string) => 
             productColor && productColor.toLowerCase().includes(requestedColor.toLowerCase())
           )
         )
