@@ -507,7 +507,7 @@ function ProductDetailContent({ slug }: { slug: string }) {
         <div className="mt-20">
           <ProductRecommendations
             type="similar"
-            productId={product?.id}
+            productId={product?.id?.toString()}
             limit={4}
             title="Podobné produkty"
             className="space-y-6"
@@ -518,15 +518,15 @@ function ProductDetailContent({ slug }: { slug: string }) {
   )
 }
 
-export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
+export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const [isClient, setIsClient] = useState(false)
   const [resolvedParams, setResolvedParams] = useState<{ slug: string } | null>(null)
   
   useEffect(() => {
     const resolveParams = async () => {
       try {
-        // Handle both Promise and object params
-        const result = params instanceof Promise ? await params : params
+        // In Next.js 15, params is always a Promise
+        const result = await params
         setResolvedParams(result)
         setIsClient(true)
       } catch (error) {
