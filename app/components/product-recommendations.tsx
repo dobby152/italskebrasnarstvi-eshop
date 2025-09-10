@@ -5,7 +5,7 @@ import { Card, CardContent } from './ui/card'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { OptimizedImage } from './ui/optimized-image'
-import { Heart, ShoppingCart, Eye, Sparkles } from 'lucide-react'
+import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 
 interface ProductRecommendation {
@@ -14,8 +14,6 @@ interface ProductRecommendation {
   price: number
   image_url: string
   sku: string
-  score: number
-  reason: string
   brand: string
   category: string
 }
@@ -48,17 +46,9 @@ export function ProductRecommendations({
   const typeLabels = {
     similar: 'Podobné produkty',
     frequently_bought: 'Často kupováno společně',
-    trending: 'Trending produkty',
-    personalized: 'Doporučeno pro vás',
+    trending: 'Populární produkty',
+    personalized: 'Další produkty',
     cross_sell: 'Doplňte svůj nákup'
-  }
-
-  const typeIcons = {
-    similar: <Eye className="h-4 w-4" />,
-    frequently_bought: <ShoppingCart className="h-4 w-4" />,
-    trending: <Sparkles className="h-4 w-4" />,
-    personalized: <Heart className="h-4 w-4" />,
-    cross_sell: <ShoppingCart className="h-4 w-4" />
   }
 
   useEffect(() => {
@@ -89,8 +79,6 @@ export function ProductRecommendations({
           price: product.price,
           image_url: product.image_url,
           sku: product.sku,
-          score: 0.8,
-          reason: 'Doporučený produkt',
           brand: product.brand || 'Piquadro',
           category: product.collection_name || 'Produkty'
         }))
@@ -100,30 +88,13 @@ export function ProductRecommendations({
         throw new Error(`HTTP ${response.status}: Failed to fetch products`)
       }
     } catch (error) {
-      console.error('Recommendations error:', error)
-      setError('Nepodařilo se načíst doporučení')
+      console.error('Products error:', error)
+      setError('Nepodařilo se načíst produkty')
     }
 
     setIsLoading(false)
   }
 
-  const trackRecommendationClick = async (recommendationId: string) => {
-    try {
-      await fetch('/api/analytics/recommendations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type,
-          productId: recommendationId,
-          sourceProductId: productId,
-          userId,
-          action: 'click'
-        })
-      })
-    } catch (error) {
-      console.error('Failed to track recommendation click:', error)
-    }
-  }
 
   const addToCart = async (productId: string) => {
     try {
@@ -137,19 +108,6 @@ export function ProductRecommendations({
       })
 
       if (response.ok) {
-        // Track conversion
-        await fetch('/api/analytics/recommendations', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type,
-            productId,
-            sourceProductId: productId,
-            userId,
-            action: 'add_to_cart'
-          })
-        })
-        
         // You might want to show a success message or update cart state
         console.log('Added to cart successfully')
       }
@@ -178,39 +136,25 @@ export function ProductRecommendations({
     // Show minimal error state
     return (
       <div className="text-center py-8 text-gray-500">
-        <p className="text-sm">Podobné produkty momentálně nejsou dostupné</p>
+        <p className="text-sm">Produkty momentálně nejsou dostupné</p>
       </div>
     )
   }
 
   if (recommendations.length === 0) {
-    return null // Don't show anything if no recommendations
+    return null // Don't show anything if no products
   }
 
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
-            {typeIcons[type]}
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900">
-              {title || typeLabels[type]}
-            </h3>
-            <p className="text-sm text-gray-600">
-              Na základě AI algoritmu
-            </p>
-          </div>
-        </div>
-        
-        <Badge variant="secondary" className="bg-blue-50 text-blue-700">
-          {recommendations.length} {recommendations.length === 1 ? 'produkt' : 'produkty'}
-        </Badge>
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-900">
+          {title || typeLabels[type]}
+        </h2>
       </div>
 
-      {/* Recommendations Grid */}
+      {/* Products Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {recommendations.map((product) => (
           <Card 
@@ -222,7 +166,6 @@ export function ProductRecommendations({
               <div className="relative aspect-square overflow-hidden bg-gray-50">
                 <Link 
                   href={`/produkty/${product.id}`}
-                  onClick={() => trackRecommendationClick(product.id)}
                 >
                   <OptimizedImage
                     src={product.image_url || '/placeholder.svg'}
@@ -233,15 +176,6 @@ export function ProductRecommendations({
                   />
                 </Link>
                 
-                {/* Recommendation Badge */}
-                <div className="absolute top-2 left-2">
-                  <Badge 
-                    variant="secondary" 
-                    className="bg-white/90 backdrop-blur-sm text-xs font-medium"
-                  >
-                    {Math.round(product.score * 100)}% shoda
-                  </Badge>
-                </div>
 
                 {/* Quick Actions */}
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -264,7 +198,6 @@ export function ProductRecommendations({
                   </p>
                   <Link 
                     href={`/produkty/${product.id}`}
-                    onClick={() => trackRecommendationClick(product.id)}
                     className="block"
                   >
                     <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 text-sm">
@@ -279,12 +212,6 @@ export function ProductRecommendations({
                   </div>
                 </div>
 
-                {/* Recommendation Reason */}
-                <div className="pt-2 border-t border-gray-100">
-                  <p className="text-xs text-gray-600 italic">
-                    {product.reason}
-                  </p>
-                </div>
 
                 {/* Action Button */}
                 <Button 
