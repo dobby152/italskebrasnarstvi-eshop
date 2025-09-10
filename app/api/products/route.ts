@@ -291,6 +291,35 @@ export async function GET(request: NextRequest) {
       console.log(`After category filtering: ${filteredProducts.length} products`)
     }
 
+    // Filter products by colors if requested
+    const colorsFilter = searchParams.get('colors')
+    if (colorsFilter) {
+      const requestedColors = colorsFilter.split(',').map(color => color.trim())
+      console.log('Filtering by colors:', requestedColors)
+      
+      filteredProducts = filteredProducts.filter(product => {
+        if (!product.colorVariants || product.colorVariants.length === 0) {
+          return false
+        }
+        
+        // Check if any of the product's color variants match the requested colors
+        const productColors = product.colorVariants.map((variant: any) => variant.colorName)
+        const hasMatchingColor = requestedColors.some(requestedColor => 
+          productColors.some(productColor => 
+            productColor && productColor.toLowerCase().includes(requestedColor.toLowerCase())
+          )
+        )
+        
+        if (hasMatchingColor) {
+          console.log(`Product "${product.name}" matches color filter - has colors:`, productColors)
+        }
+        
+        return hasMatchingColor
+      })
+      
+      console.log(`After color filtering: ${filteredProducts.length} products`)
+    }
+
     // Filter products by availability if requested
     const inStockOnly = searchParams.get('inStockOnly') === 'true'
     if (inStockOnly) {

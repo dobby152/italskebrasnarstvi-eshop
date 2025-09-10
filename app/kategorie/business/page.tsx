@@ -13,6 +13,7 @@ export default function BusinessPage() {
   const [selectedBrand, setSelectedBrand] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCollection, setSelectedCollection] = useState('')
+  const [selectedColors, setSelectedColors] = useState<string[]>([])
 
   // Business category search terms
   const businessTerms = ['aktovka', 'business', 'notebook', 'laptop', 'teczka', 'skorzana', 'briefcase', 'messenger', 'work', 'office']
@@ -99,17 +100,20 @@ export default function BusinessPage() {
                   filters={{
                     brand: selectedBrand ? [selectedBrand] : [],
                     search: searchQuery || '',
-                    category: selectedCollection || undefined
+                    category: selectedCollection || undefined,
+                    colors: selectedColors
                   }}
                   onFiltersChange={(filters) => {
                     setSelectedBrand(filters.brand?.[0] || '')
                     setSearchQuery(filters.search || '')
                     setSelectedCollection(filters.category || '')
+                    setSelectedColors(filters.colors || [])
                   }}
                   onClearFilters={() => {
                     setSelectedBrand('')
                     setSearchQuery('')
                     setSelectedCollection('')
+                    setSelectedColors([])
                   }}
                   brands={brands?.map(brand => brand.name) || []}
                 />
@@ -135,6 +139,9 @@ export default function BusinessPage() {
             <ProductGrid
               searchQuery={businessSearchQuery}
               limit={20}
+              brand={selectedBrand || undefined}
+              colors={selectedColors.length > 0 ? selectedColors.join(',') : undefined}
+              categories={selectedCollection || undefined}
             />
           </div>
         </div>

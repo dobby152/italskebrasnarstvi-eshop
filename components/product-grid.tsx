@@ -46,6 +46,7 @@ interface ProductGridProps {
   categories?: string
   brand?: string
   gender?: string
+  colors?: string
   minPrice?: string
   maxPrice?: string
   inStockOnly?: string
@@ -60,6 +61,7 @@ export function ProductGrid({
   categories,
   brand,
   gender,
+  colors,
   minPrice,
   maxPrice,
   inStockOnly
@@ -91,6 +93,7 @@ export function ProductGrid({
         if (categories) params.append('categories', categories)
         if (brand) params.append('brand', brand)
         if (gender) params.append('gender', gender)
+        if (colors) params.append('colors', colors)
         if (minPrice) params.append('minPrice', minPrice)
         if (maxPrice) params.append('maxPrice', maxPrice)
         if (inStockOnly) params.append('inStockOnly', inStockOnly)
@@ -116,7 +119,7 @@ export function ProductGrid({
     }
 
     fetchProducts()
-  }, [category, searchQuery, limit, sortBy, sortOrder, categories, brand, gender, minPrice, maxPrice, inStockOnly, currentPage])
+  }, [category, searchQuery, limit, sortBy, sortOrder, categories, brand, gender, colors, minPrice, maxPrice, inStockOnly, currentPage])
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)

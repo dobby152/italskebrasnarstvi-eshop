@@ -10,6 +10,9 @@ import Link from "next/link"
 export default function CestovaniPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [showFilters, setShowFilters] = useState(false)
+  const [selectedBrand, setSelectedBrand] = useState('')
+  const [selectedCollection, setSelectedCollection] = useState('')
+  const [selectedColors, setSelectedColors] = useState<string[]>([])
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -83,9 +86,24 @@ export default function CestovaniPage() {
             <div className="w-64 shrink-0">
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <ProductFilters
-                  filters={{}}
-                  onFiltersChange={() => {}}
-                  onClearFilters={() => {}}
+                  filters={{
+                    brand: selectedBrand ? [selectedBrand] : [],
+                    search: searchQuery || '',
+                    category: selectedCollection || undefined,
+                    colors: selectedColors
+                  }}
+                  onFiltersChange={(filters) => {
+                    setSelectedBrand(filters.brand?.[0] || '')
+                    setSearchQuery(filters.search || '')
+                    setSelectedCollection(filters.category || '')
+                    setSelectedColors(filters.colors || [])
+                  }}
+                  onClearFilters={() => {
+                    setSelectedBrand('')
+                    setSearchQuery('')
+                    setSelectedCollection('')
+                    setSelectedColors([])
+                  }}
                   brands={[]}
                 />
               </div>
@@ -111,6 +129,9 @@ export default function CestovaniPage() {
               category="cestovani"
               searchQuery={searchQuery}
               limit={20}
+              brand={selectedBrand || undefined}
+              colors={selectedColors.length > 0 ? selectedColors.join(',') : undefined}
+              categories={selectedCollection || undefined}
             />
           </div>
         </div>
