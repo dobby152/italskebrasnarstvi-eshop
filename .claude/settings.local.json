@@ -95,7 +95,10 @@
       "mcp__supabase__list_projects",
       "WebFetch(domain:www.zaslat.cz)",
       "Bash(npm uninstall:*)",
-      "mcp__supabase__get_logs"
+      "mcp__supabase__get_logs",
+      "Bash(PORT=3040 npm run dev)",
+      "Bash(PORT=3041 npm run dev)",
+      "Bash(PORT=3050 npm run dev)"
     ],
     "deny": [],
     "additionalDirectories": [

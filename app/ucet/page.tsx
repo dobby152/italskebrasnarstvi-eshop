@@ -7,10 +7,7 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { User, Package, Heart, Settings, LogOut, Edit, Save, X, Loader2 } from "lucide-react"
 import { useState, useEffect } from "react"
-import dynamicImport from 'next/dynamic'
-
-// Dynamically import Header to prevent SSR issues
-const Header = dynamicImport(() => import("../components/header"), { ssr: false })
+import Header from "../components/header"
 import { useAuth } from "../contexts/auth-context"
 import { Order } from "../hooks/use-orders"
 import { useRouter } from "next/navigation"
