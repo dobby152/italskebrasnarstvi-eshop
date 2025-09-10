@@ -50,6 +50,9 @@ const COLOR_MAP: Record<string, { name: string; hex: string }> = {
   'TM': { name: 'Tmavě hnědá', hex: '#654321' },
   'BLU4': { name: 'Tmavě modrá', hex: '#1E3A8A' },
   'VE2': { name: 'Zelená', hex: '#059669' },
+  'VE': { name: 'Zelená', hex: '#059669' },
+  'BO': { name: 'Bordeaux', hex: '#722F37' },
+  'AR': { name: 'Stříbrná', hex: '#C0C0C0' },
   'DEFAULT': { name: 'Výchozí', hex: '#6B7280' }
 };
 
@@ -164,23 +167,23 @@ export function filterImagesByColor(images: string[], colorCode: string): string
   console.log(`🔍 FilterImagesByColor: Looking for colorCode "${colorCode}" in ${images.length} images`)
   
   const filteredImages = images.filter(imageUrl => {
-    // Extract folder path to check for color code
-    // URL format: /images/products/SKU-COLORCODE/filename.jpg
+    // Extract filename from path to check for color code
+    // URL format: folder/8_OM5285OM5-N_1.jpg or https://example.com/folder/8_OM5285OM5-N_1.jpg
     const pathParts = imageUrl.split('/')
-    const folderName = pathParts[pathParts.length - 2] || '' // Get folder name
+    const fileName = pathParts[pathParts.length - 1] || '' // Get filename
     
-    console.log(`📁 Checking folder: ${folderName} for color: ${colorCode}`)
+    console.log(`📁 Checking filename: ${fileName} for color: ${colorCode}`)
     
-    // Check if folder name ends with the color code
-    // Examples: AC6576B2-BLU2, BD6658W92T-R, BY3851B3-CU
+    // Check if filename contains the color code
+    // Examples: 8_OM5285OM5-N_1.jpg, 1_OM5285OM5-BLU_1.jpg
     const patterns = [
-      new RegExp(`-${colorCode.toUpperCase()}$`, 'i'),           // Exact match: SKU-COLOR
-      new RegExp(`-${colorCode.toUpperCase()}\\d*$`, 'i'),       // With number: SKU-COLOR2
-      new RegExp(`${colorCode.toUpperCase()}$`, 'i'),            // Just color: SKU-COLOR (no dash)
+      new RegExp(`-${colorCode.toUpperCase()}(_|\\.|$)`, 'i'),    // Exact match: SKU-COLOR_ or SKU-COLOR.
+      new RegExp(`-${colorCode.toUpperCase()}\\d*(_|\\.|$)`, 'i'), // With number: SKU-COLOR2_
+      new RegExp(`${colorCode.toUpperCase()}(_|\\.|$)`, 'i'),     // Just color: SKUCOLOR_
     ]
     
-    const matches = patterns.some(pattern => pattern.test(folderName))
-    console.log(`✅ ${folderName} matches ${colorCode}: ${matches}`)
+    const matches = patterns.some(pattern => pattern.test(fileName))
+    console.log(`✅ ${fileName} matches ${colorCode}: ${matches}`)
     
     return matches
   });

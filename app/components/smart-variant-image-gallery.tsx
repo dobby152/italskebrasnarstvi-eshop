@@ -37,27 +37,27 @@ export default function SmartVariantImageGallery({
 
     console.log(`🔍 Gallery FilterImagesByColor: Looking for colorCode "${colorCode}" in ${images.length} images`)
 
-    // Try to find images that match the color code in folder path
+    // Try to find images that match the color code in filename
     const colorFilteredImages = images.filter(image => {
       if (!image || typeof image !== 'string') return false
       
-      // Extract folder path to check for color code  
-      // URL format: /images/products/SKU-COLORCODE/filename.jpg
+      // Extract filename from path to check for color code
+      // URL format: folder/8_OM5285OM5-N_1.jpg or https://example.com/folder/8_OM5285OM5-N_1.jpg
       const pathParts = image.split('/')
-      const folderName = pathParts[pathParts.length - 2] || '' // Get folder name
+      const fileName = pathParts[pathParts.length - 1] || '' // Get filename
       
-      console.log(`📁 Gallery checking folder: ${folderName} for color: ${colorCode}`)
+      console.log(`📁 Gallery checking filename: ${fileName} for color: ${colorCode}`)
       
-      // Check if folder name ends with the color code
-      // Examples: AC6576B2-BLU2, BD6658W92T-R, BY3851B3-CU
+      // Check if filename contains the color code
+      // Examples: 8_OM5285OM5-N_1.jpg, 1_OM5285OM5-BLU_1.jpg
       const patterns = [
-        new RegExp(`-${colorCode.toUpperCase()}$`, 'i'),           // Exact match: SKU-COLOR
-        new RegExp(`-${colorCode.toUpperCase()}\\d*$`, 'i'),       // With number: SKU-COLOR2  
-        new RegExp(`${colorCode.toUpperCase()}$`, 'i'),            // Just color: SKU-COLOR (no dash)
+        new RegExp(`-${colorCode.toUpperCase()}(_|\\.|$)`, 'i'),    // Exact match: SKU-COLOR_ or SKU-COLOR.
+        new RegExp(`-${colorCode.toUpperCase()}\\d*(_|\\.|$)`, 'i'), // With number: SKU-COLOR2_
+        new RegExp(`${colorCode.toUpperCase()}(_|\\.|$)`, 'i'),     // Just color: SKUCOLOR_
       ]
       
-      const hasColor = patterns.some(pattern => pattern.test(folderName))
-      console.log(`🎨 Gallery: ${folderName} matches ${colorCode}: ${hasColor}`)
+      const hasColor = patterns.some(pattern => pattern.test(fileName))
+      console.log(`🎨 Gallery: ${fileName} matches ${colorCode}: ${hasColor}`)
       
       return hasColor
     })
