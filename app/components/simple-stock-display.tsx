@@ -25,6 +25,8 @@ export default function SimpleStockDisplay({ sku, showLocations = true }: Simple
       setLoading(true)
       try {
         console.log(`🔍 SimpleStockDisplay: Fetching stock for SKU: ${sku}`)
+        // Clear cache for this SKU to get fresh data
+        simpleStockService.clearCacheForSku(sku)
         const stockData = await simpleStockService.getProductStock(sku)
         console.log(`📦 SimpleStockDisplay: Received stock data:`, stockData)
         setStock(stockData)

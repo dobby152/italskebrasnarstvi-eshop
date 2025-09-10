@@ -172,6 +172,10 @@ export default function SmartVariantImageGallery({
           src={galleryItems[currentImageIndex]?.original || '/placeholder.svg'}
           alt={galleryItems[currentImageIndex]?.originalAlt || 'Product image'}
           className="w-full h-full object-cover cursor-pointer"
+          onError={(e) => {
+            console.warn('Main image failed to load:', galleryItems[currentImageIndex]?.original)
+            e.currentTarget.src = '/placeholder.svg'
+          }}
           onClick={() => {
             if (galleryItems.length > 1) {
               setCurrentImageIndex((prev) => 
@@ -230,6 +234,10 @@ export default function SmartVariantImageGallery({
                 src={item.thumbnail || '/placeholder.svg'}
                 alt={item.thumbnailAlt}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.warn('Thumbnail failed to load:', item.thumbnail)
+                  e.currentTarget.src = '/placeholder.svg'
+                }}
               />
             </button>
           ))}

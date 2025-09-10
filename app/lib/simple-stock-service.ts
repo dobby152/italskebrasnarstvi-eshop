@@ -116,7 +116,18 @@ class SimpleStockService {
   }
 
   /**
-   * Clear cache
+   * Clear cache for specific SKU
+   */
+  clearCacheForSku(sku: string) {
+    const normalizedSku = sku.trim()
+    this.cache.delete(normalizedSku)
+    // Also try to delete other possible formats
+    this.cache.delete(sku)
+    console.log(`🗑️ SimpleStockService: Cleared cache for SKU: ${normalizedSku}`)
+  }
+
+  /**
+   * Clear all cache
    */
   clearCache() {
     this.cache.clear()
