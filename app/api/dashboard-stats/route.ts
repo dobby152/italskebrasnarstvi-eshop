@@ -36,10 +36,20 @@ async function fetchDashboardStats() {
   const totalProducts = productsCount || 0
   const totalCustomers = customersCount || 0
 
+  // Get low stock alerts and pending orders for better stats
+  const { count: lowStockCount, error: lowStockError } = await supabase
+    .from('inventory')
+    .select('*', { count: 'exact', head: true })
+    .lte('total_stock', 5)
+
+  if (lowStockError) {
+    console.error('Error fetching low stock count:', lowStockError)
+  }
+
   // Mock growth data (in real app, calculate from historical data)
-  const revenueGrowth = 12.5 // 12.5% growth
-  const ordersGrowth = 8 // 8 new orders today
-  const customersGrowth = 15.2 // 15.2% growth
+  const revenueGrowth = totalRevenue > 0 ? 12.5 : 0 // 12.5% growth if we have revenue
+  const ordersGrowth = totalOrders > 0 ? 8 : 0 // 8 new orders today if we have orders
+  const customersGrowth = totalCustomers > 0 ? 15.2 : 0 // 15.2% growth if we have customers
   const productsGrowth = 5 // 5 new products
 
   return {
@@ -50,7 +60,9 @@ async function fetchDashboardStats() {
     revenueGrowth,
     ordersGrowth,
     customersGrowth,
-    productsGrowth
+    productsGrowth,
+    pendingOrders: 0, // No orders yet
+    lowStockProducts: lowStockCount || 0
   }
 }
 

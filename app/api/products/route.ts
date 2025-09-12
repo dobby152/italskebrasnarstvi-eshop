@@ -149,6 +149,7 @@ export async function GET(request: NextRequest) {
         const hyphenSku = inv.sku.replace(/\//g, '-')
         inventoryMap.set(hyphenSku, inv)
       })
+      console.log(`Created inventory map with ${inventoryMap.size} entries from ${inventoryData.length} inventory records`)
     }
 
     if (!products) {
@@ -179,10 +180,20 @@ export async function GET(request: NextRequest) {
     // Group products by base SKU to avoid duplicates
     const groupedProducts = new Map<string, any>()
     const processedProducts = products.map(product => {
-      const inventory = inventoryMap.get(product.sku)
+      // Try direct lookup first, then try with slash conversion
+      let inventory = inventoryMap.get(product.sku)
+      if (!inventory) {
+        const slashSku = product.sku.replace(/-/g, '/')
+        inventory = inventoryMap.get(slashSku)
+      }
+      
       const totalStock = inventory?.total_stock || 0
       const outletStock = inventory?.outlet_stock || 0
       const chodovStock = inventory?.chodov_stock || 0
+      
+      if (!inventory && totalStock === 0) {
+        console.log(`No inventory found for product SKU: ${product.sku} (tried ${product.sku.replace(/-/g, '/')})`)
+      }
 
       // Generate color variants for this product
       const baseSku = extractBaseSku(product.sku)
