@@ -6,7 +6,7 @@ async function fetchDashboardStats() {
   // Get total revenue from orders
   const { data: orders, error: ordersError } = await supabase
     .from('orders')
-    .select('total')
+    .select('total_price, total_amount')
 
   if (ordersError) {
     console.error('Error fetching orders:', ordersError)
@@ -31,7 +31,7 @@ async function fetchDashboardStats() {
   }
 
   // Calculate stats
-  const totalRevenue = orders?.reduce((sum: number, order: any) => sum + (order.total || 0), 0) || 0
+  const totalRevenue = orders?.reduce((sum: number, order: any) => sum + (order.total_price || order.total_amount || 0), 0) || 0
   const totalOrders = orders?.length || 0
   const totalProducts = productsCount || 0
   const totalCustomers = customersCount || 0

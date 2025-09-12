@@ -23,8 +23,14 @@ export async function GET(request: NextRequest) {
         created_at,
         status,
         payment_status,
-        total,
-        line_items
+        fulfillment_status,
+        total_price,
+        total_amount,
+        order_items (
+          id,
+          quantity,
+          price
+        )
       `)
       .order('created_at', { ascending: false })
 
@@ -37,16 +43,16 @@ export async function GET(request: NextRequest) {
     }
 
     // Transform orders data
-    const transformedOrders = orders?.map((order: Order) => ({
+    const transformedOrders = orders?.map((order: any) => ({
       id: order.id,
-      customer: order.customer_name || order.customer_email || 'Unknown',
+      customer: order.customer_name || order.customer_email || 'Zákazník',
       date: order.created_at,
-      status: order.status || 'pending',
-      statusLabel: getStatusLabel(order.status || 'pending'),
+      status: mapFulfillmentStatus(order.fulfillment_status || 'unfulfilled'),
+      statusLabel: getStatusLabel(order.fulfillment_status || 'unfulfilled'),
       payment: order.payment_status || 'pending',
       paymentLabel: getPaymentLabel(order.payment_status || 'pending'),
-      total: (order.total || 0).toLocaleString('cs-CZ') + ' Kč',
-      items: Array.isArray(order.line_items) ? order.line_items.length : 0
+      total: (order.total_price || order.total_amount || 0).toLocaleString('cs-CZ') + ' Kč',
+      items: Array.isArray(order.order_items) ? order.order_items.length : 0
     })) || []
 
     // Calculate stats
@@ -70,17 +76,27 @@ export async function GET(request: NextRequest) {
   }
 }
 
+function mapFulfillmentStatus(fulfillmentStatus: string) {
+  switch (fulfillmentStatus) {
+    case 'fulfilled':
+      return 'fulfilled'
+    case 'partial':
+      return 'partially_fulfilled'
+    case 'unfulfilled':
+    default:
+      return 'unfulfilled'
+  }
+}
+
 function getStatusLabel(status: string): string {
   switch (status) {
     case 'fulfilled':
       return 'Vyřízeno'
-    case 'pending':
-    case 'unfulfilled':
-      return 'Nevyřízeno'
-    case 'partially_fulfilled':
+    case 'partial':
       return 'Částečně vyřízeno'
+    case 'unfulfilled':
     default:
-      return status || 'Nevyřízeno'
+      return 'Nevyřízeno'
   }
 }
 

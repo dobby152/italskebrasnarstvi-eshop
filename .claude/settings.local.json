@@ -103,7 +103,9 @@
       "Bash(PORT=3060 npm run dev)",
       "Bash(PORT=3061 npm run dev)",
       "Bash(PORT=3062 npm run dev)",
-      "Bash(PORT=3063 npm run dev)"
+      "Bash(PORT=3063 npm run dev)",
+      "Bash(PORT=3070 npm run dev)",
+      "Bash(PORT=3130 npm run dev)"
     ],
     "deny": [],
     "additionalDirectories": [

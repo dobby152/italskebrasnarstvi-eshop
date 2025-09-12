@@ -35,23 +35,12 @@ export async function GET(request: NextRequest) {
           cart_items (
             id,
             quantity,
-            product_variant:product_variants (
+            product:products!cart_items_product_id_fkey (
               id,
+              name,
               sku,
               price,
-              compare_at_price,
-              inventory_quantity,
-              product:products (
-                id,
-                title,
-                handle,
-                product_images (
-                  id,
-                  src,
-                  alt_text,
-                  position
-                )
-              )
+              image_url
             )
           )
         `)
@@ -69,23 +58,12 @@ export async function GET(request: NextRequest) {
           cart_items (
             id,
             quantity,
-            product_variant:product_variants (
+            product:products!cart_items_product_id_fkey (
               id,
+              name,
               sku,
               price,
-              compare_at_price,
-              inventory_quantity,
-              product:products (
-                id,
-                title,
-                handle,
-                product_images (
-                  id,
-                  src,
-                  alt_text,
-                  position
-                )
-              )
+              image_url
             )
           )
         `)

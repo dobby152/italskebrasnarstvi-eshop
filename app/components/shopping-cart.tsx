@@ -9,6 +9,7 @@ import { Badge } from "./ui/badge"
 import { Trash2, Plus, Minus, Heart, ShoppingBag, Loader2 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import CheckoutButton from "./checkout-button"
 
 interface CartItem {
   id: string
@@ -16,30 +17,17 @@ interface CartItem {
     id: string
     name: string
     sku: string
-    brand: string
+    price: number
     image_url: string
   }
-  variant?: {
-    id: string
-    title: string
-    option1_value?: string
-    option2_value?: string
-    option3_value?: string
-  }
   quantity: number
-  unit_price: number
-  total_price: number
-  added_at: string
 }
 
 interface Cart {
   id: string | null
-  items: CartItem[]
-  subtotal: number
-  tax_amount: number
-  discount_amount: number
-  total_amount: number
-  items_count: number
+  cart_items: CartItem[]
+  total: number
+  itemCount: number
 }
 
 export default function ShoppingCart() {
@@ -63,7 +51,7 @@ export default function ShoppingCart() {
       })
 
       const data = await response.json()
-      setCart(data.cart)
+      setCart(data)
     } catch (error) {
       console.error('Failed to load cart:', error)
     } finally {
@@ -150,7 +138,7 @@ export default function ShoppingCart() {
     )
   }
 
-  if (!cart || cart.items.length === 0) {
+  if (!cart?.cart || !cart.cart.cart_items || cart.cart.cart_items.length === 0) {
     return (
       <div className="text-center py-12">
         <ShoppingBag className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -176,7 +164,7 @@ export default function ShoppingCart() {
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-900">
-              Nákupní košík ({cart.items.length})
+              Nákupní košík ({cart.cart.cart_items.length})
             </h2>
             <Button variant="outline" size="sm">
               Vymazat vše
@@ -184,7 +172,7 @@ export default function ShoppingCart() {
           </div>
 
           <div className="space-y-4">
-            {cart.items?.map((item) => (
+            {cart.cart.cart_items?.map((item) => (
               <Card key={item.id}>
                 <CardContent className="p-6">
                   <div className="flex gap-4">
@@ -388,9 +376,7 @@ export default function ShoppingCart() {
                 </div>
               )}
 
-              <Button className="w-full" size="lg">
-                Pokračovat k pokladně
-              </Button>
+              <CheckoutButton />
 
               <div className="text-center">
                 <Link href="/produkty">
