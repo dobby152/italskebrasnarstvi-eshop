@@ -203,35 +203,9 @@ export default function ShoppingCart() {
                           <p className="text-sm text-gray-600 mb-2">
                             SKU: {item.product.sku}
                           </p>
-                          
-                          {item.variant && (
-                            <div className="flex gap-2 mb-2">
-                              {/* Color information */}
-                              {item.variant.option1_value && (
-                                <div className="flex items-center gap-1">
-                                  <div 
-                                    className="w-4 h-4 rounded-full border border-gray-300 bg-gray-200"
-                                  />
-                                  <Badge variant="secondary">
-                                    {item.variant.option1_value}
-                                  </Badge>
-                                </div>
-                              )}
-                              {item.variant.option2_value && (
-                                <Badge variant="secondary">
-                                  {item.variant.option2_value}
-                                </Badge>
-                              )}
-                              {item.variant.option3_value && (
-                                <Badge variant="secondary">
-                                  {item.variant.option3_value}
-                                </Badge>
-                              )}
-                            </div>
-                          )}
 
                           <p className="text-lg font-bold text-gray-900">
-                            {item.unit_price.toLocaleString('cs-CZ')} Kč
+                            {item.product.price.toLocaleString('cs-CZ')} Kč
                           </p>
                         </div>
 
@@ -286,11 +260,11 @@ export default function ShoppingCart() {
 
                         <div className="text-right">
                           <p className="font-semibold text-gray-900">
-                            {item.total_price.toLocaleString('cs-CZ')} Kč
+                            {(item.product.price * item.quantity).toLocaleString('cs-CZ')} Kč
                           </p>
                           {item.quantity > 1 && (
                             <p className="text-sm text-gray-500">
-                              {item.quantity} × {item.unit_price.toLocaleString('cs-CZ')} Kč
+                              {item.quantity} × {item.product.price.toLocaleString('cs-CZ')} Kč
                             </p>
                           )}
                         </div>
