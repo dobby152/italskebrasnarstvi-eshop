@@ -37,7 +37,7 @@ export default function ProduktyPage() {
     if (filters.brands.length > 0) {
       params.append('brand', filters.brands[0])
     }
-    if (filters.gender) {
+    if (filters.gender && filters.gender !== 'all') {
       params.append('gender', filters.gender)
     }
     if (filters.inStock) {

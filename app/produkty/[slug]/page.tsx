@@ -503,12 +503,27 @@ function ProductDetailContent({ slug }: { slug: string }) {
         </div>
 
         {/* Related Products */}
-        <div className="mt-20">
+        <div className="mt-20 space-y-16">
           <ProductRecommendations
             type="similar"
             productId={product?.id?.toString()}
             limit={4}
             title="Podobné produkty"
+            className="space-y-6"
+          />
+
+          <ProductRecommendations
+            type="frequently_bought"
+            productId={product?.id?.toString()}
+            limit={4}
+            title="Často kupováno společně"
+            className="space-y-6"
+          />
+
+          <ProductRecommendations
+            type="trending"
+            limit={6}
+            title="Populární produkty"
             className="space-y-6"
           />
         </div>

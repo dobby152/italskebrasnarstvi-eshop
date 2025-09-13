@@ -283,14 +283,14 @@ export default function ProductFiltersComponent({
           <AccordionContent>
             <div className="pb-4">
               <Select
-                value={localFilters.category || ""}
-                onValueChange={(value) => handleFilterChange('category', value || undefined)}
+                value={localFilters.category || "all"}
+                onValueChange={(value) => handleFilterChange('category', value === 'all' ? undefined : value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Vyberte kategorii..." />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Všechny kategorie</SelectItem>
+                  <SelectItem value="all">Všechny kategorie</SelectItem>
                   {categoryOptions.map(option => (
                     <SelectItem key={option.value} value={option.value}>
                       {option.label}

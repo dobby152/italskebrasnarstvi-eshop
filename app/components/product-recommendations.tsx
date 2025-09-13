@@ -59,17 +59,47 @@ export function ProductRecommendations({
       setError(null)
 
       try {
-        // Use products API instead of problematic recommendations API
-        const response = await fetch(`/api/products?limit=${limit}&inStockOnly=true`)
-        
+        let queryParams = new URLSearchParams({
+          limit: (limit + (productId ? 1 : 0)).toString(), // Get one extra if we need to filter current product
+          inStockOnly: 'true'
+        })
+
+        // Add different sorting/filtering based on recommendation type
+        switch (type) {
+          case 'similar':
+            queryParams.append('sortBy', 'collection')
+            queryParams.append('sortOrder', 'asc')
+            break
+          case 'frequently_bought':
+            queryParams.append('sortBy', 'price')
+            queryParams.append('sortOrder', 'asc')
+            break
+          case 'trending':
+            queryParams.append('sortBy', 'created_at')
+            queryParams.append('sortOrder', 'desc')
+            break
+          case 'cross_sell':
+            queryParams.append('sortBy', 'price')
+            queryParams.append('sortOrder', 'desc')
+            break
+          default:
+            queryParams.append('sortBy', 'sortPriority')
+            queryParams.append('sortOrder', 'asc')
+        }
+
+        const response = await fetch(`/api/products?${queryParams}`)
+
         if (response.ok) {
           const data = await response.json()
           let products = data.products || []
-          
+
           // Filter out current product if productId is provided
           if (productId) {
             products = products.filter((product: any) => product.id.toString() !== productId)
           }
+
+          // Take only the requested limit after filtering
+          products = products.slice(0, limit)
           
           // Convert products to recommendation format with proper image handling
           const recommendations: ProductRecommendation[] = products.map((product: any) => {

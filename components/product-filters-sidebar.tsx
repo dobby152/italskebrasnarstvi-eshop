@@ -300,7 +300,7 @@ export default function ProductFiltersSidebar({
                     <SelectValue placeholder="Vyberte pohlaví..." />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Všechna pohlaví</SelectItem>
+                    <SelectItem value="all">Všechna pohlaví</SelectItem>
                     <SelectItem value="men">Muži</SelectItem>
                     <SelectItem value="women">Ženy</SelectItem>
                   </SelectContent>
