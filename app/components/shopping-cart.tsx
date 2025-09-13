@@ -303,21 +303,15 @@ export default function ShoppingCart() {
               {/* Price Breakdown */}
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span>Mezisoučet ({cart.items_count} položek)</span>
-                  <span>{cart.subtotal.toLocaleString('cs-CZ')} Kč</span>
+                  <span>Mezisoučet ({cart.itemCount} položek)</span>
+                  <span>{cart.total.toLocaleString('cs-CZ')} Kč</span>
                 </div>
 
-                {cart.discount_amount > 0 && (
-                  <div className="flex justify-between text-green-600">
-                    <span>Sleva</span>
-                    <span>-{cart.discount_amount.toLocaleString('cs-CZ')} Kč</span>
-                  </div>
-                )}
 
                 <div className="flex justify-between">
                   <span>Doprava</span>
                   <span>
-                    {cart.subtotal >= 2500 ? (
+                    {cart.total >= 2500 ? (
                       <span className="text-green-600">Zdarma</span>
                     ) : (
                       '150 Kč'
@@ -325,12 +319,6 @@ export default function ShoppingCart() {
                   </span>
                 </div>
 
-                {cart.tax_amount > 0 && (
-                  <div className="flex justify-between text-sm text-gray-600">
-                    <span>DPH</span>
-                    <span>{cart.tax_amount.toLocaleString('cs-CZ')} Kč</span>
-                  </div>
-                )}
               </div>
 
               <Separator />
@@ -338,14 +326,14 @@ export default function ShoppingCart() {
               <div className="flex justify-between text-lg font-bold">
                 <span>Celkem</span>
                 <span>
-                  {(cart.total_amount + (cart.subtotal < 2500 ? 150 : 0)).toLocaleString('cs-CZ')} Kč
+                  {(cart.total + (cart.total < 2500 ? 150 : 0)).toLocaleString('cs-CZ')} Kč
                 </span>
               </div>
 
-              {cart.subtotal < 2500 && (
+              {cart.total < 2500 && (
                 <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-lg">
                   <strong>Tip:</strong> Přidejte produkty za{' '}
-                  <strong>{(2500 - cart.subtotal).toLocaleString('cs-CZ')} Kč</strong>{' '}
+                  <strong>{(2500 - cart.total).toLocaleString('cs-CZ')} Kč</strong>{' '}
                   a získáte dopravu zdarma!
                 </div>
               )}
