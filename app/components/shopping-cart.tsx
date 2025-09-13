@@ -201,7 +201,7 @@ export default function ShoppingCart() {
                             </Link>
                           </h3>
                           <p className="text-sm text-gray-600 mb-2">
-                            {item.product.brand} • {item.product.sku}
+                            SKU: {item.product.sku}
                           </p>
                           
                           {item.variant && (
