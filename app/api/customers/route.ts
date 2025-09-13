@@ -82,12 +82,20 @@ export async function GET(request: NextRequest) {
       }
 
       return {
-        ...customer,
+        id: customer.id,
+        name: customer.name,
+        email: customer.email,
+        phone: customer.phone,
+        orders: customer.orders_count, // Hook expects 'orders' not 'orders_count'
+        totalSpent: `${customer.total_spent.toLocaleString()} Kč`, // Hook expects formatted string
+        lastOrder: customer.last_order_date, // Hook expects 'lastOrder'
+        joinDate: customer.created_at, // Hook expects 'joinDate'
         status,
-        // Format total spent as currency
-        total_spent_formatted: `${customer.total_spent.toLocaleString()} Kč`,
-        // Format last order date
-        last_order_formatted: new Date(customer.last_order_date).toLocaleDateString('cs-CZ')
+        // Keep original fields for backward compatibility
+        orders_count: customer.orders_count,
+        total_spent: customer.total_spent,
+        last_order_date: customer.last_order_date,
+        created_at: customer.created_at
       }
     })
 

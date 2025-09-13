@@ -40,24 +40,22 @@ export function useCustomers() {
         
         // Transform data to match Customer interface
         const transformedCustomers = (data.customers || []).map((customer: any) => ({
-          id: customer.email, // Using email as ID since we don't have dedicated customer IDs
+          id: customer.id,
           name: customer.name,
           email: customer.email,
           phone: customer.phone || undefined,
-          orders_count: customer.orders,
-          total_spent: parseFloat(customer.totalSpent.replace(/[^\d]/g, '')) || 0,
-          last_order_date: customer.lastOrder,
+          orders_count: customer.orders_count,
+          total_spent: customer.total_spent,
+          last_order_date: customer.last_order_date,
           status: customer.status,
-          created_at: customer.joinDate
+          created_at: customer.created_at
         }))
 
         const transformedStats = {
           total: data.stats?.totalCustomers || 0,
           new_this_month: data.stats?.newThisMonth || 0,
-          total_revenue: transformedCustomers.reduce((sum: number, c: any) => sum + c.total_spent, 0),
-          average_order_value: transformedCustomers.length > 0 ? 
-            transformedCustomers.reduce((sum: number, c: any) => sum + c.total_spent, 0) / transformedCustomers.reduce((sum: number, c: any) => sum + c.orders_count, 0) :
-            0
+          total_revenue: data.stats?.totalRevenue || 0,
+          average_order_value: data.stats?.averageOrderValue || 0
         }
 
         setCustomers(transformedCustomers)

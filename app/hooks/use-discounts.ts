@@ -38,7 +38,7 @@ export function useDiscounts() {
         setLoading(true)
         setError(null)
         
-        const response = await fetch('http://localhost:3001/api/discounts')
+        const response = await fetch('/api/discounts')
         if (!response.ok) {
           throw new Error('Failed to fetch discounts')
         }

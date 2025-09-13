@@ -191,9 +191,10 @@ export async function GET(request: NextRequest) {
       const outletStock = inventory?.outlet_stock || 0
       const chodovStock = inventory?.chodov_stock || 0
       
-      if (!inventory && totalStock === 0) {
-        console.log(`No inventory found for product SKU: ${product.sku} (tried ${product.sku.replace(/-/g, '/')})`)
-      }
+      // Only log inventory issues for debugging (reduce verbosity)
+      // if (!inventory && totalStock === 0) {
+      //   console.log(`No inventory found for product SKU: ${product.sku} (tried ${product.sku.replace(/-/g, '/')})`)
+      // }
 
       // Generate color variants for this product
       const baseSku = extractBaseSku(product.sku)
