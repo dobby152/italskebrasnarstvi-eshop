@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "C:\\Users\\hynex\\Desktop"]
+    },
+    "browsermcp": {
+      "command": "npx",
+      "args": ["-y", "@browsermcp/mcp@latest"]
+    }
+  }
+}
