@@ -138,7 +138,7 @@ export default function ShoppingCart() {
     )
   }
 
-  if (!cart?.cart || !cart.cart.cart_items || cart.cart.cart_items.length === 0) {
+  if (!cart || !cart.cart_items || cart.cart_items.length === 0) {
     return (
       <div className="text-center py-12">
         <ShoppingBag className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -164,7 +164,7 @@ export default function ShoppingCart() {
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-900">
-              Nákupní košík ({cart.cart.cart_items.length})
+              Nákupní košík ({cart.cart_items.length})
             </h2>
             <Button variant="outline" size="sm">
               Vymazat vše
@@ -172,7 +172,7 @@ export default function ShoppingCart() {
           </div>
 
           <div className="space-y-4">
-            {cart.cart.cart_items?.map((item) => (
+            {cart.cart_items?.map((item) => (
               <Card key={item.id}>
                 <CardContent className="p-6">
                   <div className="flex gap-4">
