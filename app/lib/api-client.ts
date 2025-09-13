@@ -62,7 +62,7 @@ export interface ProductsResponse {
 
 // API client for all endpoints
 class ApiClient {
-  private baseUrl: string
+  protected baseUrl: string
 
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl
@@ -250,4 +250,28 @@ class ApiClient {
 
 // Create and export the API client instance
 // Use Next.js API routes instead of external server
-export const apiClient = new ApiClient('')
+class LazyApiClient extends ApiClient {
+  constructor() {
+    super('')
+  }
+
+  private getBaseUrl(): string {
+    if (typeof window !== 'undefined') {
+      return window.location.origin
+    }
+    return ''
+  }
+
+  async getProducts(params: any = {}) {
+    // Update base URL before each call in case it wasn't available during construction
+    this.baseUrl = this.getBaseUrl()
+    return super.getProducts(params)
+  }
+
+  async getProduct(id: string) {
+    this.baseUrl = this.getBaseUrl()
+    return super.getProduct(id)
+  }
+}
+
+export const apiClient = new LazyApiClient()
