@@ -108,13 +108,13 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
       currency: session.currency?.toUpperCase() || 'CZK',
       subtotal_price: session.amount_subtotal ? session.amount_subtotal / 100 : 0,
       total_price: session.amount_total ? session.amount_total / 100 : 0,
-      shipping_address: session.shipping_details?.address ? {
-        name: session.shipping_details.name,
-        line1: session.shipping_details.address.line1,
-        line2: session.shipping_details.address.line2,
-        city: session.shipping_details.address.city,
-        postal_code: session.shipping_details.address.postal_code,
-        country: session.shipping_details.address.country
+      shipping_address: (session as any).shipping_details?.address ? {
+        name: (session as any).shipping_details.name,
+        line1: (session as any).shipping_details.address.line1,
+        line2: (session as any).shipping_details.address.line2,
+        city: (session as any).shipping_details.address.city,
+        postal_code: (session as any).shipping_details.address.postal_code,
+        country: (session as any).shipping_details.address.country
       } : null,
       payment_id: session.payment_intent as string,
       payment_status: 'paid',
